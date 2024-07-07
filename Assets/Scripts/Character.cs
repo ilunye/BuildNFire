@@ -27,4 +27,9 @@ public class Character : MonoBehaviour
         Player.transform.Translate(Vector3.forward * vertical * PlayerSpeed * Time.deltaTime);//W S 上 下
         Player.transform.Translate(Vector3.right * horizontal * PlayerSpeed * Time.deltaTime);//A D 左右
     }
+
+    private void GrabMaterial()  //玩家拾捡物品
+    {
+        if()
+    }
 }
