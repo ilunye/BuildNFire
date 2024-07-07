@@ -171,6 +171,10 @@ namespace Supercyan.AnimalPeopleSample
             float h = Input.GetAxis("Horizontal");
 
             Transform camera = Camera.main.transform;
+            if (camera == null)
+{
+    Debug.Log("Camera object is null!");
+}
 
             if (Input.GetKey(KeyCode.LeftShift))
             {
