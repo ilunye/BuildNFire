@@ -66,7 +66,7 @@ Material:
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
-    - _DisappearOffset: 6.876315
+    - _DisappearOffset: 0.35197616
     - _DstBlend: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
