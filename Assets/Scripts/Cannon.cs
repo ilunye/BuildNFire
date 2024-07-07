@@ -4,74 +4,35 @@ using UnityEngine;
 
 public class Cannon : MonoBehaviour
 {
-    public float[] pos;
-    public Material[] mat;
-    public int idx = 0;
+    public bool claimed = false;
+    public int state = 0;
     public bool isPlaying = false;
+    private Animator animator;
+    private float[] pos = new float[4] {-1.38f, -1.18f, -0.64f, -0.15f};
 
-    IEnumerator EachNext(int idx)
-    {
-        isPlaying = true;
-        for(float i=pos[2*idx]; i<pos[2*idx+1]; i+=0.01f)
-        {
-            mat[idx].SetFloat("_DisappearOffset", i);
-            yield return new WaitForSeconds(0.1f);
-        }
+    private void setNotPlaying(){
         isPlaying = false;
     }
 
-    IEnumerator EachPrev(int idx)
-    {
-        isPlaying = true;
-        for(float i=pos[2*idx+1]; i>pos[2*idx]; i-=0.01f)
-        {
-            mat[idx].SetFloat("_DisappearOffset", i);
-            yield return new WaitForSeconds(0.1f);
-        }
-        isPlaying = false;
+    public void prev_state(){
+
     }
 
-    public void Next()
-    {
+    public void next_state(){
         if(isPlaying) return;
-        if(idx < 5)
-        {
-            StartCoroutine(EachNext(idx));
-            idx++;
+        if(state < 4){
+            state++;
+            animator.Play("cannon" + state.ToString(), -1, 0f);
+            isPlaying = true;
+            Invoke("setNotPlaying", 5f);
         }
     }
-
-    public void Prev()
-    {
-        if(idx > 0)
-        {
-            StopAllCoroutines();
-            isPlaying = false;
-            idx--;
-            mat[idx].SetFloat("_DisappearOffset", pos[2*idx]);
-        }
-    }
-
-    // Start is called before the first frame update
     void Start()
     {
-        pos = new float[10]; 
-        for(int i=0; i<10; i++)
-        {
-            pos[i] = transform.GetChild(i).position.y;
-        }
-        for(int i=0; i<mat.Length; i++)
-        {
-            mat[i].SetFloat("_DisappearOffset", pos[0]);
-        }
+        animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        for(int i=0; i<10; i++)
-        {
-            pos[i] = transform.GetChild(i).position.y;
-        }
     }
 }

@@ -6,7 +6,7 @@ Shader "Custom/DisappearStandardShader"
         _MainTex ("Albedo (RGB)", 2D) = "white" {}
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
-        _DisappearOffset ("Disappear Offset", Range(-100,100)) = 0
+        _DisappearOffset ("Disappear Offset", Range(-2,2)) = -2
     }
     SubShader
     {
