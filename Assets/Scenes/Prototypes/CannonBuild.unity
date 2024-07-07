@@ -1083,7 +1083,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1996387725}
         m_TargetAssemblyTypeName: Cannon, Assembly-CSharp
-        m_MethodName: Next
+        m_MethodName: next_state
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
