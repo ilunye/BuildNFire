@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class carBehavior : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class carBehavior : MonoBehaviour
     float transformSpeed;
     float road_1or2;
     private int circleNum=2;//一共需要走的圈数
+    public GameObject dest;
     void Start()
     {
         //float road_1or2=Random.Range(0,1);
@@ -20,17 +22,18 @@ public class carBehavior : MonoBehaviour
         p=gameObject.transform.localPosition;
         circleNum=(int)Random.Range(0,5);
         //gameObject.transform.position=new Vector3(-23,-4.9f,-7.6f);
+        GetComponent<NavMeshAgent>().SetDestination(dest.transform.position);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Time.time<circleNum*15f+7.5f){
-            circleroad();
-        }
-        else{
-            road1();
-        }     
+        // if(Time.time<circleNum*15f+7.5f){
+        //     circleroad();
+        // }
+        // else{
+        //     road1();
+        // }     
     }
     
     private void road1(){

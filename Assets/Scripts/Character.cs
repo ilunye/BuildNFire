@@ -30,6 +30,6 @@ public class Character : MonoBehaviour
 
     private void GrabMaterial()  //玩家拾捡物品
     {
-        if()
+        // if()
     }
 }
