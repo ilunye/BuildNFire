@@ -1218,7 +1218,6 @@ GameObject:
   - component: {fileID: 1952653509}
   - component: {fileID: 1952653508}
   - component: {fileID: 1952653507}
-  - component: {fileID: 1952653511}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1311,26 +1310,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1952653511
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1952653506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9dc960346dea1f478e1abfaae842b08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cannon: {fileID: 1996387721}
-  mat:
-  - {fileID: 2100000, guid: 2ccc38f9bbea3b3429d10bd562586109, type: 2}
-  - {fileID: 2100000, guid: 33729cfb9b3be3142b0749b71dd105c5, type: 2}
-  - {fileID: 2100000, guid: 30d416241839615439efed2d33fcd59e, type: 2}
-  - {fileID: 2100000, guid: 62252ffea244391469c636b635c0da37, type: 2}
-  - {fileID: 2100000, guid: 8667bf2ad6661ce4b90108321ea49c26, type: 2}
-  slider: {fileID: 1525921470}
 --- !u!1 &1963623655
 GameObject:
   m_ObjectHideFlags: 0
@@ -1425,17 +1404,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &1996387721 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 48342306418360085, guid: aa641abd1d3cc9c4abb2cd901fdf185b, type: 3}
-  m_PrefabInstance: {fileID: 7278121138901313107}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1996387725 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 240075265366132273, guid: aa641abd1d3cc9c4abb2cd901fdf185b, type: 3}
   m_PrefabInstance: {fileID: 7278121138901313107}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1996387721}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e24b8fa25e09854ca94cbceeaf6140b, type: 3}
@@ -1459,7 +1433,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 855806794440648111, guid: aa641abd1d3cc9c4abb2cd901fdf185b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.16
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 855806794440648111, guid: aa641abd1d3cc9c4abb2cd901fdf185b, type: 3}
       propertyPath: m_LocalPosition.z
