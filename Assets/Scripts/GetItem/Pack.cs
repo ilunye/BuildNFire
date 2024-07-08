@@ -32,7 +32,8 @@ public class Pack : MonoBehaviour  //背包
             if(Items.Count < MaxItem) //不超过背包容量，加入新物品
             {
                 Items.Add(item); //加入列表
-                item.count = 0;
+                item.count ++;
+                item.IsGrab = true;
             }
             else{
                 Debug.Log("背包已经满啦！！");
@@ -43,7 +44,8 @@ public class Pack : MonoBehaviour  //背包
             if(Items.Count < 1) //空背包直接添加
             {
                 Items.Add(item);
-                item.count = 0;
+                item.count ++;
+                item.IsGrab = true;
             }
             else{ //遍历背包合并物品
                 foreach(ObjectItem currItem in Items)
@@ -51,8 +53,8 @@ public class Pack : MonoBehaviour  //背包
                     //相同物品，可叠加
                     if(currItem.objID == item.objID)
                     {
-                        currItem.count += item.count;
-                        item.count = 0;
+                        currItem.count ++;
+                        item.IsGrab = true;
                     }
                 }
 

@@ -38,7 +38,7 @@ public class Character : MonoBehaviour
         Player.transform.Translate(Vector3.right * horizontal * PlayerSpeed * Time.deltaTime);//A D 左右
     }
 
-    private void RayCaseObj()
+    private void RayCaseObj()  //射线检测面前物品并捡起
     {
         //创建射线
         Debug.DrawRay(tr.position, tr.forward * 2.0f, Color.green);
@@ -58,7 +58,7 @@ public class Character : MonoBehaviour
                 {
                     Debug.Log("按下E");
                     pack.GetItem(obj);
-                    if(obj.count == 0) //当前物品拾捡完成
+                    if(obj.IsGrab == true) //当前物品拾捡完成
                     {
                         Destroy(gameObj);
                     }
