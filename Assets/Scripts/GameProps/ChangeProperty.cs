@@ -20,9 +20,9 @@ public class ChangeProperty : BaseBuffModule
         var character = buffInfo.target.GetComponent<Character>();
         if (character)
         {
-            character.property.attack += property.attack;
-            character.property.speed += property.speed;
-            character.property.sleep += property.sleep;
+            // character.property.attack += property.attack;
+            // character.property.speed += property.speed;
+            // character.property.sleep += property.sleep;
         }
     }
 }

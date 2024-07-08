@@ -1,4 +1,10 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.Collections;
+using System.Net;
+using System.Net.NetworkInformation;
+using System.Net.Sockets;
+
 
 namespace Mirror
 {
@@ -13,10 +19,19 @@ namespace Mirror
 
         public int offsetX;
         public int offsetY;
+        public string myIP;
 
         void Awake()
         {
             manager = GetComponent<NetworkManager>();
+            var host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (var ip in host.AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    myIP = ip.ToString();
+                }
+            }
         }
 
         void OnGUI()
@@ -76,12 +91,12 @@ namespace Mirror
                 // works for IPV4:PORT.
                 // for IPV6:PORT it would be misleading since IPV6 contains ":":
                 // 2001:0db8:0000:0000:0000:ff00:0042:8329
-                if (Transport.active is PortTransport portTransport)
-                {
-                    // use TryParse in case someone tries to enter non-numeric characters
-                    if (ushort.TryParse(GUILayout.TextField(portTransport.Port.ToString()), out ushort port))
-                        portTransport.Port = port;
-                }
+                // if (Transport.active is PortTransport portTransport)
+                // {
+                //     // use TryParse in case someone tries to enter non-numeric characters
+                //     if (ushort.TryParse(GUILayout.TextField(portTransport.Port.ToString()), out ushort port))
+                //         portTransport.Port = port;
+                // }
 
                 GUILayout.EndHorizontal();
 
@@ -112,12 +127,12 @@ namespace Mirror
             if (NetworkServer.active && NetworkClient.active)
             {
                 // host mode
-                GUILayout.Label($"<b>Host</b>: running via {Transport.active}");
+                GUILayout.Label($"<b>Host</b>: running on {myIP}");
             }
             else if (NetworkServer.active)
             {
                 // server only
-                GUILayout.Label($"<b>Server</b>: running via {Transport.active}");
+                GUILayout.Label($"<b>Server</b>: running on {myIP}");
             }
             else if (NetworkClient.isConnected)
             {
@@ -132,30 +147,38 @@ namespace Mirror
             {
                 GUILayout.BeginHorizontal();
 #if UNITY_WEBGL
-                if (GUILayout.Button("Stop Single Player"))
+                if (GUILayout.Button("Stop Single Player")){
                     manager.StopHost();
+                    Application.LoadLevel(Application.loadedLevel);
+                }
 #else
                 // stop host if host mode
-                if (GUILayout.Button("Stop Host"))
+                if (GUILayout.Button("Stop Host")){
                     manager.StopHost();
+                    Application.LoadLevel(Application.loadedLevel);
+                }
 
                 // stop client if host mode, leaving server up
-                if (GUILayout.Button("Stop Client"))
-                    manager.StopClient();
+                // if (GUILayout.Button("Stop Client"))
+                //     manager.StopClient();
 #endif
                 GUILayout.EndHorizontal();
             }
             else if (NetworkClient.isConnected)
             {
                 // stop client if client-only
-                if (GUILayout.Button("Stop Client"))
+                if (GUILayout.Button("Stop Client")){
                     manager.StopClient();
+                    Application.LoadLevel(Application.loadedLevel);
+                }
             }
             else if (NetworkServer.active)
             {
                 // stop server if server-only
-                if (GUILayout.Button("Stop Server"))
+                if (GUILayout.Button("Stop Server")){
                     manager.StopServer();
+                    Application.LoadLevel(Application.loadedLevel);
+                }
             }
         }
     }
