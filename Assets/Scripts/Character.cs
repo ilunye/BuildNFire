@@ -12,6 +12,7 @@ public class Character : MonoBehaviour
 
     private Transform tr; //创造射线
 
+    public Property property;
     // Start is called before the first frame update
     void Start()
     {
