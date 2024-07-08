@@ -1,38 +1,47 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 public class Cannon : MonoBehaviour
 {
     public bool claimed = false;
-    public int state = 0;
     public bool isPlaying = false;
-    private Animator animator;
-    private float[] pos = new float[4] {-1.38f, -1.18f, -0.64f, -0.15f};
+    private Material[] material = new Material[5];
+    private Transform disOffset;
+    private Transform down;
+    private Transform up;
 
-    private void setNotPlaying(){
+    IEnumerator each_next(float offset){
+        isPlaying = true;
+        float eachOffset = offset / 50;
+        for(int i=0; i<50; i++){
+            disOffset.position = new Vector3(disOffset.position.x, disOffset.position.y + eachOffset, disOffset.position.z);
+            yield return new WaitForSeconds(0.1f);
+        }
         isPlaying = false;
-    }
-
-    public void prev_state(){
-
     }
 
     public void next_state(){
         if(isPlaying) return;
-        if(state < 4){
-            state++;
-            animator.Play("cannon" + state.ToString(), -1, 0f);
-            isPlaying = true;
-            Invoke("setNotPlaying", 5f);
-        }
+        StartCoroutine(each_next((up.position.y - down.position.y)/10));
     }
+
     void Start()
     {
-        animator = GetComponent<Animator>();
+        disOffset = gameObject.transform.GetChild(0);
+        down = gameObject.transform.GetChild(1);
+        up = gameObject.transform.GetChild(2);
+        for(int i=0; i<5; i++){
+            material[i] = GetComponent<MeshRenderer>().materials[i];
+            material[i].SetFloat("_DisappearOffset", disOffset.position.y);
+        }
     }
 
     void Update()
     {
+        for(int i=0; i<5; i++){
+            material[i].SetFloat("_DisappearOffset", disOffset.position.y);
+        }
     }
 }
