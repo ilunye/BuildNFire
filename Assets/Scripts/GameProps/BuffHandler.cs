@@ -40,7 +40,7 @@ public class BuffHandler : MonoBehaviour
                     if (buffInfo != null)
                     {
                         AddBuff(buffInfo);
-                        Debug.Log("碰撞发生与" + CollObj.name);
+                        // Debug.Log("碰撞发生与" + CollObj.name);
                         Destroy(CollObj);
                     }
                     break;
