@@ -27,7 +27,8 @@ public class Character : MonoBehaviour
         Idle,
         Run,
         Punch,
-        Attack,
+        ReadyToClaim,       // ready to claim objects, that is colliding with sth
+        Claim,
         Dead
     }
 
@@ -71,7 +72,7 @@ public class Character : MonoBehaviour
     {
         stateInfo = Anim.GetCurrentAnimatorStateInfo(0);
         // PlayerMove(); //人物移动
-        if(stateInfo.IsName("Idle")){
+        if(stateInfo.IsName("Idle") && playerState != PlayerState.ReadyToClaim){
             playerState = PlayerState.Idle;
         }
         if(playerState == PlayerState.Idle){
@@ -93,7 +94,7 @@ public class Character : MonoBehaviour
     private void Motion(){
         Debug.Log("moving");
         // go up
-        if(playerState != PlayerState.Punch){
+        if(playerState != PlayerState.Punch && playerState != PlayerState.Claim){
             if(Input.GetKey(KeyCode.W)){
                 // 向世界坐标系得z轴方向移动
                 Vector3 p = transform.localPosition;
@@ -140,15 +141,16 @@ public class Character : MonoBehaviour
         
         }
         if(Input.GetKeyDown(KeyCode.E)){
-            Anim.Play("PunchRight");
-            isPunch = false;
-            playerState = PlayerState.Punch;
+            if(playerState == PlayerState.Idle){
+                Anim.Play("PunchRight");
+                isPunch = false;
+                playerState = PlayerState.Punch;
+            }else if(playerState == PlayerState.ReadyToClaim){
+                Debug.Log("Claim");
+                playerState = PlayerState.Claim;
+                Anim.Play("Gathering");
+            }
         }
-        // if(Input.GetKeyUp(KeyCode.E)){
-        //     Anim.Play("Idle");
-        //     isPunch = false;
-        //     playerState = PlayerState.Idle;
-        // }
     }
 
     private void Idle2Run(){
