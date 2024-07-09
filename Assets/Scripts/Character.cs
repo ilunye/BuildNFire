@@ -180,7 +180,6 @@ public class Character : MonoBehaviour
             }else if(playerState == PlayerState.Idle && Material != MaterialType.None){
                 Material = MaterialType.None;
             }else if(playerState == PlayerState.ReadyToClaim && Material == MaterialType.None){
-                Debug.Log("Claim");
                 playerState = PlayerState.Claim;
                 Anim.Play("Gathering");
             }
