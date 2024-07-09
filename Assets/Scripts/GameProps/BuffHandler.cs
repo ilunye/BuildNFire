@@ -24,23 +24,43 @@ public class BuffHandler : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision) //检测碰撞
     {
-    Debug.Log("Collide!");
+        Debug.Log("Collide!");
         GameObject CollObj = collision.gameObject;
         if (CollObj != null)
         {
-            if (CollObj.CompareTag("Buff")) // 检测碰撞对象的标签
+            BuffInfo buffInfo = new BuffInfo();
+            switch (CollObj.tag) // 检测碰撞对象的标签
             {
-                BuffInfo buffInfo = new BuffInfo();
-                buffInfo.buffData = CollObj.GetComponent<Burger>().buffData;
-                buffInfo.creater = CollObj;
-                buffInfo.target = gameObject;
-                buffInfo.durationTime = buffInfo.buffData.DurationTime;
-                if (buffInfo != null)
-                {
-                    AddBuff(buffInfo);
-                    Debug.Log("碰撞发生与" + CollObj.name);
-                    Destroy(CollObj);
-                }
+                case "Burger":
+                    buffInfo.buffData = CollObj.GetComponent<Burger>().buffData;
+                    buffInfo.creater = CollObj;
+                    buffInfo.target = gameObject;
+                    buffInfo.durationTime = buffInfo.buffData.DurationTime;
+                    if (buffInfo != null)
+                    {
+                        AddBuff(buffInfo);
+                        Debug.Log("碰撞发生与" + CollObj.name);
+                        Destroy(CollObj);
+                    }
+                    break;
+                case "Clock":
+                    buffInfo.buffData = CollObj.GetComponent<Clock>().buffData;
+                    buffInfo.creater = CollObj;
+                    buffInfo.target = gameObject;
+                    buffInfo.durationTime = buffInfo.buffData.DurationTime;
+                    if (buffInfo != null)
+                    {
+                        AddBuff(buffInfo);
+                        Debug.Log("碰撞发生与" + CollObj.name);
+                        Destroy(CollObj);
+                    }
+                    break;
+                default:
+                    Debug.Log("道具不存在");
+                    break;
+
+
+
             }
         }
     }
@@ -157,7 +177,7 @@ public class BuffHandler : MonoBehaviour
 
             current = next;
         }
-        
+
     }
 
     private BuffInfo FindBuff(int buffDataID) //在buff列表中查找buff编号
