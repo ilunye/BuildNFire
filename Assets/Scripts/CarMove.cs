@@ -20,7 +20,7 @@ public class carMove : MonoBehaviour
     void Start()
     {
         
-        dirSpeed=0.07f;
+        dirSpeed=0.08f;
         transformSpeed=0.05f;
         rotationSpeed=20f;
         p=gameObject.transform.localPosition;
@@ -61,7 +61,7 @@ public class carMove : MonoBehaviour
     {
         //Debug.Log("Entered trigger with: " + other.name);
         if(other.CompareTag("car")){
-            dirSpeed=0.01f;
+            dirSpeed=0.0f;
         }
 
 
@@ -124,7 +124,7 @@ public class carMove : MonoBehaviour
             isCircle=false;
         }
         else if(other.CompareTag("r8")){
-            dirSpeed=0.12f;
+            dirSpeed=0.4f;
         }
     } 
 

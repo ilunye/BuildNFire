@@ -593,6 +593,7 @@ GameObject:
   - component: {fileID: -4362724396125130409}
   - component: {fileID: 4832465869539239927}
   - component: {fileID: 7424069436559882370}
+  - component: {fileID: 49675474435196242}
   m_Layer: 0
   m_Name: Vehicle_Container_color03_separate
   m_TagString: car
@@ -640,6 +641,7 @@ MonoBehaviour:
   r4: {fileID: 0}
   r5: {fileID: 0}
   r6: {fileID: 0}
+  destroyDelay: 45
 --- !u!65 &4832465869539239927
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -688,3 +690,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &49675474435196242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a640d15c3a4b2243a1893db4b19e512, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

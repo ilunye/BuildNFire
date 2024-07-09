@@ -12,7 +12,7 @@ public class TrafficControl : MonoBehaviour
 
     void Start()
     {
-        interval=3.5f;
+        interval=3f;
         p=(int)Random.Range(1,3);
         interval=interval*p;
     }
