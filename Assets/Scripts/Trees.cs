@@ -44,40 +44,43 @@ public class Trees : MonoBehaviour
     }
     
     IEnumerator ShakeTreeCoroutine(float duration = 1f, float magnitude = 1f, bool broken = false)
-{
-    Vector3 originalRotation = transform.localEulerAngles;
-    float elapsed = 0.0f;
-    while(elapsed < duration * 0.7f){
-        elapsed += Time.deltaTime;
-        elapsed += Time.deltaTime;
-        yield return null;  
-    }
-
-    while (elapsed < duration)
     {
-        if(broken)
-            duration *= 0.8f;
-        float z = Mathf.Sin(elapsed * 20) * magnitude; // 20 and 0.1 are arbitrary values for frequency and magnitude
-        transform.localEulerAngles = new Vector3(originalRotation.x, originalRotation.y, originalRotation.z + z);
+        Vector3 originalRotation = transform.localEulerAngles;
+        float elapsed = 0.0f;
+        while(elapsed < duration * 0.7f){
+            elapsed += Time.deltaTime;
+            elapsed += Time.deltaTime;
+            yield return null;  
+        }
 
-        elapsed += Time.deltaTime;
-        yield return null; // Wait until next frame
+        while (elapsed < duration)
+        {
+            if(broken)
+                duration *= 0.8f;
+            float z = Mathf.Sin(elapsed * 20) * magnitude; // 20 and 0.1 are arbitrary values for frequency and magnitude
+            transform.localEulerAngles = new Vector3(originalRotation.x, originalRotation.y, originalRotation.z + z);
+
+            elapsed += Time.deltaTime;
+            yield return null; // Wait until next frame
+        }
+
+        transform.localEulerAngles = originalRotation; // Reset to original rotation
+        shaking = false;
+        if(status == 0){
+            GameObject g = Instantiate(Resources.Load("Prefabs/Wood") as GameObject);
+            g.transform.localPosition = transform.localPosition;
+            Destroy(gameObject);
+        }
     }
 
-    transform.localEulerAngles = originalRotation; // Reset to original rotation
-    shaking = false;
-    if(status == 0)
-        Destroy(gameObject);
-}
-
-void Shake()
-{
-    if (!shaking)
+    void Shake()
     {
-        shaking = true;
-        status--;
-        StartCoroutine(ShakeTreeCoroutine(shake_duration, shake_magnitude, status == 0));
+        if (!shaking)
+        {
+            shaking = true;
+            status--;
+            StartCoroutine(ShakeTreeCoroutine(shake_duration, shake_magnitude, status == 0));
+        }
     }
-}
     
 }

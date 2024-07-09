@@ -282,6 +282,8 @@ GameObject:
   - component: {fileID: 364521870}
   - component: {fileID: 364521875}
   - component: {fileID: 364521876}
+  - component: {fileID: 364521877}
+  - component: {fileID: 364521878}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -310,7 +312,7 @@ MonoBehaviour:
   autoConnectClientBuild: 0
   offlineScene: 
   onlineScene: 
-  transport: {fileID: 364521876}
+  transport: {fileID: 364521877}
   networkAddress: localhost
   maxConnections: 100
   disconnectInactiveConnections: 0
@@ -364,7 +366,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offsetX: 0
   offsetY: 0
-  myIP: 
+  clientNo: 0
 --- !u!114 &364521876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -387,7 +389,7 @@ MonoBehaviour:
   sslEnabled: 0
   sslProtocols: 3072
   sslCertJson: ./cert.json
-  port: 7777
+  port: 39393
   batchSend: 1
   waitBeforeSend: 1
   clientUseWss: 0
@@ -395,6 +397,46 @@ MonoBehaviour:
     ClientPortOption: 0
     CustomClientPort: 0
   minimumLogLevel: 3
+--- !u!114 &364521877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 364521867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7064b1b1d0671194baf55fa8d5f564d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clientToServerTransport: {fileID: 364521876}
+  serverIP: 172.25.98.235
+  heartBeatInterval: 3
+  connectOnAwake: 1
+  authenticationKey: Secret Auth Key
+  diconnectedFromRelay:
+    m_PersistentCalls:
+      m_Calls: []
+  serverName: My awesome server!
+  extraServerData: Map 1
+  maxServerPlayers: 10
+  isPublicServer: 1
+  serverListUpdated:
+    m_PersistentCalls:
+      m_Calls: []
+  serverId: -1
+--- !u!114 &364521878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 364521867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 856de37bc551c6c479a5a9a950278b30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &720026543
 GameObject:
   m_ObjectHideFlags: 0

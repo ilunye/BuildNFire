@@ -18,7 +18,51 @@ public class BuffHandler : MonoBehaviour
     void Update()
     {
 
-        BuffRemove();
+        BuffRemove(); //检测buff状态并更新
+
+    }
+
+    private void OnCollisionEnter(Collision collision) //检测碰撞
+    {
+        Debug.Log("Collide!");
+        GameObject CollObj = collision.gameObject;
+        if (CollObj != null)
+        {
+            BuffInfo buffInfo = new BuffInfo();
+            switch (CollObj.tag) // 检测碰撞对象的标签
+            {
+                case "Burger":
+                    buffInfo.buffData = CollObj.GetComponent<Burger>().buffData;
+                    buffInfo.creater = CollObj;
+                    buffInfo.target = gameObject;
+                    buffInfo.durationTime = buffInfo.buffData.DurationTime;
+                    if (buffInfo != null)
+                    {
+                        AddBuff(buffInfo);
+                        Debug.Log("碰撞发生与" + CollObj.name);
+                        Destroy(CollObj);
+                    }
+                    break;
+                case "Clock":
+                    buffInfo.buffData = CollObj.GetComponent<Clock>().buffData;
+                    buffInfo.creater = CollObj;
+                    buffInfo.target = gameObject;
+                    buffInfo.durationTime = buffInfo.buffData.DurationTime;
+                    if (buffInfo != null)
+                    {
+                        AddBuff(buffInfo);
+                        Debug.Log("碰撞发生与" + CollObj.name);
+                        Destroy(CollObj);
+                    }
+                    break;
+                default:
+                    Debug.Log("道具不存在");
+                    break;
+
+
+
+            }
+        }
     }
 
     private void AddBuff(BuffInfo buffInfo)  //捡到物品增加buff
@@ -28,7 +72,7 @@ public class BuffHandler : MonoBehaviour
 
         if (findBuffInfo != null) //如果找到
         {
-            buffInfo.curStack=1;
+            buffInfo.curStack = 1;
             switch (buffInfo.buffData.buffUpdateTime) //判断更新模式
             {
                 case BuffUpdateTimeEnum.Add: //添加，时间叠加
@@ -133,7 +177,7 @@ public class BuffHandler : MonoBehaviour
 
             current = next;
         }
-        throw new NotImplementedException();
+
     }
 
     private BuffInfo FindBuff(int buffDataID) //在buff列表中查找buff编号

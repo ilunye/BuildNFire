@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 
@@ -9,10 +10,11 @@ public class BuffData : ScriptableObject
     //基本信息
     public int BuffID;
     public string BuffName;
-    public Sprite icon; //贴图
+    public Mesh icon; //buff皮肤
     public int MaxStack = 1; //可叠加层数
     public int Priority; //优先级
     public string[] tags;
+    
     //时间信息
     public bool IsForever = false;
     public float DurationTime; //持续时间
@@ -29,6 +31,15 @@ public class BuffData : ScriptableObject
     public BuffUpdateTimeEnum buffUpdateTime;
     public BuffRemoveStackUpdateEnum buffRemoveStackUpdate;
     
+    private static BuffData instance;
 
+    public static BuffData GetInstance()
+    {
+        if (instance == null)
+        {
+            instance = Resources.Load<BuffData>("YourBuffDataAssetName");
+        }
+        return instance;
+    }
 }
 
