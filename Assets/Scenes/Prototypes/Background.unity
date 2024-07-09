@@ -14189,6 +14189,7 @@ MonoBehaviour:
     sleep: 0
     attack: 0
   cam: {fileID: 1090582237}
+  wasd: 1
   playerState: 0
   isPunch: 0
 --- !u!65 &2068587070
@@ -14210,8 +14211,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.4673462, y: 1.012679, z: 0.5794678}
-  m_Center: {x: 0.010406494, y: 0.52758044, z: 0.0036621094}
+  m_Size: {x: 0.4673462, y: 1.012679, z: 0.38500977}
+  m_Center: {x: 0.010406494, y: 0.52758044, z: 0.10089111}
 --- !u!54 &2068587071
 Rigidbody:
   m_ObjectHideFlags: 0

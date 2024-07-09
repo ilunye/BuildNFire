@@ -10,6 +10,7 @@ public class Character : MonoBehaviour
     public float sleep = 0f; //冻结时间
     GameObject Player = null; //人物
 
+    
     public Pack pack; //引用背包
 
     private Transform tr; //创造射线
@@ -24,6 +25,7 @@ public class Character : MonoBehaviour
     public GameObject cam; // the camera
     public bool wasd = true;
     private KeyCode[] keycodes;
+
     public enum PlayerState
     {
         Idle,
@@ -33,6 +35,15 @@ public class Character : MonoBehaviour
         Claim,
         Dead
     }
+
+    public enum MaterialType
+    {
+        None,
+        Wood,
+        Stone
+    }
+
+    public MaterialType Material = MaterialType.None;
 
     private enum Direction
     {
@@ -94,7 +105,6 @@ public class Character : MonoBehaviour
             isPunch = false;
             isFalling = false;
         }
-        Debug.Log("update moving");
         Motion();
         pack.ShowPack(); //按下K展示背包
         RayCaseObj();  //拾捡物品
@@ -155,12 +165,14 @@ public class Character : MonoBehaviour
                 Run2Idel();
         
         }
-        if(Input.GetKeyDown(keycodes[4])){
-            if(playerState == PlayerState.Idle){
+        if(Input.GetKeyDown(keycodes[4])){      // E
+            if(playerState == PlayerState.Idle && Material == MaterialType.None){   // no items in hand
                 Anim.Play("PunchRight");
                 isPunch = false;
                 playerState = PlayerState.Punch;
-            }else if(playerState == PlayerState.ReadyToClaim){
+            }else if(playerState == PlayerState.Idle && Material != MaterialType.None){
+                Material = MaterialType.None;
+            }else if(playerState == PlayerState.ReadyToClaim && Material == MaterialType.None){
                 Debug.Log("Claim");
                 playerState = PlayerState.Claim;
                 Anim.Play("Gathering");

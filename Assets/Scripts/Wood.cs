@@ -28,8 +28,8 @@ public class Wood : MonoBehaviour
         if(other.GetComponent<Character>().playerState == Character.PlayerState.Idle)
             other.GetComponent<Character>().playerState = Character.PlayerState.ReadyToClaim;
         if(other.GetComponent<Character>().playerState == Character.PlayerState.Claim){
-            Debug.Log("claim wood!");
             claimed = true;
+            other.GetComponent<Character>().Material = Character.MaterialType.Wood;
             Destroy(gameObject);
         }
         
