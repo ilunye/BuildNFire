@@ -6,11 +6,15 @@ using UnityEngine;
 public class Wood : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
+
+    private bool claimed = false;
+    void Awake()
     {
-        
     }
 
+    void Start()
+    {
+    }
     // Update is called once per frame
     void Update()
     {
@@ -18,12 +22,16 @@ public class Wood : MonoBehaviour
     }
 
     void OnTriggerStay(Collider other){
-        if(other.tag != "Player")
+        if(other.tag != "Player" || claimed)
             return;
         Debug.Log("collide with wood!");
         if(other.GetComponent<Character>().playerState == Character.PlayerState.Idle)
             other.GetComponent<Character>().playerState = Character.PlayerState.ReadyToClaim;
+        if(other.GetComponent<Character>().playerState == Character.PlayerState.Claim){
+            Debug.Log("claim wood!");
+            claimed = true;
+            Destroy(gameObject);
+        }
         
     }
-    
 }

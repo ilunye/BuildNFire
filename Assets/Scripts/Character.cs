@@ -94,7 +94,7 @@ public class Character : MonoBehaviour
     private void Motion(){
         Debug.Log("moving");
         // go up
-        if(playerState != PlayerState.Punch){
+        if(playerState != PlayerState.Punch && playerState != PlayerState.Claim){
             if(Input.GetKey(KeyCode.W)){
                 // 向世界坐标系得z轴方向移动
                 Vector3 p = transform.localPosition;
