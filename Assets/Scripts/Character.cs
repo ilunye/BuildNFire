@@ -70,7 +70,7 @@ public class Character : MonoBehaviour
     internal object property;
 
     void OnTriggerStay(Collider other){
-        if(isFalling || other.gameObject.GetComponent<Character>().isFalling) return;
+        if(isFalling || (other.tag == "Player" && other.gameObject.GetComponent<Character>().isFalling)) return;
         if(other.tag == "Player" && playerState == PlayerState.Punch && timer < 0.5f){
             timer += Time.deltaTime;
             if(timer > 0.4f){
