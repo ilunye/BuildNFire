@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 530f6ce02e7d3114ca9cebe2fb20b64f, type: 3}
-  m_Name: _BuffData2
+  m_Name: _BuffData3
   m_EditorClassIdentifier: 
-  BuffID: 2
-  BuffName: reverse_direction_clock
+  BuffID: 3
+  BuffName: reduce_speed
   icon: {fileID: 0}
   MaxStack: 1
-  Priority: 1
+  Priority: 0
   tags: []
   IsForever: 0
-  DurationTime: 5
+  DurationTime: 7
   TickTime: 0
-  OnCreate: {fileID: 11400000, guid: cb7e975cec6de934593ea244d1c12eb0, type: 2}
-  OnRemove: {fileID: 11400000, guid: 1549b6714a7b12f4181dd69d0c4308ec, type: 2}
+  OnCreate: {fileID: 11400000, guid: eb9e667a372b6054fb10c893e31b1ddc, type: 2}
+  OnRemove: {fileID: 11400000, guid: b5c41014753392240a31c4a471b831aa, type: 2}
   OnTrick: {fileID: 0}
   OnHit: {fileID: 0}
   OnBeHit: {fileID: 0}

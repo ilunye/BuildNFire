@@ -56,6 +56,18 @@ public class BuffHandler : MonoBehaviour
                         Destroy(CollObj);
                     }
                     break;
+                case "Lock":
+                    buffInfo.buffData = CollObj.GetComponent<Lock>().buffData;
+                    buffInfo.creater = CollObj;
+                    buffInfo.target = gameObject;
+                    buffInfo.durationTime = buffInfo.buffData.DurationTime;
+                    if (buffInfo != null)
+                    {
+                        AddBuff(buffInfo);
+                        Debug.Log("碰撞发生与" + CollObj.name);
+                        Destroy(CollObj);
+                    }
+                    break;
                 default:
                     Debug.Log("道具不存在");
                     break;
