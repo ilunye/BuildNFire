@@ -6,6 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/PrototypeMenu.unity
+    guid: 121b2fea8e86fc6438ae2ed8cdb9951f
+  - enabled: 1
+    path: Assets/Scenes/Prototypes/PlayerPunch.unity
+    guid: 5c0c05e7c9eadbd4f91ffe5c7a4ba023
+  - enabled: 1
     path: Assets/Scenes/Prototypes/Network.unity
     guid: 937ee3b19535fc2459fa8ab651fc37c0
+  - enabled: 1
+    path: Assets/Scenes/Prototypes/Truck.unity
+    guid: a2df8d44ab5b82642b7e6b1daad6b824
   m_configObjects: {}
