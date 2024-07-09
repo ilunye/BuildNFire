@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "SpawnGOBM_", menuName = "BuffSystem/Spawn", order = 1)]
-public class SpawnGOBM : BaseBuffModule
+public class SpawnGOBM : BaseBuffModule //生成炸弹
 {
     public GameObject prefab;
 

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BuffID: 1
   BuffName: addspeed_burger
-  icon: {fileID: 21300000, guid: 13ba34da9011744c884f459ce4699444, type: 3}
+  icon: {fileID: 3782715142596297604, guid: dae78bb202b63f148a1adb67c85e5941, type: 3}
   MaxStack: 1
   Priority: 0
   tags: []
