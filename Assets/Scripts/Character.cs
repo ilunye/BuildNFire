@@ -135,7 +135,6 @@ public class Character : MonoBehaviour
         // }
     }
 
-<<<<<<< HEAD
     private void Idle2Run(){
         playerState = PlayerState.Run;
         Anim.SetBool("Running", true);
@@ -174,9 +173,6 @@ public class Character : MonoBehaviour
 
 
     private void RayCaseObj()
-=======
-    private void RayCaseObj()  //射线检测面前物品并捡起
->>>>>>> 17e77eed0ece501209dbd3a395872b0ab50ab0d2
     {
         //创建射线
         Debug.DrawRay(tr.position, tr.forward * 2.0f, Color.green);
