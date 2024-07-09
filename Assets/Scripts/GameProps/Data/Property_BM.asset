@@ -12,3 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35ca99bdd9038994fabf511069eae528, type: 3}
   m_Name: Property_BM
   m_EditorClassIdentifier: 
+  property:
+    speed: 5
+    sleep: 0
+    attack: 0

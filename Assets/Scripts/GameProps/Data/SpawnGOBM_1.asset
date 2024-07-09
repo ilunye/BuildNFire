@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: SpawnGOBM_1
   m_EditorClassIdentifier: 
   prefab: {fileID: 0}
-  localPosition: {x: 0, y: 0, z: 0}
+  localPosition: {x: 5, y: 5, z: 5}

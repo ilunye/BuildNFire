@@ -13,6 +13,8 @@ public class Character : MonoBehaviour
 
     private Transform tr; //创造射线
 
+    public Property buffproperty;
+
     private Animator Anim;
 
     public GameObject cam; // the camera
@@ -44,6 +46,8 @@ public class Character : MonoBehaviour
     private TransState transState = TransState.init;
 
     public bool isPunch = false;
+    internal object property;
+
 
     void Awake(){
         Anim = GetComponent<Animator>();
