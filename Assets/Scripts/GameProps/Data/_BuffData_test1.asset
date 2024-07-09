@@ -16,7 +16,7 @@ MonoBehaviour:
   BuffName: addspeed_burger
   icon: {fileID: 3782715142596297604, guid: dae78bb202b63f148a1adb67c85e5941, type: 3}
   MaxStack: 1
-  Priority: 0
+  Priority: 1
   tags: []
   IsForever: 0
   DurationTime: 5

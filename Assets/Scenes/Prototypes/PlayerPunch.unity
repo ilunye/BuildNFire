@@ -174,8 +174,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.4673462, y: 1.012679, z: 0.5794678}
-  m_Center: {x: 0.010406494, y: 0.52758044, z: 0.0036621094}
+  m_Size: {x: 0.4673462, y: 1.012679, z: 0.36898348}
+  m_Center: {x: 0.010406494, y: 0.52758044, z: 0.10890428}
 --- !u!114 &771901554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,6 +216,8 @@ MonoBehaviour:
   wasd: 1
   playerState: 0
   isPunch: 0
+  isFalling: 0
+  timer: 0
 --- !u!1 &1142444616
 GameObject:
   m_ObjectHideFlags: 0
@@ -359,8 +361,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.4673462, y: 1.012679, z: 0.5794678}
-  m_Center: {x: 0.010406494, y: 0.52758044, z: 0.0036621094}
+  m_Size: {x: 0.4673462, y: 1.012679, z: 0.35307202}
+  m_Center: {x: 0.010406494, y: 0.52758044, z: 0.11686}
 --- !u!114 &1353153126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -401,6 +403,8 @@ MonoBehaviour:
   wasd: 0
   playerState: 0
   isPunch: 0
+  isFalling: 0
+  timer: 0
 --- !u!1001 &1663164075
 PrefabInstance:
   m_ObjectHideFlags: 0
