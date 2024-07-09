@@ -22,6 +22,8 @@ public class Character : MonoBehaviour
     private AnimatorStateInfo stateInfo;
 
     public GameObject cam; // the camera
+    public bool wasd = true;
+    private KeyCode[] keycodes;
     public enum PlayerState
     {
         Idle,
@@ -51,13 +53,25 @@ public class Character : MonoBehaviour
     private TransState transState = TransState.init;
 
     public bool isPunch = false;
+    private bool isFalling = false;
     internal object property;
 
+    void OnTriggerStay(Collider other){
+        if(isFalling) return;
+        if(other.tag == "Player" && other.GetComponent<Character>().isFalling == false){
+
+        }
+    }
 
     void Awake(){
         Anim = GetComponent<Animator>();
         Anim.SetBool("Running", false);
         Anim.SetInteger("Trans_State", 0);
+        if(wasd == true){
+            keycodes = new KeyCode[]{KeyCode.W, KeyCode.S, KeyCode.A, KeyCode.D, KeyCode.E};
+        }else{
+            keycodes = new KeyCode[]{KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow, KeyCode.Return};
+        }
     }
     // Start is called before the first frame update
     void Start()
@@ -78,6 +92,7 @@ public class Character : MonoBehaviour
         if(playerState == PlayerState.Idle){
             transState = TransState.init;
             isPunch = false;
+            isFalling = false;
         }
         Debug.Log("update moving");
         Motion();
@@ -95,7 +110,7 @@ public class Character : MonoBehaviour
         Debug.Log("moving");
         // go up
         if(playerState != PlayerState.Punch && playerState != PlayerState.Claim){
-            if(Input.GetKey(KeyCode.W)){
+            if(Input.GetKey(keycodes[0])){
                 // 向世界坐标系得z轴方向移动
                 Vector3 p = transform.localPosition;
                 p += cam.transform.forward * PlayerSpeed * Time.deltaTime;
@@ -103,44 +118,44 @@ public class Character : MonoBehaviour
                 Idle2Run();
                 Rotate(Direction.Forward);
             }
-            if(Input.GetKeyUp(KeyCode.W))
+            if(Input.GetKeyUp(keycodes[0]))
                 Run2Idel();
 
             // go down
-            if(Input.GetKey(KeyCode.S)){
+            if(Input.GetKey(keycodes[1])){
                 Vector3 p = transform.localPosition;
                 p -= cam.transform.forward * PlayerSpeed * Time.deltaTime;
                 transform.localPosition = p;
                 Idle2Run();
                 Rotate(Direction.Backward);
             }
-            if(Input.GetKeyUp(KeyCode.S))
+            if(Input.GetKeyUp(keycodes[1]))
                 Run2Idel();
 
             // go left
-            if(Input.GetKey(KeyCode.A)){
+            if(Input.GetKey(keycodes[2])){
                 Vector3 p = transform.localPosition;
                 p -= cam.transform.right * PlayerSpeed * Time.deltaTime;
                 transform.localPosition = p;
                 Idle2Run();
                 Rotate(Direction.Left);
             }
-            if(Input.GetKeyUp(KeyCode.A))
+            if(Input.GetKeyUp(keycodes[2]))
                 Run2Idel();
 
             // go right
-            if(Input.GetKey(KeyCode.D)){
+            if(Input.GetKey(keycodes[3])){
                 Vector3 p = transform.localPosition;
                 p += cam.transform.right * PlayerSpeed * Time.deltaTime;
                 transform.localPosition = p;
                 Idle2Run();
                 Rotate(Direction.Right);
             }
-            if(Input.GetKeyUp(KeyCode.D))
+            if(Input.GetKeyUp(keycodes[3]))
                 Run2Idel();
         
         }
-        if(Input.GetKeyDown(KeyCode.E)){
+        if(Input.GetKeyDown(keycodes[4])){
             if(playerState == PlayerState.Idle){
                 Anim.Play("PunchRight");
                 isPunch = false;
@@ -206,7 +221,7 @@ public class Character : MonoBehaviour
             {
                 Debug.Log("捡到的物品" + obj.name);
                 obj.IsCheck = true;
-                if(Input.GetKeyDown(KeyCode.E)) //按下E捡东西
+                if(Input.GetKeyDown(keycodes[4])) //按下E捡东西
                 {
                     Debug.Log("按下E");
                     pack.GetItem(obj);
