@@ -5,7 +5,6 @@ using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 
-
 namespace Mirror
 {
     /// <summary>Shows NetworkManager controls in a GUI at runtime.</summary>
@@ -19,22 +18,11 @@ namespace Mirror
 
         public int offsetX;
         public int offsetY;
-        public string myIP;
+        public int clientNo = 0;
 
         void Awake()
         {
             manager = GetComponent<NetworkManager>();
-#if UNITY_WEBGL
-#else
-            var host = Dns.GetHostEntry(Dns.GetHostName());
-            foreach (var ip in host.AddressList)
-            {
-                if (ip.AddressFamily == AddressFamily.InterNetwork)
-                {
-                    myIP = ip.ToString();
-                }
-            }
-#endif
         }
 
         void OnGUI()
@@ -69,18 +57,18 @@ namespace Mirror
         {
             if (!NetworkClient.active)
             {
-#if UNITY_WEBGL
-                // cant be a server in webgl build
-                if (GUILayout.Button("Single Player"))
-                {
-                    NetworkServer.dontListen = true;
-                    manager.StartHost();
-                }
-#else
+// #if UNITY_WEBGL
+//                 // cant be a server in webgl build
+//                 if (GUILayout.Button("Single Player"))
+//                 {
+//                     NetworkServer.dontListen = true;
+//                     manager.StartHost();
+//                 }
+// #else
                 // Server + Client
                 if (GUILayout.Button("Host (Server + Client)"))
                     manager.StartHost();
-#endif
+// #endif
 
                 // Client + IP (+ PORT)
                 GUILayout.BeginHorizontal();
@@ -104,13 +92,13 @@ namespace Mirror
                 GUILayout.EndHorizontal();
 
                 // Server Only
-#if UNITY_WEBGL
-                // cant be a server in webgl build
-                GUILayout.Box("( WebGL cannot be server )");
-#else
+// #if UNITY_WEBGL
+//                 // cant be a server in webgl build
+//                 GUILayout.Box("( WebGL cannot be server )");
+// #else
                 if (GUILayout.Button("Server Only"))
                     manager.StartServer();
-#endif
+// #endif
             }
             else
             {
@@ -130,12 +118,12 @@ namespace Mirror
             if (NetworkServer.active && NetworkClient.active)
             {
                 // host mode
-                GUILayout.Label($"<b>Host</b>: running on {myIP}");
+                GUILayout.Label($"<b>Host</b>: running on {clientNo}");
             }
             else if (NetworkServer.active)
             {
                 // server only
-                GUILayout.Label($"<b>Server</b>: running on {myIP}");
+                GUILayout.Label($"<b>Server</b>: running on {clientNo}");
             }
             else if (NetworkClient.isConnected)
             {
@@ -149,22 +137,22 @@ namespace Mirror
             if (NetworkServer.active && NetworkClient.isConnected)
             {
                 GUILayout.BeginHorizontal();
-#if UNITY_WEBGL
-                if (GUILayout.Button("Stop Single Player")){
-                    manager.StopHost();
-                    Application.LoadLevel(Application.loadedLevel);
-                }
-#else
+// #if UNITY_WEBGL
+//                 if (GUILayout.Button("Stop Single Player")){
+//                     manager.StopHost();
+//                     Application.LoadLevel(Application.loadedLevel);
+//                 }
+// #else
                 // stop host if host mode
                 if (GUILayout.Button("Stop Host")){
                     manager.StopHost();
-                    Application.LoadLevel(Application.loadedLevel);
+                    // Application.LoadLevel(Application.loadedLevel);
                 }
 
                 // stop client if host mode, leaving server up
                 // if (GUILayout.Button("Stop Client"))
                 //     manager.StopClient();
-#endif
+// #endif
                 GUILayout.EndHorizontal();
             }
             else if (NetworkClient.isConnected)
@@ -172,7 +160,7 @@ namespace Mirror
                 // stop client if client-only
                 if (GUILayout.Button("Stop Client")){
                     manager.StopClient();
-                    Application.LoadLevel(Application.loadedLevel);
+                    // Application.LoadLevel(Application.loadedLevel);
                 }
             }
             else if (NetworkServer.active)
@@ -180,7 +168,7 @@ namespace Mirror
                 // stop server if server-only
                 if (GUILayout.Button("Stop Server")){
                     manager.StopServer();
-                    Application.LoadLevel(Application.loadedLevel);
+                    // Application.LoadLevel(Application.loadedLevel);
                 }
             }
         }
