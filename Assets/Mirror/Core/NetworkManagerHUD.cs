@@ -24,6 +24,8 @@ namespace Mirror
         void Awake()
         {
             manager = GetComponent<NetworkManager>();
+#if UNITY_WEBGL
+#else
             var host = Dns.GetHostEntry(Dns.GetHostName());
             foreach (var ip in host.AddressList)
             {
@@ -32,6 +34,7 @@ namespace Mirror
                     myIP = ip.ToString();
                 }
             }
+#endif
         }
 
         void OnGUI()
