@@ -31,6 +31,7 @@ public class Character : MonoBehaviour
         Punch,
         ReadyToClaim,       // ready to claim objects, that is colliding with sth
         Claim,
+        Falling,
         Dead
     }
 
@@ -53,13 +54,19 @@ public class Character : MonoBehaviour
     private TransState transState = TransState.init;
 
     public bool isPunch = false;
-    private bool isFalling = false;
+    public bool isFalling = false;
+    public float timer = 0f;
     internal object property;
 
     void OnTriggerStay(Collider other){
-        if(isFalling) return;
-        if(other.tag == "Player" && other.GetComponent<Character>().isFalling == false){
-
+        if(isFalling || other.gameObject.GetComponent<Character>().isFalling) return;
+        if(other.tag == "Player" && playerState == PlayerState.Punch && timer < 0.5f){
+            timer += Time.deltaTime;
+            if(timer > 0.4f){
+                other.gameObject.GetComponent<Animator>().Play("DAMAGED01");
+                other.gameObject.GetComponent<Character>().isFalling = true;
+                other.gameObject.GetComponent<Character>().playerState = PlayerState.Falling;
+            }
         }
     }
 
@@ -93,8 +100,8 @@ public class Character : MonoBehaviour
             transState = TransState.init;
             isPunch = false;
             isFalling = false;
+            timer = 0f;
         }
-        Debug.Log("update moving");
         Motion();
         pack.ShowPack(); //按下K展示背包
         RayCaseObj();  //拾捡物品
@@ -107,9 +114,8 @@ public class Character : MonoBehaviour
     }
 
     private void Motion(){
-        Debug.Log("moving");
         // go up
-        if(playerState != PlayerState.Punch && playerState != PlayerState.Claim){
+        if(playerState != PlayerState.Punch && playerState != PlayerState.Claim && playerState != PlayerState.Falling){
             if(Input.GetKey(keycodes[0])){
                 // 向世界坐标系得z轴方向移动
                 Vector3 p = transform.localPosition;
@@ -161,7 +167,6 @@ public class Character : MonoBehaviour
                 isPunch = false;
                 playerState = PlayerState.Punch;
             }else if(playerState == PlayerState.ReadyToClaim){
-                Debug.Log("Claim");
                 playerState = PlayerState.Claim;
                 Anim.Play("Gathering");
             }
