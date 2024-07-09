@@ -7,15 +7,19 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     public float PlayerSpeed = 1f; //人物移动速度
+    public float sleep = 0f; //冻结时间
     GameObject Player = null; //人物
 
     public Pack pack; //引用背包
 
     private Transform tr; //创造射线
 
+    public BuffData buffData; //buff
+
     public Property buffproperty;
 
     private Animator Anim;
+    private AnimatorStateInfo stateInfo;
 
     public GameObject cam; // the camera
     public enum PlayerState
@@ -23,7 +27,8 @@ public class Character : MonoBehaviour
         Idle,
         Run,
         Punch,
-        Attack,
+        ReadyToClaim,       // ready to claim objects, that is colliding with sth
+        Claim,
         Dead
     }
 
@@ -65,11 +70,16 @@ public class Character : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        stateInfo = Anim.GetCurrentAnimatorStateInfo(0);
         // PlayerMove(); //人物移动
+        if(stateInfo.IsName("Idle") && playerState != PlayerState.ReadyToClaim){
+            playerState = PlayerState.Idle;
+        }
         if(playerState == PlayerState.Idle){
             transState = TransState.init;
             isPunch = false;
         }
+        Debug.Log("update moving");
         Motion();
         pack.ShowPack(); //按下K展示背包
         RayCaseObj();  //拾捡物品
@@ -82,61 +92,65 @@ public class Character : MonoBehaviour
     }
 
     private void Motion(){
+        Debug.Log("moving");
         // go up
-        if(Input.GetKey(KeyCode.W)){
-            // 向世界坐标系得z轴方向移动
-            Vector3 p = transform.localPosition;
-            p += cam.transform.forward * PlayerSpeed * Time.deltaTime;
-            transform.localPosition = p;
-            Idle2Run();
-            Rotate(Direction.Forward);
-        }
-        if(Input.GetKeyUp(KeyCode.W))
-            Run2Idel();
+        if(playerState != PlayerState.Punch){
+            if(Input.GetKey(KeyCode.W)){
+                // 向世界坐标系得z轴方向移动
+                Vector3 p = transform.localPosition;
+                p += cam.transform.forward * PlayerSpeed * Time.deltaTime;
+                transform.localPosition = p;
+                Idle2Run();
+                Rotate(Direction.Forward);
+            }
+            if(Input.GetKeyUp(KeyCode.W))
+                Run2Idel();
 
-        // go down
-        if(Input.GetKey(KeyCode.S)){
-            Vector3 p = transform.localPosition;
-            p -= cam.transform.forward * PlayerSpeed * Time.deltaTime;
-            transform.localPosition = p;
-            Idle2Run();
-            Rotate(Direction.Backward);
-        }
-        if(Input.GetKeyUp(KeyCode.S))
-            Run2Idel();
+            // go down
+            if(Input.GetKey(KeyCode.S)){
+                Vector3 p = transform.localPosition;
+                p -= cam.transform.forward * PlayerSpeed * Time.deltaTime;
+                transform.localPosition = p;
+                Idle2Run();
+                Rotate(Direction.Backward);
+            }
+            if(Input.GetKeyUp(KeyCode.S))
+                Run2Idel();
 
-        // go left
-        if(Input.GetKey(KeyCode.A)){
-            Vector3 p = transform.localPosition;
-            p -= cam.transform.right * PlayerSpeed * Time.deltaTime;
-            transform.localPosition = p;
-            Idle2Run();
-            Rotate(Direction.Left);
-        }
-        if(Input.GetKeyUp(KeyCode.A))
-            Run2Idel();
+            // go left
+            if(Input.GetKey(KeyCode.A)){
+                Vector3 p = transform.localPosition;
+                p -= cam.transform.right * PlayerSpeed * Time.deltaTime;
+                transform.localPosition = p;
+                Idle2Run();
+                Rotate(Direction.Left);
+            }
+            if(Input.GetKeyUp(KeyCode.A))
+                Run2Idel();
 
-        // go right
-        if(Input.GetKey(KeyCode.D)){
-            Vector3 p = transform.localPosition;
-            p += cam.transform.right * PlayerSpeed * Time.deltaTime;
-            transform.localPosition = p;
-            Idle2Run();
-            Rotate(Direction.Right);
-        }
-        if(Input.GetKeyUp(KeyCode.D))
-            Run2Idel();
+            // go right
+            if(Input.GetKey(KeyCode.D)){
+                Vector3 p = transform.localPosition;
+                p += cam.transform.right * PlayerSpeed * Time.deltaTime;
+                transform.localPosition = p;
+                Idle2Run();
+                Rotate(Direction.Right);
+            }
+            if(Input.GetKeyUp(KeyCode.D))
+                Run2Idel();
         
-        if(Input.GetKeyDown(KeyCode.E)){
-            Anim.Play("PunchRight");
-            isPunch = false;
-            playerState = PlayerState.Punch;
         }
-        // if(Input.GetKeyUp(KeyCode.E)){
-        //     Anim.Play("Idle");
-        //     isPunch = false;
-        //     playerState = PlayerState.Idle;
-        // }
+        if(Input.GetKeyDown(KeyCode.E)){
+            if(playerState == PlayerState.Idle){
+                Anim.Play("PunchRight");
+                isPunch = false;
+                playerState = PlayerState.Punch;
+            }else if(playerState == PlayerState.ReadyToClaim){
+                Debug.Log("Claim");
+                playerState = PlayerState.Claim;
+                Anim.Play("Gathering");
+            }
+        }
     }
 
     private void Idle2Run(){
