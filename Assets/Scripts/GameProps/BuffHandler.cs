@@ -7,6 +7,7 @@ public class BuffHandler : MonoBehaviour
 {
 
     public LinkedList<BuffInfo> buffList = new LinkedList<BuffInfo>(); //存放buff的链表
+    public BuffInfo CurrBuffInfo; //现在生效的buff
 
     // Start is called before the first frame update
     void Start()
@@ -55,6 +56,18 @@ public class BuffHandler : MonoBehaviour
                         Destroy(CollObj);
                     }
                     break;
+                case "Lock":
+                    buffInfo.buffData = CollObj.GetComponent<Lock>().buffData;
+                    buffInfo.creater = CollObj;
+                    buffInfo.target = gameObject;
+                    buffInfo.durationTime = buffInfo.buffData.DurationTime;
+                    if (buffInfo != null)
+                    {
+                        AddBuff(buffInfo);
+                        Debug.Log("碰撞发生与" + CollObj.name);
+                        Destroy(CollObj);
+                    }
+                    break;
                 default:
                     Debug.Log("道具不存在");
                     break;
@@ -86,6 +99,10 @@ public class BuffHandler : MonoBehaviour
         }
         else //没找到
         {
+            foreach (var TempbuffInfo in buffList)
+            {
+                TempbuffInfo.durationTime = 0;
+            }
             buffInfo.durationTime = buffInfo.buffData.DurationTime;
             buffInfo.buffData.OnCreate.Apply(buffInfo); //启动buff
             buffList.AddLast(buffInfo); //添加到buffList的末尾
@@ -95,6 +112,31 @@ public class BuffHandler : MonoBehaviour
 
 
         }
+        /*
+        Debug.Log(buffList);
+List<BuffInfo> DeleteBuffList = new List<BuffInfo>();
+if (buffList != null)
+{
+    foreach (var tempbuffInfo in buffList)
+    {
+    Debug.Log("在deletebufflist中添加" + tempbuffInfo.buffData.BuffName);
+        DeleteBuffList.Add(buffInfo);
+
+    }
+}
+
+foreach (var tempbuffInfo in DeleteBuffList)
+{
+    Debug.Log("遍历去掉buff" + tempbuffInfo.buffData.BuffName);
+    RemoveBuff(tempbuffInfo);
+
+}
+buffInfo.durationTime = buffInfo.buffData.DurationTime;
+
+buffList.AddLast(buffInfo);
+Debug.Log("在bufflist中添加" + buffInfo.buffData.BuffName);
+Debug.Log("执行oncreate");
+buffInfo.buffData.OnCreate.Apply(buffInfo);*/
 
 
     }
@@ -104,6 +146,7 @@ public class BuffHandler : MonoBehaviour
         switch (buffInfo.buffData.buffRemoveStackUpdate) //判断去掉模式
         {
             case BuffRemoveStackUpdateEnum.Clear: //清除效果
+                Debug.Log("执行onremove");
                 buffInfo.buffData.OnRemove.Apply(buffInfo);
                 buffList.Remove(buffInfo);
                 break;

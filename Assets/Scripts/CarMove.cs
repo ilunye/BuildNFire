@@ -12,116 +12,128 @@ public class carMove : MonoBehaviour
     public GameObject r6;
     private float dirSpeed;
     Vector3 p,r;
-    bool move=true;//环行路控制车流
+    public float destroyDelay = 45f;
     float rotationSpeed;
     float transformSpeed;
-    private int circleNum=2;//一共需要走的圈数
+    private bool isCircle;
+    private int circleNum=1;//一共需要走的圈数
     void Start()
     {
         
-        dirSpeed=0.02f;
-        transformSpeed=0.02f;
-        rotationSpeed=160;
+        dirSpeed=0.08f;
+        transformSpeed=0.05f;
+        rotationSpeed=20f;
         p=gameObject.transform.localPosition;
         circleNum=(int)Random.Range(0,3);
+        r1 = GameObject.Find("Road_Object/r1");
+        r2 = GameObject.Find("Road_Object/r2");
+        r3 = GameObject.Find("Road_Object/r3");
+        r4 = GameObject.Find("Road_Object/r4");
+        r5 = GameObject.Find("Road_Object/r5");
+        r6 = GameObject.Find("Road_Object/r6");
+        int a=Random.Range(0,2);
+        if(a==0){
+            isCircle=true;
+        }
+        else{
+            isCircle=false;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Time.time<circleNum*15f+7.5f){
-           circleroad();
-        }
-        else{
-           road1();
-        }   
-    }
-    
-    private void road1()
-{
-    Collider myCollider = gameObject.GetComponent<Collider>();
-    Collider c1 = r1.GetComponent<Collider>();
-    Collider c2 = r2.GetComponent<Collider>();
-    Collider c3 = r3.GetComponent<Collider>();
-    Collider c4 = r4.GetComponent<Collider>();
-
-    if (myCollider.bounds.Intersects(c1.bounds))
-    {
-        changeRotation(270);
-        changePosition(transformSpeed);
-        Debug.Log("碰撞 r1");
-    }
-    else if (myCollider.bounds.Intersects(c2.bounds))
-    {
-        changeRotation(0);
-        changePosition(transformSpeed);
-        Debug.Log("碰撞 r2");
-    }
-    else if (myCollider.bounds.Intersects(c3.bounds))
-    {
-        changeRotation(90);
-        changePosition(transformSpeed);
-        Debug.Log("碰撞 r3");
-    }
-    else if (myCollider.bounds.Intersects(c4.bounds))
-    {
-        changeRotation(0);
-        changePosition(transformSpeed);
-        Debug.Log("碰撞 r4");
-    }
-    else
-    {
         changePosition(dirSpeed);
-    }
-}
-
-
-    private void circleroad(){
-        Collider myCollider = gameObject.GetComponent<Collider>();
-        Collider c1 = r1.GetComponent<Collider>();
-        Collider c2 = r2.GetComponent<Collider>();
-        Collider c3 = r3.GetComponent<Collider>();
-        Collider c5 = r5.GetComponent<Collider>();
-        Collider c6 = r6.GetComponent<Collider>();
-        if(myCollider.bounds.Intersects(c1.bounds)){
-                changeRotation(270);
-                changePosition(transformSpeed);
-            }
-            else if(myCollider.bounds.Intersects(c2.bounds)
-                ){
-                changeRotation(0);
-                changePosition(transformSpeed);
-            }
-            else if(myCollider.bounds.Intersects(c3.bounds)){
-                changeRotation(90);
-                changePosition(transformSpeed);
-            }
-            else if(myCollider.bounds.Intersects(c5.bounds)){
-                changeRotation(180);
-                changePosition(transformSpeed);
-            }
-            else if(myCollider.bounds.Intersects(c6.bounds)){
-                changeRotation(270);
-                changePosition(transformSpeed);
-            }
-
-            else{
-                changePosition(dirSpeed);
-            }
+        StartCoroutine(DestroyAfterDelay()); 
     }
     
     private void changePosition(float speed) {
-        transform.position += speed*transform.forward;
+        transform.localPosition -= speed*transform.right;
     }
-    private void changeRotation(float targetAngle) {
+    private void changeRotation(Vector3 targetEulerAngles) {
         Quaternion currentRotation = gameObject.transform.rotation;
-        Quaternion targetRotation = Quaternion.Euler(0f, targetAngle, 0f);
-        float angleDiff = Quaternion.Angle(currentRotation, targetRotation);
-        if (angleDiff > 0.01f) { 
-            Quaternion newRotation = Quaternion.RotateTowards(currentRotation, targetRotation, rotationSpeed * Time.deltaTime);
-            gameObject.transform.rotation=newRotation;
-            
-        }
-    }      
+        Quaternion targetRotation = Quaternion.Euler(targetEulerAngles);
+        Quaternion newRotation = Quaternion.LerpUnclamped(currentRotation, targetRotation, 0.1f);
+        gameObject.transform.rotation = newRotation;
 }
+
+    private void OnTriggerStay(Collider other)
+    {
+        //Debug.Log("Entered trigger with: " + other.name);
+        if(other.CompareTag("car")){
+            dirSpeed=0.0f;
+        }
+
+
+        if(isCircle){
+            //Debug.Log("isCircle==true");
+            if(other.CompareTag("r1")){
+                changeRotation(new Vector3(0,270,0));
+                changePosition(transformSpeed);
+            }
+            else if(other.CompareTag("r2")){
+                changeRotation(new Vector3(0,0,0));
+                changePosition(transformSpeed);
+            }
+            else if(other.CompareTag("r3")){
+                changeRotation(new Vector3(0,90,0));
+                changePosition(transformSpeed);
+            }
+            else if(other.CompareTag("r5")){
+                changeRotation(new Vector3(0,180,0));
+                //isCircle=false;
+                changePosition(transformSpeed);
+            }
+            else if(other.CompareTag("r6")){
+                changeRotation(new Vector3(0,270,0));
+                Debug.Log("isCircle==false");
+                changePosition(transformSpeed);
+            }
+        }
+        if(!isCircle){
+            if(other.CompareTag("r1")){
+                changeRotation(new Vector3(0,270,0));
+                changePosition(transformSpeed);
+            }
+            else if(other.CompareTag("r2")){
+                changeRotation(new Vector3(0,0,0));
+                changePosition(transformSpeed);
+            }
+            else if(other.CompareTag("r3")){
+                changeRotation(new Vector3(0,90,0));
+                changePosition(transformSpeed);
+            }
+            else if(other.CompareTag("r4")){
+                changeRotation(new Vector3(0,0,0));
+                changePosition(transformSpeed);
+            }
+            else if(other.CompareTag("r6")){
+                changeRotation(new Vector3(0,270,0));
+                Debug.Log("isCircle==false");
+                changePosition(transformSpeed);
+            }
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        //Debug.Log("Exit trigger with: " + other.name);
+        if(other.CompareTag("car")){
+            dirSpeed=0.07f;
+        }
+        else if(other.CompareTag("r7")){
+            isCircle=false;
+        }
+        else if(other.CompareTag("r8")){
+            dirSpeed=0.4f;
+        }
+    } 
+
+    IEnumerator DestroyAfterDelay()
+    {
+        yield return new WaitForSeconds(destroyDelay);
+        Destroy(gameObject);
+    }
+
+}
+
 

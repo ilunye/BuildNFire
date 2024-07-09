@@ -4,13 +4,15 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - car
   - r1
-  - r4
-  - r5
   - r2
   - r3
+  - r4
+  - r5
   - r6
-  - Buff
+  - r7
+  - r8
   layers:
   - Default
   - TransparentFX
