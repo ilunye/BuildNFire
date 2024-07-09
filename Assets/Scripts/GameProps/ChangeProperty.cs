@@ -21,7 +21,7 @@ public class ChangeProperty : BaseBuffModule
         Debug.Log("没有buff的速度："+character.buffproperty.speed);
         if (character)
         {
-            Debug.Log("现在buff加在：" + character.name);
+            Debug.Log(buffInfo.buffData.BuffName+ "buff加在：" + character.name);
             character.buffproperty.attack += property.attack;
             character.buffproperty.speed += property.speed;
             character.buffproperty.sleep += property.sleep;
