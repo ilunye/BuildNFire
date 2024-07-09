@@ -7,11 +7,14 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     public float PlayerSpeed = 1f; //人物移动速度
+    public float sleep = 0f; //冻结时间
     GameObject Player = null; //人物
 
     public Pack pack; //引用背包
 
     private Transform tr; //创造射线
+
+    public BuffData buffData; //buff
 
     public Property buffproperty;
 
@@ -70,6 +73,7 @@ public class Character : MonoBehaviour
             transState = TransState.init;
             isPunch = false;
         }
+        Debug.Log("update moving");
         Motion();
         pack.ShowPack(); //按下K展示背包
         RayCaseObj();  //拾捡物品
@@ -82,6 +86,7 @@ public class Character : MonoBehaviour
     }
 
     private void Motion(){
+        Debug.Log("moving");
         // go up
         if(Input.GetKey(KeyCode.W)){
             // 向世界坐标系得z轴方向移动

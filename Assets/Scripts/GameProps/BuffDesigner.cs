@@ -34,7 +34,7 @@ public class DamageInfo
 [System.Serializable] //序列化，以便可以在unity窗口中显示
 public class Property
 {
-    public float speed;
+    public float speed = 1f;
     public float sleep;
     public float attack;
 }
