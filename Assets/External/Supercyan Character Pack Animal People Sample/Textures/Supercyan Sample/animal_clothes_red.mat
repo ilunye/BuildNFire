@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: animal_people_wolf_supercyan_material_body
+  m_Name: animal_clothes_red
   m_Shader: {fileID: 4800000, guid: 46879f491c4ffb442a02036de7cab3e0, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -24,7 +24,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 8c6a429c671d6ea42bcb69e2bc0a33cb, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7c9bf1655af6b1840815d1e1c7133211, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
