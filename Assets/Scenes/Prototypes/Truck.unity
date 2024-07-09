@@ -506,7 +506,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1245,6 +1245,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: burger_1_lod0
       objectReference: {fileID: 0}
+    - target: {fileID: 5585450949064289147, guid: 0b7e8a5e381682c439ca64ee0c4e5c93, type: 3}
+      propertyPath: m_TagString
+      value: Buff
+      objectReference: {fileID: 0}
     - target: {fileID: 9111154746523128411, guid: 0b7e8a5e381682c439ca64ee0c4e5c93, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -1388,7 +1392,7 @@ MonoBehaviour:
   pack: {fileID: 0}
   buffData: {fileID: 0}
   buffproperty:
-    speed: 0
+    speed: 1
     sleep: 0
     attack: 0
   cam: {fileID: 1510234086}
@@ -1446,7 +1450,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1460,7 +1464,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 782304210}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 0.0000001
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -1472,10 +1476,10 @@ Rigidbody:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
+  m_ImplicitCom: 0
+  m_ImplicitTensor: 0
+  m_UseGravity: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
