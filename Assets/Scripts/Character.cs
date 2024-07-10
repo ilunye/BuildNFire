@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -10,7 +11,7 @@ public class Character : MonoBehaviour
     public float sleep = 0f; //冻结时间
     GameObject Player = null; //人物
 
-    
+
     public Pack pack; //引用背包
 
     private Transform tr; //创造射线
@@ -69,11 +70,14 @@ public class Character : MonoBehaviour
     public float timer = 0f;
     internal object property;
 
-    void OnTriggerStay(Collider other){
-        if(isFalling || (other.tag == "Player" && other.gameObject.GetComponent<Character>().isFalling)) return;
-        if(other.tag == "Player" && playerState == PlayerState.Punch && timer < 0.5f){
+    void OnTriggerStay(Collider other)
+    {
+        if (isFalling || (other.tag == "Player" && other.gameObject.GetComponent<Character>().isFalling)) return;
+        if (other.tag == "Player" && playerState == PlayerState.Punch && timer < 0.5f)
+        {
             timer += Time.deltaTime;
-            if(timer > 0.4f){
+            if (timer > 0.4f)
+            {
                 other.gameObject.GetComponent<Animator>().Play("DAMAGED01");
                 other.gameObject.GetComponent<Character>().isFalling = true;
                 other.gameObject.GetComponent<Character>().playerState = PlayerState.Falling;
@@ -81,14 +85,18 @@ public class Character : MonoBehaviour
         }
     }
 
-    void Awake(){
+    void Awake()
+    {
         Anim = GetComponent<Animator>();
         Anim.SetBool("Running", false);
         Anim.SetInteger("Trans_State", 0);
-        if(wasd == true){
-            keycodes = new KeyCode[]{KeyCode.W, KeyCode.S, KeyCode.A, KeyCode.D, KeyCode.E};
-        }else{
-            keycodes = new KeyCode[]{KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow, KeyCode.Return};
+        if (wasd == true)
+        {
+            keycodes = new KeyCode[] { KeyCode.W, KeyCode.S, KeyCode.A, KeyCode.D, KeyCode.E };
+        }
+        else
+        {
+            keycodes = new KeyCode[] { KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow, KeyCode.Return };
         }
     }
     // Start is called before the first frame update
@@ -104,10 +112,12 @@ public class Character : MonoBehaviour
     {
         stateInfo = Anim.GetCurrentAnimatorStateInfo(0);
         // PlayerMove(); //人物移动
-        if(stateInfo.IsName("Idle") && playerState != PlayerState.ReadyToClaim){
+        if (stateInfo.IsName("Idle") && playerState != PlayerState.ReadyToClaim)
+        {
             playerState = PlayerState.Idle;
         }
-        if(playerState == PlayerState.Idle){
+        if (playerState == PlayerState.Idle)
+        {
             transState = TransState.init;
             isPunch = false;
             isFalling = false;
@@ -116,6 +126,11 @@ public class Character : MonoBehaviour
         Motion();
         pack.ShowPack(); //按下K展示背包
         RayCaseObj();  //拾捡物品
+
+        if (sleep != 0)
+        {
+            Sleep();
+        }
         // if(Anim.name != "PunchRight"){
         //     Motion();
         //     pack.ShowPack(); //按下K展示背包
@@ -124,10 +139,19 @@ public class Character : MonoBehaviour
 
     }
 
-    private void Motion(){
+    private void Sleep()
+    {
+        PlayerSpeed = 0;
+    }
+
+
+    private void Motion()
+    {
         // go up
-        if(playerState != PlayerState.Punch && playerState != PlayerState.Claim && playerState != PlayerState.Falling){
-            if(Input.GetKey(keycodes[0])){
+        if (playerState != PlayerState.Punch && playerState != PlayerState.Claim && playerState != PlayerState.Falling)
+        {
+            if (Input.GetKey(keycodes[0]))
+            {
                 // 向世界坐标系得z轴方向移动
                 Vector3 p = transform.localPosition;
                 p += cam.transform.forward * PlayerSpeed * Time.deltaTime;
@@ -135,79 +159,92 @@ public class Character : MonoBehaviour
                 Idle2Run();
                 Rotate(Direction.Forward);
             }
-            if(Input.GetKeyUp(keycodes[0]))
+            if (Input.GetKeyUp(keycodes[0]))
                 Run2Idel();
 
             // go down
-            if(Input.GetKey(keycodes[1])){
+            if (Input.GetKey(keycodes[1]))
+            {
                 Vector3 p = transform.localPosition;
                 p -= cam.transform.forward * PlayerSpeed * Time.deltaTime;
                 transform.localPosition = p;
                 Idle2Run();
                 Rotate(Direction.Backward);
             }
-            if(Input.GetKeyUp(keycodes[1]))
+            if (Input.GetKeyUp(keycodes[1]))
                 Run2Idel();
 
             // go left
-            if(Input.GetKey(keycodes[2])){
+            if (Input.GetKey(keycodes[2]))
+            {
                 Vector3 p = transform.localPosition;
                 p -= cam.transform.right * PlayerSpeed * Time.deltaTime;
                 transform.localPosition = p;
                 Idle2Run();
                 Rotate(Direction.Left);
             }
-            if(Input.GetKeyUp(keycodes[2]))
+            if (Input.GetKeyUp(keycodes[2]))
                 Run2Idel();
 
             // go right
-            if(Input.GetKey(keycodes[3])){
+            if (Input.GetKey(keycodes[3]))
+            {
                 Vector3 p = transform.localPosition;
                 p += cam.transform.right * PlayerSpeed * Time.deltaTime;
                 transform.localPosition = p;
                 Idle2Run();
                 Rotate(Direction.Right);
             }
-            if(Input.GetKeyUp(keycodes[3]))
+            if (Input.GetKeyUp(keycodes[3]))
                 Run2Idel();
-        
+
         }
-        if(Input.GetKeyDown(keycodes[4])){      // E
-            if(playerState == PlayerState.Idle && Material == MaterialType.None){   // no items in hand
+        if (Input.GetKeyDown(keycodes[4]))
+        {      // E
+            if (playerState == PlayerState.Idle && Material == MaterialType.None)
+            {   // no items in hand
                 Anim.Play("PunchRight");
                 isPunch = false;
                 playerState = PlayerState.Punch;
-            }else if(playerState == PlayerState.Idle && Material != MaterialType.None){
+            }
+            else if (playerState == PlayerState.Idle && Material != MaterialType.None)
+            {
                 Material = MaterialType.None;
-            }else if(playerState == PlayerState.ReadyToClaim && Material == MaterialType.None){
+            }
+            else if (playerState == PlayerState.ReadyToClaim && Material == MaterialType.None)
+            {
                 playerState = PlayerState.Claim;
                 Anim.Play("Gathering");
             }
         }
     }
 
-    private void Idle2Run(){
+    private void Idle2Run()
+    {
         playerState = PlayerState.Run;
         Anim.SetBool("Running", true);
         Anim.Play("Run_norm");
     }
 
-    private void Run2Idel(){
+    private void Run2Idel()
+    {
         playerState = PlayerState.Idle;
         Anim.SetBool("Running", false);
         Anim.Play("Idle");
     }
 
-    private void Rotate(Direction dir){
+    private void Rotate(Direction dir)
+    {
         // rotate smoothly
         // 半秒转180度
-        switch(dir){
+        switch (dir)
+        {
             case Direction.Forward:
                 transform.forward = Vector3.LerpUnclamped(transform.forward, cam.transform.forward, 0.5f);
                 break;
             case Direction.Backward:
                 // transform.rotation = Quaternion.Euler(0, cam.transform.rotation.eulerAngles.y + 180, 0);
-                if(transform.forward == new Vector3(0, 0, 1))
+                if (transform.forward == new Vector3(0, 0, 1))
                     transform.forward = new Vector3(0.01f, 0, 1f);
                 transform.forward = Vector3.LerpUnclamped(transform.forward, -cam.transform.forward, 0.5f);
                 break;
@@ -229,21 +266,21 @@ public class Character : MonoBehaviour
         Debug.DrawRay(tr.position, tr.forward * 2.0f, Color.green);
         RaycastHit hit;
         //如果碰撞
-        if(Physics.Raycast(tr.position, tr.forward, out hit, 2.0f))
+        if (Physics.Raycast(tr.position, tr.forward, out hit, 2.0f))
         //将射线碰撞信息存储在 hit 变量中
         {
-            Debug.Log ("射线击中:" + hit.collider.gameObject.name + "\n tag:" + hit.collider.tag);
+            Debug.Log("射线击中:" + hit.collider.gameObject.name + "\n tag:" + hit.collider.tag);
             GameObject gameObj = hit.collider.gameObject; //获取碰到的物品
-            ObjectItem obj =(ObjectItem)gameObj.GetComponent<ObjectItem>();
-            if(obj != null)
+            ObjectItem obj = (ObjectItem)gameObj.GetComponent<ObjectItem>();
+            if (obj != null)
             {
                 Debug.Log("捡到的物品" + obj.name);
                 obj.IsCheck = true;
-                if(Input.GetKeyDown(keycodes[4])) //按下E捡东西
+                if (Input.GetKeyDown(keycodes[4])) //按下E捡东西
                 {
                     Debug.Log("按下E");
                     pack.GetItem(obj);
-                    if(obj.IsGrab == true) //当前物品拾捡完成
+                    if (obj.IsGrab == true) //当前物品拾捡完成
                     {
                         Destroy(gameObj);
                     }
@@ -251,5 +288,5 @@ public class Character : MonoBehaviour
             }
         }
     }
-   
+
 }
