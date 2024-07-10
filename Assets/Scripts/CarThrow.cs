@@ -10,15 +10,19 @@ public class test : MonoBehaviour
     private int p;
     public float timer;
     private float throwForce;
+    private float destroyDelay;
+
 
     void Start()
     {
         float distanceAbove = 2f;
+        destroyDelay=5f;
         spawnPosition=gameObject.transform.localPosition+transform.up*distanceAbove;
         interval=1.5f;
         p=(int)Random.Range(1,3);
         interval=interval*p;
         throwForce=1;
+        destroyDelay=5f;
     }
 
      void Update()
@@ -40,8 +44,6 @@ public class test : MonoBehaviour
         else{
             c = Instantiate(Resources.Load("prefabs/Lock Silver") as GameObject);
         }
-        
-        Debug.Log("扔物体");
         spawnPosition = transform.position + transform.up * 0.5f-transform.forward*0.5f;
         c.transform.localPosition=spawnPosition;
         Rigidbody cubeRigidbody = c.AddComponent<Rigidbody>();
@@ -50,6 +52,7 @@ public class test : MonoBehaviour
         cubeRigidbody.AddForce(Vector3.up*throwForce+new Vector3(x,0,z),ForceMode.Impulse);
         if(r==1||r==2||r==3){
             StartCoroutine(RemoveRigidbodyAfterDelay(cubeRigidbody, 1.5f)); // 延时1.5秒后移除 Rigidbody
+            StartCoroutine(BlinkAndDestroy(c, destroyDelay));
         }
 
         timer = 0f;
@@ -65,5 +68,12 @@ public class test : MonoBehaviour
         {
             Destroy(rb); // 移除 Rigidbody 组件
         }
+    }
+    IEnumerator BlinkAndDestroy(GameObject obj, float destroyDelay)
+    {
+        Debug.Log("闪烁");
+        yield return new WaitForSeconds(destroyDelay);
+    
+        Destroy(obj);
     }
 }
