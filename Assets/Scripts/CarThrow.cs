@@ -22,18 +22,41 @@ public class test : MonoBehaviour
     }
 
      void Update()
+{
+    timer += Time.deltaTime;
+    if (timer >= interval)
     {
-        timer += Time.deltaTime;
-        if (timer >= interval)
+        GameObject c;
+        int r=Random.Range(0,3);
+        if(r==0){
+            c = Instantiate(Resources.Load("prefabs/Bomb Red") as GameObject);
+        }
+        else if(r==1){
+            c = Instantiate(Resources.Load("prefabs/Bomb Red") as GameObject);
+        }
+        else{
+            c = Instantiate(Resources.Load("prefabs/Bomb Red") as GameObject);
+        }
+        
+        Debug.Log("扔物体");
+        c.transform.localPosition = spawnPosition;
+        Rigidbody cubeRigidbody = c.GetComponent<Rigidbody>();
+        cubeRigidbody.AddForce(Vector3.up * throwForce, ForceMode.Impulse);
+
+        StartCoroutine(RemoveRigidbodyAfterDelay(cubeRigidbody, 1.5f)); // 延时两秒后移除 Rigidbody
+
+        timer = 0f;
+        interval = 2.5f * Random.Range(1, 3);
+    }
+}
+
+    IEnumerator RemoveRigidbodyAfterDelay(Rigidbody rb, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (rb != null)
         {
-            GameObject c=Instantiate(Resources.Load("prefabs/Cube")as GameObject);
-            Debug.Log("仍物体");
-            c.transform.localPosition=spawnPosition;
-            Rigidbody cubeRigidbody = c.GetComponent<Rigidbody>();
-            cubeRigidbody.AddForce(Vector3.up*throwForce,ForceMode.Impulse);
-            timer=0f;
-            interval = 2.5f * Random.Range(1, 3);
-            
+            Destroy(rb); // 移除 Rigidbody 组件
         }
     }
 }
