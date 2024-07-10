@@ -27,6 +27,7 @@ public class ChangeProperty : BaseBuffModule
             character.buffproperty.sleep += property.sleep;
             Debug.Log("有buff的速度："+character.buffproperty.speed);
             character.PlayerSpeed = character.buffproperty.speed;
+            character.sleep = character.buffproperty.sleep;
         }
     }
 }

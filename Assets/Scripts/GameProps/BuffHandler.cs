@@ -22,7 +22,19 @@ public class BuffHandler : MonoBehaviour
         BuffRemove(); //检测buff状态并更新
 
     }
-
+    
+    private void GetCollisionBuff(BuffInfo buffInfo, GameObject CollObj) //得到碰撞物体的buff信息
+    {
+        buffInfo.creater = CollObj;
+        buffInfo.target = gameObject;
+        buffInfo.durationTime = buffInfo.buffData.DurationTime;
+        if (buffInfo != null)
+        {
+            AddBuff(buffInfo);
+            // Debug.Log("碰撞发生与" + CollObj.name);
+            Destroy(CollObj);
+        }
+    }
     private void OnCollisionEnter(Collision collision) //检测碰撞
     {
         Debug.Log("Collide!");
@@ -34,30 +46,18 @@ public class BuffHandler : MonoBehaviour
             {
                 case "Burger":
                     buffInfo.buffData = CollObj.GetComponent<Burger>().buffData;
-                    buffInfo.creater = CollObj;
-                    buffInfo.target = gameObject;
-                    buffInfo.durationTime = buffInfo.buffData.DurationTime;
-                    if (buffInfo != null)
-                    {
-                        AddBuff(buffInfo);
-                        // Debug.Log("碰撞发生与" + CollObj.name);
-                        Destroy(CollObj);
-                    }
+                    GetCollisionBuff(buffInfo, CollObj);
                     break;
                 case "Clock":
                     buffInfo.buffData = CollObj.GetComponent<Clock>().buffData;
-                    buffInfo.creater = CollObj;
-                    buffInfo.target = gameObject;
-                    buffInfo.durationTime = buffInfo.buffData.DurationTime;
-                    if (buffInfo != null)
-                    {
-                        AddBuff(buffInfo);
-                        Debug.Log("碰撞发生与" + CollObj.name);
-                        Destroy(CollObj);
-                    }
+                    GetCollisionBuff(buffInfo, CollObj);
                     break;
                 case "Lock":
                     buffInfo.buffData = CollObj.GetComponent<Lock>().buffData;
+                    GetCollisionBuff(buffInfo, CollObj);
+                    break;
+                case "Bomb":
+                    buffInfo.buffData = CollObj.GetComponent<Bomb>().buffData;
                     buffInfo.creater = CollObj;
                     buffInfo.target = gameObject;
                     buffInfo.durationTime = buffInfo.buffData.DurationTime;
