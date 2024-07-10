@@ -69,6 +69,9 @@ public class Character : MonoBehaviour
     public float timer = 0f;
     internal object property;
 
+    private bool IsOut = false;
+    public bool InCorner = false;
+
     void OnTriggerStay(Collider other){
         if(isFalling || (other.tag == "Player" && other.gameObject.GetComponent<Character>().isFalling)) return;
         if(other.tag == "Player" && playerState == PlayerState.Punch && timer < 0.5f){
@@ -100,8 +103,24 @@ public class Character : MonoBehaviour
     }
 
     // Update is called once per frame
+    /*
+    (794.25, 977.17) left down
+(794.25, 987.02) left up
+(804.89, 977.17) right down
+
+    */
+    private float x_bound_left = 794.25f;
+    private float x_bound_right = 804.89f;
+    private float z_bound_down = 977.17f;
+    private float z_bound_up = 987.02f;
     void Update()
     {
+        if(transform.position.x < x_bound_left || transform.position.x > x_bound_right || transform.position.z < z_bound_down || transform.position.z > z_bound_up){
+            Debug.Log("Out of the map");   
+            IsOut = true;
+        }
+        else
+            IsOut = false;
         stateInfo = Anim.GetCurrentAnimatorStateInfo(0);
         // PlayerMove(); //人物移动
         if(stateInfo.IsName("Idle") && playerState != PlayerState.ReadyToClaim){
@@ -130,7 +149,10 @@ public class Character : MonoBehaviour
             if(Input.GetKey(keycodes[0])){
                 // 向世界坐标系得z轴方向移动
                 Vector3 p = transform.localPosition;
-                p += cam.transform.forward * PlayerSpeed * Time.deltaTime;
+                if((!InCorner) && (!IsOut || (IsOut && (transform.position.z < z_bound_down || ((transform.position.x > x_bound_right || transform.position.x < x_bound_left) && transform.position.z < z_bound_up))))){
+                    Debug.Log("Move up");
+                    p += cam.transform.forward * PlayerSpeed * Time.deltaTime;
+                }
                 transform.localPosition = p;
                 Idle2Run();
                 Rotate(Direction.Forward);
@@ -141,7 +163,8 @@ public class Character : MonoBehaviour
             // go down
             if(Input.GetKey(keycodes[1])){
                 Vector3 p = transform.localPosition;
-                p -= cam.transform.forward * PlayerSpeed * Time.deltaTime;
+                if(InCorner || !IsOut || (IsOut && (transform.position.z > z_bound_up || ((transform.position.x > x_bound_right || transform.position.x < x_bound_left) && transform.position.z > z_bound_down))))
+                    p -= cam.transform.forward * PlayerSpeed * Time.deltaTime;
                 transform.localPosition = p;
                 Idle2Run();
                 Rotate(Direction.Backward);
@@ -152,7 +175,8 @@ public class Character : MonoBehaviour
             // go left
             if(Input.GetKey(keycodes[2])){
                 Vector3 p = transform.localPosition;
-                p -= cam.transform.right * PlayerSpeed * Time.deltaTime;
+                if(InCorner || !IsOut || (IsOut && (transform.position.x > x_bound_right || ((transform.position.z > z_bound_up || transform.position.z < z_bound_down) && transform.position.x > x_bound_left))))
+                    p -= cam.transform.right * PlayerSpeed * Time.deltaTime;
                 transform.localPosition = p;
                 Idle2Run();
                 Rotate(Direction.Left);
@@ -163,7 +187,8 @@ public class Character : MonoBehaviour
             // go right
             if(Input.GetKey(keycodes[3])){
                 Vector3 p = transform.localPosition;
-                p += cam.transform.right * PlayerSpeed * Time.deltaTime;
+                if((!InCorner) && (!IsOut || (IsOut && (transform.position.x < x_bound_left || ((transform.position.z > z_bound_up || transform.position.z < z_bound_down) && transform.position.x < x_bound_right)))))
+                    p += cam.transform.right * PlayerSpeed * Time.deltaTime;
                 transform.localPosition = p;
                 Idle2Run();
                 Rotate(Direction.Right);
