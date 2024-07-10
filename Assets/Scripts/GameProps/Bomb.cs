@@ -35,7 +35,7 @@ public class Bomb : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag == "Character" && !hasExploded)
         {

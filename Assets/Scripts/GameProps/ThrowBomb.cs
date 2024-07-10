@@ -34,7 +34,7 @@ public class ThrowBomb : MonoBehaviour
     }
 
     /*
-    void Throw()
+    void Throw() //使用rigidbody和addforce函数，问题是只能显示动画无法改变炸弹的位置因此无法检测到碰撞
     {
         Vector3 p = new Vector3(0f, 2f, 1f);
         GameObject bomb = Instantiate(Resources.Load("Prefabs/Bomb Red") as GameObject); // 创建炸弹实例
@@ -49,7 +49,10 @@ public class ThrowBomb : MonoBehaviour
     //不使用物理引擎来投掷炸弹
     void Throw()
     {
+        Vector3 q = new Vector3(0f, 1f, 0f);
+        Vector3 gravity = Physics.gravity; //增加重力
         bomb = Instantiate(Resources.Load("Prefabs/Bomb Red") as GameObject); // 创建炸弹实例
+        bomb.transform.localPosition = gameObject.transform.localPosition + q;
         Vector3 throwDirection = transform.forward; // 投掷方向为当前对象的前方向
         Vector3 throwVelocity = throwDirection * throwForce; // 计算投掷速度向量
         Vector3 p = new Vector3(0f, 2f, 1f);
@@ -67,6 +70,11 @@ public class ThrowBomb : MonoBehaviour
 
         while (elapsedTime < throwDuration && bomb)
         {
+            if (elapsedTime > throwDuration / 2)
+            {
+                Vector3 p = new Vector3(0f, 2f, 1f);
+                startPosition = startPosition - 2 * p;
+            }
             // 根据投掷速度和时间计算新的位置
             Vector3 newPosition = startPosition + throwVelocity * elapsedTime;
 
