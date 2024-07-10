@@ -19,14 +19,17 @@ namespace Mirror
         public int offsetX;
         public int offsetY;
         public int clientNo = 0;
+        public static bool disable = false;
 
         void Awake()
         {
+            disable = false;
             manager = GetComponent<NetworkManager>();
         }
 
         void OnGUI()
         {
+            if(disable) return;
             // If this width is changed, also change offsetX in GUIConsole::OnGUI
             int width = 300;
 
