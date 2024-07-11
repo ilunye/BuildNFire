@@ -15,26 +15,46 @@ public class ThrowBomb : MonoBehaviour
     public float MaxThrowForce = 50f; //投掷允許的最大力量
     private float IntervelTime = 0f; //炮彈發射的間隔時間
 
+    private bool wasd;
+    private KeyCode keyCodeE;
+    public GameObject BombImage;     //存放炸弹的显示图像
+
     void Start()
     {
         throwForce = InitthrowForce;
+        wasd = GetComponent<Character>().wasd; //分开两个角色的控制键
+        if (wasd)
+        {
+            keyCodeE = KeyCode.E;
+        }
+        else
+        {
+            keyCodeE = KeyCode.Return;
+        }
     }
     void Update()
     {
-        if (Input.GetKey(KeyCode.M) && !bomb) //如果长按M则累计投掷的力量
+        if (GetComponent<Character>().Material == Character.MaterialType.Bomb) //如果玩家捡到炸弹
         {
-            if (throwForce < MaxThrowForce)
+            BombImage.SetActive(true);
+            if (Input.GetKey(keyCodeE) && !bomb) //如果长按M则累计投掷的力量
             {
-                throwForce += Time.deltaTime * 3;
+                if (throwForce < MaxThrowForce)
+                {
+                    throwForce += Time.deltaTime * 3;
+                }
+            }
+
+            if (Input.GetKeyUp(keyCodeE) && !bomb) // 检测玩家按下投掷按钮
+            {
+                Debug.Log("按下M，扔炸弹");
+                Throw();
+
             }
         }
+        else
+            BombImage.SetActive(false);
 
-        if (Input.GetKeyUp(KeyCode.M) && !bomb) // 检测玩家按下投掷按钮
-        {
-            Debug.Log("按下M，扔炸弹");
-            Throw();
-
-        }
 
     }
 
@@ -93,5 +113,6 @@ public class ThrowBomb : MonoBehaviour
             yield return null;
         }
         throwForce = InitthrowForce; //在最终都运行结束后回复原值！！
+         BombImage.SetActive(false);
     }
 }
