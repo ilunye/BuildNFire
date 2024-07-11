@@ -26,7 +26,7 @@ public class Character : MonoBehaviour
 
     public GameObject cam; // the camera
     public bool wasd = true;
-    private KeyCode[] keycodes;
+    public KeyCode[] keycodes;
 
     public enum PlayerState
     {
@@ -36,8 +36,7 @@ public class Character : MonoBehaviour
         ReadyToClaim,       // ready to claim objects, that is colliding with sth
         Claim,
         Falling,
-        Dead,
-        Frozen
+        Operating
     }
 
     public enum MaterialType
@@ -198,7 +197,7 @@ public class Character : MonoBehaviour
     private void Motion()
     {
         // go up
-        if (playerState != PlayerState.Punch && playerState != PlayerState.Claim && playerState != PlayerState.Falling)
+        if (playerState != PlayerState.Punch && playerState != PlayerState.Claim && playerState != PlayerState.Falling && playerState != PlayerState.Operating)
         {
             if (Input.GetKey(keycodes[0]))
             {
