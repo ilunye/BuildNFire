@@ -6,30 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/PrototypeMenu.unity
-    guid: 121b2fea8e86fc6438ae2ed8cdb9951f
-  - enabled: 1
-    path: Assets/Scenes/Prototypes/PlayerPunch.unity
-    guid: 5c0c05e7c9eadbd4f91ffe5c7a4ba023
-  - enabled: 1
-    path: Assets/Scenes/Prototypes/Network.unity
-    guid: 937ee3b19535fc2459fa8ab651fc37c0
-  - enabled: 1
-    path: Assets/Scenes/Prototypes/Truck.unity
-    guid: a2df8d44ab5b82642b7e6b1daad6b824
-  - enabled: 1
-    path: Assets/Scenes/Prototypes/Tree.unity
-    guid: 09676cde85c39bb4c82c539ebcbe384a
-  - enabled: 1
-    path: Assets/Scenes/Prototypes/Background.unity
-    guid: ffd80a6bb0220484e87503cfc3fe383e
-  - enabled: 1
     path: Assets/Scenes/HomeScreen.unity
     guid: 4b6ad31d3a51ba84da63c7d3f1d22746
   - enabled: 1
-    path: Assets/Scenes/Main.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
     path: Assets/Scenes/pre.unity
     guid: 3abb2a903ca202c4c98474584979895e
+  - enabled: 1
+    path: Assets/Scenes/Main.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}
