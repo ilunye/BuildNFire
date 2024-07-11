@@ -35,6 +35,8 @@ public class TreeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(TreeNumberRight < 4)
+            Debug.Log("TreeNumberRight: " + TreeNumberRight);
         // if tree number is less than 4, generate a new tree after 5 seconds
         if(TreeNumberLeft < 4){
             StartCoroutine(GenerateTree(1));
@@ -45,20 +47,24 @@ public class TreeController : MonoBehaviour
     }
 
     IEnumerator GenerateTree(int region){
+        if(region == 1)
+            TreeNumberLeft++;
+        else
+            TreeNumberRight++;
         yield return new WaitForSeconds(5);
         if(region == 1){
             float x = Random.Range(regionleft_xmin, regionleft_xmax);
             float z = Random.Range(region_zmin, region_zmax);
             GameObject tree = Instantiate(Resources.Load("Prefabs/Tree_1_1") as GameObject);
             tree.transform.position = new Vector3(x, 0, z);
-            TreeNumberLeft++;
+            // TreeNumberLeft++;
         }
         else{
             float x = Random.Range(regionright_xmin, regionright_xmax);
             float z = Random.Range(region_zmin, region_zmax);
             GameObject tree = Instantiate(Resources.Load("Prefabs/Tree_1_1") as GameObject);
             tree.transform.position = new Vector3(x, 0, z);
-            TreeNumberRight++;
+            // TreeNumberRight++;
         }
     }
 }
