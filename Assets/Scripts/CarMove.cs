@@ -216,6 +216,7 @@ public class carMove : MonoBehaviour
     public float timer;
     private float lifeTime=0f;
 
+    private float speed = 3.5f;
     void Start()
     {
         gameObject.transform.position=new Vector3(799.874f,0.0f,991.6682f);
@@ -225,7 +226,7 @@ public class carMove : MonoBehaviour
      void Update()
     {
         lifeTime+=Time.deltaTime;
-        transform.position += 0.03f*transform.forward;
+        transform.position += speed *transform.forward * Time.deltaTime;
         if(lifeTime>=10f){
             Destroy(gameObject);
         }
