@@ -6,7 +6,7 @@ using UnityEngine;
 public class Pack : MonoBehaviour  //背包
 {
     public List<ObjectItem> Items = null; //背包列表
-    public int MaxItem = 32;  //每个物品的最大容量
+    public int MaxItem = 32;  //背包容量
     public int CurrentItemCount = 0; //背包中含有的物品种类数
     
     public Character player;

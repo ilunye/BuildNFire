@@ -35,14 +35,16 @@ public class Character : MonoBehaviour
         ReadyToClaim,       // ready to claim objects, that is colliding with sth
         Claim,
         Falling,
-        Dead
+        Dead,
+        Frozen
     }
 
     public enum MaterialType
     {
         None,
         Wood,
-        Stone
+        Stone,
+        Bomb
     }
 
     public MaterialType Material = MaterialType.None;
@@ -141,6 +143,11 @@ public class Character : MonoBehaviour
                 GameObject g = Instantiate(Resources.Load("Prefabs/Wood") as GameObject);
                 g.transform.position = transform.position;
             }
+            else if (Material == MaterialType.Bomb) 
+            {
+                GameObject g = Instantiate(Resources.Load("Prefabs/Bomb Red") as GameObject);
+                g.transform.position = transform.position;
+            }
             Material = MaterialType.None;
         }
         stateInfo = Anim.GetCurrentAnimatorStateInfo(0);
@@ -163,6 +170,9 @@ public class Character : MonoBehaviour
         {
             Debug.Log("玩家休眠");
             PlayerSpeed = 0; //玩家休眠
+            gameObject.GetComponent<Animator>().Play("StunnedLoop");
+            gameObject.GetComponent<Character>().isFalling = true;
+            gameObject.GetComponent<Character>().playerState = PlayerState.Falling;
         }
         // if(Anim.name != "PunchRight"){
         //     Motion();
@@ -233,7 +243,7 @@ public class Character : MonoBehaviour
                 Run2Idel();
 
         }
-        if (Input.GetKeyDown(keycodes[4]))
+        if (Input.GetKeyUp(keycodes[4])) //改成getkeyup，长按E后再播放投掷动画
         {      // E
             if (playerState == PlayerState.Idle && Material == MaterialType.None)
             {   // no items in hand
@@ -242,10 +252,12 @@ public class Character : MonoBehaviour
                 playerState = PlayerState.Punch;
             }
             else if (playerState == PlayerState.Idle && Material != MaterialType.None)
+            //item in hand
             {
                 Material = MaterialType.None;
             }
             else if (playerState == PlayerState.ReadyToClaim && Material == MaterialType.None)
+            // no item in hand and ready to grab item
             {
                 playerState = PlayerState.Claim;
                 Anim.Play("Gathering");
