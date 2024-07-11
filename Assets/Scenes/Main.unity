@@ -1042,7 +1042,7 @@ PrefabInstance:
     - target: {fileID: 240075265366132273, guid: aa641abd1d3cc9c4abb2cd901fdf185b, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1296262664}
     - target: {fileID: 855806794440648111, guid: aa641abd1d3cc9c4abb2cd901fdf185b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 805.76
@@ -2695,7 +2695,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 844ec4c5c9412cd46a8bd74750f60c78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RawImage: {fileID: 0}
+  RawImage: {fileID: 1774599715}
   sprites:
   - {fileID: 21300000, guid: 2c6d8f6a6ca14a24da5c06af8a220d27, type: 3}
   - {fileID: 21300000, guid: 23fa4f544ee832448b0508e8375871ff, type: 3}
@@ -2863,7 +2863,7 @@ GameObject:
   - component: {fileID: 1097931327}
   - component: {fileID: 1097931328}
   m_Layer: 5
-  m_Name: Toggle (2)
+  m_Name: Toggle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3878,7 +3878,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 844ec4c5c9412cd46a8bd74750f60c78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RawImage: {fileID: 0}
+  RawImage: {fileID: 2055422593}
   sprites:
   - {fileID: 21300000, guid: 2c6d8f6a6ca14a24da5c06af8a220d27, type: 3}
   - {fileID: 21300000, guid: 23fa4f544ee832448b0508e8375871ff, type: 3}
@@ -5078,7 +5078,7 @@ PrefabInstance:
     - target: {fileID: 240075265366132273, guid: aa641abd1d3cc9c4abb2cd901fdf185b, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 965759270}
     - target: {fileID: 855806794440648111, guid: aa641abd1d3cc9c4abb2cd901fdf185b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 793.58
@@ -5723,7 +5723,7 @@ GameObject:
   - component: {fileID: 1862275430}
   - component: {fileID: 1862275431}
   m_Layer: 5
-  m_Name: Toggle (2)
+  m_Name: Toggle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
