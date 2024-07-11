@@ -31,7 +31,7 @@ public class test : MonoBehaviour
     if (timer >= interval)
     {
         GameObject c;
-        int r=Random.Range(0,4);//决定抛出物体
+        int r=Random.Range(0,8);//决定抛出物体
         if(r==0){
             c = Instantiate(Resources.Load("prefabs/Bomb Red") as GameObject);
         }
@@ -40,6 +40,18 @@ public class test : MonoBehaviour
         }
         else if(r==2){
             c = Instantiate(Resources.Load("prefabs/Hourglass Green") as GameObject);
+        }
+        else if(r==3){
+            c = Instantiate(Resources.Load("prefabs/ConcreteTubes") as GameObject);
+        }
+        else if(r==4){
+            c = Instantiate(Resources.Load("prefabs/projectile") as GameObject);
+        }
+        else if(r==5){
+            c = Instantiate(Resources.Load("prefabs/Rock_03") as GameObject);
+        }
+        else if(r==6){
+            c = Instantiate(Resources.Load("prefabs/Wood") as GameObject);
         }
         else{
             c = Instantiate(Resources.Load("prefabs/Lock Silver") as GameObject);
