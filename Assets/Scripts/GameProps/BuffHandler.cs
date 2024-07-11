@@ -160,37 +160,37 @@ public class BuffHandler : MonoBehaviour
     {
         //查找传入的buff并返回
         BuffInfo findBuffInfo = FindBuff(buffInfo.buffData.BuffID);
-/*
-        if (findBuffInfo != null) //如果找到
+        /*
+                if (findBuffInfo != null) //如果找到
+                {
+                    buffInfo.curStack = 1;
+                    switch (buffInfo.buffData.buffUpdateTime) //判断更新模式
+                    {
+                        case BuffUpdateTimeEnum.Add: //添加，时间叠加
+                            findBuffInfo.durationTime += findBuffInfo.buffData.DurationTime;
+                            break;
+                        case BuffUpdateTimeEnum.Replace: //替换，时间重置
+                            findBuffInfo.durationTime = findBuffInfo.buffData.DurationTime;
+                            break;
+                    }
+                    findBuffInfo.buffData.OnCreate.Apply(findBuffInfo); //启动buff
+                }
+                else //没找到
+                {*/
+        foreach (var TempbuffInfo in buffList)
         {
-            buffInfo.curStack = 1;
-            switch (buffInfo.buffData.buffUpdateTime) //判断更新模式
-            {
-                case BuffUpdateTimeEnum.Add: //添加，时间叠加
-                    findBuffInfo.durationTime += findBuffInfo.buffData.DurationTime;
-                    break;
-                case BuffUpdateTimeEnum.Replace: //替换，时间重置
-                    findBuffInfo.durationTime = findBuffInfo.buffData.DurationTime;
-                    break;
-            }
-            findBuffInfo.buffData.OnCreate.Apply(findBuffInfo); //启动buff
+            TempbuffInfo.durationTime = 0;
         }
-        else //没找到
-        {*/
-            foreach (var TempbuffInfo in buffList)
-            {
-                TempbuffInfo.durationTime = 0;
-            }
-            buffInfo.durationTime = buffInfo.buffData.DurationTime;
-            buffInfo.buffData.OnCreate.Apply(buffInfo); //启动buff
-            Debug.Log("启动buff" + buffInfo.buffData.BuffName);
-            buffList.AddLast(buffInfo); //添加到buffList的末尾
+        buffInfo.durationTime = buffInfo.buffData.DurationTime;
+        buffInfo.buffData.OnCreate.Apply(buffInfo); //启动buff
+        Debug.Log("启动buff" + buffInfo.buffData.BuffName);
+        buffList.AddLast(buffInfo); //添加到buffList的末尾
 
-            //根据priority对buffList进行排序
-            SortBuffList(buffList);
+        //根据priority对buffList进行排序
+        SortBuffList(buffList);
 
 
-        
+
         /*
         Debug.Log(buffList);
 List<BuffInfo> DeleteBuffList = new List<BuffInfo>();
