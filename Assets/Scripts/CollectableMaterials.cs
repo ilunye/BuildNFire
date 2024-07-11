@@ -28,7 +28,6 @@ public class CollectableMaterials : MonoBehaviour
             other.GetComponent<Character>().playerState = Character.PlayerState.ReadyToClaim;
         if(other.GetComponent<Character>().playerState == Character.PlayerState.Claim){
             claimed = true;
-            Debug.Log("Claimed");
             other.GetComponent<Character>().Material = materialType;
             Destroy(gameObject);
         }

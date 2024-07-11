@@ -30,15 +30,11 @@ public class Trees : MonoBehaviour
     {
         if(shaking)
             return;
-        Debug.Log("collide!");
         if(other.tag == "Player" && other.GetComponent<Character>().isPunch == false){
-            Debug.Log("Here am I");
-            Debug.Log("status: " + other.GetComponent<Character>().playerState);
             if(other.GetComponent<Character>().playerState == Character.PlayerState.Punch){
                 // Anim.Play("tree_shake");
                 Shake();
                 other.GetComponent<Character>().isPunch = true;
-                Debug.Log("status--");
             }
         }
     }

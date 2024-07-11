@@ -32,12 +32,12 @@ public class WorkFlow : MonoBehaviour
         isPowder = false;
         toPickIron=true;
         toPickWood=false;
-        wood_text = GameObject.Find("Canvas/wood/woodText").GetComponent<TMP_Text>();
-        iron_text = GameObject.Find("Canvas/iron/ironText").GetComponent<TMP_Text>();
-        gunpowder_text = GameObject.Find("Canvas/gunPowder/gunPowderText").GetComponent<TMP_Text>();
-        projectile_text = GameObject.Find("Canvas/cannonBall/cannonBallText").GetComponent<TMP_Text>();
-        frame_wood = GameObject.Find("Canvas/wood_frame");
-        frame_iron = GameObject.Find("Canvas/iron_frame");
+        wood_text = GameObject.Find("Canvas/"+gameObject.name+"/wood/woodText").GetComponent<TMP_Text>();
+        iron_text = GameObject.Find("Canvas/"+gameObject.name+"/iron/ironText").GetComponent<TMP_Text>();
+        gunpowder_text = GameObject.Find("Canvas/"+gameObject.name+"/gunPowder/gunPowderText").GetComponent<TMP_Text>();
+        projectile_text = GameObject.Find("Canvas/"+gameObject.name+"/cannonBall/cannonBallText").GetComponent<TMP_Text>();
+        frame_wood = GameObject.Find("Canvas/"+gameObject.name+"/wood_frame");
+        frame_iron = GameObject.Find("Canvas/"+gameObject.name+"/iron_frame");
         AbleAllChildren(frame_iron);
         DisableAllChildren(frame_wood);
 
