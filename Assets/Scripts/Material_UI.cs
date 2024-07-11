@@ -3,22 +3,44 @@ using System.Collections.Generic;
 // using Microsoft.Unity.VisualStudio.Editor;
 // using UnityEditor.Profiling;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject RawImage;    
+    public Sprite[] sprites = new Sprite[5];
     void Start()
     {
-        // RawImage = GameObject.Find("RawImage");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(GetComponent<Character>().Material == Character.MaterialType.Wood)
-            RawImage.SetActive(true);
-        else
-            RawImage.SetActive(false);
+        switch(GetComponent<Character>().Material){
+            case Character.MaterialType.Wood:
+                RawImage.SetActive(true);
+                RawImage.GetComponent<Image>().sprite = sprites[0];
+                break;
+            case Character.MaterialType.IronOre:
+                RawImage.SetActive(true);
+                RawImage.GetComponent<Image>().sprite = sprites[1];
+                break;
+            case Character.MaterialType.Iron:
+                RawImage.SetActive(true);
+                RawImage.GetComponent<Image>().sprite = sprites[2];
+                break;
+            case Character.MaterialType.GunPowder:
+                RawImage.SetActive(true);
+                RawImage.GetComponent<Image>().sprite = sprites[3];
+                break;
+            case Character.MaterialType.CannonBall:
+                RawImage.SetActive(true);
+                RawImage.GetComponent<Image>().sprite = sprites[4];
+                break;
+            default:
+                RawImage.SetActive(false);
+                break;
+        }
     }
 }

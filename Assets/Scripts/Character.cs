@@ -43,7 +43,10 @@ public class Character : MonoBehaviour
     {
         None,
         Wood,
-        Stone,
+        IronOre,
+        Iron,
+        GunPowder,
+        CannonBall,
         Bomb
     }
 
@@ -146,6 +149,11 @@ public class Character : MonoBehaviour
             else if (Material == MaterialType.Bomb) 
             {
                 GameObject g = Instantiate(Resources.Load("Prefabs/Bomb Red") as GameObject);
+                g.transform.position = transform.position;
+            }
+            else if (Material == MaterialType.IronOre)
+            {
+                GameObject g = Instantiate(Resources.Load("Prefabs/Rock_03") as GameObject);
                 g.transform.position = transform.position;
             }
             Material = MaterialType.None;
