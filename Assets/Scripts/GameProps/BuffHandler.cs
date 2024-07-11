@@ -59,15 +59,7 @@ public class BuffHandler : MonoBehaviour
                     break;
                 case "Bomb":
                     buffInfo.buffData = CollObj.GetComponent<Bomb>().buffData;
-                    buffInfo.creater = CollObj;
-                    buffInfo.target = gameObject;
-                    buffInfo.durationTime = buffInfo.buffData.DurationTime;
-                    if (buffInfo != null)
-                    {
-                        AddBuff(buffInfo);
-                        Debug.Log("碰撞发生与" + CollObj.name);
-                        Destroy(CollObj);
-                    }
+                    GetCollisionBuff(buffInfo, CollObj);
                     break;
                 default:
                     Debug.Log("道具不存在");

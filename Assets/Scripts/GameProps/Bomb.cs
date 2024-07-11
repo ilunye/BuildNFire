@@ -37,12 +37,12 @@ public class Bomb : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.tag == "Character" && !hasExploded)
+        if (collision.gameObject.tag == "Character" && !hasExploded) //如果打到对方玩家
         {
             Explode();
             Debug.Log("打到敌人爆炸");
             hasExploded = true;
-            Destroy(collision.gameObject);
+            // Destroy(collision.gameObject);
         }
 
     }

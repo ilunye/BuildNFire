@@ -73,9 +73,11 @@ public class Character : MonoBehaviour
     private bool IsOut = false;
     public bool InCorner = false;
 
-    void OnTriggerStay(Collider other){
-        if(isFalling || (other.tag == "Player" && other.gameObject.GetComponent<Character>().isFalling)) return;
-        if(other.tag == "Player" && playerState == PlayerState.Punch && timer < 0.5f){
+    void OnTriggerStay(Collider other)
+    {
+        if (isFalling || (other.tag == "Player" && other.gameObject.GetComponent<Character>().isFalling)) return;
+        if (other.tag == "Player" && playerState == PlayerState.Punch && timer < 0.5f)
+        {
             timer += Time.deltaTime;
             if (timer > 0.4f)
             {
@@ -121,15 +123,18 @@ public class Character : MonoBehaviour
     private float z_bound_up = 987.02f;
     void Update()
     {
-        if(transform.position.x < x_bound_left || transform.position.x > x_bound_right || transform.position.z < z_bound_down || transform.position.z > z_bound_up){
-            Debug.Log("Out of the map");   
+        if (transform.position.x < x_bound_left || transform.position.x > x_bound_right || transform.position.z < z_bound_down || transform.position.z > z_bound_up)
+        {
+            Debug.Log("Out of the map");
             IsOut = true;
         }
         else
             IsOut = false;
-        
-        if(playerState == PlayerState.Falling && Material != MaterialType.None){        // holding something
-            if(Material == MaterialType.Wood){
+
+        if (playerState == PlayerState.Falling && Material != MaterialType.None)
+        {        // holding something
+            if (Material == MaterialType.Wood)
+            {
                 GameObject g = Instantiate(Resources.Load("Prefabs/Wood") as GameObject);
                 g.transform.position = transform.position;
             }
@@ -154,7 +159,8 @@ public class Character : MonoBehaviour
 
         if (sleep != 0)
         {
-            Sleep();
+            Debug.Log("玩家休眠");
+            PlayerSpeed = 0; //玩家休眠
         }
         // if(Anim.name != "PunchRight"){
         //     Motion();
@@ -162,11 +168,6 @@ public class Character : MonoBehaviour
         //     RayCaseObj();  //拾捡物品
         // }
 
-    }
-
-    private void Sleep()
-    {
-        PlayerSpeed = 0;
     }
 
 
@@ -179,7 +180,8 @@ public class Character : MonoBehaviour
             {
                 // 向世界坐标系得z轴方向移动
                 Vector3 p = transform.localPosition;
-                if((!InCorner) && (!IsOut || (IsOut && (transform.position.z < z_bound_down || ((transform.position.x > x_bound_right || transform.position.x < x_bound_left) && transform.position.z < z_bound_up))))){
+                if ((!InCorner) && (!IsOut || (IsOut && (transform.position.z < z_bound_down || ((transform.position.x > x_bound_right || transform.position.x < x_bound_left) && transform.position.z < z_bound_up)))))
+                {
                     p += cam.transform.forward * PlayerSpeed * Time.deltaTime;
                 }
                 transform.localPosition = p;
@@ -193,7 +195,7 @@ public class Character : MonoBehaviour
             if (Input.GetKey(keycodes[1]))
             {
                 Vector3 p = transform.localPosition;
-                if(InCorner || !IsOut || (IsOut && (transform.position.z > z_bound_up || ((transform.position.x > x_bound_right || transform.position.x < x_bound_left) && transform.position.z > z_bound_down))))
+                if (InCorner || !IsOut || (IsOut && (transform.position.z > z_bound_up || ((transform.position.x > x_bound_right || transform.position.x < x_bound_left) && transform.position.z > z_bound_down))))
                     p -= cam.transform.forward * PlayerSpeed * Time.deltaTime;
                 transform.localPosition = p;
                 Idle2Run();
@@ -206,7 +208,7 @@ public class Character : MonoBehaviour
             if (Input.GetKey(keycodes[2]))
             {
                 Vector3 p = transform.localPosition;
-                if(InCorner || !IsOut || (IsOut && (transform.position.x > x_bound_right || ((transform.position.z > z_bound_up || transform.position.z < z_bound_down) && transform.position.x > x_bound_left))))
+                if (InCorner || !IsOut || (IsOut && (transform.position.x > x_bound_right || ((transform.position.z > z_bound_up || transform.position.z < z_bound_down) && transform.position.x > x_bound_left))))
                     p -= cam.transform.right * PlayerSpeed * Time.deltaTime;
                 transform.localPosition = p;
                 Idle2Run();
@@ -219,7 +221,7 @@ public class Character : MonoBehaviour
             if (Input.GetKey(keycodes[3]))
             {
                 Vector3 p = transform.localPosition;
-                if((!InCorner) && (!IsOut || (IsOut && (transform.position.x < x_bound_left || ((transform.position.z > z_bound_up || transform.position.z < z_bound_down) && transform.position.x < x_bound_right)))))
+                if ((!InCorner) && (!IsOut || (IsOut && (transform.position.x < x_bound_left || ((transform.position.z > z_bound_up || transform.position.z < z_bound_down) && transform.position.x < x_bound_right)))))
                     p += cam.transform.right * PlayerSpeed * Time.deltaTime;
                 transform.localPosition = p;
                 Idle2Run();
