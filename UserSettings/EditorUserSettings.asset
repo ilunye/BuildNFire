@@ -24,13 +24,13 @@ EditorUserSettings:
       value: 575302070106585f5e0f59731222074412164e792f7f22632b781961b0b7606e
       flags: 0
     RecentlyUsedSceneGuid-6:
-      value: 5308025153560d5e555b0f7149215d44154f4a29797b7f352f2a1f36b1b86039
+      value: 505056045754500b5e0d0d7040715c44154e407e7b7c736879704a6abab9613d
       flags: 0
     RecentlyUsedSceneGuid-7:
-      value: 020350005d515d0f0c0c59204871094444154f2f7a2a77342c281965e0b8666c
+      value: 0557505e55545f590f5e5e7040770744134f4f7f7c7b25362e7a1b36b1b8673d
       flags: 0
     RecentlyUsedSceneGuid-8:
-      value: 0557505e55545f590f5e5e7040770744134f4f7f7c7b25362e7a1b36b1b8673d
+      value: 510004050357505d5f57087747760644104f482b2d7b75327a2d486ab1b56669
       flags: 0
     RecentlyUsedSceneGuid-9:
       value: 515250075c0c595e5f5a5e71122159444e4e4a2f7a7d7f602f284d66b4b76661
@@ -43,7 +43,6 @@ EditorUserSettings:
   m_VCDebugCmd: 0
   m_VCDebugOut: 0
   m_SemanticMergeMode: 2
-  m_DesiredImportWorkerCount: 4
   m_DesiredImportWorkerCount: 4
   m_StandbyImportWorkerCount: 2
   m_IdleImportWorkerShutdownDelay: 60000

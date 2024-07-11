@@ -271,7 +271,10 @@ public class Character : MonoBehaviour
         }
         if (Input.GetKeyUp(keycodes[4])) //改成getkeyup，长按E后再播放投掷动画
         {      // E
-            if (playerState == PlayerState.Idle && Material == MaterialType.None)
+            if(stateInfo.IsName("CastingLoop")){
+                playerState = PlayerState.Operating;
+            }
+            else if (playerState == PlayerState.Idle && Material == MaterialType.None)
             {   // no items in hand
                 Anim.Play("PunchRight");
                 isPunch = false;

@@ -19,7 +19,7 @@ public class ThrowBomb : MonoBehaviour
 
     public bool hasthrow = false;
     private KeyCode keyCodeE;
-    public GameObject BombImage;     //存放炸弹的显示图像
+    // public GameObject BombImage;     //存放炸弹的显示图像
 
     void Start()
     {
@@ -38,7 +38,7 @@ public class ThrowBomb : MonoBehaviour
     {
         if (GetComponent<Character>().Material == Character.MaterialType.Bomb) //如果玩家捡到炸弹
         {
-            BombImage.SetActive(true);
+            // BombImage.SetActive(true);
             if (Input.GetKey(keyCodeE) && !bomb) //如果长按M则累计投掷的力量
             {
                 if (throwForce < MaxThrowForce)
@@ -54,8 +54,8 @@ public class ThrowBomb : MonoBehaviour
 
             }
         }
-        else
-            BombImage.SetActive(false);
+        // else
+            // BombImage.SetActive(false);
 
 
     }
@@ -116,7 +116,7 @@ public class ThrowBomb : MonoBehaviour
             yield return null;
         }
         throwForce = InitthrowForce; //在最终都运行结束后回复原值！！
-        BombImage.SetActive(false);
+        // BombImage.SetActive(false);
         hasthrow = false;
     }
 }
