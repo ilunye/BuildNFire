@@ -16,10 +16,10 @@ public class test : MonoBehaviour
     void Start()
     {
         float distanceAbove = 2f;
-        destroyDelay=5f;
-        spawnPosition=gameObject.transform.localPosition+transform.up*distanceAbove;
+        destroyDelay=4f;
+        spawnPosition=gameObject.transform.position+transform.up*distanceAbove;
         interval=1.5f;
-        p=(int)Random.Range(1,3);
+        //p=(int)Random.Range(1,2);
         interval=interval*p;
         throwForce=1;
         destroyDelay=5f;
@@ -31,27 +31,33 @@ public class test : MonoBehaviour
     if (timer >= interval)
     {
         GameObject c;
-        int r=Random.Range(0,8);//决定抛出物体
-        if(r==0){
+        int r=Random.Range(0,20);//决定抛出物体
+        if(r==0||r==1){
             c = Instantiate(Resources.Load("prefabs/Bomb Red") as GameObject);
         }
-        else if(r==1){
+        else if(r==2){
             c = Instantiate(Resources.Load("prefabs/burger_1_lod0") as GameObject);
         }
-        else if(r==2){
+        else if(r==3){
             c = Instantiate(Resources.Load("prefabs/Hourglass Green") as GameObject);
         }
-        else if(r==3){
+        else if(r==4||r==5){
             c = Instantiate(Resources.Load("prefabs/ConcreteTubes") as GameObject);
         }
-        else if(r==4){
+        else if(r==6){
             c = Instantiate(Resources.Load("prefabs/projectile") as GameObject);
         }
-        else if(r==5){
+        else if(r==7||r==8||r==9||r==10||r==15){
             c = Instantiate(Resources.Load("prefabs/Rock_03") as GameObject);
         }
-        else if(r==6){
+        else if(r==11||r==12||r==13||r==14){
             c = Instantiate(Resources.Load("prefabs/Wood") as GameObject);
+        }
+        else if(r==15){
+            c = Instantiate(Resources.Load("prefabs/BoxingGlove") as GameObject);
+        }
+        else if(r==17){
+            c = Instantiate(Resources.Load("prefabs/explosiveBarrel") as GameObject);
         }
         else{
             c = Instantiate(Resources.Load("prefabs/Lock Silver") as GameObject);
@@ -59,8 +65,8 @@ public class test : MonoBehaviour
         spawnPosition = transform.position + transform.up * 0.5f-transform.forward*0.5f;
         c.transform.localPosition=spawnPosition;
         Rigidbody cubeRigidbody = c.AddComponent<Rigidbody>();
-        float x=Random.Range(-1.5f,1.5f);
-        float z=Random.Range(-1.5f,1.5f);
+        float x=Random.Range(-2f,2f);
+        float z=Random.Range(-2f,2f);
         cubeRigidbody.AddForce(Vector3.up*throwForce+new Vector3(x,0,z),ForceMode.Impulse);
         
         StartCoroutine(RemoveRigidbodyAfterDelay(cubeRigidbody, 1.5f)); // 延时1.5秒后移除 Rigidbody
@@ -83,9 +89,7 @@ public class test : MonoBehaviour
     }
     IEnumerator BlinkAndDestroy(GameObject obj, float destroyDelay)
     {
-        Debug.Log("闪烁");
         yield return new WaitForSeconds(destroyDelay);
-    
         Destroy(obj);
     }
 }
