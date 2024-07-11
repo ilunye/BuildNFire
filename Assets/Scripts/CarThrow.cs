@@ -18,8 +18,8 @@ public class test : MonoBehaviour
         float distanceAbove = 2f;
         destroyDelay=4f;
         spawnPosition=gameObject.transform.position+transform.up*distanceAbove;
-        interval=1.5f;
-        //p=(int)Random.Range(1,2);
+        interval=2.5f;
+        p=(int)Random.Range(1,4);
         interval=interval*p;
         throwForce=1;
         destroyDelay=5f;

@@ -16,6 +16,8 @@ public class ThrowBomb : MonoBehaviour
     private float IntervelTime = 0f; //炮彈發射的間隔時間
 
     private bool wasd;
+
+    public bool hasthrow = false;
     private KeyCode keyCodeE;
     public GameObject BombImage;     //存放炸弹的显示图像
 
@@ -74,6 +76,7 @@ public class ThrowBomb : MonoBehaviour
     //不使用物理引擎来投掷炸弹
     void Throw()
     {
+        hasthrow = true;
         Debug.Log("扔炸弹开始");
         bomb = Instantiate(Resources.Load("Prefabs/Bomb Red") as GameObject); // 创建炸弹实例
         // 设置炸弹的初始位置
@@ -113,6 +116,7 @@ public class ThrowBomb : MonoBehaviour
             yield return null;
         }
         throwForce = InitthrowForce; //在最终都运行结束后回复原值！！
-         BombImage.SetActive(false);
+        BombImage.SetActive(false);
+        hasthrow = false;
     }
 }
