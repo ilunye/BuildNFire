@@ -44,6 +44,9 @@ public class Cannon : MonoBehaviour
         if(isPlaying || idx == 10){
             return;
         }
+        Debug.Log("next_state");
+        player.GetComponent<Animator>().Play("CastingLoop");
+        player.GetComponent<Character>().playerState = Character.PlayerState.Operating;
         if(idx < 8){
             StartCoroutine(each_next((middle.position.y - down.position.y)/8));
         }else{
