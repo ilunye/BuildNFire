@@ -53,16 +53,23 @@ public class WorkFlow : MonoBehaviour
         if (toPickIron&& iron_number <= 6 && isIron)
         {
             iron_number++;
-            toPickIron=!toPickIron;
-            toPickWood=!toPickWood;
-            DisableAllChildren(frame_iron);
-            AbleAllChildren(frame_wood);
+            if(iron_number <= 4){
+                toPickIron=false;
+                toPickWood=true;
+                DisableAllChildren(frame_iron);
+                AbleAllChildren(frame_wood);
+            }else if(iron_number == 6){
+                toPickIron=false;
+                toPickWood=false;
+                DisableAllChildren(frame_iron);
+                DisableAllChildren(frame_wood);
+            }
         }
         else if (toPickWood&& wood_number <= 4 && isWood)
         {
             wood_number++;
-            toPickIron=!toPickIron;
-            toPickWood=!toPickWood;
+            toPickIron=true;
+            toPickWood=false;
             AbleAllChildren(frame_iron);
             DisableAllChildren(frame_wood);
         }
