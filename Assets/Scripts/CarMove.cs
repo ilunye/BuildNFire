@@ -10,14 +10,42 @@ public class carMove : MonoBehaviour
     public int circleNum = 1;
     public int pathIdx = 0;
     private NavMeshAgent agent;
+*/
     public float timer = 0f;
     public float waitTime;
-    public bool rayCastEnable = true;
+    public bool rayCastEnable = false;
+    private bool first = true;
+    private GameObject lastHit;
+    public bool green = true;
 
     void resetRayCast(){
         rayCastEnable = true;
     }
+    void resetSpeed(){
+        speed = 3.5f;
+    }
 
+    void OnTriggerEnter(Collider other){
+        if(other.tag == "Player"){
+            other.gameObject.GetComponent<Character>().playerState = Character.PlayerState.Falling;
+            other.gameObject.GetComponent<Character>().isFalling = true;
+            other.gameObject.GetComponent<Animator>().Play("DAMAGED01");
+            lastHit = other.gameObject;
+            speed = 0;
+        }
+        if(other.tag == "car"){
+            speed = 0;
+        }
+    }
+    void OnTriggerExit(Collider other){
+        if(other.tag == "Player"){
+            Invoke("resetSpeed", 1f);
+        }
+        if(other.tag == "car"){
+            Invoke("resetSpeed", 1f);
+        }
+    }
+/*
     void Start(){
         agent = GetComponent<NavMeshAgent>();
         waypoints = new GameObject[5];
@@ -81,145 +109,16 @@ public class carMove : MonoBehaviour
         }
     }
     */
-    /*
-    public GameObject r1;
-    public GameObject r2;
-    public GameObject r3;
-    public GameObject r4;
-    public GameObject r5;
-    public GameObject r6;
-    private float dirSpeed;
-    Vector3 p,r;
-    public float destroyDelay = 45f;
-    float rotationSpeed;
-    float transformSpeed;
-    private bool isCircle;
-    private int circleNum=1;//一共需要走的圈数
-    void Start()
-    {
-        
-        dirSpeed=0.08f;
-        transformSpeed=0.05f;
-        rotationSpeed=20f;
-        p=gameObject.transform.localPosition;
-        circleNum=(int)Random.Range(0,3);
-        r1 = GameObject.Find("Road_Object/r1");
-        r2 = GameObject.Find("Road_Object/r2");
-        r3 = GameObject.Find("Road_Object/r3");
-        r4 = GameObject.Find("Road_Object/r4");
-        r5 = GameObject.Find("Road_Object/r5");
-        r6 = GameObject.Find("Road_Object/r6");
-        int a=Random.Range(0,2);
-        if(a==0){
-            isCircle=true;
-        }
-        else{
-            isCircle=false;
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        changePosition(dirSpeed);
-        StartCoroutine(DestroyAfterDelay()); 
-    }
-    
-    private void changePosition(float speed) {
-        transform.localPosition -= speed*transform.right;
-    }
-    private void changeRotation(Vector3 targetEulerAngles) {
-        Quaternion currentRotation = gameObject.transform.rotation;
-        Quaternion targetRotation = Quaternion.Euler(targetEulerAngles);
-        Quaternion newRotation = Quaternion.LerpUnclamped(currentRotation, targetRotation, 0.1f);
-        gameObject.transform.rotation = newRotation;
-}
-
-    private void OnTriggerStay(Collider other)
-    {
-        // Debug.Log("Entered trigger with: " + other.name);
-        if(other.CompareTag("car")){
-            dirSpeed=0.0f;
-        }
-
-
-        if(isCircle){
-            //Debug.Log("isCircle==true");
-            if(other.CompareTag("r1")){
-                changeRotation(new Vector3(0,270,0));
-                changePosition(transformSpeed);
-            }
-            else if(other.CompareTag("r2")){
-                changeRotation(new Vector3(0,0,0));
-                changePosition(transformSpeed);
-            }
-            else if(other.CompareTag("r3")){
-                changeRotation(new Vector3(0,90,0));
-                changePosition(transformSpeed);
-            }
-            else if(other.CompareTag("r5")){
-                changeRotation(new Vector3(0,180,0));
-                //isCircle=false;
-                changePosition(transformSpeed);
-            }
-            else if(other.CompareTag("r6")){
-                changeRotation(new Vector3(0,270,0));
-                Debug.Log("isCircle==false");
-                changePosition(transformSpeed);
-            }
-        }
-        if(!isCircle){
-            if(other.CompareTag("r1")){
-                changeRotation(new Vector3(0,270,0));
-                changePosition(transformSpeed);
-            }
-            else if(other.CompareTag("r2")){
-                changeRotation(new Vector3(0,0,0));
-                changePosition(transformSpeed);
-            }
-            else if(other.CompareTag("r3")){
-                changeRotation(new Vector3(0,90,0));
-                changePosition(transformSpeed);
-            }
-            else if(other.CompareTag("r4")){
-                changeRotation(new Vector3(0,0,0));
-                changePosition(transformSpeed);
-            }
-            else if(other.CompareTag("r6")){
-                changeRotation(new Vector3(0,270,0));
-                Debug.Log("isCircle==false");
-                changePosition(transformSpeed);
-            }
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        //Debug.Log("Exit trigger with: " + other.name);
-        if(other.CompareTag("car")){
-            dirSpeed=0.07f;
-        }
-        else if(other.CompareTag("r7")){
-            isCircle=false;
-        }
-        else if(other.CompareTag("r8")){
-            dirSpeed=0.4f;
-        }
-    } 
-
-    IEnumerator DestroyAfterDelay()
-    {
-        yield return new WaitForSeconds(destroyDelay);
-        Destroy(gameObject);
-    }*/
-
-    private int p;
-    public float timer;
     private float lifeTime=0f;
 
     private float speed = 3.5f;
     void Start()
     {
-        gameObject.transform.position=new Vector3(799.874f,0.0f,991.6682f);
+        if(green){
+            gameObject.transform.position=new Vector3(799.874f,0.0f,991.6682f);
+        }else{
+            gameObject.transform.position=new Vector3(799.32f,0.0f,991.6682f);
+        }
         gameObject.transform.rotation=Quaternion.Euler(0, 180, 0);
     }
 
@@ -233,5 +132,3 @@ public class carMove : MonoBehaviour
     }
     
 }
-
-
