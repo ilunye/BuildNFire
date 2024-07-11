@@ -12,7 +12,6 @@ public class Character : MonoBehaviour
     public float sleep = 0f; //冻结时间
     GameObject Player = null; //人物
 
-
     public Pack pack; //引用背包
 
     private Transform tr; //创造射线
@@ -26,7 +25,7 @@ public class Character : MonoBehaviour
 
     public GameObject cam; // the camera
     public bool wasd = true;
-    private KeyCode[] keycodes;
+    public KeyCode[] keycodes;
 
     public enum PlayerState
     {
@@ -36,8 +35,7 @@ public class Character : MonoBehaviour
         ReadyToClaim,       // ready to claim objects, that is colliding with sth
         Claim,
         Falling,
-        Dead,
-        Frozen
+        Operating
     }
 
     public enum MaterialType
@@ -150,7 +148,7 @@ public class Character : MonoBehaviour
                 GameObject g = Instantiate(Resources.Load("Prefabs/Wood") as GameObject);
                 g.transform.position = transform.position;
             }
-            else if (Material == MaterialType.Bomb) 
+            else if (Material == MaterialType.Bomb)
             {
                 GameObject g = Instantiate(Resources.Load("Prefabs/Bomb Red") as GameObject);
                 g.transform.position = transform.position;
@@ -182,9 +180,10 @@ public class Character : MonoBehaviour
         {
             Debug.Log("玩家休眠");
             PlayerSpeed = 0; //玩家休眠
-            gameObject.GetComponent<Animator>().Play("StunnedLoop");
+            gameObject.GetComponent<Animator>().Play("StunnedLoop"); //播放晕倒动画
             gameObject.GetComponent<Character>().isFalling = true;
             gameObject.GetComponent<Character>().playerState = PlayerState.Falling;
+
         }
         // if(Anim.name != "PunchRight"){
         //     Motion();
@@ -193,15 +192,14 @@ public class Character : MonoBehaviour
         // }
 
     }
-
-
     private void Motion()
     {
         // go up
-        if (playerState != PlayerState.Punch && playerState != PlayerState.Claim && playerState != PlayerState.Falling)
+        if (playerState != PlayerState.Punch && playerState != PlayerState.Claim && playerState != PlayerState.Falling && playerState != PlayerState.Operating)
         {
             if (Input.GetKey(keycodes[0]))
             {
+                //Debug.Log("向前走");
                 // 向世界坐标系得z轴方向移动
                 Vector3 p = transform.localPosition;
                 if ((!InCorner) && (!IsOut || (IsOut && (transform.position.z < z_bound_down || ((transform.position.x > x_bound_right || transform.position.x < x_bound_left) && transform.position.z < z_bound_up)))))

@@ -8,12 +8,14 @@ public class Bomb : MonoBehaviour
     private float explosionRadius = 0.1f; // 爆炸的半径
     public GameObject explosionEffect; // 爆炸效果的预制体
 
-    private float countdown; //爆炸倒计时
-    private bool hasExploded = false;
+    public float countdown; //爆炸倒计时
+    public bool hasExploded = false;
 
     public BuffData buffData; //add buff
 
-    private bool claimed = false; //是否被捡起来
+    public bool claimed = false; //是否被捡起来
+
+    private BuffHandler buffHandler;
 
     void Start()
     {
@@ -27,12 +29,14 @@ public class Bomb : MonoBehaviour
         if (countdown <= 0f && !hasExploded && !claimed)
         {
             Explode();
-            hasExploded = true;
+            Debug.Log("时间到了爆炸");
+
         }
         else if (gameObject.transform.localPosition.y <= 0 && !hasExploded) //掉出世界爆炸
         {
             Explode();
-            hasExploded = true;
+            Debug.Log("掉出世界爆炸");
+
         }
 
     }
@@ -42,17 +46,22 @@ public class Bomb : MonoBehaviour
         if (collision.gameObject.tag == "Character" && !hasExploded && claimed)
         //如果打到对方玩家 && 炸弹还没爆炸 && 已经被捡起来了
         {
+            buffHandler = collision.GetComponent<BuffHandler>();
+            if (buffHandler.bombbuffinfo != null)
+            {
+                buffHandler.AddBuff(buffHandler.bombbuffinfo);
+            }
             Explode();
             Debug.Log("打到敌人爆炸");
-            hasExploded = true;
-            // Destroy(collision.gameObject);
+            
+
         }
 
     }
 
     void OnTriggerStay(Collider other)
     {
-        if (other.tag != "Player" || claimed)
+        if (other.tag != "Character" || claimed)
             return;
         Debug.Log("collide with Bomb!");
         if (other.GetComponent<Character>().playerState == Character.PlayerState.Idle)
@@ -60,14 +69,15 @@ public class Bomb : MonoBehaviour
         if (other.GetComponent<Character>().playerState == Character.PlayerState.Claim)
         {
             claimed = true;
-            other.GetComponent<Character>().Material = Character.MaterialType.Wood;
+            other.GetComponent<Character>().Material = Character.MaterialType.Bomb;
             Destroy(gameObject);
         }
 
     }
 
-    void Explode()
+    public void Explode()
     {
+        hasExploded = true;
         Debug.Log("显示爆炸效果");
         // 显示爆炸效果
         //Instantiate(explosionEffect, transform.position, transform.rotation);
@@ -84,7 +94,6 @@ public class Bomb : MonoBehaviour
                 rb.AddExplosionForce(explosionForce, transform.position, explosionRadius);
             }
         }
-
         Debug.Log("销毁炸弹");
         // 销毁炸弹对象
         Destroy(gameObject);
