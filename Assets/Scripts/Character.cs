@@ -70,6 +70,7 @@ public class Character : MonoBehaviour
     public float timer = 0f;
     internal object property;
 
+    public bool enableOut = true;
     private bool IsOut = false;
     public bool InCorner = false;
 
@@ -123,13 +124,15 @@ public class Character : MonoBehaviour
     private float z_bound_up = 987.02f;
     void Update()
     {
-        if (transform.position.x < x_bound_left || transform.position.x > x_bound_right || transform.position.z < z_bound_down || transform.position.z > z_bound_up)
-        {
-            Debug.Log("Out of the map");
-            IsOut = true;
+        if(enableOut){
+            if (transform.position.x < x_bound_left || transform.position.x > x_bound_right || transform.position.z < z_bound_down || transform.position.z > z_bound_up)
+            {
+                Debug.Log("Out of the map");
+                IsOut = true;
+            }
+            else
+                IsOut = false;
         }
-        else
-            IsOut = false;
 
         if (playerState == PlayerState.Falling && Material != MaterialType.None)
         {        // holding something
