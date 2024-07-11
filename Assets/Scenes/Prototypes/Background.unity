@@ -3002,6 +3002,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lock Silver
       objectReference: {fileID: 0}
+    - target: {fileID: 4821439605081641012, guid: 08788dc816a563747a3a0b9f8206384c, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5453668649221866489, guid: 08788dc816a563747a3a0b9f8206384c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 803.6387
@@ -9139,11 +9143,11 @@ MonoBehaviour:
   pack: {fileID: 2068587066}
   buffData: {fileID: 0}
   buffproperty:
-    speed: 0
+    speed: 1
     sleep: 0
     attack: 0
   cam: {fileID: 1090582237}
-  wasd: 1
+  wasd: 0
   keycodes: 
   Material: 0
   playerState: 0
