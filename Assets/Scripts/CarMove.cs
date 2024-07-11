@@ -218,7 +218,7 @@ public class carMove : MonoBehaviour
 
     void Start()
     {
-        gameObject.transform.position=new Vector3(799.874f,0.2f,991.6682f);
+        gameObject.transform.position=new Vector3(799.874f,0.0f,991.6682f);
         gameObject.transform.rotation=Quaternion.Euler(0, 180, 0);
     }
 
