@@ -127,6 +127,14 @@ public class Character : MonoBehaviour
         }
         else
             IsOut = false;
+        
+        if(playerState == PlayerState.Falling && Material != MaterialType.None){        // holding something
+            if(Material == MaterialType.Wood){
+                GameObject g = Instantiate(Resources.Load("Prefabs/Wood") as GameObject);
+                g.transform.position = transform.position;
+            }
+            Material = MaterialType.None;
+        }
         stateInfo = Anim.GetCurrentAnimatorStateInfo(0);
         // PlayerMove(); //人物移动
         if (stateInfo.IsName("Idle") && playerState != PlayerState.ReadyToClaim)
@@ -172,7 +180,6 @@ public class Character : MonoBehaviour
                 // 向世界坐标系得z轴方向移动
                 Vector3 p = transform.localPosition;
                 if((!InCorner) && (!IsOut || (IsOut && (transform.position.z < z_bound_down || ((transform.position.x > x_bound_right || transform.position.x < x_bound_left) && transform.position.z < z_bound_up))))){
-                    Debug.Log("Move up");
                     p += cam.transform.forward * PlayerSpeed * Time.deltaTime;
                 }
                 transform.localPosition = p;

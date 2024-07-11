@@ -7,10 +7,10 @@ using UnityEngine;
 public class UIController : MonoBehaviour
 {
     // Start is called before the first frame update
-    private GameObject RawImage;    
+    public GameObject RawImage;    
     void Start()
     {
-        RawImage = GameObject.Find("RawImage");
+        // RawImage = GameObject.Find("RawImage");
     }
 
     // Update is called once per frame

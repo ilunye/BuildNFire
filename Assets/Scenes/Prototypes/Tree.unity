@@ -405,6 +405,7 @@ MonoBehaviour:
   isPunch: 0
   isFalling: 0
   timer: 0
+  InCorner: 0
 --- !u!114 &141118147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -417,6 +418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 844ec4c5c9412cd46a8bd74750f60c78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RawImage: {fileID: 925957865}
 --- !u!4 &169093367 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7861350953103440092, guid: efe06c0608269fb45a852b9c1aff7526, type: 3}

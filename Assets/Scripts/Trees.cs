@@ -68,7 +68,7 @@ public class Trees : MonoBehaviour
         shaking = false;
         if(status == 0){
             GameObject g = Instantiate(Resources.Load("Prefabs/Wood") as GameObject);
-            g.transform.localPosition = transform.localPosition;
+            g.transform.position = transform.position;
             Destroy(gameObject);
         }
     }
