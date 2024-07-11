@@ -7,9 +7,13 @@ public class ThrowBomb : MonoBehaviour
     public GameObject bomb;  // 炸弹的预制体
     public float InitthrowForce = 1f; // 初始投掷的力量
 
-    public float throwForce;
+    private float throwDuration = 5f; // 投掷的持续时间
+    private float elapsedTime = 0f; //计算投掷的时间
 
-    public float MaxThrowForce = 50f;
+    public float throwForce; //投掷的力量
+
+    public float MaxThrowForce = 50f; //投掷允許的最大力量
+    private float IntervelTime = 0f; //炮彈發射的間隔時間
 
     void Start()
     {
@@ -17,18 +21,19 @@ public class ThrowBomb : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKey(KeyCode.M)) //如果长按M则累计投掷的力量
+        if (Input.GetKey(KeyCode.M) && !bomb) //如果长按M则累计投掷的力量
         {
             if (throwForce < MaxThrowForce)
             {
                 throwForce += Time.deltaTime * 3;
             }
         }
-        if (Input.GetKeyUp(KeyCode.M)) // 检测玩家按下投掷按钮（默认是鼠标左键或Ctrl）
+
+        if (Input.GetKeyUp(KeyCode.M) && !bomb) // 检测玩家按下投掷按钮
         {
             Debug.Log("按下M，扔炸弹");
             Throw();
-            throwForce = InitthrowForce;
+
         }
 
     }
@@ -49,34 +54,36 @@ public class ThrowBomb : MonoBehaviour
     //不使用物理引擎来投掷炸弹
     void Throw()
     {
-        Vector3 q = new Vector3(0f, 1f, 0f);
-        Vector3 gravity = Physics.gravity; //增加重力
+        Debug.Log("扔炸弹开始");
         bomb = Instantiate(Resources.Load("Prefabs/Bomb Red") as GameObject); // 创建炸弹实例
-        bomb.transform.localPosition = gameObject.transform.localPosition + q;
-        Vector3 throwDirection = transform.forward; // 投掷方向为当前对象的前方向
-        Vector3 throwVelocity = throwDirection * throwForce; // 计算投掷速度向量
-        Vector3 p = new Vector3(0f, 2f, 1f);
         // 设置炸弹的初始位置
-        Vector3 startPosition = transform.position + throwDirection + p;
+        bomb.transform.localPosition = gameObject.transform.localPosition + gameObject.transform.forward * 0.5f;
+        Vector3 startPosition = bomb.transform.localPosition;
 
         // 投掷炸弹，以一定的速度沿着投掷方向移动
-        StartCoroutine(ThrowBombPosition(startPosition, throwVelocity));
+        StartCoroutine(ThrowBombPosition(startPosition));
+
     }
 
-    IEnumerator ThrowBombPosition(Vector3 startPosition, Vector3 throwVelocity)
+    IEnumerator ThrowBombPosition(Vector3 startPosition)
     {
-        float elapsedTime = 0f;
-        float throwDuration = 2f; // 投掷的持续时间
+        Debug.Log("開始位置" + startPosition);
+        elapsedTime = 0f;
 
+        Vector3 gravity; //增加重力
+
+        elapsedTime += Time.deltaTime;
+        Debug.Log("throwforce1 = " + throwForce);
         while (elapsedTime < throwDuration && bomb)
         {
-            if (elapsedTime > throwDuration / 2)
-            {
-                Vector3 p = new Vector3(0f, 2f, 1f);
-                startPosition = startPosition - 2 * p;
-            }
+            Debug.Log("循环" + elapsedTime);
             // 根据投掷速度和时间计算新的位置
-            Vector3 newPosition = startPosition + throwVelocity * elapsedTime;
+            Debug.Log("throwforce = " + throwForce);
+            float x = throwForce * elapsedTime * transform.forward.x;
+            float z = throwForce * elapsedTime * transform.forward.z;
+            float y = 0.5f + 5f * elapsedTime - 9.8f * 0.5f * Mathf.Pow(elapsedTime, 2);
+            gravity = new Vector3(x, y, z);
+            Vector3 newPosition = startPosition + gravity;
 
             // 更新炸弹的位置
             bomb.transform.position = newPosition;
@@ -85,5 +92,6 @@ public class ThrowBomb : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
+        throwForce = InitthrowForce; //在最终都运行结束后回复原值！！
     }
 }

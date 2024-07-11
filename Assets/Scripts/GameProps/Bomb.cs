@@ -3,7 +3,7 @@ using UnityEngine.PlayerLoop;
 
 public class Bomb : MonoBehaviour
 {
-    private float delay = 1f; // 炸弹的延迟时间
+    private float delay = 5f; // 炸弹的延迟时间
     private float explosionForce = 700f; // 爆炸的力量
     private float explosionRadius = 0.1f; // 爆炸的半径
     public GameObject explosionEffect; // 爆炸效果的预制体
@@ -53,8 +53,6 @@ public class Bomb : MonoBehaviour
         // 显示爆炸效果
         //Instantiate(explosionEffect, transform.position, transform.rotation);
         explosionEffect = Instantiate(Resources.Load("Prefabs/Particle System") as GameObject);
-
-        //Debug.Log(gameObject.name);
         explosionEffect.transform.localPosition = gameObject.transform.localPosition;
         explosionEffect.transform.localRotation = gameObject.transform.localRotation;
         // 获取爆炸范围内的所有碰撞体

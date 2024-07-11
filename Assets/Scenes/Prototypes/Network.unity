@@ -557,7 +557,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clientToServerTransport: {fileID: 364521876}
-  serverIP: 172.25.98.235
+  serverIP: game.ilunye.club
   heartBeatInterval: 3
   connectOnAwake: 1
   authenticationKey: Secret Auth Key

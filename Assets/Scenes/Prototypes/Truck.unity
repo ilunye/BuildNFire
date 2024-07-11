@@ -1212,6 +1212,7 @@ MonoBehaviour:
   isPunch: 0
   isFalling: 0
   timer: 0
+  InCorner: 0
 --- !u!114 &782304217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4300,6 +4301,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7814782192666264111, guid: d1779b01c2c252b4c8cb7cfb97fd15b5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829466363917050549, guid: d1779b01c2c252b4c8cb7cfb97fd15b5, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
