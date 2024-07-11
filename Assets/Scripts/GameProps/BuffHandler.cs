@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Claims;
 using UnityEngine;
 
 public class BuffHandler : MonoBehaviour
@@ -9,10 +10,16 @@ public class BuffHandler : MonoBehaviour
     public LinkedList<BuffInfo> buffList = new LinkedList<BuffInfo>(); //存放buff的链表
     public BuffInfo CurrBuffInfo; //现在生效的buff
 
+    public Bomb bomb;
+    public GameObject CollObj;
+    public ThrowBomb throwBomb;
+
+    public BuffInfo bombbuffinfo;
+    public bool bombenter = false;
     // Start is called before the first frame update
     void Start()
     {
-
+        throwBomb = gameObject.GetComponent<ThrowBomb>();
     }
 
     // Update is called once per frame
@@ -23,7 +30,7 @@ public class BuffHandler : MonoBehaviour
 
     }
 
-    private void GetCollisionBuff(BuffInfo buffInfo, GameObject CollObj) //得到碰撞物体的buff信息
+    public void GetCollisionBuff(BuffInfo buffInfo, GameObject CollObj) //得到碰撞物体的buff信息
     {
         buffInfo.creater = CollObj;
         buffInfo.target = gameObject;
@@ -31,15 +38,33 @@ public class BuffHandler : MonoBehaviour
         if (buffInfo != null)
         {
             AddBuff(buffInfo);
-            // Debug.Log("碰撞发生与" + CollObj.name);
+            Debug.Log("碰撞发生与" + CollObj.name);
             Destroy(CollObj);
         }
     }
-
     private void OnTriggerEnter(Collider collision)
     {
-        Debug.Log("进入trigger区" + collision.name);
-        GameObject CollObj = collision.gameObject;
+        CollObj = collision.gameObject;
+        if (CollObj && CollObj.tag == "Bomb")
+        {
+            bombenter = true;
+        }
+
+    }
+
+    private void OnTriggerExit(Collider collision)
+    {
+        CollObj = collision.gameObject;
+        if (CollObj && CollObj.tag == "Bomb")
+        {
+            bombenter = false;
+        }
+    }
+
+    private void OnTriggerStay(Collider collision)
+    {
+        //Debug.Log("进入trigger区" + collision.name);
+        CollObj = collision.gameObject;
         if (CollObj != null)
         {
             BuffInfo buffInfo = new BuffInfo();
@@ -58,11 +83,28 @@ public class BuffHandler : MonoBehaviour
                     GetCollisionBuff(buffInfo, CollObj);
                     break;
                 case "Bomb":
+                    //Debug.Log("进入trigger区" + collision.name);
+                    bomb = CollObj.GetComponent<Bomb>();
                     buffInfo.buffData = CollObj.GetComponent<Bomb>().buffData;
-                    GetCollisionBuff(buffInfo, CollObj);
+                    //Debug.Log("是否已经爆炸" + bomb.hasExploded );
+                    //if (bomb.hasExploded == true) //爆炸了再施加debuff效果
+                    //不能这样判断，因为爆炸后trigger就消失了
+                    Debug.Log("爆炸剩余时间还有：" + bomb.countdown);
+                    if (bomb.countdown <= 0.1f)
+                    {
+                        buffInfo.creater = CollObj;
+                        buffInfo.target = gameObject;
+                        buffInfo.durationTime = buffInfo.buffData.DurationTime;
+                        if (buffInfo != null)
+                        {
+                            AddBuff(buffInfo);
+                            Debug.Log("碰撞发生与" + CollObj.name);
+                        }
+                        bomb.Explode();
+                    }
+
                     break;
                 default:
-                    Debug.Log("道具不存在");
                     break;
 
             }
@@ -113,7 +155,7 @@ public class BuffHandler : MonoBehaviour
         }
     }*/
 
-    private void AddBuff(BuffInfo buffInfo)  //捡到物品增加buff
+    public void AddBuff(BuffInfo buffInfo)  //捡到物品增加buff
     {
         //查找传入的buff并返回
         BuffInfo findBuffInfo = FindBuff(buffInfo.buffData.BuffID);
@@ -140,6 +182,7 @@ public class BuffHandler : MonoBehaviour
             }
             buffInfo.durationTime = buffInfo.buffData.DurationTime;
             buffInfo.buffData.OnCreate.Apply(buffInfo); //启动buff
+            Debug.Log("启动buff" + buffInfo.buffData.BuffName);
             buffList.AddLast(buffInfo); //添加到buffList的末尾
 
             //根据priority对buffList进行排序

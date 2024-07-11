@@ -23,4 +23,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Prototypes/Background.unity
     guid: ffd80a6bb0220484e87503cfc3fe383e
+  - enabled: 1
+    path: Assets/Scenes/HomeScreen.unity
+    guid: 4b6ad31d3a51ba84da63c7d3f1d22746
+  - enabled: 1
+    path: Assets/Scenes/Main.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}

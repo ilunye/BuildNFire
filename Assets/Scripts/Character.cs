@@ -12,7 +12,6 @@ public class Character : MonoBehaviour
     public float sleep = 0f; //冻结时间
     GameObject Player = null; //人物
 
-
     public Pack pack; //引用背包
 
     private Transform tr; //创造射线
@@ -149,7 +148,7 @@ public class Character : MonoBehaviour
                 GameObject g = Instantiate(Resources.Load("Prefabs/Wood") as GameObject);
                 g.transform.position = transform.position;
             }
-            else if (Material == MaterialType.Bomb) 
+            else if (Material == MaterialType.Bomb)
             {
                 GameObject g = Instantiate(Resources.Load("Prefabs/Bomb Red") as GameObject);
                 g.transform.position = transform.position;
@@ -181,9 +180,10 @@ public class Character : MonoBehaviour
         {
             Debug.Log("玩家休眠");
             PlayerSpeed = 0; //玩家休眠
-            gameObject.GetComponent<Animator>().Play("StunnedLoop");
+            gameObject.GetComponent<Animator>().Play("StunnedLoop"); //播放晕倒动画
             gameObject.GetComponent<Character>().isFalling = true;
             gameObject.GetComponent<Character>().playerState = PlayerState.Falling;
+
         }
         // if(Anim.name != "PunchRight"){
         //     Motion();
@@ -192,8 +192,6 @@ public class Character : MonoBehaviour
         // }
 
     }
-
-
     private void Motion()
     {
         // go up
@@ -201,11 +199,20 @@ public class Character : MonoBehaviour
         {
             if (Input.GetKey(keycodes[0]))
             {
+                //Debug.Log("向前走");
                 // 向世界坐标系得z轴方向移动
                 Vector3 p = transform.localPosition;
+                bool flag = false;
                 if ((!InCorner) && (!IsOut || (IsOut && (transform.position.z < z_bound_down || ((transform.position.x > x_bound_right || transform.position.x < x_bound_left) && transform.position.z < z_bound_up)))))
                 {
+                    flag = true;
                     p += cam.transform.forward * PlayerSpeed * Time.deltaTime;
+                }
+                if(!flag){
+                    if(PlayerSpeed < 0){
+                        if (InCorner || !IsOut || (IsOut && (transform.position.z > z_bound_up || ((transform.position.x > x_bound_right || transform.position.x < x_bound_left) && transform.position.z > z_bound_down))))
+                            p += cam.transform.forward * PlayerSpeed * Time.deltaTime;
+                    }
                 }
                 transform.localPosition = p;
                 Idle2Run();
@@ -218,8 +225,18 @@ public class Character : MonoBehaviour
             if (Input.GetKey(keycodes[1]))
             {
                 Vector3 p = transform.localPosition;
-                if (InCorner || !IsOut || (IsOut && (transform.position.z > z_bound_up || ((transform.position.x > x_bound_right || transform.position.x < x_bound_left) && transform.position.z > z_bound_down))))
+                bool flag = false;
+                if (InCorner || !IsOut || (IsOut && (transform.position.z > z_bound_up || ((transform.position.x > x_bound_right || transform.position.x < x_bound_left) && transform.position.z > z_bound_down)))){
                     p -= cam.transform.forward * PlayerSpeed * Time.deltaTime;
+                    flag = true;
+                }
+                if(!flag){
+                    if(PlayerSpeed < 0){
+                        if ((!InCorner) && (!IsOut || (IsOut && (transform.position.z < z_bound_down || ((transform.position.x > x_bound_right || transform.position.x < x_bound_left) && transform.position.z < z_bound_up)))))
+                            p -= cam.transform.forward * PlayerSpeed * Time.deltaTime;
+                    }
+                }
+                
                 transform.localPosition = p;
                 Idle2Run();
                 Rotate(Direction.Backward);
@@ -230,9 +247,18 @@ public class Character : MonoBehaviour
             // go left
             if (Input.GetKey(keycodes[2]))
             {
+                bool flag = false;
                 Vector3 p = transform.localPosition;
-                if (InCorner || !IsOut || (IsOut && (transform.position.x > x_bound_right || ((transform.position.z > z_bound_up || transform.position.z < z_bound_down) && transform.position.x > x_bound_left))))
+                if (InCorner || !IsOut || (IsOut && (transform.position.x > x_bound_right || ((transform.position.z > z_bound_up || transform.position.z < z_bound_down) && transform.position.x > x_bound_left)))){
                     p -= cam.transform.right * PlayerSpeed * Time.deltaTime;
+                    flag = true;
+                }
+                if(!flag){
+                    if(PlayerSpeed < 0){
+                        if ((!InCorner) && (!IsOut || (IsOut && (transform.position.x < x_bound_left || ((transform.position.z > z_bound_up || transform.position.z < z_bound_down) && transform.position.x < x_bound_right)))))
+                            p -= cam.transform.right * PlayerSpeed * Time.deltaTime;
+                    }
+                }
                 transform.localPosition = p;
                 Idle2Run();
                 Rotate(Direction.Left);
@@ -243,9 +269,18 @@ public class Character : MonoBehaviour
             // go right
             if (Input.GetKey(keycodes[3]))
             {
+                bool flag = false;
                 Vector3 p = transform.localPosition;
-                if ((!InCorner) && (!IsOut || (IsOut && (transform.position.x < x_bound_left || ((transform.position.z > z_bound_up || transform.position.z < z_bound_down) && transform.position.x < x_bound_right)))))
+                if ((!InCorner) && (!IsOut || (IsOut && (transform.position.x < x_bound_left || ((transform.position.z > z_bound_up || transform.position.z < z_bound_down) && transform.position.x < x_bound_right))))){
                     p += cam.transform.right * PlayerSpeed * Time.deltaTime;
+                    flag = true;
+                }
+                if(!flag){
+                    if(PlayerSpeed < 0){
+                        if (InCorner || !IsOut || (IsOut && (transform.position.x > x_bound_right || ((transform.position.z > z_bound_up || transform.position.z < z_bound_down) && transform.position.x > x_bound_left))))
+                            p += cam.transform.right * PlayerSpeed * Time.deltaTime;
+                    }
+                }
                 transform.localPosition = p;
                 Idle2Run();
                 Rotate(Direction.Right);

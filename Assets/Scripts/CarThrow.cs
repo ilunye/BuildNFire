@@ -18,8 +18,8 @@ public class test : MonoBehaviour
         float distanceAbove = 2f;
         destroyDelay=4f;
         spawnPosition=gameObject.transform.position+transform.up*distanceAbove;
-        interval=1.5f;
-        //p=(int)Random.Range(1,2);
+        interval=2.5f;
+        p=(int)Random.Range(1,4);
         interval=interval*p;
         throwForce=1;
         destroyDelay=5f;
@@ -63,10 +63,13 @@ public class test : MonoBehaviour
             c = Instantiate(Resources.Load("prefabs/Lock Silver") as GameObject);
         }
         spawnPosition = transform.position + transform.up * 0.5f-transform.forward*0.5f;
-        c.transform.localPosition=spawnPosition;
-        Rigidbody cubeRigidbody = c.AddComponent<Rigidbody>();
+        c.transform.position=spawnPosition;
+        // Rigidbody cubeRigidbody = c.AddComponent<Rigidbody>();
+    
         float x=Random.Range(-2f,2f);
         float z=Random.Range(-2f,2f);
+        // set as kinetic
+        Rigidbody cubeRigidbody = c.GetComponent<Rigidbody>();
         cubeRigidbody.AddForce(Vector3.up*throwForce+new Vector3(x,0,z),ForceMode.Impulse);
         
         StartCoroutine(RemoveRigidbodyAfterDelay(cubeRigidbody, 1.5f)); // 延时1.5秒后移除 Rigidbody
