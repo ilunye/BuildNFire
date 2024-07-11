@@ -26,5 +26,5 @@ MonoBehaviour:
   OnTrick: {fileID: 0}
   OnHit: {fileID: 0}
   OnBeHit: {fileID: 0}
-  buffUpdateTime: 0
+  buffUpdateTime: 1
   buffRemoveStackUpdate: 0

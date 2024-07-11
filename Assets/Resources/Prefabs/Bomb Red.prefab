@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 2374260}
   - component: {fileID: -4361017848822954901}
   - component: {fileID: -6716820673095268362}
+  - component: {fileID: 1780158158815488021}
+  - component: {fileID: -7497000764475307313}
   m_Layer: 0
   m_Name: Bomb Red
   m_TagString: Bomb
@@ -98,7 +100,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionEffect: {fileID: 0}
+  countdown: 0
+  hasExploded: 0
   buffData: {fileID: 11400000, guid: cac43bde15c964147a06c0820aa6a47a, type: 2}
+  claimed: 0
 --- !u!135 &-6716820673095268362
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -120,3 +125,51 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.12390906
   m_Center: {x: 0.000000037252903, y: 0, z: 0}
+--- !u!54 &1780158158815488021
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174260}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!135 &-7497000764475307313
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174260}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.12390906
+  m_Center: {x: 0.000000067055225, y: -0.000000014901161, z: 1.110223e-15}
