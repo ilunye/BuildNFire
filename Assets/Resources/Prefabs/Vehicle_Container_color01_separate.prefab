@@ -592,6 +592,7 @@ GameObject:
   - component: {fileID: 400012}
   - component: {fileID: 3934575430556245685}
   - component: {fileID: 8415331393465916517}
+  - component: {fileID: -8328889516637795871}
   - component: {fileID: 8622400470803545160}
   - component: {fileID: 2186691118632765611}
   - component: {fileID: 2806567036515662731}
@@ -667,6 +668,27 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4.3000717, y: 4.3642573, z: 10.116043}
   m_Center: {x: 0.15997487, y: 1.6821301, z: 0.44436306}
+--- !u!65 &-8328889516637795871
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100014}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.1794274, y: 0.99999946, z: 2.2831862}
+  m_Center: {x: 0.041256998, y: 0, z: 6.9646473}
 --- !u!114 &8622400470803545160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -695,6 +717,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 0
+  waitTime: 0
+  rayCastEnable: 0
 --- !u!54 &2806567036515662731
 Rigidbody:
   m_ObjectHideFlags: 0

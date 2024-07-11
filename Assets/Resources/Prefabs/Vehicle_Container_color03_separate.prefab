@@ -592,8 +592,8 @@ GameObject:
   - component: {fileID: 400012}
   - component: {fileID: -4362724396125130409}
   - component: {fileID: 4832465869539239927}
+  - component: {fileID: 6076115449239806506}
   - component: {fileID: 49675474435196242}
-  - component: {fileID: -4896625352040773972}
   - component: {fileID: 710917890776087421}
   m_Layer: 0
   m_Name: Vehicle_Container_color03_separate
@@ -637,6 +637,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 0
+  waitTime: 0
+  rayCastEnable: 1
+  green: 0
 --- !u!65 &4832465869539239927
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -658,6 +661,27 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4.300072, y: 4.364257, z: 10.11604}
   m_Center: {x: 0.1599749, y: 1.68213, z: 0.4443631}
+--- !u!65 &6076115449239806506
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100014}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.8500547, y: 1.2475185, z: 2.6164978}
+  m_Center: {x: 0.1550009, y: 0.12376009, z: 7.1307592}
 --- !u!114 &49675474435196242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -672,19 +696,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interval: 0
   spawnPosition: {x: 0, y: 0, z: 0}
-  timer: 0
---- !u!114 &-4896625352040773972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d2aa59f8d922de49b47a11b46a7f2cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   timer: 0
 --- !u!54 &710917890776087421
 Rigidbody:
