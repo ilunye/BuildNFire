@@ -405,6 +405,7 @@ MonoBehaviour:
   isPunch: 0
   isFalling: 0
   timer: 0
+  enableOut: 1
   InCorner: 0
 --- !u!114 &141118147
 MonoBehaviour:
@@ -862,7 +863,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 04aee6f04d91ae3428e04b8aa1d6faf5, type: 3}
+  m_Texture: {fileID: 2800000, guid: 2c6d8f6a6ca14a24da5c06af8a220d27, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0

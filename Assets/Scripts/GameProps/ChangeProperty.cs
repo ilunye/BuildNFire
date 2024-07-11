@@ -18,7 +18,9 @@ public class ChangeProperty : BaseBuffModule
     public override void Apply(BuffInfo buffInfo, DamageInfo damageInfo = null)
     {
         var character = buffInfo.target.GetComponent<Character>();
+        
         Debug.Log("没有buff的速度："+character.buffproperty.speed);
+        Debug.Log("没有buff的sleep："+character.buffproperty.sleep);
         if (character)
         {
             Debug.Log(buffInfo.buffData.BuffName+ "buff加在：" + character.name);
@@ -26,6 +28,7 @@ public class ChangeProperty : BaseBuffModule
             character.buffproperty.speed += property.speed;
             character.buffproperty.sleep += property.sleep;
             Debug.Log("有buff的速度："+character.buffproperty.speed);
+            Debug.Log("没有buff的sleep："+character.buffproperty.sleep);
             character.PlayerSpeed = character.buffproperty.speed;
             character.sleep = character.buffproperty.sleep;
         }

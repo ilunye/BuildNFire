@@ -24,7 +24,6 @@ public class Wood : MonoBehaviour
     void OnTriggerStay(Collider other){
         if(other.tag != "Player" || claimed)
             return;
-        Debug.Log("collide with wood!");
         if(other.GetComponent<Character>().playerState == Character.PlayerState.Idle)
             other.GetComponent<Character>().playerState = Character.PlayerState.ReadyToClaim;
         if(other.GetComponent<Character>().playerState == Character.PlayerState.Claim){
