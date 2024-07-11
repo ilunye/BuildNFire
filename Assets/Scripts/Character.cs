@@ -7,6 +7,7 @@ using UnityEngine;
 //挂在玩家上
 public class Character : MonoBehaviour
 {
+    public bool enabled = true;
     public float PlayerSpeed = 1f; //人物移动速度
     public float sleep = 0f; //冻结时间
     GameObject Player = null; //人物
@@ -24,7 +25,7 @@ public class Character : MonoBehaviour
 
     public GameObject cam; // the camera
     public bool wasd = true;
-    private KeyCode[] keycodes;
+    public KeyCode[] keycodes;
 
     public enum PlayerState
     {
@@ -34,15 +35,17 @@ public class Character : MonoBehaviour
         ReadyToClaim,       // ready to claim objects, that is colliding with sth
         Claim,
         Falling,
-        Dead,
-        Frozen
+        Operating
     }
 
     public enum MaterialType
     {
         None,
         Wood,
-        Stone,
+        IronOre,
+        Iron,
+        GunPowder,
+        CannonBall,
         Bomb
     }
 
@@ -125,16 +128,18 @@ public class Character : MonoBehaviour
     private float z_bound_up = 987.02f;
     void Update()
     {
-        // if (enableOut)
-        // {
-        //     if (transform.position.x < x_bound_left || transform.position.x > x_bound_right || transform.position.z < z_bound_down || transform.position.z > z_bound_up)
-        //     {
-        //         Debug.Log("Out of the map");
-        //         IsOut = true;
-        //     }
-        //     else
-        //         IsOut = false;
-        // }
+        if(!enabled) return;
+        if(!enableOut){
+            if (transform.position.x < x_bound_left || transform.position.x > x_bound_right || transform.position.z < z_bound_down || transform.position.z > z_bound_up)
+            {
+                Debug.Log("Out of the map");
+                IsOut = true;
+            }
+            else
+                IsOut = false;
+        }else{
+            IsOut = false;
+        }
 
         if (playerState == PlayerState.Falling && Material != MaterialType.None)
         {        // holding something
@@ -146,6 +151,11 @@ public class Character : MonoBehaviour
             else if (Material == MaterialType.Bomb)
             {
                 GameObject g = Instantiate(Resources.Load("Prefabs/Bomb Red") as GameObject);
+                g.transform.position = transform.position;
+            }
+            else if (Material == MaterialType.IronOre)
+            {
+                GameObject g = Instantiate(Resources.Load("Prefabs/Rock_03") as GameObject);
                 g.transform.position = transform.position;
             }
             Material = MaterialType.None;
@@ -165,7 +175,6 @@ public class Character : MonoBehaviour
         }
         Motion();
         pack.ShowPack(); //按下K展示背包
-        RayCaseObj();  //拾捡物品
 
         if (sleep != 0)
         {
@@ -186,7 +195,7 @@ public class Character : MonoBehaviour
     private void Motion()
     {
         // go up
-        if (playerState != PlayerState.Punch && playerState != PlayerState.Claim && playerState != PlayerState.Falling)
+        if (playerState != PlayerState.Punch && playerState != PlayerState.Claim && playerState != PlayerState.Falling && playerState != PlayerState.Operating)
         {
             if (Input.GetKey(keycodes[0]))
             {
@@ -252,9 +261,27 @@ public class Character : MonoBehaviour
                 isPunch = false;
                 playerState = PlayerState.Punch;
             }
-            else if (playerState == PlayerState.Idle && Material != MaterialType.None)
+            else if ((playerState == PlayerState.Idle || playerState == PlayerState.ReadyToClaim) && Material != MaterialType.None)
             //item in hand
             {
+                switch(Material)
+                {
+                    case MaterialType.Wood:
+                        Instantiate(Resources.Load("Prefabs/Wood") as GameObject, transform.position, Quaternion.identity);
+                        break;
+                    case MaterialType.IronOre:
+                        Instantiate(Resources.Load("Prefabs/Rock_03") as GameObject, transform.position, Quaternion.identity);
+                        break;
+                    case MaterialType.Iron:
+                        Instantiate(Resources.Load("Prefabs/ConcreteTubes") as GameObject, transform.position, Quaternion.identity);
+                        break;
+                    case MaterialType.GunPowder:
+                        Instantiate(Resources.Load("Prefabs/explosiveBarrel") as GameObject, transform.position, Quaternion.identity);
+                        break;
+                    case MaterialType.CannonBall:
+                        Instantiate(Resources.Load("Prefabs/projectile") as GameObject, transform.position, Quaternion.identity);
+                        break;
+                }
                 Material = MaterialType.None;
             }
             else if (playerState == PlayerState.ReadyToClaim && Material == MaterialType.None)
@@ -305,35 +332,4 @@ public class Character : MonoBehaviour
                 break;
         }
     }
-
-
-    private void RayCaseObj()
-    {
-        //创建射线
-        Debug.DrawRay(tr.position, tr.forward * 2.0f, Color.green);
-        RaycastHit hit;
-        //如果碰撞
-        if (Physics.Raycast(tr.position, tr.forward, out hit, 2.0f))
-        //将射线碰撞信息存储在 hit 变量中
-        {
-            Debug.Log("射线击中:" + hit.collider.gameObject.name + "\n tag:" + hit.collider.tag);
-            GameObject gameObj = hit.collider.gameObject; //获取碰到的物品
-            ObjectItem obj = (ObjectItem)gameObj.GetComponent<ObjectItem>();
-            if (obj != null)
-            {
-                Debug.Log("捡到的物品" + obj.name);
-                obj.IsCheck = true;
-                if (Input.GetKeyDown(keycodes[4])) //按下E捡东西
-                {
-                    Debug.Log("按下E");
-                    pack.GetItem(obj);
-                    if (obj.IsGrab == true) //当前物品拾捡完成
-                    {
-                        Destroy(gameObj);
-                    }
-                }
-            }
-        }
-    }
-
 }
