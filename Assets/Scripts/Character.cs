@@ -7,6 +7,7 @@ using UnityEngine;
 //挂在玩家上
 public class Character : MonoBehaviour
 {
+    public bool enabled = false;
     public float PlayerSpeed = 1f; //人物移动速度
     public float sleep = 0f; //冻结时间
     GameObject Player = null; //人物
@@ -124,6 +125,7 @@ public class Character : MonoBehaviour
     private float z_bound_up = 987.02f;
     void Update()
     {
+        if(!enabled) return;
         if(enableOut){
             if (transform.position.x < x_bound_left || transform.position.x > x_bound_right || transform.position.z < z_bound_down || transform.position.z > z_bound_up)
             {
