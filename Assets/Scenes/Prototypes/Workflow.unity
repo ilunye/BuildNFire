@@ -1624,6 +1624,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6490136728237138907, guid: b3d22c566a40cfe45bfc575a822257f4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1994236580}
+    - targetCorrespondingSourceObject: {fileID: 6490136728237138907, guid: b3d22c566a40cfe45bfc575a822257f4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1994236585}
   m_SourcePrefab: {fileID: 100100000, guid: b3d22c566a40cfe45bfc575a822257f4, type: 3}
 --- !u!1 &1994236579 stripped
 GameObject:
@@ -1736,6 +1739,27 @@ MonoBehaviour:
   timer: 0
   enableOut: 0
   InCorner: 0
+--- !u!114 &1994236585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1994236579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e967c8085cfdec341a0ed9f97a53faab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wood_number: 0
+  iron_number: 0
+  gunpowder_number: 0
+  projectile_number: 0
+  wood_text: {fileID: 0}
+  iron_text: {fileID: 0}
+  gunpowder_text: {fileID: 0}
+  projectile_text: {fileID: 0}
+  frame: {fileID: 0}
 --- !u!1001 &2103710789
 PrefabInstance:
   m_ObjectHideFlags: 0
