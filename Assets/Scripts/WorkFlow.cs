@@ -9,20 +9,20 @@ public class WorkFlow : MonoBehaviour
     public int gunpowder_number=0;
     public int projectile_number=0;
     
-    public TMP_Text wood_text;
-    public TMP_Text iron_text;
-    public TMP_Text gunpowder_text;
-    public TMP_Text projectile_text; 
-    public GameObject frame_wood;
-    public GameObject frame_iron;
+    private TMP_Text wood_text;
+    private TMP_Text iron_text;
+    private TMP_Text gunpowder_text;
+    private TMP_Text projectile_text; 
+    private GameObject frame_wood;
+    private GameObject frame_iron;
 
     public static bool isIron;
     public static bool isWood;
     public static bool isPro;
     public static bool isPowder;
 
-    private bool toPickWood;
-    private bool toPickIron;
+    public bool toPickWood;
+    public bool toPickIron;
 
     void Start()
     {
@@ -30,8 +30,14 @@ public class WorkFlow : MonoBehaviour
         isWood = false;
         isPro = false;
         isPowder = false;
-        toPickIron=false;
+        toPickIron=true;
         toPickWood=false;
+        wood_text = GameObject.Find("Canvas/wood/woodText").GetComponent<TMP_Text>();
+        iron_text = GameObject.Find("Canvas/iron/ironText").GetComponent<TMP_Text>();
+        gunpowder_text = GameObject.Find("Canvas/gunPowder/gunPowderText").GetComponent<TMP_Text>();
+        projectile_text = GameObject.Find("Canvas/cannonBall/cannonBallText").GetComponent<TMP_Text>();
+        frame_wood = GameObject.Find("Canvas/wood_frame");
+        frame_iron = GameObject.Find("Canvas/iron_frame");
         AbleAllChildren(frame_iron);
         DisableAllChildren(frame_wood);
 
@@ -44,41 +50,36 @@ public class WorkFlow : MonoBehaviour
 
     private void HandleInput()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (toPickIron&& iron_number <= 6 && isIron)
         {
-            Debug.Log("toPickIron"+toPickIron+" ");
-            if (toPickIron&& iron_number <= 6 && isIron)
-            {
-                Debug.Log("啊啊啊啊");
-                iron_number++;
-                toPickIron=!toPickIron;
-                toPickWood=!toPickWood;
-                DisableAllChildren(frame_iron);
-                AbleAllChildren(frame_wood);
-                isIron=false;
-            }
-            else if (toPickWood&& wood_number <= 4 && isWood)
-            {
-                wood_number++;
-                toPickIron=!toPickIron;
-                toPickWood=!toPickWood;
-                AbleAllChildren(frame_iron);
-                DisableAllChildren(frame_wood);
-                isWood=false;
-            }
-            else if (isPro && projectile_number <= 1)
-            {
-                projectile_number++;
-                isPro=false;
-            }
-            else if (isPowder && gunpowder_number <= 1)
-            {
-                gunpowder_number++;
-                isPowder=false;
-            }
-
-            UpdateText();
+            iron_number++;
+            toPickIron=!toPickIron;
+            toPickWood=!toPickWood;
+            DisableAllChildren(frame_iron);
+            AbleAllChildren(frame_wood);
         }
+        else if (toPickWood&& wood_number <= 4 && isWood)
+        {
+            wood_number++;
+            toPickIron=!toPickIron;
+            toPickWood=!toPickWood;
+            AbleAllChildren(frame_iron);
+            DisableAllChildren(frame_wood);
+        }
+        else if (isPro && projectile_number <= 1)
+        {
+            projectile_number++;
+        }
+        else if (isPowder && gunpowder_number <= 1)
+        {
+            gunpowder_number++;
+        }
+        isIron = false;
+        isWood = false;
+        isPro = false;
+        isPowder = false;
+
+        UpdateText();
     }
 
     private void UpdateText()

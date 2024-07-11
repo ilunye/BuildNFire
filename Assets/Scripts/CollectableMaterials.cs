@@ -30,6 +30,22 @@ public class CollectableMaterials : MonoBehaviour
         if(other.GetComponent<Character>().playerState == Character.PlayerState.Claim){
             claimed = true;
             other.GetComponent<Character>().Material = materialType;
+            /*
+            switch(materialType){
+                case Character.MaterialType.Wood:
+                    WorkFlow.isWood = true;
+                    break;
+                case Character.MaterialType.Iron:
+                    WorkFlow.isIron = true;
+                    break;
+                case Character.MaterialType.GunPowder:
+                    WorkFlow.isPowder = true;
+                    break;
+                case Character.MaterialType.CannonBall:
+                    WorkFlow.isPro = true;
+                    break;
+            }
+            */
             Destroy(gameObject);
         }
         
