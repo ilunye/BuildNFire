@@ -62,10 +62,10 @@ public class test : MonoBehaviour
         float x=Random.Range(-1.5f,1.5f);
         float z=Random.Range(-1.5f,1.5f);
         cubeRigidbody.AddForce(Vector3.up*throwForce+new Vector3(x,0,z),ForceMode.Impulse);
-        if(r==1||r==2||r==3){
-            StartCoroutine(RemoveRigidbodyAfterDelay(cubeRigidbody, 1.5f)); // 延时1.5秒后移除 Rigidbody
-            StartCoroutine(BlinkAndDestroy(c, destroyDelay));
-        }
+        
+        StartCoroutine(RemoveRigidbodyAfterDelay(cubeRigidbody, 1.5f)); // 延时1.5秒后移除 Rigidbody
+        StartCoroutine(BlinkAndDestroy(c, destroyDelay));
+        
 
         timer = 0f;
         interval = 1.5f * Random.Range(1, 3);
