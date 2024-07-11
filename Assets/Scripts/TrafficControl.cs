@@ -6,7 +6,7 @@ public class TrafficControl : MonoBehaviour
 {
     private float interval_green;
     private float interval_red;
-    private Vector3 spawnPosition = new Vector3(778.22f, 0.2f, 966.79f);
+    private Vector3 spawnPosition = new Vector3(778.22f, 0.0f, 966.79f);
     private int p1,p2;
     public float timer_green;
     public float timer_red;
