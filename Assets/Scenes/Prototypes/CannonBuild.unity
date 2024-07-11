@@ -434,7 +434,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1996387725}
         m_TargetAssemblyTypeName: Cannon, Assembly-CSharp
-        m_MethodName: Prev
+        m_MethodName: prev_state
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1466,10 +1466,6 @@ PrefabInstance:
     - target: {fileID: 855806794440648111, guid: aa641abd1d3cc9c4abb2cd901fdf185b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3240834571121932471, guid: aa641abd1d3cc9c4abb2cd901fdf185b, type: 3}
-      propertyPath: sceneId
-      value: 775452283
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -8,10 +8,12 @@ public class Bomb : MonoBehaviour
     private float explosionRadius = 0.1f; // 爆炸的半径
     public GameObject explosionEffect; // 爆炸效果的预制体
 
-    private float countdown;
+    private float countdown; //爆炸倒计时
     private bool hasExploded = false;
 
-    public BuffData buffData;
+    public BuffData buffData; //add buff
+
+    private bool claimed = false; //是否被捡起来
 
     void Start()
     {
@@ -22,7 +24,7 @@ public class Bomb : MonoBehaviour
     void Update()
     {
         countdown -= Time.deltaTime;
-        if (countdown <= 0f && !hasExploded)
+        if (countdown <= 0f && !hasExploded && !claimed)
         {
             Explode();
             hasExploded = true;
@@ -37,12 +39,29 @@ public class Bomb : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.tag == "Character" && !hasExploded) //如果打到对方玩家
+        if (collision.gameObject.tag == "Character" && !hasExploded && claimed)
+        //如果打到对方玩家 && 炸弹还没爆炸 && 已经被捡起来了
         {
             Explode();
             Debug.Log("打到敌人爆炸");
             hasExploded = true;
             // Destroy(collision.gameObject);
+        }
+
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        if (other.tag != "Player" || claimed)
+            return;
+        Debug.Log("collide with Bomb!");
+        if (other.GetComponent<Character>().playerState == Character.PlayerState.Idle)
+            other.GetComponent<Character>().playerState = Character.PlayerState.ReadyToClaim;
+        if (other.GetComponent<Character>().playerState == Character.PlayerState.Claim)
+        {
+            claimed = true;
+            other.GetComponent<Character>().Material = Character.MaterialType.Wood;
+            Destroy(gameObject);
         }
 
     }

@@ -7,6 +7,7 @@ using UnityEngine;
 //挂在玩家上
 public class Character : MonoBehaviour
 {
+    public bool enabled = true;
     public float PlayerSpeed = 1f; //人物移动速度
     public float sleep = 0f; //冻结时间
     GameObject Player = null; //人物
@@ -35,14 +36,19 @@ public class Character : MonoBehaviour
         ReadyToClaim,       // ready to claim objects, that is colliding with sth
         Claim,
         Falling,
-        Dead
+        Dead,
+        Frozen
     }
 
     public enum MaterialType
     {
         None,
         Wood,
-        Stone
+        IronOre,
+        Iron,
+        GunPowder,
+        CannonBall,
+        Bomb
     }
 
     public MaterialType Material = MaterialType.None;
@@ -124,7 +130,8 @@ public class Character : MonoBehaviour
     private float z_bound_up = 987.02f;
     void Update()
     {
-        if(enableOut){
+        if(!enabled) return;
+        if(!enableOut){
             if (transform.position.x < x_bound_left || transform.position.x > x_bound_right || transform.position.z < z_bound_down || transform.position.z > z_bound_up)
             {
                 Debug.Log("Out of the map");
@@ -132,6 +139,8 @@ public class Character : MonoBehaviour
             }
             else
                 IsOut = false;
+        }else{
+            IsOut = false;
         }
 
         if (playerState == PlayerState.Falling && Material != MaterialType.None)
@@ -139,6 +148,16 @@ public class Character : MonoBehaviour
             if (Material == MaterialType.Wood)
             {
                 GameObject g = Instantiate(Resources.Load("Prefabs/Wood") as GameObject);
+                g.transform.position = transform.position;
+            }
+            else if (Material == MaterialType.Bomb) 
+            {
+                GameObject g = Instantiate(Resources.Load("Prefabs/Bomb Red") as GameObject);
+                g.transform.position = transform.position;
+            }
+            else if (Material == MaterialType.IronOre)
+            {
+                GameObject g = Instantiate(Resources.Load("Prefabs/Rock_03") as GameObject);
                 g.transform.position = transform.position;
             }
             Material = MaterialType.None;
@@ -158,12 +177,14 @@ public class Character : MonoBehaviour
         }
         Motion();
         pack.ShowPack(); //按下K展示背包
-        RayCaseObj();  //拾捡物品
 
         if (sleep != 0)
         {
             Debug.Log("玩家休眠");
             PlayerSpeed = 0; //玩家休眠
+            gameObject.GetComponent<Animator>().Play("StunnedLoop");
+            gameObject.GetComponent<Character>().isFalling = true;
+            gameObject.GetComponent<Character>().playerState = PlayerState.Falling;
         }
         // if(Anim.name != "PunchRight"){
         //     Motion();
@@ -234,7 +255,7 @@ public class Character : MonoBehaviour
                 Run2Idel();
 
         }
-        if (Input.GetKeyDown(keycodes[4]))
+        if (Input.GetKeyUp(keycodes[4])) //改成getkeyup，长按E后再播放投掷动画
         {      // E
             if (playerState == PlayerState.Idle && Material == MaterialType.None)
             {   // no items in hand
@@ -243,10 +264,12 @@ public class Character : MonoBehaviour
                 playerState = PlayerState.Punch;
             }
             else if (playerState == PlayerState.Idle && Material != MaterialType.None)
+            //item in hand
             {
                 Material = MaterialType.None;
             }
             else if (playerState == PlayerState.ReadyToClaim && Material == MaterialType.None)
+            // no item in hand and ready to grab item
             {
                 playerState = PlayerState.Claim;
                 Anim.Play("Gathering");
@@ -293,35 +316,4 @@ public class Character : MonoBehaviour
                 break;
         }
     }
-
-
-    private void RayCaseObj()
-    {
-        //创建射线
-        Debug.DrawRay(tr.position, tr.forward * 2.0f, Color.green);
-        RaycastHit hit;
-        //如果碰撞
-        if (Physics.Raycast(tr.position, tr.forward, out hit, 2.0f))
-        //将射线碰撞信息存储在 hit 变量中
-        {
-            Debug.Log("射线击中:" + hit.collider.gameObject.name + "\n tag:" + hit.collider.tag);
-            GameObject gameObj = hit.collider.gameObject; //获取碰到的物品
-            ObjectItem obj = (ObjectItem)gameObj.GetComponent<ObjectItem>();
-            if (obj != null)
-            {
-                Debug.Log("捡到的物品" + obj.name);
-                obj.IsCheck = true;
-                if (Input.GetKeyDown(keycodes[4])) //按下E捡东西
-                {
-                    Debug.Log("按下E");
-                    pack.GetItem(obj);
-                    if (obj.IsGrab == true) //当前物品拾捡完成
-                    {
-                        Destroy(gameObj);
-                    }
-                }
-            }
-        }
-    }
-
 }
