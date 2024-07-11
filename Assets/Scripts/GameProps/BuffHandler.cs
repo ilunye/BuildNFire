@@ -63,7 +63,7 @@ public class BuffHandler : MonoBehaviour
 
     private void OnTriggerStay(Collider collision)
     {
-        Debug.Log("进入trigger区" + collision.name);
+        //Debug.Log("进入trigger区" + collision.name);
         CollObj = collision.gameObject;
         if (CollObj != null)
         {
@@ -90,7 +90,7 @@ public class BuffHandler : MonoBehaviour
                     //Debug.Log("是否已经爆炸" + bomb.hasExploded );
                     //if (bomb.hasExploded == true) //爆炸了再施加debuff效果
                     //不能这样判断，因为爆炸后trigger就消失了
-                    Debug.Log("爆炸剩余时间还有：" + bomb.countdown);
+                    //Debug.Log("爆炸剩余时间还有：" + bomb.countdown);
                     if (bomb.countdown <= 0.1f)
                     {
                         buffInfo.creater = CollObj;
@@ -99,7 +99,7 @@ public class BuffHandler : MonoBehaviour
                         if (buffInfo != null)
                         {
                             AddBuff(buffInfo);
-                            Debug.Log("碰撞发生与" + CollObj.name);
+                            //Debug.Log("碰撞发生与" + CollObj.name);
                         }
                         bomb.Explode();
                     }
