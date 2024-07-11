@@ -158,7 +158,6 @@ public class Character : MonoBehaviour
         }
         Motion();
         pack.ShowPack(); //按下K展示背包
-        RayCaseObj();  //拾捡物品
 
         if (sleep != 0)
         {
@@ -293,35 +292,4 @@ public class Character : MonoBehaviour
                 break;
         }
     }
-
-
-    private void RayCaseObj()
-    {
-        //创建射线
-        Debug.DrawRay(tr.position, tr.forward * 2.0f, Color.green);
-        RaycastHit hit;
-        //如果碰撞
-        if (Physics.Raycast(tr.position, tr.forward, out hit, 2.0f))
-        //将射线碰撞信息存储在 hit 变量中
-        {
-            Debug.Log("射线击中:" + hit.collider.gameObject.name + "\n tag:" + hit.collider.tag);
-            GameObject gameObj = hit.collider.gameObject; //获取碰到的物品
-            ObjectItem obj = (ObjectItem)gameObj.GetComponent<ObjectItem>();
-            if (obj != null)
-            {
-                Debug.Log("捡到的物品" + obj.name);
-                obj.IsCheck = true;
-                if (Input.GetKeyDown(keycodes[4])) //按下E捡东西
-                {
-                    Debug.Log("按下E");
-                    pack.GetItem(obj);
-                    if (obj.IsGrab == true) //当前物品拾捡完成
-                    {
-                        Destroy(gameObj);
-                    }
-                }
-            }
-        }
-    }
-
 }
