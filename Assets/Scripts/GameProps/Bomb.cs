@@ -32,7 +32,7 @@ public class Bomb : MonoBehaviour
             Debug.Log("时间到了爆炸");
 
         }
-        else if (gameObject.transform.localPosition.y <= 0 && !hasExploded) //掉出世界爆炸
+        else if (gameObject.transform.localPosition.y < 0 && !hasExploded) //掉出世界爆炸
         {
             Explode();
             Debug.Log("掉出世界爆炸");
