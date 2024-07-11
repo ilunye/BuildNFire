@@ -93,9 +93,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4212771881742316}
   - component: {fileID: 5922050932992501469}
-  - component: {fileID: 101442790197245637}
-  - component: {fileID: 7616586507816596846}
   - component: {fileID: 6149455095778972763}
+  - component: {fileID: 6825775454096315608}
+  - component: {fileID: 6843205278473539069}
+  - component: {fileID: 7618141652281840867}
   m_Layer: 0
   m_Name: ConcreteTubes
   m_TagString: Untagged
@@ -168,7 +169,47 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &101442790197245637
+--- !u!114 &6149455095778972763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1251868619462698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbe26c11bcfd7ac49b9dac7a18919724, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materialType: 3
+--- !u!54 &6825775454096315608
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1251868619462698}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &6843205278473539069
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -187,9 +228,9 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &7616586507816596846
+  m_Size: {x: 1.7398404, y: 1, z: 4.157934}
+  m_Center: {x: 0.00062324107, y: 0, z: 0.070085526}
+--- !u!65 &7618141652281840867
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -208,21 +249,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6149455095778972763
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1251868619462698}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbe26c11bcfd7ac49b9dac7a18919724, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  materialType: 3
+  m_Size: {x: 1.726883, y: 1, z: 4.1477656}
+  m_Center: {x: 0.00017732382, y: 0, z: 0.07370353}
 --- !u!1 &1313266116805966
 GameObject:
   m_ObjectHideFlags: 0
