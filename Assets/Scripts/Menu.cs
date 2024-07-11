@@ -41,6 +41,14 @@ public class Menu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         {
             SceneManager.LoadScene("Scenes/Main");
         }
+        else if (text.text == "instruction")
+        {
+            Time.timeScale=0;
+        }
+        else if (text.text=="continue"){
+            Time.timeScale=1;
+        }
+
         else if (text.text == "EXIT")
         {
             Application.Quit();
