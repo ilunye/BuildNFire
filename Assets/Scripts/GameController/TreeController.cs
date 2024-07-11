@@ -35,8 +35,6 @@ public class TreeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(TreeNumberRight < 4)
-            Debug.Log("TreeNumberRight: " + TreeNumberRight);
         // if tree number is less than 4, generate a new tree after 5 seconds
         if(TreeNumberLeft < 4){
             StartCoroutine(GenerateTree(1));

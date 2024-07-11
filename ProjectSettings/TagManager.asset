@@ -17,7 +17,7 @@ TagManager:
   - Clock
   - Burger
   - Lock
-  - Character
+  - Bomb
   layers:
   - Default
   - TransparentFX
