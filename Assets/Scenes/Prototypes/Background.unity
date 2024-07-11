@@ -1029,11 +1029,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5453668649221866489, guid: 08788dc816a563747a3a0b9f8206384c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.213
+      value: 0.409
       objectReference: {fileID: 0}
     - target: {fileID: 5453668649221866489, guid: 08788dc816a563747a3a0b9f8206384c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 980.85236
+      value: 980.609
       objectReference: {fileID: 0}
     - target: {fileID: 5453668649221866489, guid: 08788dc816a563747a3a0b9f8206384c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1061,6 +1061,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5453668649221866489, guid: 08788dc816a563747a3a0b9f8206384c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6400017097811446615, guid: 08788dc816a563747a3a0b9f8206384c, type: 3}
+      propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1941,7 +1945,7 @@ MonoBehaviour:
   pack: {fileID: 433842508}
   buffData: {fileID: 0}
   buffproperty:
-    speed: 0
+    speed: 1
     sleep: 0
     attack: 0
   cam: {fileID: 1090582237}
@@ -1966,6 +1970,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fd5b8f32e6a4cc43b0241e7a84f49e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bomb: {fileID: 0}
+  CollObj: {fileID: 0}
+  throwBomb: {fileID: 0}
+  bombenter: 0
 --- !u!1 &445374032
 GameObject:
   m_ObjectHideFlags: 0
@@ -2848,7 +2856,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6490136728237138907, guid: b3d22c566a40cfe45bfc575a822257f4, type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: Character
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3059,6 +3067,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5453668649221866489, guid: 08788dc816a563747a3a0b9f8206384c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6400017097811446615, guid: 08788dc816a563747a3a0b9f8206384c, type: 3}
+      propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -7920,7 +7932,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6490136728237138907, guid: b3d22c566a40cfe45bfc575a822257f4, type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: Character
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

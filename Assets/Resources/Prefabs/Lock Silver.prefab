@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 6265779873350358708}
   - component: {fileID: 6400017097811446615}
   - component: {fileID: 3841815011453115597}
-  - component: {fileID: -4805146423099507746}
   - component: {fileID: 4821439605081641012}
   m_Layer: 0
   m_Name: Lock Silver
@@ -123,29 +122,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buffData: {fileID: 11400000, guid: 91e307e7617cece4c994f91d87c663ea, type: 2}
---- !u!136 &-4805146423099507746
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1073440542241103001}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.082357176
-  m_Height: 0.23305006
-  m_Direction: 1
-  m_Center: {x: -0.00008345395, y: -0.0018323213, z: -0.0000000121071935}
 --- !u!54 &4821439605081641012
 Rigidbody:
   m_ObjectHideFlags: 0

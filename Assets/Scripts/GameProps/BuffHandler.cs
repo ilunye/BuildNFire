@@ -38,7 +38,7 @@ public class BuffHandler : MonoBehaviour
         if (buffInfo != null)
         {
             AddBuff(buffInfo);
-            Debug.Log("碰撞发生与" + CollObj.name);
+            Debug.Log("加上buff与" + CollObj.name);
             Destroy(CollObj);
         }
     }
@@ -63,7 +63,7 @@ public class BuffHandler : MonoBehaviour
 
     private void OnTriggerStay(Collider collision)
     {
-        //Debug.Log("进入trigger区" + collision.name);
+        Debug.Log("进入trigger区" + collision.name);
         CollObj = collision.gameObject;
         if (CollObj != null)
         {
@@ -159,7 +159,7 @@ public class BuffHandler : MonoBehaviour
     {
         //查找传入的buff并返回
         BuffInfo findBuffInfo = FindBuff(buffInfo.buffData.BuffID);
-
+/*
         if (findBuffInfo != null) //如果找到
         {
             buffInfo.curStack = 1;
@@ -175,7 +175,7 @@ public class BuffHandler : MonoBehaviour
             findBuffInfo.buffData.OnCreate.Apply(findBuffInfo); //启动buff
         }
         else //没找到
-        {
+        {*/
             foreach (var TempbuffInfo in buffList)
             {
                 TempbuffInfo.durationTime = 0;
@@ -189,7 +189,7 @@ public class BuffHandler : MonoBehaviour
             SortBuffList(buffList);
 
 
-        }
+        
         /*
         Debug.Log(buffList);
 List<BuffInfo> DeleteBuffList = new List<BuffInfo>();
