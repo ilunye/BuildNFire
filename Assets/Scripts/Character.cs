@@ -26,7 +26,7 @@ public class Character : MonoBehaviour
 
     public GameObject cam; // the camera
     public bool wasd = true;
-    private KeyCode[] keycodes;
+    public KeyCode[] keycodes;
 
     public enum PlayerState
     {
@@ -36,8 +36,7 @@ public class Character : MonoBehaviour
         ReadyToClaim,       // ready to claim objects, that is colliding with sth
         Claim,
         Falling,
-        Dead,
-        Frozen
+        Operating
     }
 
     public enum MaterialType
@@ -198,7 +197,7 @@ public class Character : MonoBehaviour
     private void Motion()
     {
         // go up
-        if (playerState != PlayerState.Punch && playerState != PlayerState.Claim && playerState != PlayerState.Falling)
+        if (playerState != PlayerState.Punch && playerState != PlayerState.Claim && playerState != PlayerState.Falling && playerState != PlayerState.Operating)
         {
             if (Input.GetKey(keycodes[0]))
             {
@@ -263,9 +262,27 @@ public class Character : MonoBehaviour
                 isPunch = false;
                 playerState = PlayerState.Punch;
             }
-            else if (playerState == PlayerState.Idle && Material != MaterialType.None)
+            else if ((playerState == PlayerState.Idle || playerState == PlayerState.ReadyToClaim) && Material != MaterialType.None)
             //item in hand
             {
+                switch(Material)
+                {
+                    case MaterialType.Wood:
+                        Instantiate(Resources.Load("Prefabs/Wood") as GameObject, transform.position, Quaternion.identity);
+                        break;
+                    case MaterialType.IronOre:
+                        Instantiate(Resources.Load("Prefabs/Rock_03") as GameObject, transform.position, Quaternion.identity);
+                        break;
+                    case MaterialType.Iron:
+                        Instantiate(Resources.Load("Prefabs/ConcreteTubes") as GameObject, transform.position, Quaternion.identity);
+                        break;
+                    case MaterialType.GunPowder:
+                        Instantiate(Resources.Load("Prefabs/explosiveBarrel") as GameObject, transform.position, Quaternion.identity);
+                        break;
+                    case MaterialType.CannonBall:
+                        Instantiate(Resources.Load("Prefabs/projectile") as GameObject, transform.position, Quaternion.identity);
+                        break;
+                }
                 Material = MaterialType.None;
             }
             else if (playerState == PlayerState.ReadyToClaim && Material == MaterialType.None)

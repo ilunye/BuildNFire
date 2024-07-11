@@ -592,8 +592,8 @@ GameObject:
   - component: {fileID: 400012}
   - component: {fileID: -4362724396125130409}
   - component: {fileID: 4832465869539239927}
-  - component: {fileID: 7424069436559882370}
   - component: {fileID: 49675474435196242}
+  - component: {fileID: -4896625352040773972}
   m_Layer: 0
   m_Name: Vehicle_Container_color03_separate
   m_TagString: car
@@ -611,7 +611,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
   m_LocalPosition: {x: 1, y: 1, z: 1}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.117502, y: 0.117502, z: 0.117502}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 400014}
@@ -635,13 +635,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d7fc9ba7a8f8594fb2dad9928cd5fcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  r1: {fileID: 0}
-  r2: {fileID: 0}
-  r3: {fileID: 0}
-  r4: {fileID: 0}
-  r5: {fileID: 0}
-  r6: {fileID: 0}
-  destroyDelay: 45
+  timer: 0
 --- !u!65 &4832465869539239927
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -661,35 +655,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 8, y: 10, z: 20}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &7424069436559882370
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100014}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Size: {x: 4.300072, y: 4.364257, z: 10.11604}
+  m_Center: {x: 0.1599749, y: 1.68213, z: 0.4443631}
 --- !u!114 &49675474435196242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -702,3 +669,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a640d15c3a4b2243a1893db4b19e512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interval: 0
+  spawnPosition: {x: 0, y: 0, z: 0}
+  timer: 0
+--- !u!114 &-4896625352040773972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d2aa59f8d922de49b47a11b46a7f2cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: 0

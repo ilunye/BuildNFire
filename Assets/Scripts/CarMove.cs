@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class carMove : MonoBehaviour
 {
-    public GameObject[] waypoints;
+/*  public GameObject[] waypoints;
     public GameObject[] paths;
     public int circleNum = 1;
     public int pathIdx = 0;
@@ -80,6 +80,7 @@ public class carMove : MonoBehaviour
             pathIdx++;
         }
     }
+    */
     /*
     public GameObject r1;
     public GameObject r2;
@@ -209,8 +210,27 @@ public class carMove : MonoBehaviour
     {
         yield return new WaitForSeconds(destroyDelay);
         Destroy(gameObject);
+    }*/
+
+    private int p;
+    public float timer;
+    private float lifeTime=0f;
+
+    void Start()
+    {
+        gameObject.transform.position=new Vector3(799.874f,0.0f,991.6682f);
+        gameObject.transform.rotation=Quaternion.Euler(0, 180, 0);
     }
-    */
+
+     void Update()
+    {
+        lifeTime+=Time.deltaTime;
+        transform.position += 0.03f*transform.forward;
+        if(lifeTime>=10f){
+            Destroy(gameObject);
+        }
+    }
+    
 }
 
 
