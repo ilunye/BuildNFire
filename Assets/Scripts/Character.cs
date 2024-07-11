@@ -283,19 +283,19 @@ public class Character : MonoBehaviour
                 switch(Material)
                 {
                     case MaterialType.Wood:
-                        Instantiate(Resources.Load("Prefabs/Wood") as GameObject, transform.position, Quaternion.identity);
+                        Instantiate(Resources.Load("Prefabs/Wood") as GameObject, transform.position+new Vector3(0,0.5f,0), Quaternion.identity);
                         break;
                     case MaterialType.IronOre:
-                        Instantiate(Resources.Load("Prefabs/Rock_03") as GameObject, transform.position, Quaternion.identity);
+                        Instantiate(Resources.Load("Prefabs/Rock_03") as GameObject, transform.position+new Vector3(0,0.5f,0), Quaternion.identity);
                         break;
                     case MaterialType.Iron:
-                        Instantiate(Resources.Load("Prefabs/ConcreteTubes") as GameObject, transform.position, Quaternion.identity);
+                        Instantiate(Resources.Load("Prefabs/ConcreteTubes") as GameObject, transform.position+new Vector3(0,0.5f,0), Quaternion.identity);
                         break;
                     case MaterialType.GunPowder:
-                        Instantiate(Resources.Load("Prefabs/explosiveBarrel") as GameObject, transform.position, Quaternion.identity);
+                        Instantiate(Resources.Load("Prefabs/explosiveBarrel") as GameObject, transform.position+new Vector3(0,0.5f,0), Quaternion.identity);
                         break;
                     case MaterialType.CannonBall:
-                        Instantiate(Resources.Load("Prefabs/projectile") as GameObject, transform.position, Quaternion.identity);
+                        Instantiate(Resources.Load("Prefabs/projectile") as GameObject, transform.position+new Vector3(0,0.5f,0), Quaternion.identity);
                         break;
                 }
                 Material = MaterialType.None;

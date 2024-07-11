@@ -39,7 +39,7 @@ public class test : MonoBehaviour
             c = Instantiate(Resources.Load("prefabs/burger_1_lod0") as GameObject);
         }
         else if(r==3){
-            c = Instantiate(Resources.Load("prefabs/Hourglass Green") as GameObject);
+            c = Instantiate(Resources.Load("prefabs/Hourglass Green 1") as GameObject);
         }
         else if(r==4||r==5){
             c = Instantiate(Resources.Load("prefabs/ConcreteTubes") as GameObject);

@@ -16,10 +16,10 @@ public class WorkFlow : MonoBehaviour
     private GameObject frame_wood;
     private GameObject frame_iron;
 
-    public static bool isIron;
-    public static bool isWood;
-    public static bool isPro;
-    public static bool isPowder;
+    public bool isIron;
+    public bool isWood;
+    public bool isPro;
+    public bool isPowder;
 
     public bool toPickWood;
     public bool toPickIron;

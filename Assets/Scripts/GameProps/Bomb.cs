@@ -29,13 +29,11 @@ public class Bomb : MonoBehaviour
         if (countdown <= 0f && !hasExploded && !claimed)
         {
             Explode();
-            Debug.Log("时间到了爆炸");
 
         }
         else if (gameObject.transform.localPosition.y < 0 && !hasExploded) //掉出世界爆炸
         {
             Explode();
-            Debug.Log("掉出世界爆炸");
 
         }
 
@@ -52,7 +50,6 @@ public class Bomb : MonoBehaviour
                 buffHandler.AddBuff(buffHandler.bombbuffinfo);
             }
             Explode();
-            Debug.Log("打到敌人爆炸");
             
 
         }
@@ -63,7 +60,6 @@ public class Bomb : MonoBehaviour
     {
         if (other.tag != "Player" || claimed)
             return;
-        Debug.Log("collide with Bomb!");
         if (other.GetComponent<Character>().playerState == Character.PlayerState.Idle)
             other.GetComponent<Character>().playerState = Character.PlayerState.ReadyToClaim;
         if (other.GetComponent<Character>().playerState == Character.PlayerState.Claim)
@@ -78,7 +74,6 @@ public class Bomb : MonoBehaviour
     public void Explode()
     {
         hasExploded = true;
-        Debug.Log("显示爆炸效果");
         // 显示爆炸效果
         //Instantiate(explosionEffect, transform.position, transform.rotation);
         explosionEffect = Instantiate(Resources.Load("Prefabs/Particle System") as GameObject);
@@ -94,7 +89,6 @@ public class Bomb : MonoBehaviour
                 rb.AddExplosionForce(explosionForce, transform.position, explosionRadius);
             }
         }
-        Debug.Log("销毁炸弹");
         // 销毁炸弹对象
         Destroy(gameObject);
     }
