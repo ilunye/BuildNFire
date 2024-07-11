@@ -72,6 +72,7 @@ public class BuffHandler : MonoBehaviour
             {
                 case "Burger":
                     buffInfo.buffData = CollObj.GetComponent<Burger>().buffData;
+                    Debug.Log("burger");
                     GetCollisionBuff(buffInfo, CollObj);
                     break;
                 case "Clock":

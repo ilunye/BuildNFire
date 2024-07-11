@@ -4474,6 +4474,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mobile_animal_people_wolf_1
       objectReference: {fileID: 0}
+    - target: {fileID: 1317167085854385868, guid: 43e885d996cfe8d4db12b03f4654081a, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 1804910807236983926, guid: 43e885d996cfe8d4db12b03f4654081a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.04

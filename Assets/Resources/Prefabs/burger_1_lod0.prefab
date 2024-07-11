@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5328439396827612441}
   - component: {fileID: 2234486074354663800}
   - component: {fileID: 4603465677416104598}
-  - component: {fileID: 1583492380459496995}
+  - component: {fileID: 6844906099965566803}
   m_Layer: 0
   m_Name: burger_1_lod0
   m_TagString: Burger
@@ -138,11 +138,11 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.602026, y: 0.46487048, z: 0.651163}
   m_Center: {x: -0.008534595, y: 0.23277669, z: 0.008890286}
---- !u!54 &1583492380459496995
+--- !u!54 &6844906099965566803
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -164,7 +164,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
