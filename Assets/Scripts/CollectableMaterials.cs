@@ -22,16 +22,27 @@ public class CollectableMaterials : MonoBehaviour
         
     }
 
-    void OnTriggerStay(Collider other){
-        if(other.tag != "Player" || claimed)
+    // void OnCollisionStay(Collision other){
+    //     if(other.gameObject.tag != "Player" || claimed)
+    //         return;
+    //     if(other.gameObject.GetComponent<Character>().playerState == Character.PlayerState.Idle)
+    //         other.gameObject.GetComponent<Character>().playerState = Character.PlayerState.ReadyToClaim;
+    //     if(other.gameObject.GetComponent<Character>().playerState == Character.PlayerState.Claim){
+    //         claimed = true;
+    //         other.gameObject.GetComponent<Character>().Material = materialType;
+    //         Destroy(gameObject);
+    //     }
+        
+    // }
+    void OnTriggerEnter(Collider other){
+        if(other.gameObject.tag != "Player" || claimed)
             return;
-        if(other.GetComponent<Character>().playerState == Character.PlayerState.Idle)
-            other.GetComponent<Character>().playerState = Character.PlayerState.ReadyToClaim;
-        if(other.GetComponent<Character>().playerState == Character.PlayerState.Claim){
+        if(other.gameObject.GetComponent<Character>().playerState == Character.PlayerState.Idle)
+            other.gameObject.GetComponent<Character>().playerState = Character.PlayerState.ReadyToClaim;
+        if(other.gameObject.GetComponent<Character>().playerState == Character.PlayerState.Claim){
             claimed = true;
-            other.GetComponent<Character>().Material = materialType;
+            other.gameObject.GetComponent<Character>().Material = materialType;
             Destroy(gameObject);
         }
-        
     }
 }

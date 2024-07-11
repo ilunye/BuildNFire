@@ -43,7 +43,7 @@ public class Bomb : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.tag == "Character" && !hasExploded && claimed)
+        if (collision.gameObject.tag == "Player" && !hasExploded && claimed)
         //如果打到对方玩家 && 炸弹还没爆炸 && 已经被捡起来了
         {
             buffHandler = collision.GetComponent<BuffHandler>();
@@ -61,7 +61,7 @@ public class Bomb : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        if (other.tag != "Character" || claimed)
+        if (other.tag != "Player" || claimed)
             return;
         Debug.Log("collide with Bomb!");
         if (other.GetComponent<Character>().playerState == Character.PlayerState.Idle)
