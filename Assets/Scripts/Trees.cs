@@ -69,6 +69,10 @@ public class Trees : MonoBehaviour
         if(status == 0){
             GameObject g = Instantiate(Resources.Load("Prefabs/Wood") as GameObject);
             g.transform.position = transform.position;
+            if(transform.position.x < 800)
+                GameObject.Find("GameController").GetComponent<TreeController>().TreeNumberLeft--;
+            else
+                GameObject.Find("GameController").GetComponent<TreeController>().TreeNumberRight--;
             Destroy(gameObject);
         }
     }
