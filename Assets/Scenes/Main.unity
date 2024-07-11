@@ -2805,7 +2805,7 @@ MonoBehaviour:
   isPunch: 0
   isFalling: 0
   timer: 0
-  enableOut: 1
+  enableOut: 0
   InCorner: 0
 --- !u!114 &965759275
 MonoBehaviour:
@@ -4028,7 +4028,7 @@ MonoBehaviour:
   isPunch: 0
   isFalling: 0
   timer: 0
-  enableOut: 1
+  enableOut: 0
   InCorner: 0
 --- !u!114 &1296262669
 MonoBehaviour:
