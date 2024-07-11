@@ -50,7 +50,7 @@ public class WorkFlow : MonoBehaviour
 
     private void HandleInput()
     {
-        if (toPickIron&& iron_number <= 6 && isIron)
+        if (toPickIron&& iron_number < 6 && isIron)
         {
             iron_number++;
             if(iron_number <= 4){
@@ -65,7 +65,7 @@ public class WorkFlow : MonoBehaviour
                 DisableAllChildren(frame_wood);
             }
         }
-        else if (toPickWood&& wood_number <= 4 && isWood)
+        else if (toPickWood&& wood_number < 4 && isWood)
         {
             wood_number++;
             toPickIron=true;
@@ -73,11 +73,11 @@ public class WorkFlow : MonoBehaviour
             AbleAllChildren(frame_iron);
             DisableAllChildren(frame_wood);
         }
-        else if (isPro && projectile_number <= 1)
+        else if (isPro && projectile_number < 1)
         {
             projectile_number++;
         }
-        else if (isPowder && gunpowder_number <= 1)
+        else if (isPowder && gunpowder_number < 1)
         {
             gunpowder_number++;
         }
