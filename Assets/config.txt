@@ -1,0 +1,8 @@
+movement boundary
+(794.25, 977.17) left down
+(794.25, 987.02) left up
+(804.89, 977.17) right down
+
+Camera pos and rotation
+(800, 9.42, 973.67)
+(133.801, 180, 180)
