@@ -35,6 +35,10 @@ public class Menu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     {
         if (text.text == "START")
         {
+            SceneManager.LoadScene("Scenes/pre");
+        }
+        else if (text.text == "Confirm")
+        {
             SceneManager.LoadScene("Scenes/Main");
         }
         else if (text.text == "EXIT")

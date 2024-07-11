@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class GameStartTextController : MonoBehaviour
 {
@@ -15,11 +17,12 @@ public class GameStartTextController : MonoBehaviour
     }
     void Start()
     {
-        player1 = GameObject.Find("animal_people_wolf_1");
-        player2 = GameObject.Find("animal_people_wolf_2");
-        player1.GetComponent<Character>().enabled = false;
-        player2.GetComponent<Character>().enabled = false;
-        StartCoroutine(StartCountdown());
+            player1 = GameObject.Find("animal_people_wolf_1");
+            player2 = GameObject.Find("animal_people_wolf_2");
+            player1.GetComponent<Character>().enabled = false;
+            player2.GetComponent<Character>().enabled = false;
+            StartCoroutine(StartCountdown());
+        
     }
 
     IEnumerator StartCountdown(){
