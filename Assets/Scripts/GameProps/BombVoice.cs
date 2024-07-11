@@ -5,23 +5,20 @@ using UnityEngine;
 public class BombVoice : MonoBehaviour
 {
     public AudioClip soundEffect;
-    private AudioSource audioSource;
-    public Bomb bomb;
-    public GameObject bombobject;
+    public AudioSource audioSource;
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        audioSource.clip = soundEffect;
-        bombobject = GameObject.Find("Bomb Red");
-        bomb = bombobject.GetComponent<Bomb>();
-        Debug.Log("bomb:" + bomb);
+        //audioSource.clip = soundEffect;
+
     }
 
     void Update()
     {
-        if (bomb.hasExploded)
-        {
-            audioSource.Play();
-        }
+    }
+
+    public void PlayMusic()
+    {
+        audioSource.Play();
     }
 }
