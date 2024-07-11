@@ -18,18 +18,18 @@ public class TrafficControl : MonoBehaviour
 
      void Update()
     {
-        interval_green = Random.Range(4,6);
-        interval_red = Random.Range(4,6);
         timer_green += Time.deltaTime;
         if (timer_green >= interval_green)
         {
             Instantiate(Resources.Load("prefabs/Vehicle_Container_color01_separate"));
+            interval_green=Random.Range(4,6);
             timer_green=0f;
         }
         timer_red+=Time.deltaTime;
         if (timer_red >= interval_red)
         {
             Instantiate(Resources.Load("prefabs/Vehicle_Container_color03_separate"));
+            interval_green=Random.Range(4,6);
             timer_red=0f;
         }
     }
