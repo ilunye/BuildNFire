@@ -12,12 +12,14 @@ public class TrafficControl : MonoBehaviour
 
     void Start()
     {
-        interval_green=Random.Range(4,10);
-        interval_red=Random.Range(4,10);
+        interval_green=Random.Range(4,6);
+        interval_red=Random.Range(4,6);
     }
 
      void Update()
     {
+        interval_green = Random.Range(4,6);
+        interval_red = Random.Range(4,6);
         timer_green += Time.deltaTime;
         if (timer_green >= interval_green)
         {
