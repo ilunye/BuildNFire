@@ -1,4 +1,0 @@
-repository "BuildNFire@whitewhitepaper@cloud.cn"
-  path "/"
-    br "/main"
-    co "/main"
