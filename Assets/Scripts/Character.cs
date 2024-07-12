@@ -271,7 +271,10 @@ public class Character : MonoBehaviour
         }
         if (Input.GetKeyUp(keycodes[4])) //改成getkeyup，长按E后再播放投掷动画
         {      // E
-            if (playerState == PlayerState.Idle && Material == MaterialType.None)
+            if(stateInfo.IsName("CastingLoop")){
+                playerState = PlayerState.Operating;
+            }
+            else if (playerState == PlayerState.Idle && Material == MaterialType.None)
             {   // no items in hand
                 Anim.Play("PunchRight");
                 isPunch = false;
@@ -283,19 +286,19 @@ public class Character : MonoBehaviour
                 switch(Material)
                 {
                     case MaterialType.Wood:
-                        Instantiate(Resources.Load("Prefabs/Wood") as GameObject, transform.position, Quaternion.identity);
+                        Instantiate(Resources.Load("Prefabs/Wood") as GameObject, transform.position+new Vector3(0,0.5f,0), Quaternion.identity);
                         break;
                     case MaterialType.IronOre:
-                        Instantiate(Resources.Load("Prefabs/Rock_03") as GameObject, transform.position, Quaternion.identity);
+                        Instantiate(Resources.Load("Prefabs/Rock_03") as GameObject, transform.position+new Vector3(0,0.5f,0), Quaternion.identity);
                         break;
                     case MaterialType.Iron:
-                        Instantiate(Resources.Load("Prefabs/ConcreteTubes") as GameObject, transform.position, Quaternion.identity);
+                        Instantiate(Resources.Load("Prefabs/ConcreteTubes") as GameObject, transform.position+new Vector3(0,0.5f,0), Quaternion.identity);
                         break;
                     case MaterialType.GunPowder:
-                        Instantiate(Resources.Load("Prefabs/explosiveBarrel") as GameObject, transform.position, Quaternion.identity);
+                        Instantiate(Resources.Load("Prefabs/explosiveBarrel") as GameObject, transform.position+new Vector3(0,0.5f,0), Quaternion.identity);
                         break;
                     case MaterialType.CannonBall:
-                        Instantiate(Resources.Load("Prefabs/projectile") as GameObject, transform.position, Quaternion.identity);
+                        Instantiate(Resources.Load("Prefabs/projectile") as GameObject, transform.position+new Vector3(0,0.5f,0), Quaternion.identity);
                         break;
                 }
                 Material = MaterialType.None;

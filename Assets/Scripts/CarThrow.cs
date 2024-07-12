@@ -33,13 +33,16 @@ public class test : MonoBehaviour
         GameObject c;
         int r=Random.Range(0,20);//决定抛出物体
         if(r==0||r==1){
-            c = Instantiate(Resources.Load("prefabs/Bomb Red") as GameObject);
+            // c = Instantiate(Resources.Load("prefabs/Bomb Red") as GameObject);
+            c = Instantiate(Resources.Load("prefabs/explosiveBarrel") as GameObject);
         }
         else if(r==2){
-            c = Instantiate(Resources.Load("prefabs/burger_1_lod0") as GameObject);
+            // c = Instantiate(Resources.Load("prefabs/burger_1_lod0") as GameObject);
+            c = Instantiate(Resources.Load("prefabs/Rock_03") as GameObject);
         }
         else if(r==3){
-            c = Instantiate(Resources.Load("prefabs/Hourglass Green") as GameObject);
+            // c = Instantiate(Resources.Load("prefabs/Hourglass Green 1") as GameObject);
+            c = Instantiate(Resources.Load("prefabs/projectile") as GameObject);
         }
         else if(r==4||r==5){
             c = Instantiate(Resources.Load("prefabs/ConcreteTubes") as GameObject);
@@ -54,13 +57,15 @@ public class test : MonoBehaviour
             c = Instantiate(Resources.Load("prefabs/Wood") as GameObject);
         }
         else if(r==15){
-            c = Instantiate(Resources.Load("prefabs/BoxingGlove") as GameObject);
+            // c = Instantiate(Resources.Load("prefabs/BoxingGlove") as GameObject);
+            c = Instantiate(Resources.Load("prefabs/Rock_03") as GameObject);
         }
         else if(r==17){
             c = Instantiate(Resources.Load("prefabs/explosiveBarrel") as GameObject);
         }
         else{
-            c = Instantiate(Resources.Load("prefabs/Lock Silver") as GameObject);
+            // c = Instantiate(Resources.Load("prefabs/Lock Silver") as GameObject);
+            c = Instantiate(Resources.Load("prefabs/Rock_03") as GameObject);
         }
         spawnPosition = transform.position + transform.up * 0.5f-transform.forward*0.5f;
         c.transform.position=spawnPosition;

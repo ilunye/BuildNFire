@@ -16,8 +16,8 @@ public class Cannon : MonoBehaviour
     public int idx = 0;     // max: 10
     public bool isProtected = false;
     public GameObject player;
-    private bool playerIn = false;
-    private WorkFlow workFlow;
+    public bool playerIn = false;
+    public WorkFlow workFlow;
 
     void OnTriggerEnter(Collider other) {
         if(other.gameObject == player){
@@ -44,7 +44,6 @@ public class Cannon : MonoBehaviour
         if(isPlaying || idx == 10){
             return;
         }
-        Debug.Log("next_state");
         player.GetComponent<Animator>().Play("CastingLoop");
         player.GetComponent<Character>().playerState = Character.PlayerState.Operating;
         if(idx < 8){
@@ -84,8 +83,8 @@ public class Cannon : MonoBehaviour
         for(int i=8; i<10; i++){
             ckpts[i] = middle.position.y + (up.position.y - middle.position.y) * (i-8) / 2;
         }
-        workFlow = GameObject.Find("Canvas").GetComponent<WorkFlow>();
         Debug.Assert(player != null, "player is null");
+        Debug.Assert(workFlow != null, "workFlow is null");
     }
 
     void Update()
@@ -93,26 +92,26 @@ public class Cannon : MonoBehaviour
         for(int i=0; i<5; i++){
             material[i].SetFloat("_DisappearOffset", disOffset.position.y);
         }
-        if(playerIn && Input.GetKeyDown(KeyCode.E)){
+        if(playerIn && Input.GetKeyDown(player.GetComponent<Character>().keycodes[4])){
             if(isPlaying) return;
             switch(player.GetComponent<Character>().Material){
                 case Character.MaterialType.CannonBall:
-                    WorkFlow.isPro = true;
+                    workFlow.isPro = true;
                     player.GetComponent<Character>().Material = Character.MaterialType.None;
                     break;
                 case Character.MaterialType.GunPowder:
-                    WorkFlow.isPowder = true;
+                    workFlow.isPowder = true;
                     player.GetComponent<Character>().Material = Character.MaterialType.None;
                     break; 
                 case Character.MaterialType.Iron:
-                    WorkFlow.isIron = true;
+                    workFlow.isIron = true;
                     if(workFlow.iron_number <= 6 && workFlow.toPickIron){
                         player.GetComponent<Character>().Material = Character.MaterialType.None;
                         next_state();
                     }
                     break;
                 case Character.MaterialType.Wood:
-                    WorkFlow.isWood = true;
+                    workFlow.isWood = true;
                     if(workFlow.wood_number <= 4 && workFlow.toPickWood){
                         player.GetComponent<Character>().Material = Character.MaterialType.None;
                         next_state();
