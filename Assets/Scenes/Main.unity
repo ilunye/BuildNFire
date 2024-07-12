@@ -2794,7 +2794,7 @@ MonoBehaviour:
   pack: {fileID: 965759273}
   buffData: {fileID: 0}
   buffproperty:
-    speed: 0
+    speed: 1
     sleep: 0
     attack: 0
   cam: {fileID: 1867078716}
@@ -3180,7 +3180,7 @@ Transform:
   m_GameObject: {fileID: 1113154093}
   serializedVersion: 2
   m_LocalRotation: {x: 0.3923293, y: 0, z: 0, w: 0.91982484}
-  m_LocalPosition: {x: 800, y: 9.42, z: 973.67}
+  m_LocalPosition: {x: 800, y: 5.47, z: 977.45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4017,7 +4017,7 @@ MonoBehaviour:
   pack: {fileID: 1296262667}
   buffData: {fileID: 0}
   buffproperty:
-    speed: 0
+    speed: 1
     sleep: 0
     attack: 0
   cam: {fileID: 1867078716}

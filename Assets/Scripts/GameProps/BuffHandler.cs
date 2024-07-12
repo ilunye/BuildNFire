@@ -42,26 +42,9 @@ public class BuffHandler : MonoBehaviour
             Destroy(CollObj);
         }
     }
+    
+
     private void OnTriggerEnter(Collider collision)
-    {
-        CollObj = collision.gameObject;
-        if (CollObj && CollObj.tag == "Bomb")
-        {
-            bombenter = true;
-        }
-
-    }
-
-    private void OnTriggerExit(Collider collision)
-    {
-        CollObj = collision.gameObject;
-        if (CollObj && CollObj.tag == "Bomb")
-        {
-            bombenter = false;
-        }
-    }
-
-    private void OnTriggerStay(Collider collision)
     {
         //Debug.Log("进入trigger区" + collision.name);
         CollObj = collision.gameObject;
@@ -180,10 +163,12 @@ public class BuffHandler : MonoBehaviour
         foreach (var TempbuffInfo in buffList)
         {
             TempbuffInfo.durationTime = 0;
+            Debug.Log("tempbuffinfo" + TempbuffInfo.durationTime);
         }
         buffInfo.durationTime = buffInfo.buffData.DurationTime;
-        buffInfo.buffData.OnCreate.Apply(buffInfo); //启动buff
         Debug.Log("启动buff" + buffInfo.buffData.BuffName);
+        buffInfo.buffData.OnCreate.Apply(buffInfo); //启动buff
+        
         buffList.AddLast(buffInfo); //添加到buffList的末尾
 
         //根据priority对buffList进行排序

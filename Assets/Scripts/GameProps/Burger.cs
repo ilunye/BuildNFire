@@ -17,7 +17,6 @@ public class Burger : MonoBehaviour
     {
         
     }
-
     // void OnTriggerStay(Collider other){
     //     if(other.tag != "Player")
     //         return;
@@ -39,3 +38,4 @@ public class Burger : MonoBehaviour
     //     }
     // }
 }
+
