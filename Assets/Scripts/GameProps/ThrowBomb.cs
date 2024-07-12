@@ -33,13 +33,14 @@ public class ThrowBomb : MonoBehaviour
         {
             keyCodeE = KeyCode.Return;
         }
+       
     }
     void Update()
     {
         if (GetComponent<Character>().Material == Character.MaterialType.Bomb) //如果玩家捡到炸弹
         {
             // BombImage.SetActive(true);
-            if (Input.GetKey(keyCodeE) && !bomb) //如果长按M则累计投掷的力量
+            if (Input.GetKey(keyCodeE)) //如果长按M则累计投掷的力量
             {
                 if (throwForce < MaxThrowForce)
                 {
@@ -47,10 +48,11 @@ public class ThrowBomb : MonoBehaviour
                 }
             }
 
-            if (Input.GetKeyUp(keyCodeE) && !bomb) // 检测玩家按下投掷按钮
+            if (Input.GetKeyUp(keyCodeE)) // 检测玩家按下投掷按钮
             {
-                Debug.Log("按下M，扔炸弹");
+                Debug.Log("按下E，扔炸弹");
                 Throw();
+                GetComponent<Character>().Material =Character.MaterialType.None;
 
             }
         }

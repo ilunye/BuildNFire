@@ -44,7 +44,7 @@ public class BuffHandler : MonoBehaviour
     }
     
 
-    private void OnTriggerEnter(Collider collision)
+    private void OnTriggerStay(Collider collision)
     {
         //Debug.Log("进入trigger区" + collision.name);
         CollObj = collision.gameObject;

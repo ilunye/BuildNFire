@@ -128,8 +128,9 @@ public class Character : MonoBehaviour
     private float z_bound_up = 987.02f;
     void Update()
     {
-        if(!enabled) return;
-        if(!enableOut){
+        if (!enabled) return;
+        if (!enableOut)
+        {
             if (transform.position.x < x_bound_left || transform.position.x > x_bound_right || transform.position.z < z_bound_down || transform.position.z > z_bound_up)
             {
                 Debug.Log("Out of the map");
@@ -137,7 +138,9 @@ public class Character : MonoBehaviour
             }
             else
                 IsOut = false;
-        }else{
+        }
+        else
+        {
             IsOut = false;
         }
 
@@ -204,9 +207,9 @@ public class Character : MonoBehaviour
                 Vector3 p = transform.localPosition;
                 if ((!InCorner) && (!IsOut || (IsOut && (transform.position.z < z_bound_down || ((transform.position.x > x_bound_right || transform.position.x < x_bound_left) && transform.position.z < z_bound_up)))))
                 {
-                    if(PlayerSpeed > 0)
+                    if (PlayerSpeed > 0)
                         p += cam.transform.forward * PlayerSpeed * Time.deltaTime;
-                    else if(transform.position.z > z_bound_down)
+                    else if (transform.position.z > z_bound_down)
                         p += cam.transform.forward * PlayerSpeed * Time.deltaTime;
                 }
                 transform.localPosition = p;
@@ -220,13 +223,14 @@ public class Character : MonoBehaviour
             if (Input.GetKey(keycodes[1]))
             {
                 Vector3 p = transform.localPosition;
-                if (InCorner || !IsOut || (IsOut && (transform.position.z > z_bound_up || ((transform.position.x > x_bound_right || transform.position.x < x_bound_left) && transform.position.z > z_bound_down)))){
-                    if(PlayerSpeed > 0)
+                if (InCorner || !IsOut || (IsOut && (transform.position.z > z_bound_up || ((transform.position.x > x_bound_right || transform.position.x < x_bound_left) && transform.position.z > z_bound_down))))
+                {
+                    if (PlayerSpeed > 0)
                         p -= cam.transform.forward * PlayerSpeed * Time.deltaTime;
-                    else if(transform.position.z < z_bound_up)
+                    else if (transform.position.z < z_bound_up)
                         p -= cam.transform.forward * PlayerSpeed * Time.deltaTime;
                 }
-                
+
                 transform.localPosition = p;
                 Idle2Run();
                 Rotate(Direction.Backward);
@@ -238,10 +242,11 @@ public class Character : MonoBehaviour
             if (Input.GetKey(keycodes[2]))
             {
                 Vector3 p = transform.localPosition;
-                if (InCorner || !IsOut || (IsOut && (transform.position.x > x_bound_right || ((transform.position.z > z_bound_up || transform.position.z < z_bound_down) && transform.position.x > x_bound_left)))){
-                    if(PlayerSpeed > 0)
+                if (InCorner || !IsOut || (IsOut && (transform.position.x > x_bound_right || ((transform.position.z > z_bound_up || transform.position.z < z_bound_down) && transform.position.x > x_bound_left))))
+                {
+                    if (PlayerSpeed > 0)
                         p -= cam.transform.right * PlayerSpeed * Time.deltaTime;
-                    else if(transform.position.x < x_bound_right)
+                    else if (transform.position.x < x_bound_right)
                         p -= cam.transform.right * PlayerSpeed * Time.deltaTime;
                 }
                 transform.localPosition = p;
@@ -255,10 +260,11 @@ public class Character : MonoBehaviour
             if (Input.GetKey(keycodes[3]))
             {
                 Vector3 p = transform.localPosition;
-                if ((!InCorner) && (!IsOut || (IsOut && (transform.position.x < x_bound_left || ((transform.position.z > z_bound_up || transform.position.z < z_bound_down) && transform.position.x < x_bound_right))))){
-                    if(PlayerSpeed > 0)
+                if ((!InCorner) && (!IsOut || (IsOut && (transform.position.x < x_bound_left || ((transform.position.z > z_bound_up || transform.position.z < z_bound_down) && transform.position.x < x_bound_right)))))
+                {
+                    if (PlayerSpeed > 0)
                         p += cam.transform.right * PlayerSpeed * Time.deltaTime;
-                    else if(transform.position.x > x_bound_left)
+                    else if (transform.position.x > x_bound_left)
                         p += cam.transform.right * PlayerSpeed * Time.deltaTime;
                 }
                 transform.localPosition = p;
@@ -271,7 +277,8 @@ public class Character : MonoBehaviour
         }
         if (Input.GetKeyUp(keycodes[4])) //改成getkeyup，长按E后再播放投掷动画
         {      // E
-            if(stateInfo.IsName("CastingLoop")){
+            if (stateInfo.IsName("CastingLoop"))
+            {
                 playerState = PlayerState.Operating;
             }
             else if (playerState == PlayerState.Idle && Material == MaterialType.None)
@@ -280,25 +287,25 @@ public class Character : MonoBehaviour
                 isPunch = false;
                 playerState = PlayerState.Punch;
             }
-            else if ((playerState == PlayerState.Idle || playerState == PlayerState.ReadyToClaim) && Material != MaterialType.None)
-            //item in hand
+            else if ((playerState == PlayerState.Idle || playerState == PlayerState.ReadyToClaim) && Material != MaterialType.None && Material != MaterialType.Bomb)
+            //item in hand ,press E put down
             {
-                switch(Material)
+                switch (Material)
                 {
                     case MaterialType.Wood:
-                        Instantiate(Resources.Load("Prefabs/Wood") as GameObject, transform.position+new Vector3(0,0.5f,0), Quaternion.identity);
+                        Instantiate(Resources.Load("Prefabs/Wood") as GameObject, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
                         break;
                     case MaterialType.IronOre:
-                        Instantiate(Resources.Load("Prefabs/Rock_03") as GameObject, transform.position+new Vector3(0,0.5f,0), Quaternion.identity);
+                        Instantiate(Resources.Load("Prefabs/Rock_03") as GameObject, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
                         break;
                     case MaterialType.Iron:
-                        Instantiate(Resources.Load("Prefabs/ConcreteTubes") as GameObject, transform.position+new Vector3(0,0.5f,0), Quaternion.identity);
+                        Instantiate(Resources.Load("Prefabs/ConcreteTubes") as GameObject, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
                         break;
                     case MaterialType.GunPowder:
-                        Instantiate(Resources.Load("Prefabs/explosiveBarrel") as GameObject, transform.position+new Vector3(0,0.5f,0), Quaternion.identity);
+                        Instantiate(Resources.Load("Prefabs/explosiveBarrel") as GameObject, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
                         break;
                     case MaterialType.CannonBall:
-                        Instantiate(Resources.Load("Prefabs/projectile") as GameObject, transform.position+new Vector3(0,0.5f,0), Quaternion.identity);
+                        Instantiate(Resources.Load("Prefabs/projectile") as GameObject, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
                         break;
                 }
                 Material = MaterialType.None;
