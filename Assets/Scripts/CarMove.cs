@@ -15,7 +15,8 @@ public class carMove : MonoBehaviour
     public float waitTime;
     public bool rayCastEnable = false;
     private bool first = true;
-    private GameObject lastHit;
+    public bool carCongestion = false;
+    public GameObject lastHit;
     public bool green = true;
 
     void resetRayCast(){
@@ -23,6 +24,7 @@ public class carMove : MonoBehaviour
     }
     void resetSpeed(){
         speed = 3.5f;
+        carCongestion = false;
     }
 
     void OnTriggerEnter(Collider other){
@@ -34,6 +36,8 @@ public class carMove : MonoBehaviour
             speed = 0;
         }
         if(other.tag == "car"){
+            lastHit = other.gameObject;
+            carCongestion = true;
             speed = 0;
         }
     }
@@ -128,6 +132,10 @@ public class carMove : MonoBehaviour
         transform.position += speed *transform.forward * Time.deltaTime;
         if(lifeTime>=10f){
             Destroy(gameObject);
+        }
+        if(carCongestion && lastHit == null){
+            speed = 3.5f;
+            carCongestion = false;
         }
     }
     
