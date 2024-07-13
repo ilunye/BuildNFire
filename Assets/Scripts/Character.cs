@@ -85,6 +85,8 @@ public class Character : MonoBehaviour
 
     public GameObject run;
     public AudioSource run_source;
+     public GameObject whatudo;
+    public AudioSource whatudo_source;
     void OnTriggerStay(Collider other) //get beat
     {
         if (isFalling || (other.tag == "Player" && other.gameObject.GetComponent<Character>().isFalling)) return;
@@ -97,6 +99,7 @@ public class Character : MonoBehaviour
                 other.gameObject.GetComponent<Character>().isFalling = true;
                 other.gameObject.GetComponent<Character>().playerState = PlayerState.Falling;
                 beated_voice_source.Play();
+                whatudo_source.Play();
             }
         }
     }
@@ -127,6 +130,8 @@ public class Character : MonoBehaviour
         get_item_source = get_item.GetComponent<AudioSource>();
         run = Instantiate(Resources.Load("Audio/running") as GameObject);
         run_source = run.GetComponent<AudioSource>();
+        whatudo = Instantiate(Resources.Load("Audio/whatareudoing") as GameObject);
+        whatudo_source = whatudo.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
