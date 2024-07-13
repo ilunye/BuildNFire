@@ -33,7 +33,8 @@ public class Furnace : MonoBehaviour
         Invoke("Fireoff", 15f);
     }
     private void smelting(){
-        Instantiate(Resources.Load("Prefabs/ConcreteTubes"), outPos.position, Quaternion.identity);
+        GameObject g = Instantiate(Resources.Load("Prefabs/ConcreteTubes"), outPos.position, Quaternion.identity);
+        g.GetComponent<CollectableMaterials>().WillDisappear = false;
         Play();
     }
     // Start is called before the first frame update
