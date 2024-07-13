@@ -15,6 +15,13 @@ public class CollectableMaterials : MonoBehaviour
 
     void Start()
     {
+        StartCoroutine(DestroyAfterDelay(5f));
+    }
+
+    IEnumerator DestroyAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Destroy(gameObject);
     }
     // Update is called once per frame
     void Update()
