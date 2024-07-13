@@ -50,4 +50,15 @@ public class CollectableMaterials : MonoBehaviour
             }
         }
     }
+
+    void OnTriggerExit(Collider other){
+        if(other.tag != "Player" || claimed)
+            return;
+        if(other.GetComponent<Character>().playerState == Character.PlayerState.ReadyToClaim){
+            other.GetComponent<Character>().playerState = Character.PlayerState.Idle;
+        }
+        if(other.GetComponent<Character>().Item != null && other.GetComponent<Character>().Item.name == gameObject.name){
+            other.GetComponent<Character>().Item = null;
+        }
+    }
 }
