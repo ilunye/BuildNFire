@@ -7,6 +7,7 @@ public class CollectableMaterials : MonoBehaviour
 {
     public Character.MaterialType materialType;
     // Start is called before the first frame update
+    public bool WillDisappear = true;
 
     private bool claimed = false;
     void Awake()
@@ -21,7 +22,8 @@ public class CollectableMaterials : MonoBehaviour
     IEnumerator DestroyAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        Destroy(gameObject);
+        if(WillDisappear)
+            Destroy(gameObject);
     }
     // Update is called once per frame
     void Update()
