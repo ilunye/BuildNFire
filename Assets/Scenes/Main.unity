@@ -2909,7 +2909,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f0f3693d3c41b74da6993bb9e02fa05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enabled: 1
+  enabled: 0
   PlayerSpeed: 1
   sleep: 0
   pack: {fileID: 965759273}
@@ -3348,6 +3348,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -5247685503678452142, guid: 3f78655f5432c9a478773fbb8289d286, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2420373688274738579, guid: 3f78655f5432c9a478773fbb8289d286, type: 3}
       propertyPath: m_Name
       value: Wood (2)
