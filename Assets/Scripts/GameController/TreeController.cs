@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class TreeController : MonoBehaviour
@@ -17,18 +18,32 @@ public class TreeController : MonoBehaviour
     {
         // generate tree randomly in two regions, each have 4 trees
         for(int i = 0; i < 4; i++){
-            float x = Random.Range(regionleft_xmin, regionleft_xmax);
-            float z = Random.Range(region_zmin, region_zmax);
-            GameObject tree = Instantiate(Resources.Load("Prefabs/Tree_1_1") as GameObject);
-            tree.transform.position = new Vector3(x, 0, z);
-            TreeNumberLeft++;
+            bool positionFound = false;
+            while(!positionFound){
+                float x = Random.Range(regionleft_xmin, regionleft_xmax);
+                float z = Random.Range(region_zmin, region_zmax);
+                Collider[] hitColliders = Physics.OverlapSphere(new Vector3(x, 0, z), 1.0f);
+                if(hitColliders.Length <= 1){
+                    GameObject tree = Instantiate(Resources.Load("Prefabs/Tree_1_1") as GameObject);
+                    tree.transform.position = new Vector3(x, 0, z);
+                    TreeNumberLeft++;
+                    positionFound = true;
+                }
+            }
         }
         for(int i = 0; i < 4; i++){
-            float x = Random.Range(regionright_xmin, regionright_xmax);
-            float z = Random.Range(region_zmin, region_zmax);
-            GameObject tree = Instantiate(Resources.Load("Prefabs/Tree_1_1") as GameObject);
-            tree.transform.position = new Vector3(x, 0, z);
-            TreeNumberRight++;
+            bool positionFound = false;
+            while(!positionFound){
+                float x = Random.Range(regionright_xmin, regionright_xmax);
+                float z = Random.Range(region_zmin, region_zmax);
+                Collider[] hitColliders = Physics.OverlapSphere(new Vector3(x, 0, z), 1.0f);
+                if(hitColliders.Length <= 1){
+                    GameObject tree = Instantiate(Resources.Load("Prefabs/Tree_1_1") as GameObject);
+                    tree.transform.position = new Vector3(x, 0, z);
+                    TreeNumberRight++;
+                    positionFound = true;
+                }
+            }
         }
     }
 
@@ -49,20 +64,28 @@ public class TreeController : MonoBehaviour
             TreeNumberLeft++;
         else
             TreeNumberRight++;
+        
+        bool positionFound = false;
         yield return new WaitForSeconds(5);
-        if(region == 1){
-            float x = Random.Range(regionleft_xmin, regionleft_xmax);
-            float z = Random.Range(region_zmin, region_zmax);
-            GameObject tree = Instantiate(Resources.Load("Prefabs/Tree_1_1") as GameObject);
-            tree.transform.position = new Vector3(x, 0, z);
-            // TreeNumberLeft++;
-        }
-        else{
-            float x = Random.Range(regionright_xmin, regionright_xmax);
-            float z = Random.Range(region_zmin, region_zmax);
-            GameObject tree = Instantiate(Resources.Load("Prefabs/Tree_1_1") as GameObject);
-            tree.transform.position = new Vector3(x, 0, z);
-            // TreeNumberRight++;
+        while(!positionFound){
+            float x, z;
+            if(region == 1){
+                x = Random.Range(regionleft_xmin, regionleft_xmax);
+                z = Random.Range(region_zmin, region_zmax);
+                // TreeNumberLeft++;
+            }
+            else{
+                x = Random.Range(regionright_xmin, regionright_xmax);
+                z = Random.Range(region_zmin, region_zmax);
+                // TreeNumberRight++;
+            }
+
+            Collider[] hitColliders = Physics.OverlapSphere(new Vector3(x, 0, z), 1.0f);
+            if(hitColliders.Length <= 1){
+                GameObject tree = Instantiate(Resources.Load("Prefabs/Tree_1_1") as GameObject);
+                tree.transform.position = new Vector3(x, 0, z);
+                positionFound = true;
+            }
         }
     }
 }
