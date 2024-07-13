@@ -13,6 +13,7 @@ public class Character : MonoBehaviour
     GameObject Player = null; //人物
 
     public Pack pack; //引用背包
+    public GameObject Item = null; // the item that the player holds
 
     private Transform tr; //创造射线
 
@@ -356,6 +357,7 @@ public class Character : MonoBehaviour
                         break;
                 }
                 Material = MaterialType.None;
+                Item = null;
             }
             else if (playerState == PlayerState.ReadyToClaim && Material == MaterialType.None)
             // no item in hand and ready to grab item

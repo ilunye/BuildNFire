@@ -10,6 +10,9 @@ public class Furnace : MonoBehaviour
     private Transform outPos;
     private bool playerIn = false;
     private bool hasFire = false;
+
+    public string furnace_name = "f0";
+    private int iron_number = 0;
     void OnTriggerEnter(Collider other) {
         if(other.gameObject == player){
             playerIn = true;
@@ -33,7 +36,9 @@ public class Furnace : MonoBehaviour
         Invoke("Fireoff", 15f);
     }
     private void smelting(){
-        GameObject g = Instantiate(Resources.Load("Prefabs/ConcreteTubes"), outPos.position, Quaternion.identity);
+        GameObject g = Instantiate(Resources.Load("Prefabs/ConcreteTubes") as GameObject, outPos.position, Quaternion.identity);
+        g.name = "concrete_tube_" + furnace_name + "_" + iron_number.ToString();
+        iron_number++;
         g.GetComponent<CollectableMaterials>().WillDisappear = false;
         Play();
     }
