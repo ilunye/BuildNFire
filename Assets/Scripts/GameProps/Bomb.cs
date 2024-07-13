@@ -14,6 +14,9 @@ public class Bomb : MonoBehaviour
     public BuffData buffData; //add buff
 
     public bool claimed = false; //是否被捡起来
+    private float initialVelocityX=0.2f;//被炸的力
+    private float initialVelocityZ=0.2f;//被炸的力
+    private float throwForce=1f;//被炸的力
 
     private BuffHandler buffHandler;
 
@@ -76,8 +79,37 @@ public class Bomb : MonoBehaviour
 
     }
 
-    public void Explode()
+    public void Explode(Collider other)    //被炸飞or不被炸飞
     {
+        
+        if(other.CompareTag("Player")){
+            Rigidbody r = other.gameObject.GetComponent<Rigidbody>();
+            r.AddForce(Vector3.up*throwForce+new Vector3(initialVelocityX,0,initialVelocityZ ),ForceMode.Impulse);
+        }
+        
+        hasExploded = true;
+        // Debug.Log("voiceobj" + bombvoiceObj);
+        // Debug.Log("voice" + bombVoice);
+        // bombVoice.PlayMusic();
+        // 显示爆炸效果
+        //Instantiate(explosionEffect, transform.position, transform.rotation);
+        explosionEffect = Instantiate(Resources.Load("Prefabs/Particle System") as GameObject);
+        explosionEffect.transform.localPosition = gameObject.transform.localPosition;
+        explosionEffect.transform.localRotation = gameObject.transform.localRotation;
+        // 获取爆炸范围内的所有碰撞体
+        Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
+        foreach (Collider nearbyObject in colliders)
+        {
+            Rigidbody rb = nearbyObject.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.AddExplosionForce(explosionForce, transform.position, explosionRadius);
+            }
+        }
+        // 销毁炸弹对象
+        Destroy(gameObject);
+    }
+    public void Explode(){
         hasExploded = true;
         // Debug.Log("voiceobj" + bombvoiceObj);
         // Debug.Log("voice" + bombVoice);

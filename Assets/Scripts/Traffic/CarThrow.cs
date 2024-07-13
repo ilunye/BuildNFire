@@ -86,8 +86,6 @@ public class test : MonoBehaviour
             // set as kinetic
             Rigidbody cubeRigidbody = c.GetComponent<Rigidbody>();
             cubeRigidbody.AddForce(Vector3.up * throwForce + new Vector3(x, 0, z), ForceMode.Impulse);
-
-            StartCoroutine(RemoveRigidbodyAfterDelay(cubeRigidbody, 1.5f)); // 延时1.5秒后移除 Rigidbody
             StartCoroutine(BlinkAndDestroy(c, destroyDelay));
 
 
@@ -96,15 +94,6 @@ public class test : MonoBehaviour
         }
     }
 
-    IEnumerator RemoveRigidbodyAfterDelay(Rigidbody rb, float delay)
-    {
-        yield return new WaitForSeconds(delay);
-
-        if (rb != null)
-        {
-            Destroy(rb); // 移除 Rigidbody 组件
-        }
-    }
     IEnumerator BlinkAndDestroy(GameObject obj, float destroyDelay)
     {
         yield return new WaitForSeconds(destroyDelay);

@@ -23,6 +23,5 @@ public class RedCarMove : MonoBehaviour
         if(lifeTime>=7f){
             Destroy(gameObject);
         }
-        //Debug.Log("aaaaaa");
     }
 }
