@@ -17,14 +17,14 @@ public class Bomb : MonoBehaviour
 
     private BuffHandler buffHandler;
 
-    // private GameObject bombvoiceObj;
-    // private BombVoice bombVoice;
+    private GameObject bombvoiceObj;
+    private BombVoice bombVoice;
 
     void Start()
     {
         countdown = delay;
-        // bombvoiceObj = GameObject.Find("bomb_voice");
-        // bombVoice = bombvoiceObj.GetComponent<BombVoice>();
+        bombvoiceObj = Instantiate(Resources.Load("Audio/bomb_voice") as GameObject);
+        bombVoice = bombvoiceObj.GetComponent<BombVoice>();
 
     }
 
@@ -81,7 +81,7 @@ public class Bomb : MonoBehaviour
         hasExploded = true;
         // Debug.Log("voiceobj" + bombvoiceObj);
         // Debug.Log("voice" + bombVoice);
-        // bombVoice.PlayMusic();
+        bombVoice.PlayMusic();
         // 显示爆炸效果
         //Instantiate(explosionEffect, transform.position, transform.rotation);
         explosionEffect = Instantiate(Resources.Load("Prefabs/Particle System") as GameObject);

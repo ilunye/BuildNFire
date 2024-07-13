@@ -8,7 +8,7 @@ public class BombVoice : MonoBehaviour
     public AudioSource audioSource;
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        audioSource = gameObject.GetComponent<AudioSource>();
         //audioSource.clip = soundEffect;
 
     }

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -6716820673095268362}
   - component: {fileID: 1780158158815488021}
   - component: {fileID: -7497000764475307313}
+  - component: {fileID: 3828831990660675377}
   m_Layer: 0
   m_Name: Bomb Red
   m_TagString: Bomb
@@ -173,3 +174,17 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.12390906
   m_Center: {x: 0.000000067055225, y: -0.000000014901161, z: 1.110223e-15}
+--- !u!114 &3828831990660675377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d004e8d48663e9847acf2d2e0b6af135, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundEffect: {fileID: 0}
+  audioSource: {fileID: 0}
