@@ -77,10 +77,14 @@ public class Character : MonoBehaviour
     public bool enableOut = true;
     private bool IsOut = false;
     public bool InCorner = false;
-
-    public GameObject beated_voice;
+    // voice
+    public GameObject beated_voice; //get beated voice
     public AudioSource beated_voice_source;
+    public GameObject get_item;
+    public AudioSource get_item_source;
 
+    public GameObject run;
+    public AudioSource run_source;
     void OnTriggerStay(Collider other) //get beat
     {
         if (isFalling || (other.tag == "Player" && other.gameObject.GetComponent<Character>().isFalling)) return;
@@ -119,6 +123,10 @@ public class Character : MonoBehaviour
         tr = GetComponent<Transform>();
         beated_voice = Instantiate(Resources.Load("Audio/beat") as GameObject);
         beated_voice_source = beated_voice.GetComponent<AudioSource>();
+        get_item = Instantiate(Resources.Load("Audio/get_item") as GameObject);
+        get_item_source = get_item.GetComponent<AudioSource>();
+        run = Instantiate(Resources.Load("Audio/running") as GameObject);
+        run_source = run.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -183,6 +191,7 @@ public class Character : MonoBehaviour
             timer = 0f;
         }
         Motion();
+        Motion_Voice();
         pack.ShowPack(); //按下K展示背包
 
         if (sleep != 0)
@@ -201,15 +210,31 @@ public class Character : MonoBehaviour
         // }
 
     }
+
+    private void Motion_Voice()
+    {
+        if (Input.GetKeyDown(keycodes[0]) || Input.GetKeyDown(keycodes[1]) || Input.GetKeyDown(keycodes[2]) || Input.GetKeyDown(keycodes[3]))
+        {
+            run_source.Play();
+        }
+        if (!(Input.GetKey(keycodes[0]) || Input.GetKey(keycodes[1]) || Input.GetKey(keycodes[2]) || Input.GetKey(keycodes[3])))
+        {
+            run_source.Stop();
+        }
+    }
+
+
     private void Motion()
     {
         // go up
         if (playerState != PlayerState.Punch && playerState != PlayerState.Claim && playerState != PlayerState.Falling && playerState != PlayerState.Operating)
         {
+
             if (Input.GetKey(keycodes[0]))
             {
                 //Debug.Log("向前走");
                 // 向世界坐标系得z轴方向移动
+
                 Vector3 p = transform.localPosition;
                 if ((!InCorner) && (!IsOut || (IsOut && (transform.position.z < z_bound_down || ((transform.position.x > x_bound_right || transform.position.x < x_bound_left) && transform.position.z < z_bound_up)))))
                 {
@@ -228,6 +253,7 @@ public class Character : MonoBehaviour
             // go down
             if (Input.GetKey(keycodes[1]))
             {
+
                 Vector3 p = transform.localPosition;
                 if (InCorner || !IsOut || (IsOut && (transform.position.z > z_bound_up || ((transform.position.x > x_bound_right || transform.position.x < x_bound_left) && transform.position.z > z_bound_down))))
                 {
@@ -247,6 +273,7 @@ public class Character : MonoBehaviour
             // go left
             if (Input.GetKey(keycodes[2]))
             {
+
                 Vector3 p = transform.localPosition;
                 if (InCorner || !IsOut || (IsOut && (transform.position.x > x_bound_right || ((transform.position.z > z_bound_up || transform.position.z < z_bound_down) && transform.position.x > x_bound_left))))
                 {
@@ -265,6 +292,7 @@ public class Character : MonoBehaviour
             // go right
             if (Input.GetKey(keycodes[3]))
             {
+
                 Vector3 p = transform.localPosition;
                 if ((!InCorner) && (!IsOut || (IsOut && (transform.position.x < x_bound_left || ((transform.position.z > z_bound_up || transform.position.z < z_bound_down) && transform.position.x < x_bound_right)))))
                 {
@@ -279,6 +307,8 @@ public class Character : MonoBehaviour
             }
             if (Input.GetKeyUp(keycodes[3]))
                 Run2Idel();
+
+
 
         }
         if (Input.GetKeyUp(keycodes[4])) //改成getkeyup，长按E后再播放投掷动画
@@ -321,6 +351,7 @@ public class Character : MonoBehaviour
             {
                 playerState = PlayerState.Claim;
                 Anim.Play("Gathering");
+                get_item_source.Play();
             }
         }
     }

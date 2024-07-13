@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Claims;
+using Mono.CecilX;
 using UnityEngine;
 
 public class BuffHandler : MonoBehaviour
@@ -15,11 +16,19 @@ public class BuffHandler : MonoBehaviour
     public ThrowBomb throwBomb;
 
     public BuffInfo bombbuffinfo;
-    public bool bombenter = false;
+    public GameObject eat_burger;
+    public AudioSource eat_burger_source;
+
+    public GameObject dejavu;
+    public AudioSource dejavu_source;
     // Start is called before the first frame update
     void Start()
     {
         throwBomb = gameObject.GetComponent<ThrowBomb>();
+        eat_burger = Instantiate(Resources.Load("Audio/eat_burger") as GameObject);
+        eat_burger_source = eat_burger.GetComponent<AudioSource>();
+        dejavu = Instantiate(Resources.Load("Audio/dejavu") as GameObject);
+        dejavu_source = dejavu.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -42,7 +51,7 @@ public class BuffHandler : MonoBehaviour
             Destroy(CollObj);
         }
     }
-    
+
 
     private void OnTriggerStay(Collider collision)
     {
@@ -54,6 +63,8 @@ public class BuffHandler : MonoBehaviour
             switch (CollObj.tag) // 检测碰撞对象的标签
             {
                 case "Burger":
+                    eat_burger_source.Play();
+                    dejavu_source.Play();
                     buffInfo.buffData = CollObj.GetComponent<Burger>().buffData;
                     Debug.Log("burger");
                     GetCollisionBuff(buffInfo, CollObj);
@@ -67,7 +78,7 @@ public class BuffHandler : MonoBehaviour
                     GetCollisionBuff(buffInfo, CollObj);
                     break;
                 case "Bomb":
-                    //Debug.Log("进入trigger区" + collision.name);
+
                     bomb = CollObj.GetComponent<Bomb>();
                     buffInfo.buffData = CollObj.GetComponent<Bomb>().buffData;
                     //Debug.Log("是否已经爆炸" + bomb.hasExploded );
@@ -168,7 +179,7 @@ public class BuffHandler : MonoBehaviour
         buffInfo.durationTime = buffInfo.buffData.DurationTime;
         Debug.Log("启动buff" + buffInfo.buffData.BuffName);
         buffInfo.buffData.OnCreate.Apply(buffInfo); //启动buff
-        
+
         buffList.AddLast(buffInfo); //添加到buffList的末尾
 
         //根据priority对buffList进行排序
