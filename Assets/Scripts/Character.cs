@@ -78,7 +78,10 @@ public class Character : MonoBehaviour
     private bool IsOut = false;
     public bool InCorner = false;
 
-    void OnTriggerStay(Collider other)
+    public GameObject beated_voice;
+    public AudioSource beated_voice_source;
+
+    void OnTriggerStay(Collider other) //get beat
     {
         if (isFalling || (other.tag == "Player" && other.gameObject.GetComponent<Character>().isFalling)) return;
         if (other.tag == "Player" && playerState == PlayerState.Punch && timer < 0.5f)
@@ -89,6 +92,7 @@ public class Character : MonoBehaviour
                 other.gameObject.GetComponent<Animator>().Play("DAMAGED01");
                 other.gameObject.GetComponent<Character>().isFalling = true;
                 other.gameObject.GetComponent<Character>().playerState = PlayerState.Falling;
+                beated_voice_source.Play();
             }
         }
     }
@@ -113,6 +117,8 @@ public class Character : MonoBehaviour
         Player = gameObject;
         pack = GetComponent<Pack>();
         tr = GetComponent<Transform>();
+        beated_voice = Instantiate(Resources.Load("Audio/beat") as GameObject);
+        beated_voice_source = beated_voice.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
