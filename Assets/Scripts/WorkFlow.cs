@@ -69,9 +69,9 @@ public class WorkFlow : MonoBehaviour
             int temp = (workFlowPos - 8) / 2;
             int mod = (workFlowPos - 8) % 2;
             if(mod == 0)
-                iron_number = temp * 1.0f;
+                iron_number = 2.0f + temp * 1.0f;
             else
-                iron_number = temp + 0.5f;
+                iron_number = 2.0f + temp + 0.5f;
         }
         if(workFlowPos % 4 < 2 && workFlowPos < 8){
             toPickWood = false;

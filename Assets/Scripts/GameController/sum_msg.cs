@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEditor;
+using Unity.VisualScripting;
 
 public class sum_msg : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class sum_msg : MonoBehaviour
     public GameObject explode_bomb;
 
     private bool gameover = false;
+
+    private GameObject ending;
+    private AudioSource ending_source;
     public void ToMenu()
     {
         Application.LoadLevel("Scenes/HomeScreen");
@@ -28,6 +32,8 @@ public class sum_msg : MonoBehaviour
     void Start()
     {
         button.SetActive(false);
+        ending = Instantiate(Resources.Load("Audio/ending") as GameObject);
+        ending_source = ending.GetComponent<AudioSource>();
 
     }
 
@@ -56,32 +62,47 @@ public class sum_msg : MonoBehaviour
             Play_Final();
             gameover = true;
         }
+        if (gameover)
+        {
+            ending_source.Play();
+        }
     }
 
 
     private void Play_Final()
-{
-    Debug.Log("play final");
-    explode_bomb = Instantiate(Resources.Load("Prefabs/projectile1") as GameObject);
-    StartCoroutine(MoveBomb());
-}
-
-private IEnumerator MoveBomb()
-{
-    Vector3 startposition = new Vector3(805f, 1.6f, 981f);
-    float speed = 1.0f;
-    Vector3 targetposition = new Vector3(796f, 1.6f, 981f);
-
-    float t = 0f;
-    while (t < 2f)
     {
-        t += Time.deltaTime * speed;
-        explode_bomb.transform.position = Vector3.Lerp(startposition, targetposition, t);
-        yield return null;
+        Debug.Log("play final");
+        explode_bomb = Instantiate(Resources.Load("Prefabs/projectile1") as GameObject);
+        StartCoroutine(MoveBomb());
     }
 
-    //Debug.Log(explode_bomb.transform.position);
-}
+    private IEnumerator MoveBomb()
+    {
+        Vector3 startposition;
+        Vector3 targetposition;
+        if (status == 1)
+        {
+            startposition = new Vector3(805f, 1.6f, 981f);
+            targetposition = new Vector3(796f, 1.6f, 981f);
+        }
+        else
+        {
+
+            startposition = new Vector3(796f, 1.6f, 981f);
+            targetposition = new Vector3(805f, 1.6f, 981f);
+        }
+
+        float speed = 1.0f;
+        float t = 0f;
+        while (t < 2f)
+        {
+            t += Time.deltaTime * speed;
+            explode_bomb.transform.position = Vector3.Lerp(startposition, targetposition, t);
+            yield return null;
+        }
+
+        //Debug.Log(explode_bomb.transform.position);
+    }
 
 }
 
