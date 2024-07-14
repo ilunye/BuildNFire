@@ -69,7 +69,6 @@ public class Character : MonoBehaviour
     }
 
     public PlayerState playerState = PlayerState.Idle;
-    private TransState transState = TransState.init;
 
     public bool isPunch = false;
     public bool isFalling = false;
@@ -112,8 +111,6 @@ public class Character : MonoBehaviour
     void Awake()
     {
         Anim = GetComponent<Animator>();
-        Anim.SetBool("Running", false);
-        Anim.SetInteger("Trans_State", 0);
         if (wasd == true)
         {
             keycodes = new KeyCode[] { KeyCode.W, KeyCode.S, KeyCode.A, KeyCode.D, KeyCode.E };
@@ -178,12 +175,6 @@ public class Character : MonoBehaviour
                 g.transform.position = transform.position + new Vector3(0, 0.5f, 0);
                 g.GetComponent<CollectableMaterials>().WillDisappear = false;
             }
-            else if (Material == MaterialType.Bomb)
-            {
-                GameObject g = Instantiate(Resources.Load("Prefabs/Bomb Red") as GameObject);
-                g.transform.position = transform.position + new Vector3(0, 0.5f, 0);
-                g.GetComponent<CollectableMaterials>().WillDisappear = false;
-            }
             else if (Material == MaterialType.IronOre)
             {
                 GameObject g = Instantiate(Resources.Load("Prefabs/Rock_03") as GameObject);
@@ -217,7 +208,6 @@ public class Character : MonoBehaviour
         }
         if (playerState == PlayerState.Idle)
         {
-            transState = TransState.init;
             isPunch = false;
             isFalling = false;
             timer = 0f;
@@ -227,7 +217,7 @@ public class Character : MonoBehaviour
 
         if (sleep != 0)
         {
-            Debug.Log("玩家休眠");
+            // Debug.Log("玩家休眠");
             PlayerSpeed = 0; //玩家休眠
             gameObject.GetComponent<Animator>().Play("StunnedLoop"); //播放晕倒动画
             gameObject.GetComponent<Character>().isFalling = true;
@@ -407,14 +397,12 @@ public class Character : MonoBehaviour
     private void Idle2Run()
     {
         playerState = PlayerState.Run;
-        Anim.SetBool("Running", true);
         Anim.Play("Run_norm");
     }
 
     private void Run2Idel()
     {
         playerState = PlayerState.Idle;
-        Anim.SetBool("Running", false);
         Anim.Play("Idle");
     }
 

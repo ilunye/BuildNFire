@@ -80,7 +80,7 @@ public class BuffHandler : MonoBehaviour
                 else
                     StartCoroutine(ChangeColorCoroutine(GameObject.Find("animal_people_wolf1")));
             }
-            Debug.Log("加上buff与" + CollObj.name);
+            // Debug.Log("加上buff与" + CollObj.name);
             Destroy(CollObj);
         }
     }
@@ -127,7 +127,7 @@ public class BuffHandler : MonoBehaviour
                     eat_burger_source.Play();
                     dejavu_source.Play();
                     buffInfo.buffData = CollObj.GetComponent<Burger>().buffData;
-                    Debug.Log("burger");
+                    // Debug.Log("burger");
                     GetCollisionBuff(buffInfo, CollObj);
                     break;
                 case "Clock":
@@ -238,10 +238,10 @@ public class BuffHandler : MonoBehaviour
         foreach (var TempbuffInfo in buffList)
         {
             TempbuffInfo.durationTime = 0;
-            Debug.Log("tempbuffinfo" + TempbuffInfo.durationTime);
+            // Debug.Log("tempbuffinfo" + TempbuffInfo.durationTime);
         }
         buffInfo.durationTime = buffInfo.buffData.DurationTime;
-        Debug.Log("启动buff" + buffInfo.buffData.BuffName);
+        // Debug.Log("启动buff" + buffInfo.buffData.BuffName);
         buffInfo.buffData.OnCreate.Apply(buffInfo); //启动buff
 
         buffList.AddLast(buffInfo); //添加到buffList的末尾
@@ -285,7 +285,7 @@ public class BuffHandler : MonoBehaviour
         switch (buffInfo.buffData.buffRemoveStackUpdate) //判断去掉模式
         {
             case BuffRemoveStackUpdateEnum.Clear: //清除效果
-                Debug.Log("执行onremove");
+                // Debug.Log("执行onremove");
                 buffInfo.buffData.OnRemove.Apply(buffInfo);
                 buffList.Remove(buffInfo);
                 break;

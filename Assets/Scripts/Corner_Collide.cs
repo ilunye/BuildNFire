@@ -22,14 +22,14 @@ public class Corner_Collide : MonoBehaviour
         other.gameObject.GetComponent<Character>().InCorner= true;
     }
     void OnTriggerStay(Collider other){
-        Debug.Log("Stay");
+        // Debug.Log("Stay");
         if(other.tag != "Player")
             return;
         other.gameObject.GetComponent<Character>().InCorner= true;
     }
 
     void OnTriggerExit(Collider other){
-        Debug.Log("Exit");
+        // Debug.Log("Exit");
         if(other.tag != "Player")
             return;
         other.gameObject.GetComponent<Character>().InCorner= false;

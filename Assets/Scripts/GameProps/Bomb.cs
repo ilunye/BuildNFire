@@ -146,7 +146,7 @@ public class Bomb : MonoBehaviour
             if (rb != null)
             {
                 if(nearbyObject.tag == "Player"){
-                    Debug.Log("bomb hit player");
+                    // Debug.Log("bomb hit player");
                     BuffInfo buffInfo = new BuffInfo();
                     buffInfo.buffData = buffData;
                     buffInfo.target = nearbyObject.gameObject;
