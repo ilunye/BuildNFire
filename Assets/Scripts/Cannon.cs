@@ -14,7 +14,7 @@ public class Cannon : MonoBehaviour
     private Transform middle;
     private float[] ckpts = new float[10];
     public int idx = 0;     // max: 10
-    public bool isProtected = false;
+    public bool isProtected = true;
     public GameObject player;
     public bool playerIn = false;
     public WorkFlow workFlow;
