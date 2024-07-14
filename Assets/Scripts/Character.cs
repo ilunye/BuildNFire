@@ -13,6 +13,7 @@ public class Character : MonoBehaviour
     GameObject Player = null; //人物
 
     public Pack pack; //引用背包
+    public GameObject Item = null; // the item that the player holds
 
     private Transform tr; //创造射线
 
@@ -331,25 +332,32 @@ public class Character : MonoBehaviour
             else if ((playerState == PlayerState.Idle || playerState == PlayerState.ReadyToClaim) && Material != MaterialType.None && Material != MaterialType.Bomb)
             //item in hand ,press E put down
             {
+                GameObject obj;
                 switch (Material)
                 {
                     case MaterialType.Wood:
-                        Instantiate(Resources.Load("Prefabs/Wood") as GameObject, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
+                        obj = Instantiate(Resources.Load("Prefabs/Wood") as GameObject, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
+                        obj.GetComponent<CollectableMaterials>().WillDisappear = false;
                         break;
                     case MaterialType.IronOre:
-                        Instantiate(Resources.Load("Prefabs/Rock_03") as GameObject, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
+                        obj = Instantiate(Resources.Load("Prefabs/Rock_03") as GameObject, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
+                        obj.GetComponent<CollectableMaterials>().WillDisappear = false;
                         break;
                     case MaterialType.Iron:
-                        Instantiate(Resources.Load("Prefabs/ConcreteTubes") as GameObject, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
+                        obj = Instantiate(Resources.Load("Prefabs/ConcreteTubes") as GameObject, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
+                        obj.GetComponent<CollectableMaterials>().WillDisappear = false;
                         break;
                     case MaterialType.GunPowder:
-                        Instantiate(Resources.Load("Prefabs/explosiveBarrel") as GameObject, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
+                        obj = Instantiate(Resources.Load("Prefabs/explosiveBarrel") as GameObject, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
+                        obj.GetComponent<CollectableMaterials>().WillDisappear = false;
                         break;
                     case MaterialType.CannonBall:
-                        Instantiate(Resources.Load("Prefabs/projectile") as GameObject, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
+                        obj = Instantiate(Resources.Load("Prefabs/projectile") as GameObject, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
+                        obj.GetComponent<CollectableMaterials>().WillDisappear = false;
                         break;
                 }
                 Material = MaterialType.None;
+                Item = null;
             }
             else if (playerState == PlayerState.ReadyToClaim && Material == MaterialType.None)
             // no item in hand and ready to grab item

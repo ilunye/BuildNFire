@@ -7,6 +7,7 @@ public class CollectableMaterials : MonoBehaviour
 {
     public Character.MaterialType materialType;
     // Start is called before the first frame update
+    public bool WillDisappear = true;
 
     private bool claimed = false;
     void Awake()
@@ -21,7 +22,8 @@ public class CollectableMaterials : MonoBehaviour
     IEnumerator DestroyAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        Destroy(gameObject);
+        if(WillDisappear)
+            Destroy(gameObject);
     }
     // Update is called once per frame
     void Update()
@@ -31,12 +33,32 @@ public class CollectableMaterials : MonoBehaviour
     void OnTriggerStay(Collider other){
         if(other.tag != "Player" || claimed)
             return;
-        if(other.GetComponent<Character>().playerState == Character.PlayerState.Idle)
+        if(other.GetComponent<Character>().playerState == Character.PlayerState.Idle){
             other.GetComponent<Character>().playerState = Character.PlayerState.ReadyToClaim;
+            if(other.GetComponent<Character>().Item == null){
+                other.GetComponent<Character>().Item = gameObject;
+            }
+        }
         if(other.GetComponent<Character>().playerState == Character.PlayerState.Claim){
-            claimed = true;
-            other.GetComponent<Character>().Material = materialType;
-            Destroy(gameObject);
+            if(other.GetComponent<Character>().Item != null){
+                if(other.GetComponent<Character>().Item.name == gameObject.name){
+                    claimed = true;
+                    other.GetComponent<Character>().Material = materialType;
+                    other.GetComponent<Character>().Item = gameObject;              // set the player's item as itself
+                    Destroy(gameObject);
+                }
+            }
+        }
+    }
+
+    void OnTriggerExit(Collider other){
+        if(other.tag != "Player" || claimed)
+            return;
+        if(other.GetComponent<Character>().playerState == Character.PlayerState.ReadyToClaim){
+            other.GetComponent<Character>().playerState = Character.PlayerState.Idle;
+        }
+        if(other.GetComponent<Character>().Item != null && other.GetComponent<Character>().Item.name == gameObject.name){
+            other.GetComponent<Character>().Item = null;
         }
     }
 }

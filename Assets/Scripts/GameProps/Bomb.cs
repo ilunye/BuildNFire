@@ -3,7 +3,7 @@ using UnityEngine.PlayerLoop;
 
 public class Bomb : MonoBehaviour
 {
-    private float delay = 5f; // 炸弹的延迟时间
+    private float delay = 10f; // 炸弹的延迟时间
     private float explosionForce = 700f; // 爆炸的力量
     private float explosionRadius = 0.1f; // 爆炸的半径
     public GameObject explosionEffect; // 爆炸效果的预制体
@@ -68,15 +68,34 @@ public class Bomb : MonoBehaviour
     {
         if (other.tag != "Player" || claimed)
             return;
-        if (other.GetComponent<Character>().playerState == Character.PlayerState.Idle)
+        if (other.GetComponent<Character>().playerState == Character.PlayerState.Idle){
             other.GetComponent<Character>().playerState = Character.PlayerState.ReadyToClaim;
+            if(other.GetComponent<Character>().Item == null){
+                other.GetComponent<Character>().Item = gameObject;
+            }
+        }
         if (other.GetComponent<Character>().playerState == Character.PlayerState.Claim)
         {
-            claimed = true;
-            other.GetComponent<Character>().Material = Character.MaterialType.Bomb;
-            Destroy(gameObject);
+            if(other.GetComponent<Character>().Item != null){
+                if(other.GetComponent<Character>().Item.name == gameObject.name){
+                    claimed = true;
+                    other.GetComponent<Character>().Material = Character.MaterialType.Bomb;
+                    other.GetComponent<Character>().Item = gameObject;              // set the player's item as itself
+                    Destroy(gameObject);
+                }
+            }
         }
+    }
 
+    void OnTriggerExit(Collider other){
+        if(other.tag != "Player" || claimed)
+            return;
+        if(other.GetComponent<Character>().playerState == Character.PlayerState.ReadyToClaim){
+            other.GetComponent<Character>().playerState = Character.PlayerState.Idle;
+        }
+        if(other.GetComponent<Character>().Item != null && other.GetComponent<Character>().Item.name == gameObject.name){
+            other.GetComponent<Character>().Item = null;
+        }
     }
 
     public void Explode(Collider other)    //被炸飞or不被炸飞
