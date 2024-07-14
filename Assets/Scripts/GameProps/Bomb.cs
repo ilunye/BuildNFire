@@ -146,13 +146,24 @@ public class Bomb : MonoBehaviour
             if (rb != null)
             {
                 if(nearbyObject.tag == "Player"){
-                    Debug.Log("bomb hit player");
                     BuffInfo buffInfo = new BuffInfo();
                     buffInfo.buffData = buffData;
                     buffInfo.target = nearbyObject.gameObject;
                     nearbyObject.GetComponent<BuffHandler>().AddBuff(buffInfo);
                 }
                 rb.AddExplosionForce(explosionForce, transform.position, explosionRadius);
+            }else{
+                if(nearbyObject.tag == "Cannon"){
+                    if(nearbyObject.name.EndsWith("1")){
+                        Debug.Log("bomb cannon1");
+                        GameObject g = GameObject.Find("PlayerUI_1");
+                        int t = g.GetComponent<WorkFlow>().workFlowPos;
+                        t--;
+                        if(t < 0)
+                            t = 0;
+                        g.GetComponent<WorkFlow>().workFlowPos = t;
+                    }
+                }
             }
         }
         // 销毁炸弹对象
