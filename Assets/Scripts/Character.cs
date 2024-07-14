@@ -215,8 +215,8 @@ public class Character : MonoBehaviour
         //     RayCaseObj();  //拾捡物品
         // }
         if(playerState == PlayerState.Idle){
-            // 更改rotation
-            transform.rotation = Quaternion.Euler(0, cam.transform.rotation.eulerAngles.y, 0);
+            // 更改rotation, y轴旋转不变
+            transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
         }
 
     }
