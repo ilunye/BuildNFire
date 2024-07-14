@@ -361,22 +361,27 @@ public class Character : MonoBehaviour
                     case MaterialType.Wood:
                         obj = Instantiate(Resources.Load("Prefabs/Wood") as GameObject, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
                         obj.GetComponent<CollectableMaterials>().WillDisappear = false;
+                        obj.transform.position = new Vector3(obj.transform.position.x, 0.5f, obj.transform.position.z) + transform.forward * 0.3f;
                         break;
                     case MaterialType.IronOre:
                         obj = Instantiate(Resources.Load("Prefabs/Rock_03") as GameObject, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
                         obj.GetComponent<CollectableMaterials>().WillDisappear = false;
+                        obj.transform.position = new Vector3(obj.transform.position.x, 0.5f, obj.transform.position.z) + transform.forward * 0.3f;
                         break;
                     case MaterialType.Iron:
                         obj = Instantiate(Resources.Load("Prefabs/ConcreteTubes") as GameObject, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
                         obj.GetComponent<CollectableMaterials>().WillDisappear = false;
+                        obj.transform.position = new Vector3(obj.transform.position.x, 0.5f, obj.transform.position.z) + transform.forward * 0.3f;
                         break;
                     case MaterialType.GunPowder:
                         obj = Instantiate(Resources.Load("Prefabs/explosiveBarrel") as GameObject, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
                         obj.GetComponent<CollectableMaterials>().WillDisappear = false;
+                        obj.transform.position = new Vector3(obj.transform.position.x, 0.5f, obj.transform.position.z) + transform.forward * 0.3f;
                         break;
                     case MaterialType.CannonBall:
                         obj = Instantiate(Resources.Load("Prefabs/projectile") as GameObject, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
                         obj.GetComponent<CollectableMaterials>().WillDisappear = false;
+                        obj.transform.position = new Vector3(obj.transform.position.x, 0.5f, obj.transform.position.z) + transform.forward * 0.3f;
                         break;
                 }
                 item_fall_voice.Play();

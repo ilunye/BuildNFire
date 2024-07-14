@@ -112,7 +112,7 @@ public class Bomb : MonoBehaviour
         // bombVoice.PlayMusic();
         // 显示爆炸效果
         //Instantiate(explosionEffect, transform.position, transform.rotation);
-        explosionEffect = Instantiate(Resources.Load("Prefabs/Exp_effect") as GameObject);
+        explosionEffect = Instantiate(Resources.Load("Prefabs/Particle System") as GameObject);
         explosionEffect.transform.localPosition = gameObject.transform.localPosition;
         explosionEffect.transform.localRotation = gameObject.transform.localRotation;
         // 获取爆炸范围内的所有碰撞体
@@ -135,7 +135,7 @@ public class Bomb : MonoBehaviour
         bombVoice.PlayMusic();
         // 显示爆炸效果
         //Instantiate(explosionEffect, transform.position, transform.rotation);
-        explosionEffect = Instantiate(Resources.Load("Prefabs/Exp_effect") as GameObject);
+        explosionEffect = Instantiate(Resources.Load("Prefabs/Particle System") as GameObject);
         explosionEffect.transform.localPosition = gameObject.transform.localPosition;
         explosionEffect.transform.localRotation = gameObject.transform.localRotation;
         // 获取爆炸范围内的所有碰撞体
