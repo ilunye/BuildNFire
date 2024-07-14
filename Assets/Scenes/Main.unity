@@ -604,7 +604,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8951340260774615762, guid: 695efc19658b81a4f921de910661bc7d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 797.5166
+      value: 798.271
       objectReference: {fileID: 0}
     - target: {fileID: 8951340260774615762, guid: 695efc19658b81a4f921de910661bc7d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -612,7 +612,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8951340260774615762, guid: 695efc19658b81a4f921de910661bc7d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 978.96857
+      value: 976.034
       objectReference: {fileID: 0}
     - target: {fileID: 8951340260774615762, guid: 695efc19658b81a4f921de910661bc7d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6942,6 +6942,7 @@ MonoBehaviour:
   isPowder: 0
   toPickWood: 0
   toPickIron: 0
+  workFlowPos: 0
 --- !u!1 &1837232604
 GameObject:
   m_ObjectHideFlags: 0
@@ -8109,6 +8110,7 @@ MonoBehaviour:
   button: {fileID: 921546984}
   status: 0
   theText: {fileID: 0}
+  explode_bomb: {fileID: 0}
 --- !u!114 &1979723292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9026,6 +9028,7 @@ MonoBehaviour:
   isPowder: 0
   toPickWood: 0
   toPickIron: 0
+  workFlowPos: 0
 --- !u!1 &2105728569
 GameObject:
   m_ObjectHideFlags: 0
