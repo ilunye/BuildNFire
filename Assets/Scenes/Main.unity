@@ -6418,6 +6418,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 1993761349957574336, guid: aa641abd1d3cc9c4abb2cd901fdf185b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8540,6 +8544,7 @@ GameObject:
   - component: {fileID: 1979723293}
   - component: {fileID: 1979723292}
   - component: {fileID: 1979723291}
+  - component: {fileID: 1979723294}
   m_Layer: 5
   m_Name: Summary_msg
   m_TagString: Untagged
@@ -8679,6 +8684,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1979723289}
   m_CullTransparentMesh: 1
+--- !u!114 &1979723294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1979723289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb46d46b1ca91a74ab2da2123a3f1fba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionForce: 200
+  explosionRadius: 20
+  status: 0
 --- !u!1 &1985014591
 GameObject:
   m_ObjectHideFlags: 0
@@ -8937,8 +8957,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 860c29f1609f72740b93bacf9da5fdb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosionForce: 200
   explosionRadius: 10
   status: 0
+  p_left: {x: 804.42, y: 0.1, z: 980.3}
+  p_right: {x: 794.84, y: 0.1, z: 980.3}
+  cannons:
+  - {fileID: 0}
+  - {fileID: 0}
+  furnaces:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!4 &2033849080
 Transform:
   m_ObjectHideFlags: 0
@@ -10692,7 +10721,7 @@ GameObject:
   - component: {fileID: 526263334050887092}
   - component: {fileID: 3031173560112317326}
   m_Layer: 0
-  m_Name: Furnace (1)
+  m_Name: Furnace_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10711,7 +10740,7 @@ GameObject:
   - component: {fileID: 526263333909074751}
   - component: {fileID: 3031173560137803013}
   m_Layer: 0
-  m_Name: Furnace
+  m_Name: Furnace_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
