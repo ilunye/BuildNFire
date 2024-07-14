@@ -2521,6 +2521,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4361017848822954901, guid: 1f8b37450fb3d004e9073960d4c6ff82, type: 3}
+      propertyPath: countdown
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 174260, guid: 1f8b37450fb3d004e9073960d4c6ff82, type: 3}
       propertyPath: m_Name
       value: Bomb Red
@@ -2565,13 +2569,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7723139011094458556, guid: 1f8b37450fb3d004e9073960d4c6ff82, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7723139011094458556, guid: 1f8b37450fb3d004e9073960d4c6ff82, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 174260, guid: 1f8b37450fb3d004e9073960d4c6ff82, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1895422846}
+      addedObject: {fileID: 1895422854}
   m_SourcePrefab: {fileID: 100100000, guid: 1f8b37450fb3d004e9073960d4c6ff82, type: 3}
 --- !u!1 &859490554
 GameObject:
@@ -7589,7 +7601,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 174260, guid: 1f8b37450fb3d004e9073960d4c6ff82, type: 3}
   m_PrefabInstance: {fileID: 832666573}
   m_PrefabAsset: {fileID: 0}
---- !u!136 &1895422846
+--- !u!136 &1895422854
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9404,6 +9416,10 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1867078716}
+    - target: {fileID: 363670378367736777, guid: 45cf65d7fc916eb4cbc92cf654f0059b, type: 3}
+      propertyPath: enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2648901920426711436, guid: 45cf65d7fc916eb4cbc92cf654f0059b, type: 3}
       propertyPath: RawImage
       value: 
@@ -9414,15 +9430,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5288560967913159059, guid: 45cf65d7fc916eb4cbc92cf654f0059b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 797.494
+      value: 797.16
       objectReference: {fileID: 0}
     - target: {fileID: 5288560967913159059, guid: 45cf65d7fc916eb4cbc92cf654f0059b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.173
+      value: 0.13
       objectReference: {fileID: 0}
     - target: {fileID: 5288560967913159059, guid: 45cf65d7fc916eb4cbc92cf654f0059b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 982.44
+      value: 984.34
       objectReference: {fileID: 0}
     - target: {fileID: 5288560967913159059, guid: 45cf65d7fc916eb4cbc92cf654f0059b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -10315,6 +10331,10 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1867078716}
+    - target: {fileID: 670439694211587517, guid: 5ffcf42b1d7ff674397b10249cff9478, type: 3}
+      propertyPath: enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1584086951560596051, guid: 5ffcf42b1d7ff674397b10249cff9478, type: 3}
       propertyPath: m_Name
       value: animal_people_wolf_2
