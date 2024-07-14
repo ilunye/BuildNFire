@@ -176,31 +176,37 @@ public class Character : MonoBehaviour
             {
                 GameObject g = Instantiate(Resources.Load("Prefabs/Wood") as GameObject);
                 g.transform.position = transform.position + new Vector3(0, 0.5f, 0);
+                g.GetComponent<CollectableMaterials>().WillDisappear = false;
             }
             else if (Material == MaterialType.Bomb)
             {
                 GameObject g = Instantiate(Resources.Load("Prefabs/Bomb Red") as GameObject);
                 g.transform.position = transform.position + new Vector3(0, 0.5f, 0);
+                g.GetComponent<CollectableMaterials>().WillDisappear = false;
             }
             else if (Material == MaterialType.IronOre)
             {
                 GameObject g = Instantiate(Resources.Load("Prefabs/Rock_03") as GameObject);
                 g.transform.position = transform.position + new Vector3(0, 0.5f, 0);
+                g.GetComponent<CollectableMaterials>().WillDisappear = false;
             }
             else if (Material == MaterialType.Iron)
             {
                 GameObject g = Instantiate(Resources.Load("Prefabs/ConcreteTubes") as GameObject);
                 g.transform.position = transform.position + new Vector3(0, 0.5f, 0);
+                g.GetComponent<CollectableMaterials>().WillDisappear = false;
             }
             else if (Material == MaterialType.GunPowder)
             {
                 GameObject g = Instantiate(Resources.Load("Prefabs/explosiveBarrel") as GameObject);
                 g.transform.position = transform.position + new Vector3(0, 0.5f, 0);
+                g.GetComponent<CollectableMaterials>().WillDisappear = false;
             }
             else if (Material == MaterialType.CannonBall)
             {
                 GameObject g = Instantiate(Resources.Load("Prefabs/projectile") as GameObject);
                 g.transform.position = transform.position + new Vector3(0, 0.5f, 0);
+                g.GetComponent<CollectableMaterials>().WillDisappear = false;
             }
             Material = MaterialType.None;
         }

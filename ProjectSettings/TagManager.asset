@@ -19,6 +19,7 @@ TagManager:
   - Lock
   - Bomb
   - Tree
+  - Cannon
   layers:
   - Default
   - TransparentFX
@@ -27,7 +28,7 @@ TagManager:
   - Water
   - UI
   - NavMesh
-  - 
+  - NoShadow
   - 
   - 
   - 
