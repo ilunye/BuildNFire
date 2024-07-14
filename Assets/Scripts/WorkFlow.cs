@@ -51,7 +51,32 @@ public class WorkFlow : MonoBehaviour
 
     void Update()
     {
+        if(workFlowPos <= 8){
+            int temp = workFlowPos / 4;
+            int mod = workFlowPos % 4;
+            if(mod <= 2){
+                wood_number = temp * 1.0f;
+            }else
+                wood_number = temp + 0.5f;
+
+            if(mod < 1)
+                iron_number = temp * 1.0f;
+            else if(mod < 2)
+                iron_number = temp + 0.5f;
+            else
+                iron_number = temp + 1.0f;
+        }else{
+            int temp = (workFlowPos - 8) / 2;
+            int mod = (workFlowPos - 8) % 2;
+            if(mod == 0)
+                iron_number = temp * 1.0f;
+            else
+                iron_number = temp + 0.5f;
+        }
         if(workFlowPos % 4 < 2 && workFlowPos < 8){
+            toPickWood = false;
+            toPickIron = true;
+        }else if(workFlowPos % 4 >= 2 && workFlowPos < 8){
             toPickWood = true;
             toPickIron = false;
         }else if(workFlowPos < 12){
@@ -65,6 +90,15 @@ public class WorkFlow : MonoBehaviour
     }
 
     private void HandleInput(){
+        if(toPickIron){
+            AbleAllChildren(frame_iron);
+            DisableAllChildren(frame_wood);
+        }
+        if(toPickWood){
+            AbleAllChildren(frame_wood);
+            DisableAllChildren(frame_iron);
+        }
+
         if(toPickIron && isIron && iron_number < 4f){
             workFlowPos += 2;
             if(workFlowPos > 12)
