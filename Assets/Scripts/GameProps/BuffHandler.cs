@@ -244,9 +244,9 @@ public class BuffHandler : MonoBehaviour
         }
         else
         {
-            foreach (var TempbuffInfo in debuffList)
+            foreach (var TempbuffInfo1 in debuffList)
             {
-                TempbuffInfo.durationTime = 0;
+                TempbuffInfo1.durationTime = 0;
             }
             debuffList.AddLast(buffInfo); //添加到debuffList的末尾
         }
@@ -295,6 +295,7 @@ public class BuffHandler : MonoBehaviour
             case BuffRemoveStackUpdateEnum.Clear: //清除效果
                 buffInfo.buffData.OnRemove.Apply(buffInfo);
                 buffList.Remove(buffInfo);
+                debuffList.Remove(buffInfo);
                 break;
 
             case BuffRemoveStackUpdateEnum.Reduce: //减弱效果
@@ -319,6 +320,17 @@ public class BuffHandler : MonoBehaviour
     {
         List<BuffInfo> DeleteBuffList = new List<BuffInfo>();
         foreach (var buffInfo in buffList) //遍历buffList
+        {
+            if (buffInfo.durationTime < 0) //生效时间已过,去掉buff
+            {
+                DeleteBuffList.Add(buffInfo);
+            }
+            else
+            {   //未到生效时间，减去经过时间
+                buffInfo.durationTime -= Time.deltaTime;
+            }
+        }
+        foreach (var buffInfo in debuffList) //遍历debuffList
         {
             if (buffInfo.durationTime < 0) //生效时间已过,去掉buff
             {
