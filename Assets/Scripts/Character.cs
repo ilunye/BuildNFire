@@ -26,6 +26,7 @@ public class Character : MonoBehaviour
 
     public GameObject cam; // the camera
     public bool wasd = true;
+    public bool runSoundFlag = true;
     public KeyCode[] keycodes;
 
     public enum PlayerState
@@ -223,13 +224,18 @@ public class Character : MonoBehaviour
 
     private void Motion_Voice()
     {
-        if (Input.GetKeyDown(keycodes[0]) || Input.GetKeyDown(keycodes[1]) || Input.GetKeyDown(keycodes[2]) || Input.GetKeyDown(keycodes[3]))
+        if ((Input.GetKey(keycodes[0]) || Input.GetKey(keycodes[1]) || Input.GetKey(keycodes[2]) || Input.GetKey(keycodes[3])) && runSoundFlag)
         {
             run_source.Play();
-        }
-        if (!(Input.GetKey(keycodes[0]) || Input.GetKey(keycodes[1]) || Input.GetKey(keycodes[2]) || Input.GetKey(keycodes[3])))
+            runSoundFlag = false;
+        }else if (!Input.GetKey(keycodes[0]) && !Input.GetKey(keycodes[1]) && !Input.GetKey(keycodes[2]) && !Input.GetKey(keycodes[3]))
         {
             run_source.Stop();
+            runSoundFlag = true;
+        }
+        if(playerState == PlayerState.Falling){
+            run_source.Stop();
+            runSoundFlag = true;
         }
     }
 
