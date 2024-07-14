@@ -79,7 +79,7 @@ public class WorkFlow : MonoBehaviour
         }else if(workFlowPos % 4 >= 2 && workFlowPos < 8){
             toPickWood = true;
             toPickIron = false;
-        }else if(workFlowPos < 12){
+        }else if(workFlowPos < 10){
             toPickWood = false;
             toPickIron = true;
         }else{
@@ -99,19 +99,20 @@ public class WorkFlow : MonoBehaviour
             DisableAllChildren(frame_iron);
         }
 
-        if(toPickIron && isIron && iron_number < 4f){
+        if(toPickIron && isIron && iron_number < 3f){
+            Debug.Log("want iron come iron");
             workFlowPos += 2;
-            if(workFlowPos > 12)
-                workFlowPos = 12;
+            if(workFlowPos > 10)
+                workFlowPos = 10;
             iron_number += 1f;
-            if(iron_number > 4f)
-                iron_number = 4f;
+            if(iron_number > 3f)
+                iron_number = 3f;
             if(iron_number <= 2f){
                 toPickIron = false;
                 toPickWood = true;
                 DisableAllChildren(frame_iron);
                 AbleAllChildren(frame_wood);
-            }else if(iron_number < 4f){
+            }else if(iron_number < 3f){
                 toPickIron = true;
                 toPickWood = false;
                 DisableAllChildren(frame_iron);
@@ -123,9 +124,10 @@ public class WorkFlow : MonoBehaviour
                 DisableAllChildren(frame_wood);
             }
         }else if(toPickWood && wood_number < 2f && isWood){
+            Debug.Log("want wood come wood");
             workFlowPos += 2;
-            if(workFlowPos > 12)
-                workFlowPos = 12;
+            if(workFlowPos > 10)
+                workFlowPos = 10;
             wood_number += 1f;
             if(wood_number > 2f)
                 wood_number = 2f;
@@ -190,7 +192,7 @@ public class WorkFlow : MonoBehaviour
     private void UpdateText()
     {
         wood_text.text = wood_number.ToString() + "/2";
-        iron_text.text = iron_number.ToString() + "/4";
+        iron_text.text = iron_number.ToString() + "/3";
         gunpowder_text.text = gunpowder_number.ToString() + "/1";
         projectile_text.text = projectile_number.ToString() + "/1";
     }
