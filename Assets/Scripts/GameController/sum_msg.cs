@@ -50,11 +50,11 @@ public class sum_msg : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player1.GetComponent<WorkFlow>().iron_number == 6 && player1.GetComponent<WorkFlow>().wood_number == 4 && player1.GetComponent<WorkFlow>().gunpowder_number == 1 && player1.GetComponent<WorkFlow>().projectile_number == 1)
+        if (player1.GetComponent<WorkFlow>().iron_number == 3 && player1.GetComponent<WorkFlow>().wood_number == 2 && player1.GetComponent<WorkFlow>().gunpowder_number == 1 && player1.GetComponent<WorkFlow>().projectile_number == 1)
         {
             status = 1;
         }
-        else if (player2.GetComponent<WorkFlow>().iron_number == 6 && player2.GetComponent<WorkFlow>().wood_number == 4 && player2.GetComponent<WorkFlow>().gunpowder_number == 1 && player2.GetComponent<WorkFlow>().projectile_number == 1)
+        else if (player2.GetComponent<WorkFlow>().iron_number == 3 && player2.GetComponent<WorkFlow>().wood_number == 2 && player2.GetComponent<WorkFlow>().gunpowder_number == 1 && player2.GetComponent<WorkFlow>().projectile_number == 1)
         {
             status = 2;
         }

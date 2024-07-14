@@ -1508,6 +1508,10 @@ PrefabInstance:
       propertyPath: workFlow
       value: 
       objectReference: {fileID: 2104380341}
+    - target: {fileID: 240075265366132273, guid: aa641abd1d3cc9c4abb2cd901fdf185b, type: 3}
+      propertyPath: isProtected
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 855806794440648111, guid: aa641abd1d3cc9c4abb2cd901fdf185b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 805.76
