@@ -4,10 +4,10 @@ using TMPro;
 
 public class WorkFlow : MonoBehaviour
 {
-    public int wood_number=0;
-    public int iron_number=0;
-    public int gunpowder_number=0;
-    public int projectile_number=0;
+    public float wood_number=0f;
+    public float iron_number=0f;
+    public float gunpowder_number=0f;
+    public float projectile_number=0f;
     
     private TMP_Text wood_text;
     private TMP_Text iron_text;
@@ -23,6 +23,12 @@ public class WorkFlow : MonoBehaviour
 
     public bool toPickWood;
     public bool toPickIron;
+
+/*
+|--Wood--|--Iron--|--Wood--|--Iron--|--Iron--|--Iron--|
+*/
+    public int workFlowPos = 0; // start at 0, max = 12
+
 
     void Start()
     {
@@ -45,42 +51,60 @@ public class WorkFlow : MonoBehaviour
 
     void Update()
     {
+        if(workFlowPos % 4 < 2 && workFlowPos < 8){
+            toPickWood = true;
+            toPickIron = false;
+        }else if(workFlowPos < 12){
+            toPickWood = false;
+            toPickIron = true;
+        }else{
+            toPickWood = false;
+            toPickIron = false;
+        }
         HandleInput();
     }
 
-    private void HandleInput()
-    {
-        if (toPickIron&& iron_number < 6 && isIron)
-        {
-            iron_number++;
-            if(iron_number <= 4){
-                toPickIron=false;
-                toPickWood=true;
+    private void HandleInput(){
+        if(toPickIron && isIron && iron_number < 4f){
+            workFlowPos += 2;
+            if(workFlowPos > 12)
+                workFlowPos = 12;
+            iron_number += 1f;
+            if(iron_number > 4f)
+                iron_number = 4f;
+            if(iron_number <= 2f){
+                toPickIron = false;
+                toPickWood = true;
                 DisableAllChildren(frame_iron);
                 AbleAllChildren(frame_wood);
-            }else if(iron_number == 6){
-                toPickIron=false;
-                toPickWood=false;
+            }else if(iron_number < 4f){
+                toPickIron = true;
+                toPickWood = false;
+                DisableAllChildren(frame_iron);
+                DisableAllChildren(frame_wood);
+            }else{
+                toPickIron = false;
+                toPickWood = false;
                 DisableAllChildren(frame_iron);
                 DisableAllChildren(frame_wood);
             }
-        }
-        else if (toPickWood&& wood_number < 4 && isWood)
-        {
-            wood_number++;
-            toPickIron=true;
-            toPickWood=false;
+        }else if(toPickWood && wood_number < 2f && isWood){
+            workFlowPos += 2;
+            if(workFlowPos > 12)
+                workFlowPos = 12;
+            wood_number += 1f;
+            if(wood_number > 2f)
+                wood_number = 2f;
+            toPickIron = true;
+            toPickWood = false;
             AbleAllChildren(frame_iron);
             DisableAllChildren(frame_wood);
+        }else if(isPro && projectile_number < 1f){
+            projectile_number += 1f;
+        }else if(isPowder && gunpowder_number < 1f){
+            gunpowder_number += 1f;
         }
-        else if (isPro && projectile_number < 1)
-        {
-            projectile_number++;
-        }
-        else if (isPowder && gunpowder_number < 1)
-        {
-            gunpowder_number++;
-        }
+
         isIron = false;
         isWood = false;
         isPro = false;
@@ -88,13 +112,53 @@ public class WorkFlow : MonoBehaviour
 
         UpdateText();
     }
+    // private void HandleInput()
+    // {
+    //     if (toPickIron&& iron_number < 6 && isIron)
+    //     {
+    //         iron_number++;
+    //         if(iron_number <= 4){
+    //             toPickIron=false;
+    //             toPickWood=true;
+    //             DisableAllChildren(frame_iron);
+    //             AbleAllChildren(frame_wood);
+    //         }else if(iron_number == 6){
+    //             toPickIron=false;
+    //             toPickWood=false;
+    //             DisableAllChildren(frame_iron);
+    //             DisableAllChildren(frame_wood);
+    //         }
+    //     }
+    //     else if (toPickWood&& wood_number < 4 && isWood)
+    //     {
+    //         wood_number++;
+    //         toPickIron=true;
+    //         toPickWood=false;
+    //         AbleAllChildren(frame_iron);
+    //         DisableAllChildren(frame_wood);
+    //     }
+    //     else if (isPro && projectile_number < 1)
+    //     {
+    //         projectile_number++;
+    //     }
+    //     else if (isPowder && gunpowder_number < 1)
+    //     {
+    //         gunpowder_number++;
+    //     }
+    //     isIron = false;
+    //     isWood = false;
+    //     isPro = false;
+    //     isPowder = false;
+
+    //     UpdateText();
+    // }
 
     private void UpdateText()
     {
-        wood_text.text = wood_number + "/4";
-        iron_text.text = iron_number + "/6";
-        gunpowder_text.text = gunpowder_number + "/1";
-        projectile_text.text = projectile_number + "/1";
+        wood_text.text = wood_number.ToString() + "/2";
+        iron_text.text = iron_number.ToString() + "/4";
+        gunpowder_text.text = gunpowder_number.ToString() + "/1";
+        projectile_text.text = projectile_number.ToString() + "/1";
     }
 
     void DisableAllChildren(GameObject parent)
