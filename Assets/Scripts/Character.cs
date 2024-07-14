@@ -216,6 +216,7 @@ public class Character : MonoBehaviour
 
         if (sleep != 0)
         {
+            //Debug.Log("玩家休眠");
             PlayerSpeed = 0; //玩家休眠
             gameObject.GetComponent<Animator>().Play("StunnedLoop"); //播放晕倒动画
             gameObject.GetComponent<Character>().isFalling = true;
