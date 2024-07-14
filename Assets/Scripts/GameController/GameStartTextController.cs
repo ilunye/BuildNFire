@@ -12,26 +12,36 @@ public class GameStartTextController : MonoBehaviour
     [SerializeField]
     public TMP_Text StartText = null;
     private GameObject player1, player2;
-    void Awake(){
+
+    //voice
+    private GameObject BGM;
+    private AudioSource BGM_voice;
+    void Awake()
+    {
         StartText = GetComponent<TMP_Text>();
     }
     void Start()
     {
-            player1 = GameObject.Find("animal_people_wolf_1");
-            player2 = GameObject.Find("animal_people_wolf_2");
-            player1.GetComponent<Character>().enabled = false;
-            player2.GetComponent<Character>().enabled = false;
-            StartCoroutine(StartCountdown());
-        
+        player1 = GameObject.Find("animal_people_wolf_1");
+        player2 = GameObject.Find("animal_people_wolf_2");
+        player1.GetComponent<Character>().enabled = false;
+        player2.GetComponent<Character>().enabled = false;
+        StartCoroutine(StartCountdown());
+        BGM = Instantiate(Resources.Load("Audio/BGM") as GameObject);
+        BGM_voice = BGM.GetComponent<AudioSource>();
+
     }
 
-    IEnumerator StartCountdown(){
+    IEnumerator StartCountdown()
+    {
         int count = 3;
         RectTransform textRectTransform = StartText.GetComponent<RectTransform>();
         Vector2 startPosition = new Vector2(textRectTransform.anchoredPosition.x, -Screen.height / 2 - 10); // 屏幕底部
         Vector2 middlePosition = new Vector2(textRectTransform.anchoredPosition.x, textRectTransform.anchoredPosition.y); // 屏幕中间
-        while(count > 0){
-            switch (count){
+        while (count > 0)
+        {
+            switch (count)
+            {
                 case 3:
                     StartText.text = "THREE";
                     // set color
@@ -48,7 +58,8 @@ public class GameStartTextController : MonoBehaviour
             }
             float timeToMove = 0.5f;
             float elapsedTime = 0f;
-            while(elapsedTime < timeToMove){
+            while (elapsedTime < timeToMove)
+            {
                 textRectTransform.anchoredPosition = Vector2.Lerp(startPosition, middlePosition, elapsedTime / timeToMove);
                 elapsedTime += Time.deltaTime;
                 yield return null;
@@ -59,10 +70,12 @@ public class GameStartTextController : MonoBehaviour
         }
         StartText.text = "Start!";
         StartText.color = new Color(1, 1, 1);
+        Invoke("Play_BGM", 1f);
         textRectTransform.anchoredPosition = middlePosition;
         float finalMoveTime = 0.5f;
         float finalElapsedTime = 0f;
-        while(finalElapsedTime < finalMoveTime){
+        while (finalElapsedTime < finalMoveTime)
+        {
             textRectTransform.anchoredPosition = Vector2.Lerp(startPosition, middlePosition, finalElapsedTime / finalMoveTime);
             finalElapsedTime += Time.deltaTime;
             yield return null;
@@ -71,7 +84,8 @@ public class GameStartTextController : MonoBehaviour
 
         float fadeDuration = 0.5f;
         float fadeElapsedTime = 0f;
-        while(fadeElapsedTime < fadeDuration){
+        while (fadeElapsedTime < fadeDuration)
+        {
             StartText.color = new Color(1, 1, 1, 1 - fadeElapsedTime / fadeDuration);
             fadeElapsedTime += Time.deltaTime;
             yield return null;
@@ -85,6 +99,14 @@ public class GameStartTextController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+
+
+
+    private void Play_BGM()
+    {
+
+        BGM_voice.Play();
     }
 }

@@ -21,6 +21,11 @@ public class BuffHandler : MonoBehaviour
 
     public GameObject dejavu;
     public AudioSource dejavu_source;
+
+    private GameObject get_lock;
+    private AudioSource get_lock_voice;
+    private GameObject time_reverse;
+    private AudioSource time_reverse_voice;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +34,10 @@ public class BuffHandler : MonoBehaviour
         eat_burger_source = eat_burger.GetComponent<AudioSource>();
         dejavu = Instantiate(Resources.Load("Audio/dejavu") as GameObject);
         dejavu_source = dejavu.GetComponent<AudioSource>();
+        get_lock = Instantiate(Resources.Load("Audio/lock") as GameObject);
+        get_lock_voice = get_lock.GetComponent<AudioSource>();
+        time_reverse = Instantiate(Resources.Load("Audio/clock")as GameObject);
+        time_reverse_voice = time_reverse.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -123,11 +132,12 @@ public class BuffHandler : MonoBehaviour
                     break;
                 case "Clock":
                     buffInfo.buffData = CollObj.GetComponent<Clock>().buffData;
+                    time_reverse_voice.Play();
                     GetCollisionBuff(buffInfo, CollObj);
                     break;
                 case "Lock":
                     buffInfo.buffData = CollObj.GetComponent<Lock>().buffData;
-
+                    get_lock_voice.Play();
                     GetCollisionBuff(buffInfo, CollObj);
 
                     break;
