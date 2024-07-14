@@ -3,7 +3,7 @@ using UnityEngine.PlayerLoop;
 
 public class Bomb : MonoBehaviour
 {
-    private float delay = 10f; // 炸弹的延迟时间
+    private float delay = 9999f; // 炸弹的延迟时间
     private float explosionForce = 700f; // 爆炸的力量
     private float explosionRadius = 1.5f; // 爆炸的半径
     public GameObject explosionEffect; // 爆炸效果的预制体
@@ -146,13 +146,24 @@ public class Bomb : MonoBehaviour
             if (rb != null)
             {
                 if(nearbyObject.tag == "Player"){
-                    Debug.Log("bomb hit player");
                     BuffInfo buffInfo = new BuffInfo();
                     buffInfo.buffData = buffData;
                     buffInfo.target = nearbyObject.gameObject;
                     nearbyObject.GetComponent<BuffHandler>().AddBuff(buffInfo);
                 }
                 rb.AddExplosionForce(explosionForce, transform.position, explosionRadius);
+            }else{
+                if(nearbyObject.tag == "Cannon"){
+                    if(nearbyObject.name.EndsWith("1")){
+                        Debug.Log("bomb cannon1");
+                        GameObject g = GameObject.Find("PlayerUI_1");
+                        int t = g.GetComponent<WorkFlow>().workFlowPos;
+                        t--;
+                        if(t < 0)
+                            t = 0;
+                        g.GetComponent<WorkFlow>().workFlowPos = t;
+                    }
+                }
             }
         }
         // 销毁炸弹对象
