@@ -21,7 +21,7 @@ public class Character : MonoBehaviour
 
     public Property buffproperty;
 
-    private Animator Anim;
+    public Animator Anim;
     private AnimatorStateInfo stateInfo;
 
     public GameObject cam; // the camera
@@ -87,8 +87,11 @@ public class Character : MonoBehaviour
 
     public GameObject run;
     public AudioSource run_source;
-     public GameObject whatudo;
+    public GameObject whatudo;
     public AudioSource whatudo_source;
+
+    private GameObject item_fall;
+    private AudioSource item_fall_voice;
     void OnTriggerStay(Collider other) //get beat
     {
         if (isFalling || (other.tag == "Player" && other.gameObject.GetComponent<Character>().isFalling)) return;
@@ -134,6 +137,8 @@ public class Character : MonoBehaviour
         run_source = run.GetComponent<AudioSource>();
         whatudo = Instantiate(Resources.Load("Audio/whatareudoing") as GameObject);
         whatudo_source = whatudo.GetComponent<AudioSource>();
+        item_fall = Instantiate(Resources.Load("Audio/itemfall") as GameObject);
+        item_fall_voice = item_fall.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -342,7 +347,7 @@ public class Character : MonoBehaviour
         }
         if (Input.GetKeyUp(keycodes[4])) //改成getkeyup，长按E后再播放投掷动画
         {      // E
-            if (stateInfo.IsName("CastingLoop"))
+            if (stateInfo.IsName("CastingLoop") || stateInfo.IsName("CastingLoop 2"))
             {
                 playerState = PlayerState.Operating;
             }
@@ -379,6 +384,7 @@ public class Character : MonoBehaviour
                         obj.GetComponent<CollectableMaterials>().WillDisappear = false;
                         break;
                 }
+                item_fall_voice.Play();
                 Material = MaterialType.None;
                 Item = null;
             }

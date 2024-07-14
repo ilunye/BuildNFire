@@ -243,7 +243,11 @@ PrefabInstance:
     - target: {fileID: -3381929684787305776, guid: 9312126e574e97047b72657b5431e12a, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: 90fdf08bcf9e62a4399a5fb434a30e44, type: 2}
+      objectReference: {fileID: 2100000, guid: 093eec6a1048e704aad09d7166e33c15, type: 2}
+    - target: {fileID: 894893305237526879, guid: 9312126e574e97047b72657b5431e12a, type: 3}
+      propertyPath: m_Name
+      value: animal_people_wolf2
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9312126e574e97047b72657b5431e12a, type: 3}
       propertyPath: m_Name
       value: animal_people_wolf_2
