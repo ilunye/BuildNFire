@@ -86,8 +86,11 @@ public class Character : MonoBehaviour
 
     public GameObject run;
     public AudioSource run_source;
-     public GameObject whatudo;
+    public GameObject whatudo;
     public AudioSource whatudo_source;
+
+    private GameObject item_fall;
+    private AudioSource item_fall_voice;
     void OnTriggerStay(Collider other) //get beat
     {
         if (isFalling || (other.tag == "Player" && other.gameObject.GetComponent<Character>().isFalling)) return;
@@ -133,6 +136,8 @@ public class Character : MonoBehaviour
         run_source = run.GetComponent<AudioSource>();
         whatudo = Instantiate(Resources.Load("Audio/whatareudoing") as GameObject);
         whatudo_source = whatudo.GetComponent<AudioSource>();
+        item_fall = Instantiate(Resources.Load("Audio/itemfall") as GameObject);
+        item_fall_voice = item_fall.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -214,7 +219,8 @@ public class Character : MonoBehaviour
         //     pack.ShowPack(); //按下K展示背包
         //     RayCaseObj();  //拾捡物品
         // }
-        if(playerState == PlayerState.Idle){
+        if (playerState == PlayerState.Idle)
+        {
             // 更改rotation, y轴旋转不变
             transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
         }
@@ -360,6 +366,7 @@ public class Character : MonoBehaviour
                         obj.GetComponent<CollectableMaterials>().WillDisappear = false;
                         break;
                 }
+                item_fall_voice.Play();
                 Material = MaterialType.None;
                 Item = null;
             }

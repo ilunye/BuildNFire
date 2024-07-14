@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: animal_people_wolf_supercyan_material_head
+  m_Name: animal_people_wolf_supercyan_material_head 1
   m_Shader: {fileID: 4800000, guid: 46879f491c4ffb442a02036de7cab3e0, type: 3}
   m_Parent: {fileID: 2100000, guid: 0131b1bef0cc22d499fdf5534a666483, type: 2}
   m_ModifiedSerializedProperties: 0

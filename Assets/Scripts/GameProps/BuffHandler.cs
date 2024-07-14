@@ -64,24 +64,47 @@ public class BuffHandler : MonoBehaviour
         if (buffInfo != null)
         {
             AddBuff(buffInfo);
-            StartCoroutine(ChangeColorCoroutine());
+            if (CollObj.tag == "Lock") // add blue color
+            {
+                if (gameObject.name == "animal_people_wolf_1")
+                    StartCoroutine(ChangeColorCoroutine(GameObject.Find("animal_people_wolf2")));
+                else
+                    StartCoroutine(ChangeColorCoroutine(GameObject.Find("animal_people_wolf1")));
+            }
             Debug.Log("加上buff与" + CollObj.name);
             Destroy(CollObj);
         }
     }
 
 
-    IEnumerator ChangeColorCoroutine()
+    IEnumerator ChangeColorCoroutine(GameObject target1)
     {
-        GameObject wolfObject = GameObject.Find("animal_people_wolf1");
-        SkinnedMeshRenderer wolfRenderer = wolfObject.GetComponent<SkinnedMeshRenderer>();
 
-        wolfRenderer.material.color = Color.blue;
+        SkinnedMeshRenderer wolfRenderer = target1.GetComponent<SkinnedMeshRenderer>();
+
+        Material[] materials = wolfRenderer.sharedMaterials;
+
+        // 遍历所有的材质
+        foreach (Material material in materials)
+        {
+            // 在这里可以对每个材质做进一步的处理
+            material.color = new Color(65 / 255f, 105 / 255f, 225 / 255f);
+        }
+
+
 
         yield return new WaitForSeconds(7f);
+        foreach (Material material in materials)
+        {
+            // 在这里可以对每个材质做进一步的处理
+            material.color = Color.white;
+        }
 
-        wolfRenderer.material.color = Color.white;
     }
+
+
+
+
     private void OnTriggerStay(Collider collision)
     {
         //Debug.Log("进入trigger区" + collision.name);
@@ -220,29 +243,29 @@ public class BuffHandler : MonoBehaviour
 
         /*
         Debug.Log(buffList);
-List<BuffInfo> DeleteBuffList = new List<BuffInfo>();
-if (buffList != null)
-{
+    List<BuffInfo> DeleteBuffList = new List<BuffInfo>();
+    if (buffList != null)
+    {
     foreach (var tempbuffInfo in buffList)
     {
     Debug.Log("在deletebufflist中添加" + tempbuffInfo.buffData.BuffName);
         DeleteBuffList.Add(buffInfo);
 
     }
-}
+    }
 
-foreach (var tempbuffInfo in DeleteBuffList)
-{
+    foreach (var tempbuffInfo in DeleteBuffList)
+    {
     Debug.Log("遍历去掉buff" + tempbuffInfo.buffData.BuffName);
     RemoveBuff(tempbuffInfo);
 
-}
-buffInfo.durationTime = buffInfo.buffData.DurationTime;
+    }
+    buffInfo.durationTime = buffInfo.buffData.DurationTime;
 
-buffList.AddLast(buffInfo);
-Debug.Log("在bufflist中添加" + buffInfo.buffData.BuffName);
-Debug.Log("执行oncreate");
-buffInfo.buffData.OnCreate.Apply(buffInfo);*/
+    buffList.AddLast(buffInfo);
+    Debug.Log("在bufflist中添加" + buffInfo.buffData.BuffName);
+    Debug.Log("执行oncreate");
+    buffInfo.buffData.OnCreate.Apply(buffInfo);*/
 
 
     }
