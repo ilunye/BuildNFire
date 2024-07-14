@@ -10,8 +10,7 @@ public class test : MonoBehaviour
     private int p;
     public float timer;
     private float throwForce;
-    private float destroyDelay;
-
+    private float destroyDelay = 5f;       
     private int bomb_num = 0;
     private int burger_num = 0;
     private int hourglass_num = 0;
@@ -26,13 +25,13 @@ public class test : MonoBehaviour
     void Start()
     {
         float distanceAbove = 2f;
-        destroyDelay = 4f;
+        // destroyDelay = 4f;
         spawnPosition = gameObject.transform.position + transform.up * distanceAbove;
         interval = 1f;
         p = (int)Random.Range(1, 4);
         interval = interval * p;
         throwForce = 1;
-        destroyDelay = 5f;
+        // destroyDelay = 5f;
     }
 
     void Update()
@@ -118,7 +117,10 @@ public class test : MonoBehaviour
             // set as kinetic
             Rigidbody cubeRigidbody = c.GetComponent<Rigidbody>();
             cubeRigidbody.AddForce(Vector3.up * throwForce + new Vector3(x, 0, z), ForceMode.Impulse);
-            StartCoroutine(BlinkAndDestroy(c, destroyDelay));
+            if(r == 0 || r == 1)
+                StartCoroutine(BlinkAndDestroy(c, 10f));
+            else
+                StartCoroutine(BlinkAndDestroy(c, destroyDelay));
 
 
             timer = 0f;

@@ -41,8 +41,25 @@ public class BuffHandler : MonoBehaviour
 
     public void GetCollisionBuff(BuffInfo buffInfo, GameObject CollObj) //得到碰撞物体的buff信息
     {
-        buffInfo.creater = CollObj;
-        buffInfo.target = gameObject;
+        if (CollObj.tag == "Lock" || CollObj.tag == "Clock") //debug add to other
+        {
+            buffInfo.creater = gameObject;
+            if (gameObject.name == "animal_people_wolf_1")
+            {
+                buffInfo.target = GameObject.Find("animal_people_wolf_2");
+            }
+            else
+            {
+                buffInfo.target = GameObject.Find("animal_people_wolf_1");
+            }
+        }
+        else
+        {
+            buffInfo.creater = CollObj;
+            buffInfo.target = gameObject;
+
+        }
+
         buffInfo.durationTime = buffInfo.buffData.DurationTime;
         if (buffInfo != null)
         {
@@ -53,11 +70,12 @@ public class BuffHandler : MonoBehaviour
         }
     }
 
+
     IEnumerator ChangeColorCoroutine()
     {
         GameObject wolfObject = GameObject.Find("animal_people_wolf1");
         SkinnedMeshRenderer wolfRenderer = wolfObject.GetComponent<SkinnedMeshRenderer>();
-        Color skin = wolfRenderer.material.color;
+
         wolfRenderer.material.color = Color.blue;
 
         yield return new WaitForSeconds(7f);
