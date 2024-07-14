@@ -32,6 +32,8 @@ public class carMove : MonoBehaviour
 
     void OnTriggerEnter(Collider other){
         if(other.CompareTag("Player")){
+            AudioSource audioSource=GetComponent<AudioSource>();
+            audioSource.Play();
             other.gameObject.GetComponent<Character>().playerState = Character.PlayerState.Falling;
             other.gameObject.GetComponent<Character>().isFalling = true;
             other.gameObject.GetComponent<Animator>().Play("DAMAGED01");
