@@ -214,6 +214,10 @@ public class Character : MonoBehaviour
         //     pack.ShowPack(); //按下K展示背包
         //     RayCaseObj();  //拾捡物品
         // }
+        if(playerState == PlayerState.Idle){
+            // 更改rotation
+            transform.rotation = Quaternion.Euler(0, cam.transform.rotation.eulerAngles.y, 0);
+        }
 
     }
 
