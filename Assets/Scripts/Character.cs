@@ -12,7 +12,7 @@ public class Character : MonoBehaviour
     public float sleep = 0f; //冻结时间
     GameObject Player = null; //人物
 
-    public Pack pack; //引用背包
+    private Pack pack; //引用背包
     public GameObject Item = null; // the item that the player holds
 
     private Transform tr; //创造射线
@@ -246,7 +246,7 @@ public class Character : MonoBehaviour
             run_source.Stop();
             runSoundFlag = true;
         }
-        if(playerState == PlayerState.Falling){
+        if(playerState == PlayerState.Falling || playerState == PlayerState.Operating){
             run_source.Stop();
             runSoundFlag = true;
         }

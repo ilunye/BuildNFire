@@ -31,14 +31,10 @@ public class BuffHandler : MonoBehaviour
     void Start()
     {
         throwBomb = gameObject.GetComponent<ThrowBomb>();
-        eat_burger = Instantiate(Resources.Load("Audio/eat_burger") as GameObject);
-        eat_burger_source = eat_burger.GetComponent<AudioSource>();
-        dejavu = Instantiate(Resources.Load("Audio/dejavu") as GameObject);
-        dejavu_source = dejavu.GetComponent<AudioSource>();
-        get_lock = Instantiate(Resources.Load("Audio/lock") as GameObject);
-        get_lock_voice = get_lock.GetComponent<AudioSource>();
-        time_reverse = Instantiate(Resources.Load("Audio/clock") as GameObject);
-        time_reverse_voice = time_reverse.GetComponent<AudioSource>();
+        eat_burger_source = GameObject.Find("Audio/eat_burger").GetComponent<AudioSource>();
+        dejavu_source = GameObject.Find("Audio/dejavu").GetComponent<AudioSource>();
+        get_lock_voice = GameObject.Find("Audio/lock").GetComponent<AudioSource>();
+        time_reverse_voice = GameObject.Find("Audio/hourglass").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame

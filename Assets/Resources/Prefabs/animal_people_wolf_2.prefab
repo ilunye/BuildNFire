@@ -194,7 +194,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9312126e574e97047b72657b5431e12a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 802.72
+      value: 801.162
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9312126e574e97047b72657b5431e12a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -202,7 +202,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9312126e574e97047b72657b5431e12a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 982.26
+      value: 982.71
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9312126e574e97047b72657b5431e12a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -332,13 +332,13 @@ MonoBehaviour:
   enabled: 0
   PlayerSpeed: 1
   sleep: 0
-  pack: {fileID: 0}
   Item: {fileID: 0}
   buffData: {fileID: 0}
   buffproperty:
     speed: 1
     sleep: 0
     attack: 0
+  Anim: {fileID: 0}
   cam: {fileID: 0}
   wasd: 0
   runSoundFlag: 1
@@ -398,6 +398,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c1407e21b58928a4fbcb12556525946b, type: 3}
   - {fileID: 21300000, guid: b20fee621f569704ea584161671be925, type: 3}
   - {fileID: 21300000, guid: 5377d4b3d2cfecf4aa37639ccaf23751, type: 3}
+  - {fileID: 21300000, guid: 60ecb7a46a1bd7b409180e54a98bf801, type: 3}
 --- !u!114 &765293453634972665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -430,9 +431,9 @@ MonoBehaviour:
   bomb: {fileID: 0}
   CollObj: {fileID: 0}
   throwBomb: {fileID: 0}
-  eat_burger: {fileID: 0}
+  eat_burger: {fileID: 6830751212635471543, guid: a4fac8d8b68d16647a19d5829128169b, type: 3}
   eat_burger_source: {fileID: 0}
-  dejavu: {fileID: 0}
+  dejavu: {fileID: 1821349933238216836, guid: f612f02b74a331f4d8011a4a16729363, type: 3}
   dejavu_source: {fileID: 0}
 --- !u!65 &4463466699606395124
 BoxCollider:
