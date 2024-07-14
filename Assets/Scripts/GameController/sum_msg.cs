@@ -27,6 +27,7 @@ public class sum_msg : MonoBehaviour
 
     private GameObject bigBomb;
     private AudioSource bigBomb_voice;
+    private BombTrigger bombTrigger;
     public void ToMenu()
     {
         Application.LoadLevel("Scenes/HomeScreen");
@@ -36,6 +37,7 @@ public class sum_msg : MonoBehaviour
         theText = GetComponent<TMP_Text>();
         player1 = GameObject.Find("PlayerUI_1");
         player2 = GameObject.Find("PlayerUI_2");
+        bombTrigger = GetComponent<BombTrigger>();
     }
     void Start()
     {
@@ -64,14 +66,6 @@ public class sum_msg : MonoBehaviour
             button.SetActive(true);
             Play_Final();
             gameover = true;
-            endAnimation = Instantiate(Resources.Load("Prefabs/explode") as GameObject);
-            fire = Instantiate(Resources.Load("Prefabs/fire") as GameObject);
-            Vector3 endPosition = new Vector3(805f, 0f, 981f);
-            endAnimation.transform.position = endPosition;
-            fire.transform.position = endPosition;
-            ending_source.Play();
-            bigBomb_voice.Play();
-            Collide_Arround(endPosition);
         }
         else if (status == 2 && !gameover)
         {
@@ -79,22 +73,14 @@ public class sum_msg : MonoBehaviour
             button.SetActive(true);
             Play_Final();
             gameover = true;
-            endAnimation = Instantiate(Resources.Load("Prefabs/explode") as GameObject);
-            fire = Instantiate(Resources.Load("Prefabs/fire") as GameObject);
-            Vector3 endPosition = new Vector3(796f, 0f, 981f);
-            endAnimation.transform.position = endPosition;
-            fire.transform.position = endPosition;
-            ending_source.Play();
-            bigBomb_voice.Play();
-            Collide_Arround(endPosition);
         }
 
     }
 
     private void Collide_Arround(Vector3 endposition)
     {
-        float explosionRadius = 4f;
-        float explosionForce = 700f;
+        float explosionRadius = 20f;
+        float explosionForce = 200f;
         // 获取爆炸范围内的所有碰撞体
         Collider[] colliders = Physics.OverlapSphere(endposition, explosionRadius);
         foreach (Collider nearbyObject in colliders)
@@ -119,29 +105,35 @@ public class sum_msg : MonoBehaviour
     {
         Vector3 startposition;
         Vector3 targetposition;
-        if (status == 1)
+        if (status == 2)
         {
-            startposition = new Vector3(805f, 1.6f, 981f);
-            targetposition = new Vector3(796f, 1.6f, 981f);
+            startposition = new Vector3(804.42f, 1.6f, 981f);
+            targetposition = new Vector3(794.84f, 1.6f, 981f);
         }
         else
         {
 
-            startposition = new Vector3(796f, 1.6f, 981f);
-            targetposition = new Vector3(805f, 1.6f, 981f);
+            startposition = new Vector3(794.84f, 1.6f, 981f);
+            targetposition = new Vector3(804.42f, 1.6f, 981f);
         }
 
         float speed = 1.0f;
         float t = 0f;
-        while (t < 2f)
+        while (explode_bomb.transform.position != targetposition)
         {
             t += Time.deltaTime * speed;
             explode_bomb.transform.position = Vector3.Lerp(startposition, targetposition, t);
             yield return null;
         }
 
-        //Debug.Log(explode_bomb.transform.position);
-
+        if(status == 1){
+            bombTrigger.rightBomb();
+        }
+        else{
+            bombTrigger.leftBomb();
+        }
+        ending_source.Play();
+        bigBomb_voice.Play();
     }
 
 }
