@@ -29,7 +29,7 @@ public class TrafficControl : MonoBehaviour
         if (timer_red >= interval_red)
         {
             Instantiate(Resources.Load("prefabs/Vehicle_Container_color03_separate"));
-            interval_green=Random.Range(4,6);
+            interval_red=Random.Range(4,6);
             timer_red=0f;
         }
     }

@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class test : MonoBehaviour
+public class CarThrow : MonoBehaviour
 {
     public float interval;
     public Vector3 spawnPosition;
     private int p;
     public float timer;
     private float throwForce;
-    private float destroyDelay;
-
+    private float destroyDelay = 5f;       
     private int bomb_num = 0;
     private int burger_num = 0;
     private int hourglass_num = 0;
@@ -32,7 +31,7 @@ public class test : MonoBehaviour
         p = (int)Random.Range(1, 4);
         interval = interval * p;
         throwForce = 1;
-        destroyDelay = 5f;
+        // destroyDelay = 5f;
     }
 
     void Update()
@@ -118,7 +117,10 @@ public class test : MonoBehaviour
             // set as kinetic
             Rigidbody cubeRigidbody = c.GetComponent<Rigidbody>();
             cubeRigidbody.AddForce(Vector3.up * throwForce + new Vector3(x, 0, z), ForceMode.Impulse);
-            StartCoroutine(BlinkAndDestroy(c, destroyDelay));
+            if(r == 0 || r == 1)
+                StartCoroutine(BlinkAndDestroy(c, 10f));
+            else
+                StartCoroutine(BlinkAndDestroy(c, destroyDelay));
 
 
             timer = 0f;

@@ -21,11 +21,12 @@ public class Character : MonoBehaviour
 
     public Property buffproperty;
 
-    private Animator Anim;
+    public Animator Anim;
     private AnimatorStateInfo stateInfo;
 
     public GameObject cam; // the camera
     public bool wasd = true;
+    public bool runSoundFlag = true;
     public KeyCode[] keycodes;
 
     public enum PlayerState
@@ -86,8 +87,11 @@ public class Character : MonoBehaviour
 
     public GameObject run;
     public AudioSource run_source;
-     public GameObject whatudo;
+    public GameObject whatudo;
     public AudioSource whatudo_source;
+
+    private GameObject item_fall;
+    private AudioSource item_fall_voice;
     void OnTriggerStay(Collider other) //get beat
     {
         if (isFalling || (other.tag == "Player" && other.gameObject.GetComponent<Character>().isFalling)) return;
@@ -133,6 +137,8 @@ public class Character : MonoBehaviour
         run_source = run.GetComponent<AudioSource>();
         whatudo = Instantiate(Resources.Load("Audio/whatareudoing") as GameObject);
         whatudo_source = whatudo.GetComponent<AudioSource>();
+        item_fall = Instantiate(Resources.Load("Audio/itemfall") as GameObject);
+        item_fall_voice = item_fall.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -169,22 +175,36 @@ public class Character : MonoBehaviour
             if (Material == MaterialType.Wood)
             {
                 GameObject g = Instantiate(Resources.Load("Prefabs/Wood") as GameObject);
-                g.transform.position = transform.position;
+                g.transform.position = transform.position + new Vector3(0, 0.5f, 0);
             }
             else if (Material == MaterialType.Bomb)
             {
                 GameObject g = Instantiate(Resources.Load("Prefabs/Bomb Red") as GameObject);
-                g.transform.position = transform.position;
+                g.transform.position = transform.position + new Vector3(0, 0.5f, 0);
             }
             else if (Material == MaterialType.IronOre)
             {
                 GameObject g = Instantiate(Resources.Load("Prefabs/Rock_03") as GameObject);
-                g.transform.position = transform.position;
+                g.transform.position = transform.position + new Vector3(0, 0.5f, 0);
+            }
+            else if (Material == MaterialType.Iron)
+            {
+                GameObject g = Instantiate(Resources.Load("Prefabs/ConcreteTubes") as GameObject);
+                g.transform.position = transform.position + new Vector3(0, 0.5f, 0);
+            }
+            else if (Material == MaterialType.GunPowder)
+            {
+                GameObject g = Instantiate(Resources.Load("Prefabs/explosiveBarrel") as GameObject);
+                g.transform.position = transform.position + new Vector3(0, 0.5f, 0);
+            }
+            else if (Material == MaterialType.CannonBall)
+            {
+                GameObject g = Instantiate(Resources.Load("Prefabs/projectile") as GameObject);
+                g.transform.position = transform.position + new Vector3(0, 0.5f, 0);
             }
             Material = MaterialType.None;
         }
         stateInfo = Anim.GetCurrentAnimatorStateInfo(0);
-        // PlayerMove(); //人物移动
         if (stateInfo.IsName("Idle") && playerState != PlayerState.ReadyToClaim)
         {
             playerState = PlayerState.Idle;
@@ -198,7 +218,6 @@ public class Character : MonoBehaviour
         }
         Motion();
         Motion_Voice();
-        pack.ShowPack(); //按下K展示背包
 
         if (sleep != 0)
         {
@@ -214,18 +233,27 @@ public class Character : MonoBehaviour
         //     pack.ShowPack(); //按下K展示背包
         //     RayCaseObj();  //拾捡物品
         // }
+        if(playerState == PlayerState.Falling){
+            // 更改rotation, y轴旋转不变
+            transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
+        }
 
     }
 
     private void Motion_Voice()
     {
-        if (Input.GetKeyDown(keycodes[0]) || Input.GetKeyDown(keycodes[1]) || Input.GetKeyDown(keycodes[2]) || Input.GetKeyDown(keycodes[3]))
+        if ((Input.GetKey(keycodes[0]) || Input.GetKey(keycodes[1]) || Input.GetKey(keycodes[2]) || Input.GetKey(keycodes[3])) && runSoundFlag)
         {
             run_source.Play();
-        }
-        if (!(Input.GetKey(keycodes[0]) || Input.GetKey(keycodes[1]) || Input.GetKey(keycodes[2]) || Input.GetKey(keycodes[3])))
+            runSoundFlag = false;
+        }else if (!Input.GetKey(keycodes[0]) && !Input.GetKey(keycodes[1]) && !Input.GetKey(keycodes[2]) && !Input.GetKey(keycodes[3]))
         {
             run_source.Stop();
+            runSoundFlag = true;
+        }
+        if(playerState == PlayerState.Falling){
+            run_source.Stop();
+            runSoundFlag = true;
         }
     }
 
@@ -319,7 +347,7 @@ public class Character : MonoBehaviour
         }
         if (Input.GetKeyUp(keycodes[4])) //改成getkeyup，长按E后再播放投掷动画
         {      // E
-            if (stateInfo.IsName("CastingLoop"))
+            if (stateInfo.IsName("CastingLoop") || stateInfo.IsName("CastingLoop 2"))
             {
                 playerState = PlayerState.Operating;
             }
@@ -356,6 +384,7 @@ public class Character : MonoBehaviour
                         obj.GetComponent<CollectableMaterials>().WillDisappear = false;
                         break;
                 }
+                item_fall_voice.Play();
                 Material = MaterialType.None;
                 Item = null;
             }
