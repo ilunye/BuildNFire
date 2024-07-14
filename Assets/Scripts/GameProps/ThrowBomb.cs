@@ -79,7 +79,7 @@ public class ThrowBomb : MonoBehaviour
     void Throw()
     {
         hasthrow = true;
-        Debug.Log("扔炸弹开始");
+        // Debug.Log("扔炸弹开始");
         bomb = Instantiate(Resources.Load("Prefabs/Bomb Red") as GameObject); // 创建炸弹实例
         // 设置炸弹的初始位置
         bomb.transform.localPosition = gameObject.transform.localPosition + gameObject.transform.forward * 0.5f;
@@ -92,16 +92,16 @@ public class ThrowBomb : MonoBehaviour
 
     IEnumerator ThrowBombPosition(Vector3 startPosition)
     {
-        Debug.Log("開始位置" + startPosition);
+        // Debug.Log("開始位置" + startPosition);
         elapsedTime = 0f;
 
         Vector3 gravity; //增加重力
 
         elapsedTime += Time.deltaTime;
-        Debug.Log("throwforce1 = " + throwForce);
+        // Debug.Log("throwforce1 = " + throwForce);
         while (elapsedTime < throwDuration && bomb)
         {
-            Debug.Log("循环" + elapsedTime);
+            // Debug.Log("循环" + elapsedTime);
             // 根据投掷速度和时间计算新的位置
             Debug.Log("throwforce = " + throwForce);
             float x = throwForce * elapsedTime * transform.forward.x;
@@ -112,7 +112,7 @@ public class ThrowBomb : MonoBehaviour
 
             // 更新炸弹的位置
             bomb.transform.position = newPosition;
-            Debug.Log("炸弹的当前位置为：" + bomb.transform.localPosition);
+            // Debug.Log("炸弹的当前位置为：" + bomb.transform.localPosition);
 
             elapsedTime += Time.deltaTime;
             yield return null;

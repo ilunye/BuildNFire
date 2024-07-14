@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2569627540541360952}
   m_Layer: 7
   m_Name: cannon
-  m_TagString: Untagged
+  m_TagString: Cannon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -132,7 +132,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 19.739038, y: 19.697157, z: 12.066578}
+  m_Size: {x: 9, y: 19.697157, z: 12.066578}
   m_Center: {x: 0.00000078701584, y: -7.408662, z: -4.1319942}
 --- !u!1 &1622608632642380666
 GameObject:

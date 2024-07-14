@@ -522,6 +522,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: ea69889e0cca277409940a63882cc542, type: 2}
   player: {fileID: 0}
+  furnace_name: f0
 --- !u!65 &526263333102782326
 BoxCollider:
   m_ObjectHideFlags: 0
