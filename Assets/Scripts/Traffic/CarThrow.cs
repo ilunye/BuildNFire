@@ -25,7 +25,7 @@ public class CarThrow : MonoBehaviour
     void Start()
     {
         float distanceAbove = 2f;
-        // destroyDelay = 4f;
+        destroyDelay = 7f;
         spawnPosition = gameObject.transform.position + transform.up * distanceAbove;
         interval = 1f;
         p = (int)Random.Range(1, 4);

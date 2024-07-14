@@ -175,22 +175,36 @@ public class Character : MonoBehaviour
             if (Material == MaterialType.Wood)
             {
                 GameObject g = Instantiate(Resources.Load("Prefabs/Wood") as GameObject);
-                g.transform.position = transform.position;
+                g.transform.position = transform.position + new Vector3(0, 0.5f, 0);
             }
             else if (Material == MaterialType.Bomb)
             {
                 GameObject g = Instantiate(Resources.Load("Prefabs/Bomb Red") as GameObject);
-                g.transform.position = transform.position;
+                g.transform.position = transform.position + new Vector3(0, 0.5f, 0);
             }
             else if (Material == MaterialType.IronOre)
             {
                 GameObject g = Instantiate(Resources.Load("Prefabs/Rock_03") as GameObject);
-                g.transform.position = transform.position;
+                g.transform.position = transform.position + new Vector3(0, 0.5f, 0);
+            }
+            else if (Material == MaterialType.Iron)
+            {
+                GameObject g = Instantiate(Resources.Load("Prefabs/ConcreteTubes") as GameObject);
+                g.transform.position = transform.position + new Vector3(0, 0.5f, 0);
+            }
+            else if (Material == MaterialType.GunPowder)
+            {
+                GameObject g = Instantiate(Resources.Load("Prefabs/explosiveBarrel") as GameObject);
+                g.transform.position = transform.position + new Vector3(0, 0.5f, 0);
+            }
+            else if (Material == MaterialType.CannonBall)
+            {
+                GameObject g = Instantiate(Resources.Load("Prefabs/projectile") as GameObject);
+                g.transform.position = transform.position + new Vector3(0, 0.5f, 0);
             }
             Material = MaterialType.None;
         }
         stateInfo = Anim.GetCurrentAnimatorStateInfo(0);
-        // PlayerMove(); //人物移动
         if (stateInfo.IsName("Idle") && playerState != PlayerState.ReadyToClaim)
         {
             playerState = PlayerState.Idle;
@@ -204,7 +218,6 @@ public class Character : MonoBehaviour
         }
         Motion();
         Motion_Voice();
-        pack.ShowPack(); //按下K展示背包
 
         if (sleep != 0)
         {
