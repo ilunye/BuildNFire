@@ -47,12 +47,23 @@ public class BuffHandler : MonoBehaviour
         if (buffInfo != null)
         {
             AddBuff(buffInfo);
+            StartCoroutine(ChangeColorCoroutine());
             Debug.Log("加上buff与" + CollObj.name);
             Destroy(CollObj);
         }
     }
 
+    IEnumerator ChangeColorCoroutine()
+    {
+        GameObject wolfObject = GameObject.Find("animal_people_wolf1");
+        SkinnedMeshRenderer wolfRenderer = wolfObject.GetComponent<SkinnedMeshRenderer>();
+        Color skin = wolfRenderer.material.color;
+        wolfRenderer.material.color = Color.blue;
 
+        yield return new WaitForSeconds(7f);
+
+        wolfRenderer.material.color = Color.white;
+    }
     private void OnTriggerStay(Collider collision)
     {
         //Debug.Log("进入trigger区" + collision.name);
@@ -75,7 +86,9 @@ public class BuffHandler : MonoBehaviour
                     break;
                 case "Lock":
                     buffInfo.buffData = CollObj.GetComponent<Lock>().buffData;
+
                     GetCollisionBuff(buffInfo, CollObj);
+
                     break;
                 case "Bomb":
 
