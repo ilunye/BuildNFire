@@ -6,15 +6,15 @@ public class StartAudio : MonoBehaviour
 {
     
     void Start()
-    {
-        AudioSource audioSource = gameObject.GetComponent<AudioSource>();//从音频的第一秒开始播放音频
-        audioSource.time = 1.2f;
-        audioSource.Play();
-    }
+{
+    //Invoke("PlayAudio", 1f);
+    PlayAudio();
+}
 
-    // Update is called once per frame
-    void Update()
+void PlayAudio()
     {
-        
+        AudioSource audioSource = gameObject.GetComponent<AudioSource>();
+    
+        audioSource.Play();
     }
 }
