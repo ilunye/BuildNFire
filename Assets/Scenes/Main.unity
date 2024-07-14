@@ -9099,6 +9099,7 @@ MonoBehaviour:
   button: {fileID: 921546984}
   status: 0
   theText: {fileID: 0}
+  explode_bomb: {fileID: 0}
 --- !u!114 &1979723292
 MonoBehaviour:
   m_ObjectHideFlags: 0
