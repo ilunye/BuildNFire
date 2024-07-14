@@ -10,6 +10,7 @@ public class GameStartTextController : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField]
+    private GameObject audio_321;
     public TMP_Text StartText = null;
     private GameObject player1, player2;
 
@@ -19,6 +20,7 @@ public class GameStartTextController : MonoBehaviour
     void Awake()
     {
         StartText = GetComponent<TMP_Text>();
+        audio_321= GameObject.Find("321_go");
     }
     void Start()
     {
@@ -34,6 +36,7 @@ public class GameStartTextController : MonoBehaviour
 
     IEnumerator StartCountdown()
     {
+        //yield return new WaitForSeconds(1.2f); 
         int count = 3;
         RectTransform textRectTransform = StartText.GetComponent<RectTransform>();
         Vector2 startPosition = new Vector2(textRectTransform.anchoredPosition.x, -Screen.height / 2 - 10); // 屏幕底部
