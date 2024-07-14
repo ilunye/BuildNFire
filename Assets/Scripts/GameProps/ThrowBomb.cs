@@ -40,7 +40,7 @@ public class ThrowBomb : MonoBehaviour
         if (GetComponent<Character>().Material == Character.MaterialType.Bomb) //如果玩家捡到炸弹
         {
             // BombImage.SetActive(true);
-            if (Input.GetKey(keyCodeE)) //如果长按M则累计投掷的力量
+            if (Input.GetKey(keyCodeE)) //如果长按E则累计投掷的力量
             {
                 if (throwForce < MaxThrowForce)
                 {
@@ -84,11 +84,11 @@ public class ThrowBomb : MonoBehaviour
         Vector3 startPosition = bomb.transform.localPosition;
 
         // 投掷炸弹，以一定的速度沿着投掷方向移动
-        StartCoroutine(ThrowBombPosition(startPosition));
+        StartCoroutine(ThrowBombPosition(startPosition, transform.forward));
 
     }
 
-    IEnumerator ThrowBombPosition(Vector3 startPosition)
+    IEnumerator ThrowBombPosition(Vector3 startPosition, Vector3 direction)
     {
         elapsedTime = 0f;
 
@@ -98,8 +98,8 @@ public class ThrowBomb : MonoBehaviour
         while (elapsedTime < throwDuration && bomb)
         {
             // 根据投掷速度和时间计算新的位置
-            float x = throwForce * elapsedTime * transform.forward.x;
-            float z = throwForce * elapsedTime * transform.forward.z;
+            float x = throwForce * elapsedTime * direction.x;
+            float z = throwForce * elapsedTime * direction.z;
             float y = 0.5f + 5f * elapsedTime - 9.8f * 0.5f * Mathf.Pow(elapsedTime, 2);
             gravity = new Vector3(x, y, z);
             Vector3 newPosition = startPosition + gravity;
