@@ -171,9 +171,6 @@ PrefabInstance:
       addedObject: {fileID: 9110231178653921873}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9312126e574e97047b72657b5431e12a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1618243488329702629}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9312126e574e97047b72657b5431e12a, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 8596484131670090759}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9312126e574e97047b72657b5431e12a, type: 3}
       insertIndex: -1
@@ -240,7 +237,7 @@ MonoBehaviour:
   enabled: 0
   PlayerSpeed: 1
   sleep: 0
-  pack: {fileID: 1618243488329702629}
+  pack: {fileID: 0}
   Item: {fileID: 0}
   buffData: {fileID: 0}
   buffproperty:
@@ -249,6 +246,7 @@ MonoBehaviour:
     attack: 0
   cam: {fileID: 0}
   wasd: 1
+  runSoundFlag: 1
   keycodes: 
   Material: 0
   playerState: 0
@@ -265,22 +263,6 @@ MonoBehaviour:
   run_source: {fileID: 0}
   whatudo: {fileID: 0}
   whatudo_source: {fileID: 0}
---- !u!114 &1618243488329702629
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6490136728237138907}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f725a8d3993778244aa878f900e58f98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Items: []
-  MaxItem: 32
-  CurrentItemCount: 0
-  player: {fileID: 9110231178653921873}
 --- !u!65 &8596484131670090759
 BoxCollider:
   m_ObjectHideFlags: 0
