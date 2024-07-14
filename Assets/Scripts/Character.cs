@@ -21,7 +21,7 @@ public class Character : MonoBehaviour
 
     public Property buffproperty;
 
-    private Animator Anim;
+    public Animator Anim;
     private AnimatorStateInfo stateInfo;
 
     public GameObject cam; // the camera
@@ -329,7 +329,7 @@ public class Character : MonoBehaviour
         }
         if (Input.GetKeyUp(keycodes[4])) //改成getkeyup，长按E后再播放投掷动画
         {      // E
-            if (stateInfo.IsName("CastingLoop"))
+            if (stateInfo.IsName("CastingLoop") || stateInfo.IsName("CastingLoop 2"))
             {
                 playerState = PlayerState.Operating;
             }
