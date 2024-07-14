@@ -36,7 +36,6 @@ public class Pack : MonoBehaviour  //背包
                 item.IsGrab = true;
             }
             else{
-                Debug.Log("背包已经满啦！！");
             }
             
         }
@@ -75,7 +74,6 @@ public class Pack : MonoBehaviour  //背包
             {
                 show += i++ + "物品：[" + currItem.objName + "], 数量：" + currItem.count + "\n";
             }
-            Debug.Log(show);
         }
         
     }

@@ -10,6 +10,9 @@ public class Furnace : MonoBehaviour
     private Transform outPos;
     private bool playerIn = false;
     private bool hasFire = false;
+    public GameObject fire;
+    public GameObject open_door;
+    public GameObject clock;
 
     public string furnace_name = "f0";
     private int iron_number = 0;
@@ -46,6 +49,10 @@ public class Furnace : MonoBehaviour
     void Start()
     {
         animator = transform.GetChild(0).GetComponent<Animator>();
+        fire=GameObject.Find("fire");
+        open_door=GameObject.Find("open_door");
+        clock=GameObject.Find("clock");
+
         material.EnableKeyword("_EMISSION");
         material.SetColor("_EmissionColor", Color.black);
         outPos = transform.GetChild(1);
@@ -55,11 +62,15 @@ public class Furnace : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(playerIn && Input.GetKeyDown(player.GetComponent<Character>().keycodes[4])){
+        if(playerIn && Input.GetKeyDown(player.GetComponent<Character>().keycodes[4])){  
+            OpenDoor();
             if(player.GetComponent<Character>().Material == Character.MaterialType.Wood){
                 player.GetComponent<Character>().Material = Character.MaterialType.None;
                 Play();
                 AddFire();
+                Clock();
+                AudioFire();
+
             }else if(player.GetComponent<Character>().Material == Character.MaterialType.IronOre && hasFire){
                 player.GetComponent<Character>().Material = Character.MaterialType.None;
                 Play();
@@ -67,4 +78,31 @@ public class Furnace : MonoBehaviour
             }
         }
     }
+    private void OpenDoor(){
+        AudioSource opendoor =open_door.GetComponent<AudioSource>();//放音频
+        float startTime = 0f;
+        float duration = 2f; 
+        opendoor.time = startTime;
+        opendoor.PlayScheduled(AudioSettings.dspTime); 
+        opendoor.SetScheduledEndTime(AudioSettings.dspTime + duration);
+        
+            
+    }
+    private void Clock(){
+        AudioSource c =open_door.GetComponent<AudioSource>();
+        float startTime = 0f;
+        float duration = 15f; 
+        c.time = startTime;
+        c.PlayScheduled(AudioSettings.dspTime); 
+        c.SetScheduledEndTime(AudioSettings.dspTime + duration);
+    }
+    private void AudioFire (){
+        AudioSource c =fire.GetComponent<AudioSource>();
+        float startTime = 0f;
+        float duration = 15f; 
+        c.time = startTime;
+        c.PlayScheduled(AudioSettings.dspTime); 
+        c.SetScheduledEndTime(AudioSettings.dspTime + duration);
+    }
+
 }

@@ -50,7 +50,6 @@ public class ThrowBomb : MonoBehaviour
 
             if (Input.GetKeyUp(keyCodeE)) // 检测玩家按下投掷按钮
             {
-                Debug.Log("按下E，扔炸弹");
                 Throw();
                 GetComponent<Character>().Material =Character.MaterialType.None;
 
@@ -79,7 +78,6 @@ public class ThrowBomb : MonoBehaviour
     void Throw()
     {
         hasthrow = true;
-        Debug.Log("扔炸弹开始");
         bomb = Instantiate(Resources.Load("Prefabs/Bomb Red") as GameObject); // 创建炸弹实例
         // 设置炸弹的初始位置
         bomb.transform.localPosition = gameObject.transform.localPosition + gameObject.transform.forward * 0.5f;
