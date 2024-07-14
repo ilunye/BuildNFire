@@ -16,29 +16,37 @@ public class Furnace : MonoBehaviour
 
     public string furnace_name = "f0";
     private int iron_number = 0;
-    void OnTriggerEnter(Collider other) {
-        if(other.gameObject == player){
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject == player)
+        {
             playerIn = true;
         }
     }
-    void OnTriggerExit(Collider other) {
-        if(other.gameObject == player){
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject == player)
+        {
             playerIn = false;
         }
     }
-    public void Play(){
+    public void Play()
+    {
         animator.Play("furnace");
     }
-    private void Fireoff(){
+    private void Fireoff()
+    {
         material.SetColor("_EmissionColor", Color.black);
         hasFire = false;
     }
-    public void AddFire(){
+    public void AddFire()
+    {
         material.SetColor("_EmissionColor", Color.white);
         hasFire = true;
         Invoke("Fireoff", 15f);
     }
-    private void smelting(){
+    private void smelting()
+    {
         GameObject g = Instantiate(Resources.Load("Prefabs/ConcreteTubes") as GameObject, outPos.position, Quaternion.identity);
         g.name = "concrete_tube_" + furnace_name + "_" + iron_number.ToString();
         iron_number++;
@@ -49,9 +57,9 @@ public class Furnace : MonoBehaviour
     void Start()
     {
         animator = transform.GetChild(0).GetComponent<Animator>();
-        fire=GameObject.Find("fire");
-        open_door=GameObject.Find("open_door");
-        clock=GameObject.Find("clock");
+        fire = GameObject.Find("fire");
+        open_door = GameObject.Find("open_door");
+        clock = GameObject.Find("clock1");
 
         material.EnableKeyword("_EMISSION");
         material.SetColor("_EmissionColor", Color.black);
@@ -62,46 +70,53 @@ public class Furnace : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(playerIn && Input.GetKeyDown(player.GetComponent<Character>().keycodes[4])){  
+        if (playerIn && Input.GetKeyDown(player.GetComponent<Character>().keycodes[4]))
+        {
             OpenDoor();
-            if(player.GetComponent<Character>().Material == Character.MaterialType.Wood){
+            if (player.GetComponent<Character>().Material == Character.MaterialType.Wood)
+            {
                 player.GetComponent<Character>().Material = Character.MaterialType.None;
                 Play();
                 AddFire();
-                Clock();
+                clock1();
                 AudioFire();
 
-            }else if(player.GetComponent<Character>().Material == Character.MaterialType.IronOre && hasFire){
+            }
+            else if (player.GetComponent<Character>().Material == Character.MaterialType.IronOre && hasFire)
+            {
                 player.GetComponent<Character>().Material = Character.MaterialType.None;
                 Play();
                 Invoke("smelting", 5f);
             }
         }
     }
-    private void OpenDoor(){
-        AudioSource opendoor =open_door.GetComponent<AudioSource>();//放音频
+    private void OpenDoor()
+    {
+        AudioSource opendoor = open_door.GetComponent<AudioSource>();//放音频
         float startTime = 0f;
-        float duration = 2f; 
+        float duration = 2f;
         opendoor.time = startTime;
-        opendoor.PlayScheduled(AudioSettings.dspTime); 
+        opendoor.PlayScheduled(AudioSettings.dspTime);
         opendoor.SetScheduledEndTime(AudioSettings.dspTime + duration);
-        
-            
+
+
     }
-    private void Clock(){
-        AudioSource c =open_door.GetComponent<AudioSource>();
+    private void clock1()
+    {
+        AudioSource c = open_door.GetComponent<AudioSource>();
         float startTime = 0f;
-        float duration = 15f; 
+        float duration = 15f;
         c.time = startTime;
-        c.PlayScheduled(AudioSettings.dspTime); 
+        c.PlayScheduled(AudioSettings.dspTime);
         c.SetScheduledEndTime(AudioSettings.dspTime + duration);
     }
-    private void AudioFire (){
-        AudioSource c =fire.GetComponent<AudioSource>();
+    private void AudioFire()
+    {
+        AudioSource c = fire.GetComponent<AudioSource>();
         float startTime = 0f;
-        float duration = 15f; 
+        float duration = 15f;
         c.time = startTime;
-        c.PlayScheduled(AudioSettings.dspTime); 
+        c.PlayScheduled(AudioSettings.dspTime);
         c.SetScheduledEndTime(AudioSettings.dspTime + duration);
     }
 

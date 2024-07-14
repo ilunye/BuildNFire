@@ -9,6 +9,7 @@ public class BuffHandler : MonoBehaviour
 {
 
     public LinkedList<BuffInfo> buffList = new LinkedList<BuffInfo>(); //存放buff的链表
+    private LinkedList<BuffInfo> debuffList = new LinkedList<BuffInfo>(); //debuff link
     public BuffInfo CurrBuffInfo; //现在生效的buff
 
     public Bomb bomb;
@@ -36,7 +37,7 @@ public class BuffHandler : MonoBehaviour
         dejavu_source = dejavu.GetComponent<AudioSource>();
         get_lock = Instantiate(Resources.Load("Audio/lock") as GameObject);
         get_lock_voice = get_lock.GetComponent<AudioSource>();
-        time_reverse = Instantiate(Resources.Load("Audio/clock")as GameObject);
+        time_reverse = Instantiate(Resources.Load("Audio/clock") as GameObject);
         time_reverse_voice = time_reverse.GetComponent<AudioSource>();
     }
 
@@ -140,7 +141,6 @@ public class BuffHandler : MonoBehaviour
 
                     break;
                 case "Bomb":
-
                     bomb = CollObj.GetComponent<Bomb>();
                     buffInfo.buffData = CollObj.GetComponent<Bomb>().buffData;
                     //Debug.Log("是否已经爆炸" + bomb.hasExploded );
@@ -233,14 +233,26 @@ public class BuffHandler : MonoBehaviour
                 }
                 else //没找到
                 {*/
-        foreach (var TempbuffInfo in buffList)
+
+        if (buffInfo.buffData.BuffID == 1)
         {
-            TempbuffInfo.durationTime = 0;
+            foreach (var TempbuffInfo in buffList)
+            {
+                TempbuffInfo.durationTime = 0;
+            }
+            buffList.AddLast(buffInfo); //添加到buffList的末尾
         }
+        else
+        {
+            foreach (var TempbuffInfo in debuffList)
+            {
+                TempbuffInfo.durationTime = 0;
+            }
+            debuffList.AddLast(buffInfo); //添加到debuffList的末尾
+        }
+
         buffInfo.durationTime = buffInfo.buffData.DurationTime;
         buffInfo.buffData.OnCreate.Apply(buffInfo); //启动buff
-
-        buffList.AddLast(buffInfo); //添加到buffList的末尾
 
         //根据priority对buffList进行排序
         SortBuffList(buffList);
