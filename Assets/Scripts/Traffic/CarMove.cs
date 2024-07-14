@@ -19,7 +19,7 @@ public class carMove : MonoBehaviour
     public GameObject lastHit;
     public bool green = true;
     private float initialVelocityX=1f;
-    private float initialVelocityZ=1f;
+    private float initialVelocityZ=-1f;
     private float throwForce=2f;
 
     void resetRayCast(){
@@ -39,7 +39,9 @@ public class carMove : MonoBehaviour
             other.gameObject.GetComponent<Animator>().Play("DAMAGED01");
             lastHit = other.gameObject;
             Rigidbody r = other.gameObject.GetComponent<Rigidbody>();
-            r.AddForce(Vector3.up*throwForce+new Vector3(initialVelocityX,0,initialVelocityZ ),ForceMode.Impulse);
+            bool chooseLeft = (int)Random.Range(0,2)==0;
+            initialVelocityX = chooseLeft ? -1f : 1f;
+            r.AddForce(Vector3.up*throwForce+new Vector3(initialVelocityX,0,initialVelocityZ),ForceMode.Impulse);
 
         }
         if(other.tag == "car"){
