@@ -12,10 +12,9 @@ GameObject:
   - component: {fileID: 3374260}
   - component: {fileID: 2374260}
   - component: {fileID: -4361017848822954901}
-  - component: {fileID: -6716820673095268362}
   - component: {fileID: 1780158158815488021}
-  - component: {fileID: -7497000764475307313}
   - component: {fileID: 3828831990660675377}
+  - component: {fileID: 2655583815492351961}
   m_Layer: 0
   m_Name: Bomb Red
   m_TagString: Bomb
@@ -31,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 174260}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2644612, y: -0.49794847, z: 0.20959048, w: 0.7988613}
+  m_LocalRotation: {x: 0.26446387, y: -0.49794877, z: 0.20959236, w: 0.79885983}
   m_LocalPosition: {x: -0.237, y: 0.031000005, z: 0.283}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -105,27 +104,6 @@ MonoBehaviour:
   hasExploded: 0
   buffData: {fileID: 11400000, guid: cac43bde15c964147a06c0820aa6a47a, type: 2}
   claimed: 0
---- !u!135 &-6716820673095268362
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 174260}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.12390906
-  m_Center: {x: 0.000000037252903, y: 0, z: 0}
 --- !u!54 &1780158158815488021
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -153,8 +131,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!135 &-7497000764475307313
-SphereCollider:
+--- !u!114 &3828831990660675377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d004e8d48663e9847acf2d2e0b6af135, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundEffect: {fileID: 0}
+  audioSource: {fileID: 0}
+--- !u!65 &2655583815492351961
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -172,19 +164,5 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.12390906
-  m_Center: {x: 0.000000067055225, y: -0.000000014901161, z: 1.110223e-15}
---- !u!114 &3828831990660675377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 174260}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d004e8d48663e9847acf2d2e0b6af135, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  soundEffect: {fileID: 0}
-  audioSource: {fileID: 0}
+  m_Size: {x: 0.24528067, y: 0.24781813, z: 0.2}
+  m_Center: {x: 0.0000000372529, y: -5.551115e-16, z: -0.000030517578}
