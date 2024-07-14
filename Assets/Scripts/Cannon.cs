@@ -97,22 +97,28 @@ public class Cannon : MonoBehaviour
             switch(player.GetComponent<Character>().Material){
                 case Character.MaterialType.CannonBall:
                     workFlow.isPro = true;
-                    player.GetComponent<Character>().Material = Character.MaterialType.None;
+                    if(workFlow.projectile_number < 1){
+                        player.GetComponent<Character>().Material = Character.MaterialType.None;
+                        player.GetComponent<Character>().Anim.Play("CastingLoop 2");
+                    }
                     break;
                 case Character.MaterialType.GunPowder:
                     workFlow.isPowder = true;
-                    player.GetComponent<Character>().Material = Character.MaterialType.None;
+                    if(workFlow.gunpowder_number < 1){
+                        player.GetComponent<Character>().Material = Character.MaterialType.None;
+                        player.GetComponent<Character>().Anim.Play("CastingLoop 2");
+                    }
                     break; 
                 case Character.MaterialType.Iron:
                     workFlow.isIron = true;
-                    if(workFlow.iron_number <= 6 && workFlow.toPickIron){
+                    if(workFlow.iron_number < 6 && workFlow.toPickIron){
                         player.GetComponent<Character>().Material = Character.MaterialType.None;
                         next_state();
                     }
                     break;
                 case Character.MaterialType.Wood:
                     workFlow.isWood = true;
-                    if(workFlow.wood_number <= 4 && workFlow.toPickWood){
+                    if(workFlow.wood_number < 4 && workFlow.toPickWood){
                         player.GetComponent<Character>().Material = Character.MaterialType.None;
                         next_state();
                     }

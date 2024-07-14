@@ -21,11 +21,12 @@ public class Character : MonoBehaviour
 
     public Property buffproperty;
 
-    private Animator Anim;
+    public Animator Anim;
     private AnimatorStateInfo stateInfo;
 
     public GameObject cam; // the camera
     public bool wasd = true;
+    public bool runSoundFlag = true;
     public KeyCode[] keycodes;
 
     public enum PlayerState
@@ -219,8 +220,7 @@ public class Character : MonoBehaviour
         //     pack.ShowPack(); //按下K展示背包
         //     RayCaseObj();  //拾捡物品
         // }
-        if (playerState == PlayerState.Idle)
-        {
+        if(playerState == PlayerState.Falling){
             // 更改rotation, y轴旋转不变
             transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
         }
@@ -229,13 +229,18 @@ public class Character : MonoBehaviour
 
     private void Motion_Voice()
     {
-        if (Input.GetKeyDown(keycodes[0]) || Input.GetKeyDown(keycodes[1]) || Input.GetKeyDown(keycodes[2]) || Input.GetKeyDown(keycodes[3]))
+        if ((Input.GetKey(keycodes[0]) || Input.GetKey(keycodes[1]) || Input.GetKey(keycodes[2]) || Input.GetKey(keycodes[3])) && runSoundFlag)
         {
             run_source.Play();
-        }
-        if (!(Input.GetKey(keycodes[0]) || Input.GetKey(keycodes[1]) || Input.GetKey(keycodes[2]) || Input.GetKey(keycodes[3])))
+            runSoundFlag = false;
+        }else if (!Input.GetKey(keycodes[0]) && !Input.GetKey(keycodes[1]) && !Input.GetKey(keycodes[2]) && !Input.GetKey(keycodes[3]))
         {
             run_source.Stop();
+            runSoundFlag = true;
+        }
+        if(playerState == PlayerState.Falling){
+            run_source.Stop();
+            runSoundFlag = true;
         }
     }
 
@@ -329,7 +334,7 @@ public class Character : MonoBehaviour
         }
         if (Input.GetKeyUp(keycodes[4])) //改成getkeyup，长按E后再播放投掷动画
         {      // E
-            if (stateInfo.IsName("CastingLoop"))
+            if (stateInfo.IsName("CastingLoop") || stateInfo.IsName("CastingLoop 2"))
             {
                 playerState = PlayerState.Operating;
             }

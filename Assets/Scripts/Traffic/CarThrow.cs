@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class test : MonoBehaviour
+public class CarThrow : MonoBehaviour
 {
     public float interval;
     public Vector3 spawnPosition;

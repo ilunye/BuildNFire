@@ -2088,10 +2088,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -4361017848822954901, guid: 1f8b37450fb3d004e9073960d4c6ff82, type: 3}
-      propertyPath: hasExploded
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 174260, guid: 1f8b37450fb3d004e9073960d4c6ff82, type: 3}
       propertyPath: m_Name
       value: Bomb Red
