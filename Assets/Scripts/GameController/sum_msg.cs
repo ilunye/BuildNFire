@@ -4,6 +4,8 @@ using UnityEngine;
 using TMPro;
 using UnityEditor;
 using Unity.VisualScripting;
+using System;
+using System.Net;
 
 public class sum_msg : MonoBehaviour
 {
@@ -19,6 +21,12 @@ public class sum_msg : MonoBehaviour
 
     private GameObject ending;
     private AudioSource ending_source;
+
+    private GameObject endAnimation;
+    private GameObject fire;
+
+    private GameObject bigBomb;
+    private AudioSource bigBomb_voice;
     public void ToMenu()
     {
         Application.LoadLevel("Scenes/HomeScreen");
@@ -34,6 +42,8 @@ public class sum_msg : MonoBehaviour
         button.SetActive(false);
         ending = Instantiate(Resources.Load("Audio/ending") as GameObject);
         ending_source = ending.GetComponent<AudioSource>();
+        bigBomb = Instantiate(Resources.Load("Audio/bigbomb") as GameObject);
+        bigBomb_voice = bigBomb.GetComponent<AudioSource>();
 
     }
 
@@ -54,6 +64,14 @@ public class sum_msg : MonoBehaviour
             button.SetActive(true);
             Play_Final();
             gameover = true;
+            endAnimation = Instantiate(Resources.Load("Prefabs/explode") as GameObject);
+            fire = Instantiate(Resources.Load("Prefabs/fire") as GameObject);
+            Vector3 endPosition = new Vector3(805f, 0f, 981f);
+            endAnimation.transform.position = endPosition;
+            fire.transform.position = endPosition;
+            ending_source.Play();
+            bigBomb_voice.Play();
+            Collide_Arround(endPosition);
         }
         else if (status == 2 && !gameover)
         {
@@ -61,10 +79,31 @@ public class sum_msg : MonoBehaviour
             button.SetActive(true);
             Play_Final();
             gameover = true;
-        }
-        if (gameover)
-        {
+            endAnimation = Instantiate(Resources.Load("Prefabs/explode") as GameObject);
+            fire = Instantiate(Resources.Load("Prefabs/fire") as GameObject);
+            Vector3 endPosition = new Vector3(796f, 0f, 981f);
+            endAnimation.transform.position = endPosition;
+            fire.transform.position = endPosition;
             ending_source.Play();
+            bigBomb_voice.Play();
+            Collide_Arround(endPosition);
+        }
+
+    }
+
+    private void Collide_Arround(Vector3 endposition)
+    {
+        float explosionRadius = 4f;
+        float explosionForce = 700f;
+        // 获取爆炸范围内的所有碰撞体
+        Collider[] colliders = Physics.OverlapSphere(endposition, explosionRadius);
+        foreach (Collider nearbyObject in colliders)
+        {
+            Rigidbody rb = nearbyObject.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.AddExplosionForce(explosionForce, transform.position, explosionRadius);
+            }
         }
     }
 
@@ -102,6 +141,7 @@ public class sum_msg : MonoBehaviour
         }
 
         //Debug.Log(explode_bomb.transform.position);
+
     }
 
 }
