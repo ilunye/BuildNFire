@@ -639,6 +639,8 @@ MonoBehaviour:
   timer: 0
   waitTime: 0
   rayCastEnable: 1
+  carCongestion: 0
+  lastHit: {fileID: 0}
   green: 0
 --- !u!65 &4832465869539239927
 BoxCollider:

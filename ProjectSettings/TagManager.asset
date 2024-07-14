@@ -18,6 +18,7 @@ TagManager:
   - Burger
   - Lock
   - Bomb
+  - Tree
   layers:
   - Default
   - TransparentFX

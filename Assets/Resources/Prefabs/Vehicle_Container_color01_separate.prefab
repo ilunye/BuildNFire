@@ -719,6 +719,9 @@ MonoBehaviour:
   timer: 0
   waitTime: 0
   rayCastEnable: 0
+  carCongestion: 0
+  lastHit: {fileID: 0}
+  green: 1
 --- !u!54 &2806567036515662731
 Rigidbody:
   m_ObjectHideFlags: 0

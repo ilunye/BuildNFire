@@ -18,6 +18,9 @@ public class carMove : MonoBehaviour
     public bool carCongestion = false;
     public GameObject lastHit;
     public bool green = true;
+    private float initialVelocityX=1f;
+    private float initialVelocityZ=1f;
+    private float throwForce=2f;
 
     void resetRayCast(){
         rayCastEnable = true;
@@ -28,12 +31,14 @@ public class carMove : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider other){
-        if(other.tag == "Player"){
+        if(other.CompareTag("Player")){
             other.gameObject.GetComponent<Character>().playerState = Character.PlayerState.Falling;
             other.gameObject.GetComponent<Character>().isFalling = true;
             other.gameObject.GetComponent<Animator>().Play("DAMAGED01");
             lastHit = other.gameObject;
-            speed = 0;
+            Rigidbody r = other.gameObject.GetComponent<Rigidbody>();
+            r.AddForce(Vector3.up*throwForce+new Vector3(initialVelocityX,0,initialVelocityZ ),ForceMode.Impulse);
+
         }
         if(other.tag == "car"){
             lastHit = other.gameObject;

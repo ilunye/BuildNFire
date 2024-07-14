@@ -38,6 +38,10 @@ public class UIController : MonoBehaviour
                 RawImage.SetActive(true);
                 RawImage.GetComponent<Image>().sprite = sprites[4];
                 break;
+            case Character.MaterialType.Bomb:
+                RawImage.SetActive(true);
+                RawImage.GetComponent<Image>().sprite = sprites[5];
+                break;
             default:
                 RawImage.SetActive(false);
                 break;
