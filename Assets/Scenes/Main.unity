@@ -3718,6 +3718,7 @@ GameObject:
   - component: {fileID: 1113154094}
   - component: {fileID: 1113154098}
   - component: {fileID: 1113154097}
+  - component: {fileID: 1113154099}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: Untagged
@@ -3876,6 +3877,27 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!114 &1113154099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1113154093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf81b5bae04e86145ba753f6e2f91794, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  positionShake: {x: 0, y: 0, z: 0}
+  angleShake: {x: 0, y: 0, z: 0}
+  cycleTime: 0.2
+  cycleCount: 6
+  fixShake: 0
+  unscaleTime: 0
+  bothDir: 1
+  fCycleCount: 0
+  autoDisable: 1
 --- !u!1 &1122888612
 GameObject:
   m_ObjectHideFlags: 0

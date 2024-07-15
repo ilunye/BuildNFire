@@ -28,6 +28,8 @@ public class sum_msg : MonoBehaviour
     private GameObject bigBomb;
     private AudioSource bigBomb_voice;
     private BombTrigger bombTrigger;
+
+    private ShakeCamera shakeCamera;
     public void ToMenu()
     {
         Application.LoadLevel("Scenes/HomeScreen");
@@ -46,6 +48,7 @@ public class sum_msg : MonoBehaviour
         ending_source = ending.GetComponent<AudioSource>();
         bigBomb = Instantiate(Resources.Load("Audio/bigbomb") as GameObject);
         bigBomb_voice = bigBomb.GetComponent<AudioSource>();
+        shakeCamera = GameObject.Find("MainCamera").GetComponent<ShakeCamera>();
 
     }
 
@@ -98,6 +101,7 @@ public class sum_msg : MonoBehaviour
     {
         Debug.Log("play final");
         explode_bomb = Instantiate(Resources.Load("Prefabs/projectile1") as GameObject);
+        
         StartCoroutine(MoveBomb());
     }
 
@@ -123,17 +127,21 @@ public class sum_msg : MonoBehaviour
         {
             t += Time.deltaTime * speed;
             explode_bomb.transform.position = Vector3.Lerp(startposition, targetposition, t);
-            yield return null;
+            yield return null; // stop IEnumerator
+            
         }
 
-        if(status == 1){
+        if (status == 1)
+        {
             bombTrigger.rightBomb();
         }
-        else{
+        else
+        {
             bombTrigger.leftBomb();
         }
         ending_source.Play();
         bigBomb_voice.Play();
+        shakeCamera.enabled = true;
     }
 
 }
