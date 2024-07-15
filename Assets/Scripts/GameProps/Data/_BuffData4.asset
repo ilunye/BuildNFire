@@ -19,7 +19,7 @@ MonoBehaviour:
   Priority: 0
   tags: []
   IsForever: 0
-  DurationTime: 6
+  DurationTime: 3
   TickTime: 0
   OnCreate: {fileID: 11400000, guid: 3c7a17ffb34414b4e9f7b7c05b60b8bb, type: 2}
   OnRemove: {fileID: 11400000, guid: 4cc2da8c7bdb4ad469ba8354da2cd3cd, type: 2}

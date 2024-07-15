@@ -14,7 +14,7 @@ public class Cannon : MonoBehaviour
     private Transform middle;
     private float[] ckpts = new float[10];
     public int idx = 0;     // max: 10
-    public bool isProtected = false;
+    public bool isProtected = true;
     public GameObject player;
     public bool playerIn = false;
     public WorkFlow workFlow;
@@ -44,26 +44,28 @@ public class Cannon : MonoBehaviour
         if(isPlaying || idx == 10){
             return;
         }
+        Debug.Log("next_state");
         player.GetComponent<Animator>().Play("CastingLoop");
         player.GetComponent<Character>().playerState = Character.PlayerState.Operating;
         if(idx < 8){
-            StartCoroutine(each_next((middle.position.y - down.position.y)/8));
+            StartCoroutine(each_next((middle.position.y - down.position.y)/4));
         }else{
-            StartCoroutine(each_next((up.position.y - middle.position.y)/2));
+            StartCoroutine(each_next((up.position.y - middle.position.y)/1));
         }
-        idx++;
+        idx += 2;
     }
 
     public void prev_state(){
         if(idx > 0){
             StopAllCoroutines();
-            isPlaying = false;
-            if(isProtected){
+            isPlaying = true;
+            if(isProtected){        // by default this branch
                 idx = idx-1 < 0 ? 0 : idx-1;
             }else{
                 idx = idx-2 < 0 ? 0 : idx-2;
             }
             disOffset.position = new Vector3(disOffset.position.x, ckpts[idx], disOffset.position.z);
+            isPlaying = false;
         }
     }
 
@@ -111,14 +113,14 @@ public class Cannon : MonoBehaviour
                     break; 
                 case Character.MaterialType.Iron:
                     workFlow.isIron = true;
-                    if(workFlow.iron_number < 6 && workFlow.toPickIron){
+                    if(workFlow.iron_number < 3 && workFlow.toPickIron){
                         player.GetComponent<Character>().Material = Character.MaterialType.None;
                         next_state();
                     }
                     break;
                 case Character.MaterialType.Wood:
                     workFlow.isWood = true;
-                    if(workFlow.wood_number < 4 && workFlow.toPickWood){
+                    if(workFlow.wood_number < 2 && workFlow.toPickWood){
                         player.GetComponent<Character>().Material = Character.MaterialType.None;
                         next_state();
                     }

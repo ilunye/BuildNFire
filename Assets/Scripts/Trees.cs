@@ -11,11 +11,15 @@ public class Trees : MonoBehaviour
 
     private float shake_duration = 1.0f;
     private float shake_magnitude = 1.0f;
+    public GameObject voice;
+    private AudioSource tree_voice;
 
     // private Animator Anim;
 
     void Start()
     {
+        voice = Instantiate(Resources.Load("Audio/Tree_hit") as GameObject);
+        tree_voice = voice.GetComponent<AudioSource>();
         status = 4;
         // Anim = GetComponent<Animator>();
     }
@@ -79,6 +83,8 @@ public class Trees : MonoBehaviour
         {
             shaking = true;
             status--;
+            // 播放声音
+            tree_voice.Play();
             StartCoroutine(ShakeTreeCoroutine(shake_duration, shake_magnitude, status == 0));
         }
     }

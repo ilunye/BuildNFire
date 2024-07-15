@@ -162,6 +162,16 @@ public class Bomb : MonoBehaviour
                         if(t < 0)
                             t = 0;
                         g.GetComponent<WorkFlow>().workFlowPos = t;
+                        nearbyObject.GetComponent<Cannon>().prev_state();
+                    }else if(nearbyObject.name.EndsWith("2")){
+                        Debug.Log("bomb cannon2");
+                        GameObject g = GameObject.Find("PlayerUI_2");
+                        int t = g.GetComponent<WorkFlow>().workFlowPos;
+                        t--;
+                        if(t < 0)
+                            t = 0;
+                        g.GetComponent<WorkFlow>().workFlowPos = t;
+                        nearbyObject.GetComponent<Cannon>().prev_state();
                     }
                 }
             }

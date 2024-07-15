@@ -110,15 +110,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9312126e574e97047b72657b5431e12a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 797.494
+      value: 798.086
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9312126e574e97047b72657b5431e12a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.173
+      value: 0.13
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9312126e574e97047b72657b5431e12a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 982.44
+      value: 981.88
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9312126e574e97047b72657b5431e12a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -251,15 +251,16 @@ MonoBehaviour:
   enabled: 0
   PlayerSpeed: 1
   sleep: 0
-  pack: {fileID: 8554339240710482848}
   Item: {fileID: 0}
   buffData: {fileID: 0}
   buffproperty:
     speed: 1
     sleep: 0
     attack: 0
+  Anim: {fileID: 5512389971405910882}
   cam: {fileID: 0}
   wasd: 1
+  runSoundFlag: 1
   keycodes: 
   Material: 0
   playerState: 0
@@ -392,9 +393,9 @@ MonoBehaviour:
   bomb: {fileID: 0}
   CollObj: {fileID: 0}
   throwBomb: {fileID: 0}
-  eat_burger: {fileID: 0}
+  eat_burger: {fileID: 6830751212635471543, guid: a4fac8d8b68d16647a19d5829128169b, type: 3}
   eat_burger_source: {fileID: 0}
-  dejavu: {fileID: 0}
+  dejavu: {fileID: 1821349933238216836, guid: f612f02b74a331f4d8011a4a16729363, type: 3}
   dejavu_source: {fileID: 0}
 --- !u!65 &8315429979636099945
 BoxCollider:
