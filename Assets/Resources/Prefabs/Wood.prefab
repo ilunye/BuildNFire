@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 1745457519106058622}
   m_Layer: 0
   m_Name: Wood
-  m_TagString: Untagged
+  m_TagString: Wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   materialType: 1
+  WillDisappear: 1
 --- !u!65 &8044297857256224034
 BoxCollider:
   m_ObjectHideFlags: 0

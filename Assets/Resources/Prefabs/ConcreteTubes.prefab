@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 7618141652281840867}
   m_Layer: 0
   m_Name: ConcreteTubes
-  m_TagString: Untagged
+  m_TagString: Iron
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -182,6 +182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   materialType: 3
+  WillDisappear: 1
 --- !u!54 &6825775454096315608
 Rigidbody:
   m_ObjectHideFlags: 0

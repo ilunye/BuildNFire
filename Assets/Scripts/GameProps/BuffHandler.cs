@@ -26,6 +26,8 @@ public class BuffHandler : MonoBehaviour
     private AudioSource get_lock_voice;
     private GameObject time_reverse;
     private AudioSource time_reverse_voice;
+    private Magnet magnet;
+    private GameObject magnetObj;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +36,7 @@ public class BuffHandler : MonoBehaviour
         dejavu_source = GameObject.Find("Audio/dejavu").GetComponent<AudioSource>();
         get_lock_voice = GameObject.Find("Audio/lock").GetComponent<AudioSource>();
         time_reverse_voice = GameObject.Find("Audio/hourglass").GetComponent<AudioSource>();
+
     }
 
     // Update is called once per frame
@@ -154,6 +157,14 @@ public class BuffHandler : MonoBehaviour
                         }
                         bomb.Explode();
                     }
+                    break;
+                case "Magnet":
+                    magnet = CollObj.GetComponent<Magnet>();
+                    magnet.DealWithMagnet(gameObject);
+                    magnetObj = CollObj;
+                    Renderer renderer = magnet.GetComponent<Renderer>();
+                    renderer.enabled = false;
+                    Invoke("DestoryMagnet", 3f);
 
                     break;
                 default:
@@ -162,6 +173,13 @@ public class BuffHandler : MonoBehaviour
             }
 
         }
+    }
+
+    private void DestoryMagnet()
+    {
+
+        Destroy(magnetObj);
+
     }
     /*
     private void OnCollisionEnter(Collision collision) //检测碰撞
@@ -251,36 +269,6 @@ public class BuffHandler : MonoBehaviour
 
         //根据priority对buffList进行排序
         SortBuffList(buffList);
-
-
-
-        /*
-        Debug.Log(buffList);
-    List<BuffInfo> DeleteBuffList = new List<BuffInfo>();
-    if (buffList != null)
-    {
-    foreach (var tempbuffInfo in buffList)
-    {
-    Debug.Log("在deletebufflist中添加" + tempbuffInfo.buffData.BuffName);
-        DeleteBuffList.Add(buffInfo);
-
-    }
-    }
-
-    foreach (var tempbuffInfo in DeleteBuffList)
-    {
-    Debug.Log("遍历去掉buff" + tempbuffInfo.buffData.BuffName);
-    RemoveBuff(tempbuffInfo);
-
-    }
-    buffInfo.durationTime = buffInfo.buffData.DurationTime;
-
-    buffList.AddLast(buffInfo);
-    Debug.Log("在bufflist中添加" + buffInfo.buffData.BuffName);
-    Debug.Log("执行oncreate");
-    buffInfo.buffData.OnCreate.Apply(buffInfo);*/
-
-
     }
 
     public void RemoveBuff(BuffInfo buffInfo) //去掉buff
