@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 327618002}
-  m_IndirectSpecularColor: {r: 0.18271525, g: 0.22842321, b: 0.3070897, a: 1}
+  m_IndirectSpecularColor: {r: 0.18271565, g: 0.22842383, b: 0.30709058, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2356,7 +2356,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 228aa27514023ff458baf188c5a9e2d1, type: 3}
+  m_audioClip: {fileID: 8300000, guid: fc8c380873546d640bb97266b133f1a7, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -3465,11 +3465,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4769152038049538857, guid: 45cf65d7fc916eb4cbc92cf654f0059b, type: 3}
   m_PrefabInstance: {fileID: 448517786818894234}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &965759280 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5512389971405910882, guid: 45cf65d7fc916eb4cbc92cf654f0059b, type: 3}
-  m_PrefabInstance: {fileID: 448517786818894234}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &984051340
 GameObject:
   m_ObjectHideFlags: 0
@@ -3718,6 +3713,7 @@ GameObject:
   - component: {fileID: 1113154094}
   - component: {fileID: 1113154098}
   - component: {fileID: 1113154097}
+  - component: {fileID: 1113154099}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: Untagged
@@ -3876,6 +3872,18 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!114 &1113154099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1113154093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf81b5bae04e86145ba753f6e2f91794, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1122888612
 GameObject:
   m_ObjectHideFlags: 0
@@ -8985,7 +8993,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -6, y: 118}
+  m_AnchoredPosition: {x: -8, y: 118}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1979723291
@@ -9968,7 +9976,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 4f4442e7101fa43489d59dde9dff7062, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 5861ef80ee7c794479f712a92e12b877, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -10603,14 +10611,6 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1867078716}
-    - target: {fileID: 363670378367736777, guid: 45cf65d7fc916eb4cbc92cf654f0059b, type: 3}
-      propertyPath: Anim
-      value: 
-      objectReference: {fileID: 965759280}
-    - target: {fileID: 363670378367736777, guid: 45cf65d7fc916eb4cbc92cf654f0059b, type: 3}
-      propertyPath: enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2648901920426711436, guid: 45cf65d7fc916eb4cbc92cf654f0059b, type: 3}
       propertyPath: RawImage
       value: 
@@ -11528,10 +11528,6 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1867078716}
-    - target: {fileID: 670439694211587517, guid: 5ffcf42b1d7ff674397b10249cff9478, type: 3}
-      propertyPath: enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1584086951560596051, guid: 5ffcf42b1d7ff674397b10249cff9478, type: 3}
       propertyPath: m_Name
       value: animal_people_wolf_2
@@ -11580,14 +11576,6 @@ PrefabInstance:
       propertyPath: RawImage
       value: 
       objectReference: {fileID: 2055422593}
-    - target: {fileID: 7882117089374449162, guid: 5ffcf42b1d7ff674397b10249cff9478, type: 3}
-      propertyPath: sprites.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7882117089374449162, guid: 5ffcf42b1d7ff674397b10249cff9478, type: 3}
-      propertyPath: sprites.Array.data[5]
-      value: 
-      objectReference: {fileID: 21300000, guid: 60ecb7a46a1bd7b409180e54a98bf801, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
