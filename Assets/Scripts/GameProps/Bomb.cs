@@ -162,6 +162,8 @@ public class Bomb : MonoBehaviour
                     buffInfo.buffData = buffData;
                     buffInfo.target = nearbyObject.gameObject;
                     nearbyObject.GetComponent<BuffHandler>().AddBuff(buffInfo);
+                    nearbyObject.GetComponent<Rigidbody>().freezeRotation = false;
+                    nearbyObject.GetComponent<Character>().freezeTimer = 3f;
                 }
                 rb.AddExplosionForce(explosionForce, transform.position, explosionRadius);
             }
@@ -171,7 +173,6 @@ public class Bomb : MonoBehaviour
                 {
                     if (nearbyObject.name.EndsWith("1"))
                     {
-                        Debug.Log("bomb cannon1");
                         GameObject g = GameObject.Find("PlayerUI_1");
                         int t = g.GetComponent<WorkFlow>().workFlowPos;
                         t--;
@@ -182,7 +183,6 @@ public class Bomb : MonoBehaviour
                     }
                     else if (nearbyObject.name.EndsWith("2"))
                     {
-                        Debug.Log("bomb cannon2");
                         GameObject g = GameObject.Find("PlayerUI_2");
                         int t = g.GetComponent<WorkFlow>().workFlowPos;
                         t--;
