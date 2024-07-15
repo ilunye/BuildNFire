@@ -72,9 +72,9 @@ public class Furnace : MonoBehaviour
     {
         if (playerIn && Input.GetKeyDown(player.GetComponent<Character>().keycodes[4]))
         {
-            OpenDoor();
             if (player.GetComponent<Character>().Material == Character.MaterialType.Wood)
             {
+                OpenDoor();
                 player.GetComponent<Character>().Material = Character.MaterialType.None;
                 Play();
                 AddFire();
@@ -84,6 +84,7 @@ public class Furnace : MonoBehaviour
             }
             else if (player.GetComponent<Character>().Material == Character.MaterialType.IronOre && hasFire)
             {
+                OpenDoor();
                 player.GetComponent<Character>().Material = Character.MaterialType.None;
                 Play();
                 Invoke("smelting", 5f);

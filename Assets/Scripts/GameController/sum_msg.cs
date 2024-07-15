@@ -102,7 +102,6 @@ public class sum_msg : MonoBehaviour
 
     private void Play_Final()
     {
-        Debug.Log("play final");
         explode_bomb = Instantiate(Resources.Load("Prefabs/projectile1") as GameObject);
         
         StartCoroutine(MoveBomb());

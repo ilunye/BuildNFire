@@ -25,7 +25,7 @@ public class BombTrigger : MonoBehaviour
     }
 
     public void rightBomb(){
-        furnaces[1].AddComponent<Rigidbody>();
+        furnaces[1].SetActive(false);
         cannons[1].GetComponent<MeshRenderer>().enabled = false;
         ropeAddColliderNRigidBody(cannons[1].transform.Find("ropes").gameObject);
         GameObject boom = Instantiate(Resources.Load("prefabs/explosion") as GameObject);
@@ -34,8 +34,10 @@ public class BombTrigger : MonoBehaviour
         fire.transform.position=p_left;
         GameObject barrel = Instantiate(Resources.Load("prefabs/broken_barrel") as GameObject);
         barrel.transform.position=p_left;
-        GameObject brokenCannon = Instantiate(Resources.Load("prefabs/broken_cannon") as GameObject);
-        brokenCannon.transform.position=p_left;
+        if(cannons[1].GetComponent<Cannon>().idx == 10){
+            GameObject brokenCannon = Instantiate(Resources.Load("prefabs/broken_cannon") as GameObject);
+            brokenCannon.transform.position=p_left;
+        }
         for (int i = 0; i < 10; i++)
         {
             GameObject plank = Instantiate(Resources.Load("prefabs/broken_plank") as GameObject);
@@ -46,15 +48,17 @@ public class BombTrigger : MonoBehaviour
     }
 
     public void leftBomb(){
-        furnaces[0].AddComponent<Rigidbody>();
+        furnaces[0].SetActive(false);
         cannons[0].GetComponent<MeshRenderer>().enabled = false;
         ropeAddColliderNRigidBody(cannons[0].transform.Find("ropes").gameObject);
         GameObject boom = Instantiate(Resources.Load("prefabs/explosion") as GameObject);
         boom.transform.position=p_right;
         GameObject barrel = Instantiate(Resources.Load("prefabs/broken_barrel") as GameObject);
         barrel.transform.position=p_right;
-        GameObject brokenCannon = Instantiate(Resources.Load("prefabs/broken_cannon") as GameObject);
-        brokenCannon.transform.position=p_right;
+        if(cannons[0].GetComponent<Cannon>().idx == 10){
+            GameObject brokenCannon = Instantiate(Resources.Load("prefabs/broken_cannon") as GameObject);
+            brokenCannon.transform.position=p_right;
+        }
         for (int i = 0; i < 10; i++)
         {
             GameObject plank = Instantiate(Resources.Load("prefabs/broken_plank") as GameObject);
