@@ -11,18 +11,30 @@ public class Menu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     private int currentIndex; 
     private Color initialColor;
     private bool confirmButtonEnabled = false;  //15秒后才能按confirm
-    private float startTime;
+    private float timer = 15f;
+    private TextMeshProUGUI confirmText;
+    public bool isConfirm = false;
     void Start()
     {
+        confirmText = GetComponent<TextMeshProUGUI>();
         initialColor = text.color;
         currentIndex = 0;
-        startTime = Time.time; 
         ShowCurrentImage();
     }
 
     void Update()
     {
-        if (!confirmButtonEnabled && Time.time - startTime >= 15f)
+        if(timer > 0){
+            timer -= Time.deltaTime;
+        }
+        if(isConfirm){
+            if(timer <= 0){
+                confirmText.text = "CONFIRM";
+            }else{
+                confirmText.text = "CONFIRM(" + (int)timer + ")";
+            }
+        }
+        if (!confirmButtonEnabled && timer <= 0)
         {
             confirmButtonEnabled = true;
         }
@@ -56,7 +68,9 @@ public class Menu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        text.color = Color.red;
+        if(!isConfirm || (isConfirm && timer <= 0)){
+            text.color = Color.red;
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -70,7 +84,7 @@ public class Menu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         {
             SceneManager.LoadScene("Scenes/pre");
         }
-        else if (text.text == "confirm"&&confirmButtonEnabled) //15秒后可点击
+        else if (text.text == "CONFIRM"&&confirmButtonEnabled) //15秒后可点击
         {
             //Debug.Log("confirm");
             SceneManager.LoadScene("Scenes/Main");
