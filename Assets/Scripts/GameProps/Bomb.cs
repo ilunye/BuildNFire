@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
@@ -14,9 +15,9 @@ public class Bomb : MonoBehaviour
     public BuffData buffData; //add buff
 
     public bool claimed = false; //是否被捡起来
-    private float initialVelocityX=0.2f;//被炸的力
-    private float initialVelocityZ=0.2f;//被炸的力
-    private float throwForce=1f;//被炸的力
+    private float initialVelocityX = 0.2f;//被炸的力
+    private float initialVelocityZ = 0.2f;//被炸的力
+    private float throwForce = 1f;//被炸的力
 
     private BuffHandler buffHandler;
 
@@ -58,7 +59,7 @@ public class Bomb : MonoBehaviour
                 buffHandler.AddBuff(buffHandler.bombbuffinfo);
             }
             Explode();
-            
+
 
         }
 
@@ -68,16 +69,20 @@ public class Bomb : MonoBehaviour
     {
         if (other.tag != "Player" || claimed)
             return;
-        if (other.GetComponent<Character>().playerState == Character.PlayerState.Idle){
+        if (other.GetComponent<Character>().playerState == Character.PlayerState.Idle)
+        {
             other.GetComponent<Character>().playerState = Character.PlayerState.ReadyToClaim;
-            if(other.GetComponent<Character>().Item == null){
+            if (other.GetComponent<Character>().Item == null)
+            {
                 other.GetComponent<Character>().Item = gameObject;
             }
         }
         if (other.GetComponent<Character>().playerState == Character.PlayerState.Claim)
         {
-            if(other.GetComponent<Character>().Item != null){
-                if(other.GetComponent<Character>().Item.name == gameObject.name){
+            if (other.GetComponent<Character>().Item != null)
+            {
+                if (other.GetComponent<Character>().Item.name == gameObject.name)
+                {
                     claimed = true;
                     other.GetComponent<Character>().Material = Character.MaterialType.Bomb;
                     other.GetComponent<Character>().Item = gameObject;              // set the player's item as itself
@@ -87,25 +92,29 @@ public class Bomb : MonoBehaviour
         }
     }
 
-    void OnTriggerExit(Collider other){
-        if(other.tag != "Player" || claimed)
+    void OnTriggerExit(Collider other)
+    {
+        if (other.tag != "Player" || claimed)
             return;
-        if(other.GetComponent<Character>().playerState == Character.PlayerState.ReadyToClaim){
+        if (other.GetComponent<Character>().playerState == Character.PlayerState.ReadyToClaim)
+        {
             other.GetComponent<Character>().playerState = Character.PlayerState.Idle;
         }
-        if(other.GetComponent<Character>().Item != null && other.GetComponent<Character>().Item.name == gameObject.name){
+        if (other.GetComponent<Character>().Item != null && other.GetComponent<Character>().Item.name == gameObject.name)
+        {
             other.GetComponent<Character>().Item = null;
         }
     }
 
     public void Explode(Collider other)    //被炸飞or不被炸飞
     {
-        
-        if(other.CompareTag("Player")){
+
+        if (other.CompareTag("Player"))
+        {
             Rigidbody r = other.gameObject.GetComponent<Rigidbody>();
-            r.AddForce(Vector3.up*throwForce+new Vector3(initialVelocityX,0,initialVelocityZ ),ForceMode.Impulse);
+            r.AddForce(Vector3.up * throwForce + new Vector3(initialVelocityX, 0, initialVelocityZ), ForceMode.Impulse);
         }
-        
+
         hasExploded = true;
         // Debug.Log("voiceobj" + bombvoiceObj);
         // Debug.Log("voice" + bombVoice);
@@ -128,14 +137,16 @@ public class Bomb : MonoBehaviour
         // 销毁炸弹对象
         Destroy(gameObject);
     }
-    public void Explode(){
+    public void Explode()
+    {
         hasExploded = true;
         // Debug.Log("voiceobj" + bombvoiceObj);
         // Debug.Log("voice" + bombVoice);
         bombVoice.PlayMusic();
         // 显示爆炸效果
         //Instantiate(explosionEffect, transform.position, transform.rotation);
-        explosionEffect = Instantiate(Resources.Load("Prefabs/Particle System") as GameObject);
+        explosionEffect = Instantiate(Resources.Load("Prefabs/littlebomb") as GameObject);
+        ParticleSystem particleSystem = explosionEffect.GetComponent<ParticleSystem>();
         explosionEffect.transform.localPosition = gameObject.transform.localPosition;
         explosionEffect.transform.localRotation = gameObject.transform.localRotation;
         // 获取爆炸范围内的所有碰撞体
@@ -145,30 +156,37 @@ public class Bomb : MonoBehaviour
             Rigidbody rb = nearbyObject.GetComponent<Rigidbody>();
             if (rb != null)
             {
-                if(nearbyObject.tag == "Player"){
+                if (nearbyObject.tag == "Player")
+                {
                     BuffInfo buffInfo = new BuffInfo();
                     buffInfo.buffData = buffData;
                     buffInfo.target = nearbyObject.gameObject;
                     nearbyObject.GetComponent<BuffHandler>().AddBuff(buffInfo);
                 }
                 rb.AddExplosionForce(explosionForce, transform.position, explosionRadius);
-            }else{
-                if(nearbyObject.tag == "Cannon"){
-                    if(nearbyObject.name.EndsWith("1")){
+            }
+            else
+            {
+                if (nearbyObject.tag == "Cannon")
+                {
+                    if (nearbyObject.name.EndsWith("1"))
+                    {
                         Debug.Log("bomb cannon1");
                         GameObject g = GameObject.Find("PlayerUI_1");
                         int t = g.GetComponent<WorkFlow>().workFlowPos;
                         t--;
-                        if(t < 0)
+                        if (t < 0)
                             t = 0;
                         g.GetComponent<WorkFlow>().workFlowPos = t;
                         nearbyObject.GetComponent<Cannon>().prev_state();
-                    }else if(nearbyObject.name.EndsWith("2")){
+                    }
+                    else if (nearbyObject.name.EndsWith("2"))
+                    {
                         Debug.Log("bomb cannon2");
                         GameObject g = GameObject.Find("PlayerUI_2");
                         int t = g.GetComponent<WorkFlow>().workFlowPos;
                         t--;
-                        if(t < 0)
+                        if (t < 0)
                             t = 0;
                         g.GetComponent<WorkFlow>().workFlowPos = t;
                         nearbyObject.GetComponent<Cannon>().prev_state();
@@ -178,5 +196,8 @@ public class Bomb : MonoBehaviour
         }
         // 销毁炸弹对象
         Destroy(gameObject);
+
     }
+
+
 }
