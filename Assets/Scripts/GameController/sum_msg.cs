@@ -30,6 +30,9 @@ public class sum_msg : MonoBehaviour
     private BombTrigger bombTrigger;
 
     private ShakeCamera shakeCamera;
+
+    [Obsolete]
+
     public void ToMenu()
     {
         Application.LoadLevel("Scenes/HomeScreen");

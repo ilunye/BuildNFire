@@ -3465,11 +3465,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4769152038049538857, guid: 45cf65d7fc916eb4cbc92cf654f0059b, type: 3}
   m_PrefabInstance: {fileID: 448517786818894234}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &965759280 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5512389971405910882, guid: 45cf65d7fc916eb4cbc92cf654f0059b, type: 3}
-  m_PrefabInstance: {fileID: 448517786818894234}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &984051340
 GameObject:
   m_ObjectHideFlags: 0
@@ -10616,14 +10611,6 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1867078716}
-    - target: {fileID: 363670378367736777, guid: 45cf65d7fc916eb4cbc92cf654f0059b, type: 3}
-      propertyPath: Anim
-      value: 
-      objectReference: {fileID: 965759280}
-    - target: {fileID: 363670378367736777, guid: 45cf65d7fc916eb4cbc92cf654f0059b, type: 3}
-      propertyPath: enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2648901920426711436, guid: 45cf65d7fc916eb4cbc92cf654f0059b, type: 3}
       propertyPath: RawImage
       value: 
@@ -11541,10 +11528,6 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1867078716}
-    - target: {fileID: 670439694211587517, guid: 5ffcf42b1d7ff674397b10249cff9478, type: 3}
-      propertyPath: enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1584086951560596051, guid: 5ffcf42b1d7ff674397b10249cff9478, type: 3}
       propertyPath: m_Name
       value: animal_people_wolf_2
@@ -11593,14 +11576,6 @@ PrefabInstance:
       propertyPath: RawImage
       value: 
       objectReference: {fileID: 2055422593}
-    - target: {fileID: 7882117089374449162, guid: 5ffcf42b1d7ff674397b10249cff9478, type: 3}
-      propertyPath: sprites.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7882117089374449162, guid: 5ffcf42b1d7ff674397b10249cff9478, type: 3}
-      propertyPath: sprites.Array.data[5]
-      value: 
-      objectReference: {fileID: 21300000, guid: 60ecb7a46a1bd7b409180e54a98bf801, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
