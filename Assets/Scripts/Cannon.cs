@@ -85,7 +85,9 @@ public class Cannon : MonoBehaviour
         for(int i=8; i<10; i++){
             ckpts[i] = middle.position.y + (up.position.y - middle.position.y) * (i-8) / 2;
         }
-        Debug.Assert(player != null, "player is null");
+        if(player == null){
+            Debug.LogWarning("player is null");
+        }
         Debug.Assert(workFlow != null, "workFlow is null");
     }
 

@@ -25,7 +25,6 @@ public class Character : MonoBehaviour
     private AnimatorStateInfo stateInfo;
 
     public GameObject cam; // the camera
-    public bool wasd = true;
     public bool runSoundFlag = true;
     public VirtualKey virtualKey;
 
@@ -92,6 +91,8 @@ public class Character : MonoBehaviour
 
     private GameObject item_fall;
     private AudioSource item_fall_voice;
+
+    private GameObject myCannon;
     void OnTriggerStay(Collider other) //get beat
     {
         if (isFalling || (other.tag == "Player" && other.gameObject.GetComponent<Character>().isFalling)) return;
@@ -113,6 +114,16 @@ public class Character : MonoBehaviour
     {
         Anim = GetComponent<Animator>();
         virtualKey = GetComponent<VirtualKey>();
+        if(GetComponent<NetworkKey>() != null){
+            for(int i=0; i<4; i++){
+                myCannon = GameObject.Find("cannon" + i.ToString());
+                if(myCannon.GetComponent<Cannon>().claimed == false){
+                    myCannon.GetComponent<Cannon>().claimed = true;
+                    myCannon.GetComponent<Cannon>().player = gameObject;
+                    break;
+                }
+            } 
+        }
     }
     // Start is called before the first frame update
     void Start()
@@ -131,6 +142,9 @@ public class Character : MonoBehaviour
         item_fall = Instantiate(Resources.Load("Audio/itemfall") as GameObject);
         item_fall_voice = item_fall.GetComponent<AudioSource>();
 
+        if(cam == null){
+            cam = GameObject.Find("Fake_Camera");
+        }
         Debug.Assert(cam != null, "cam is null");
     }
 
