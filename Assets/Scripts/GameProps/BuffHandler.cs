@@ -183,7 +183,7 @@ public class BuffHandler : MonoBehaviour
 
     private void Deal_With_Box()
     {
-        int randomInt = UnityEngine.Random.Range(1, 5);
+        int randomInt = UnityEngine.Random.Range(1, 8);
         GameObject randomObj;
         switch (randomInt)
         {
@@ -199,8 +199,17 @@ public class BuffHandler : MonoBehaviour
             case 4:
                 randomObj = Instantiate(Resources.Load("Prefabs/Magnet") as GameObject);
                 break;
-            default:
+            case 5:
                 randomObj = Instantiate(Resources.Load("Prefabs/Bomb Red") as GameObject);
+                break;
+            case 6:
+                randomObj = Instantiate(Resources.Load("Prefabs/Rock_03") as GameObject);
+                break;
+            case 7:
+                randomObj = Instantiate(Resources.Load("Prefabs/ConcreteTubes") as GameObject);
+                break;
+            default:
+                randomObj = Instantiate(Resources.Load("Prefabs/Wood") as GameObject);
                 break;
 
         }
