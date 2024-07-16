@@ -30,6 +30,7 @@ public class CarThrow : MonoBehaviour
 
     public float CarTime = 4.5f;
     public float bigScale = 1f;
+    public Vector3 randomVector=new Vector3(-1, 0f, 0f);
 
 
 
@@ -129,7 +130,7 @@ public class CarThrow : MonoBehaviour
                 lock_num++;
                 //c = Instantiate(Resources.Load("prefabs/Rock_03") as GameObject);
             }
-            spawnPosition = transform.position + transform.up * 0.5f - transform.forward * 0.5f;
+            spawnPosition = transform.position + transform.up * 0.5f - transform.forward * 0.5f + randomVector;
             c.transform.position = spawnPosition;
             c.transform.localScale *= bigScale;
             // Rigidbody cubeRigidbody = c.AddComponent<Rigidbody>();
