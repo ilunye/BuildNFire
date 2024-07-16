@@ -5,6 +5,7 @@ public class SceneController : MonoBehaviour
 {
     public TreeController treeController;
     public TrafficControl trafficControl;
+    public float scaleTime = 5f;
 
 
     void Start()
@@ -38,6 +39,8 @@ public class SceneController : MonoBehaviour
                 trafficControl.car2_load_track = "Prefabs/Vehicle_Truck";
 
             }
+
+            Change_Scale();
             // 在场景2中执行特定的逻辑
             //Debug.Log("在场景2中");
         }
@@ -46,5 +49,24 @@ public class SceneController : MonoBehaviour
             // 在其他场景中执行默认逻辑
             //Debug.Log("在其他场景中");
         }
+
+
+    }
+    private void Change_Scale()
+    {
+        GameObject[] allGameObjects = GameObject.FindObjectsOfType<GameObject>();
+        foreach (GameObject tempObj in allGameObjects)
+        {
+            Debug.Log(tempObj.name);
+            if (tempObj.tag == "material" || tempObj.tag == "Bomb" || tempObj.tag == "Wood"
+            || tempObj.tag == "Burger" || tempObj.tag == "Stone" || tempObj.tag == "Lock"
+            || tempObj.tag == "Cannon" || tempObj.tag == "Clock" || tempObj.tag == "Box"
+            || tempObj.tag == "Iron" || tempObj.tag == "Magnet")
+            {
+                tempObj.transform.localScale *= scaleTime;
+                Debug.Log(tempObj.name + tempObj.transform.localScale);
+            }
+        }
+
     }
 }

@@ -27064,6 +27064,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   treeController: {fileID: 0}
   trafficControl: {fileID: 0}
+  scaleTime: 5
 --- !u!1001 &1309720075
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34212,13 +34213,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TreeNumberLeft: 0
   TreeNumberRight: 0
-  regionleft_xmin: 794
-  regionleft_xmax: 798
-  regionright_xmin: 800.5
-  regionright_xmax: 804
-  region_zmin: 983
-  region_zmax: 986
-  loadTrack: Prefabs/Tree_1_1
+  regionleft_xmin: 170
+  regionleft_xmax: 177
+  regionright_xmin: 183
+  regionright_xmax: 190
+  region_zmin: 134
+  region_zmax: 144
+  loadTrack: Prefabs/BigTree
 --- !u!114 &1636820796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34233,6 +34234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   treeController: {fileID: 0}
   trafficControl: {fileID: 0}
+  scaleTime: 5
 --- !u!1001 &1637690949
 PrefabInstance:
   m_ObjectHideFlags: 0

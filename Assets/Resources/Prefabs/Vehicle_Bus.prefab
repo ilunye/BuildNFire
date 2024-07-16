@@ -115,4 +115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interval: 0
   spawnPosition: {x: 0, y: 0, z: 0}
+  p: 0
   timer: 0
+  Scene_id: 0
+  CarTime: 20

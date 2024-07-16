@@ -57,7 +57,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interval: 0
   spawnPosition: {x: 0, y: 0, z: 0}
+  p: 0
   timer: 0
+  Scene_id: 0
+  CarTime: 20
 --- !u!114 &8470062800359831097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,7 +76,7 @@ MonoBehaviour:
   rayCastEnable: 0
   carCongestion: 0
   lastHit: {fileID: 0}
-  green: 1
+  truck: 1
 --- !u!23 &1087187934465960277
 MeshRenderer:
   m_ObjectHideFlags: 0
