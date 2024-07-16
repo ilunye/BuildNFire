@@ -57,61 +57,61 @@ public class CarThrow : MonoBehaviour
         {
             GameObject c;
             int r = Random.Range(0, 21);//决定抛出物体
-            if (r == 0)
+            if (r <= 1)
             {
                 c = Instantiate(Resources.Load("prefabs/Bomb Red") as GameObject);
                 c.name = "bomb_" + "truck_" + bomb_num.ToString();
                 bomb_num++;
                 //c = Instantiate(Resources.Load("prefabs/explosiveBarrel") as GameObject);
             }
-            else if (r == 1)
+            else if (r <= 3)
             {
                 c = Instantiate(Resources.Load("prefabs/burger_1_lod0") as GameObject);
                 c.name = "burger_" + "truck_" + burger_num.ToString();
                 burger_num++;
                 //c = Instantiate(Resources.Load("prefabs/Rock_03") as GameObject);
             }
-            else if (r == 2)
+            else if (r <= 5)
             {
                 c = Instantiate(Resources.Load("prefabs/Hourglass Green 1") as GameObject);
                 c.name = "hourglass_" + "truck_" + hourglass_num.ToString();
                 hourglass_num++;
                 //c = Instantiate(Resources.Load("prefabs/projectile") as GameObject);
             }
-            else if (r == 4 || r == 3)
+            else if (r <= 7)
             {
                 c = Instantiate(Resources.Load("prefabs/ConcreteTubes") as GameObject);
                 c.name = "concrete_" + "truck_" + concrete_num.ToString();
                 concrete_num++;
             }
-            else if (r == 5 || r == 6)
+            else if (r <= 9)
             {
                 c = Instantiate(Resources.Load("prefabs/projectile") as GameObject);
                 c.name = "projectile_" + "truck_" + projectile_num.ToString();
                 projectile_num++;
             }
-            else if (r == 7 || r == 8 || r == 9 || r == 10 || r == 11)
+            else if (r <= 14)
             {
                 c = Instantiate(Resources.Load("prefabs/Rock_03") as GameObject);
                 c.name = "rock_" + "truck_" + rock_num.ToString();
                 rock_num++;
             }
-            else if (r == 15 || r == 12 || r == 13 || r == 14)
+            else if (r <= 17)
             {
                 c = Instantiate(Resources.Load("prefabs/Wood") as GameObject);
                 c.name = "wood_" + "truck_" + wood_num.ToString();
                 wood_num++;
             }
-            else if (r == 16)
+            else if (r == 18)
             {
-                c = Instantiate(Resources.Load("prefabs/Magnet") as GameObject);   //drop off magnet
-                c.name = "magnet_" + "truck_" + magnet_num.ToString();
-                magnet_num++;
-                c = Instantiate(Resources.Load("prefabs/Rock_03") as GameObject);
-                c.name = "rock_" + "truck_" + rock_num.ToString();
-                rock_num++;
+                // c = Instantiate(Resources.Load("prefabs/Magnet") as GameObject);   //drop off magnet
+                // c.name = "magnet_" + "truck_" + magnet_num.ToString();
+                // magnet_num++;
+                c = Instantiate(Resources.Load("prefabs/Lock Silver") as GameObject);
+                c.name = "lock_" + "truck_" + lock_num.ToString();
+                lock_num++;
             }
-            else if (r == 17 || r == 18)
+            else if (r <= 20)
             {
                 c = Instantiate(Resources.Load("prefabs/explosiveBarrel") as GameObject);
                 c.name = "barrel_" + "truck_" + barrel_num.ToString();
