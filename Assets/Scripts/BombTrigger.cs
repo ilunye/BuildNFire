@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BombTrigger : MonoBehaviour
 {
-    public float explosionForce=200f;
-    public float explosionRadius = 20f;
+    public float explosionForce=250f;
+    public float explosionRadius = 25f;
     public int status;
     Vector3 p_left=new Vector3(804.42f,0.1f,980.3f);
     Vector3 p_right=new Vector3(794.84f,0.1f,980.3f);
@@ -13,10 +13,15 @@ public class BombTrigger : MonoBehaviour
     // objects to add collider & rigid body
     private GameObject[] cannons = new GameObject[2];
     private GameObject[] furnaces = new GameObject[2];
+    public GameObject player_one;
+    public GameObject player_tow;
     
     // Start is called before the first frame update
     void Start()
     {
+        player_one=GameObject.Find("animal_people_wolf_1");
+        player_tow=GameObject.Find("animal_people_wolf_2");
+        
         status=0;
         cannons[0] = GameObject.Find("cannon_1");
         cannons[1] = GameObject.Find("cannon_2");
@@ -84,6 +89,11 @@ public class BombTrigger : MonoBehaviour
                 rb.AddExplosionForce(force, position, radius);
             }
         }
+        Destroy(player_one);
+        GameObject player= Instantiate(Resources.Load("Prefabs/animal_people_wolf_1") as GameObject);
+        player.transform.localPosition=new Vector3(794.2f, 1.6f, 981f);
+        Rigidbody playerRigidbody = player.GetComponent<Rigidbody>();
+        playerRigidbody.AddForce(Vector3.up *10+new Vector3(1,0,1), ForceMode.Impulse);
     }
     private void ExplosionRight(float force, Vector3 position, float radius){
         Collider[] colliders = Physics.OverlapSphere(position, radius);
@@ -95,6 +105,11 @@ public class BombTrigger : MonoBehaviour
                 rb.AddExplosionForce(force, position, radius);
             }
         }
+        Destroy(player_tow);
+        GameObject player= Instantiate(Resources.Load("Prefabs/animal_people_wolf_2") as GameObject);
+        player.transform.localPosition=new Vector3(804.8f, 1.6f, 981f);
+        Rigidbody playerRigidbody = player.GetComponent<Rigidbody>();
+        playerRigidbody.AddForce(Vector3.up *10+new Vector3(-1,0,1), ForceMode.Impulse);
     }
     private void ropeAddColliderNRigidBody(GameObject ropesRoot){
         foreach(Transform child in ropesRoot.transform){

@@ -2010,6 +2010,55 @@ RectTransform:
   m_AnchoredPosition: {x: 50, y: 50}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &620450639
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 620450641}
+  - component: {fileID: 620450642}
+  m_Layer: 0
+  m_Name: test
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &620450641
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620450639}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 798.3075, y: 0.50863075, z: 982.348}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &620450642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620450639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb46d46b1ca91a74ab2da2123a3f1fba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionForce: 250
+  explosionRadius: 25
+  status: 0
+  player_one: {fileID: 965759270}
+  player_tow: {fileID: 1296262664}
 --- !u!1001 &647317412
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9164,6 +9213,8 @@ MonoBehaviour:
   explosionForce: 200
   explosionRadius: 20
   status: 0
+  player_one: {fileID: 0}
+  player_tow: {fileID: 0}
 --- !u!1 &1985014591
 GameObject:
   m_ObjectHideFlags: 0
@@ -10611,6 +10662,10 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1867078716}
+    - target: {fileID: 363670378367736777, guid: 45cf65d7fc916eb4cbc92cf654f0059b, type: 3}
+      propertyPath: PlayerSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2648901920426711436, guid: 45cf65d7fc916eb4cbc92cf654f0059b, type: 3}
       propertyPath: RawImage
       value: 
@@ -11528,6 +11583,10 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1867078716}
+    - target: {fileID: 670439694211587517, guid: 5ffcf42b1d7ff674397b10249cff9478, type: 3}
+      propertyPath: PlayerSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1584086951560596051, guid: 5ffcf42b1d7ff674397b10249cff9478, type: 3}
       propertyPath: m_Name
       value: animal_people_wolf_2
@@ -11577,7 +11636,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2055422593}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 665428414040292362, guid: 5ffcf42b1d7ff674397b10249cff9478, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ffcf42b1d7ff674397b10249cff9478, type: 3}
@@ -11742,3 +11802,4 @@ SceneRoots:
   - {fileID: 1639029200}
   - {fileID: 327618003}
   - {fileID: 1411939511}
+  - {fileID: 620450641}
