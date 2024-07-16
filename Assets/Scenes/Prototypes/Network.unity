@@ -4612,6 +4612,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TreeNumberLeft: 0
   TreeNumberRight: 0
+  regionleft_xmin: 794
+  regionleft_xmax: 798
+  regionright_xmin: 800.5
+  regionright_xmax: 804
+  region_zmin: 983
+  region_zmax: 986
+  loadTrack: Prefabs/Tree_1_1
 --- !u!1 &946845844
 GameObject:
   m_ObjectHideFlags: 0

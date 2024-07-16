@@ -52,7 +52,6 @@ public class NetCharacter : NetworkBehaviour
         Bomb
     }
 
-    [SyncVar]
     public MaterialType Material = MaterialType.None;
 
     private enum Direction
@@ -70,11 +69,8 @@ public class NetCharacter : NetworkBehaviour
         IdletoRun
     }
 
-    [SyncVar]
     public PlayerState playerState = PlayerState.Idle;
-    [SyncVar]
     public bool isPunch = false;
-    [SyncVar]
     public bool isFalling = false;
     public float timer = 0f;
     public float freezeTimer = 3f;
@@ -98,9 +94,8 @@ public class NetCharacter : NetworkBehaviour
     private AudioSource item_fall_voice;
 
     [Command]
-    public void Play(string state)
+    public void CmdPlay(string state)
     {
-        Debug.Log("Play: " + state);
         Anim.Play(state);
     }
 
@@ -113,7 +108,7 @@ public class NetCharacter : NetworkBehaviour
             if (timer > 0.4f)
             {
                 // other.GetComponent<Animator>().Play("DAMAGED01");
-                other.GetComponent<NetCharacter>().Play("DAMAGED01");
+                other.GetComponent<NetCharacter>().CmdPlay("DAMAGED01");
                 other.gameObject.GetComponent<NetCharacter>().isFalling = true;
                 other.gameObject.GetComponent<NetCharacter>().playerState = PlayerState.Falling;
                 beated_voice_source.Play();
@@ -248,7 +243,7 @@ public class NetCharacter : NetworkBehaviour
             //Debug.Log("玩家休眠");
             PlayerSpeed = 0; //玩家休眠
             // gameObject.GetComponent<Animator>().Play("StunnedLoop"); //播放晕倒动画
-            Play("StunnedLoop");
+            CmdPlay("StunnedLoop");
             gameObject.GetComponent<NetCharacter>().isFalling = true;
             gameObject.GetComponent<NetCharacter>().playerState = PlayerState.Falling;
 
@@ -387,7 +382,7 @@ public bool last_E_Up = false;
             else if (playerState == PlayerState.Idle && Material == MaterialType.None)
             {   // no items in hand
                 // Anim.Play("PunchRight");
-                Play("PunchRight");
+                CmdPlay("PunchRight");
                 isPunch = false;
                 playerState = PlayerState.Punch;
             }
@@ -435,7 +430,7 @@ public bool last_E_Up = false;
             {
                 playerState = PlayerState.Claim;
                 // Anim.Play("Gathering");
-                Play("Gathering");
+                CmdPlay("Gathering");
                 get_item_source.Play();
             }
         }
@@ -445,14 +440,14 @@ public bool last_E_Up = false;
     {
         playerState = PlayerState.Run;
         // Anim.Play("Run_norm");
-        Play("Run_norm");
+        CmdPlay("Run_norm");
     }
 
     private void Run2Idel()
     {
         playerState = PlayerState.Idle;
         // Anim.Play("Idle");
-        Play("Idle");
+        CmdPlay("Idle");
     }
 
     private void Rotate(Direction dir)
