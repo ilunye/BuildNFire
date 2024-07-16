@@ -167,12 +167,48 @@ public class BuffHandler : MonoBehaviour
                     Invoke("DestoryMagnet", 3f);
 
                     break;
+                case "Box":
+                    Destroy(CollObj);
+                    Deal_With_Box();
+
+                    break;
+
                 default:
                     break;
 
             }
 
         }
+    }
+
+    private void Deal_With_Box()
+    {
+        int randomInt = UnityEngine.Random.Range(1, 5);
+        GameObject randomObj;
+        switch (randomInt)
+        {
+            case 1:
+                randomObj = Instantiate(Resources.Load("Prefabs/burger_1_lod0") as GameObject);
+                break;
+            case 2:
+                randomObj = Instantiate(Resources.Load("Prefabs/Lock Silver") as GameObject);
+                break;
+            case 3:
+                randomObj = Instantiate(Resources.Load("Prefabs/Hourglass Green 1") as GameObject);
+                break;
+            case 4:
+                randomObj = Instantiate(Resources.Load("Prefabs/Magnet") as GameObject);
+                break;
+            default:
+                randomObj = Instantiate(Resources.Load("Prefabs/Bomb Red") as GameObject);
+                break;
+
+        }
+        if (randomObj != null)
+        {
+            randomObj.transform.position = gameObject.transform.position;
+        }
+
     }
 
     private void DestoryMagnet()

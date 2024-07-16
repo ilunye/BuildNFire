@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Org.BouncyCastle.Asn1.Misc;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -10,7 +11,7 @@ public class CarThrow : MonoBehaviour
     private int p;
     public float timer;
     private float throwForce;
-    private float destroyDelay = 5f;       
+    private float destroyDelay = 5f;
     private int bomb_num = 0;
     private int burger_num = 0;
     private int hourglass_num = 0;
@@ -21,6 +22,7 @@ public class CarThrow : MonoBehaviour
     private int glove_num = 0;
     private int barrel_num = 0;
     private int lock_num = 0;
+    private int box_num = 0;
 
     void Start()
     {
@@ -40,7 +42,7 @@ public class CarThrow : MonoBehaviour
         if (timer >= interval)
         {
             GameObject c;
-            int r = Random.Range(0, 20);//决定抛出物体
+            int r = Random.Range(0, 21);//决定抛出物体
             if (r == 0 || r == 1)
             {
                 c = Instantiate(Resources.Load("prefabs/Bomb Red") as GameObject);
@@ -101,6 +103,12 @@ public class CarThrow : MonoBehaviour
                 c.name = "barrel_" + "truck_" + barrel_num.ToString();
                 barrel_num++;
             }
+            else if (r == 21)
+            {
+                c = Instantiate(Resources.Load("Prefabs/Box") as GameObject);
+                c.name = "box_" + "truck_" + box_num.ToString();
+                box_num++;
+            }
             else
             {
                 c = Instantiate(Resources.Load("prefabs/Lock Silver") as GameObject);
@@ -117,7 +125,7 @@ public class CarThrow : MonoBehaviour
             // set as kinetic
             Rigidbody cubeRigidbody = c.GetComponent<Rigidbody>();
             cubeRigidbody.AddForce(Vector3.up * throwForce + new Vector3(x, 0, z), ForceMode.Impulse);
-            if(r == 0 || r == 1)
+            if (r == 0 || r == 1)
                 StartCoroutine(BlinkAndDestroy(c, 10f));
             else
                 StartCoroutine(BlinkAndDestroy(c, destroyDelay));
