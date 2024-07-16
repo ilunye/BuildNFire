@@ -93,6 +93,9 @@ public class Character : MonoBehaviour
     private AudioSource item_fall_voice;
 
     private GameObject myCannon;
+    private bool network = false;
+    private AnimationPlayer animationPlayer;
+    private NetworkAnimationPlayer networkAnimationPlayer;
     void OnTriggerStay(Collider other) //get beat
     {
         if (isFalling || (other.tag == "Player" && other.gameObject.GetComponent<Character>().isFalling)) return;
@@ -101,7 +104,13 @@ public class Character : MonoBehaviour
             timer += Time.deltaTime;
             if (timer > 0.4f)
             {
-                other.gameObject.GetComponent<Animator>().Play("DAMAGED01");
+                if(network){
+                    other.GetComponent<Animator>().Play("DAMAGED01");
+
+                    other.GetComponent<NetworkAnimationPlayer>().Play("DAMAGED01");
+                }else{
+                    other.GetComponent<AnimationPlayer>().Play("DAMAGED01");
+                }
                 other.gameObject.GetComponent<Character>().isFalling = true;
                 other.gameObject.GetComponent<Character>().playerState = PlayerState.Falling;
                 beated_voice_source.Play();
@@ -114,7 +123,8 @@ public class Character : MonoBehaviour
     {
         Anim = GetComponent<Animator>();
         virtualKey = GetComponent<VirtualKey>();
-        if(GetComponent<NetworkKey>() != null){
+        network = GetComponent<NetworkKey>() != null;
+        if(network){
             for(int i=0; i<4; i++){
                 myCannon = GameObject.Find("cannon" + i.ToString());
                 if(myCannon.GetComponent<Cannon>().claimed == false){
@@ -123,6 +133,9 @@ public class Character : MonoBehaviour
                     break;
                 }
             } 
+            networkAnimationPlayer = GetComponent<NetworkAnimationPlayer>();
+        }else{
+            animationPlayer = GetComponent<AnimationPlayer>();
         }
     }
     // Start is called before the first frame update
@@ -232,7 +245,12 @@ public class Character : MonoBehaviour
         {
             //Debug.Log("玩家休眠");
             PlayerSpeed = 0; //玩家休眠
-            gameObject.GetComponent<Animator>().Play("StunnedLoop"); //播放晕倒动画
+            if(network){
+                Anim.Play("StunnedLoop");
+                GetComponent<NetworkAnimationPlayer>().Play("StunnedLoop");
+            }else{
+                GetComponent<AnimationPlayer>().Play("StunnedLoop");
+            }
             gameObject.GetComponent<Character>().isFalling = true;
             gameObject.GetComponent<Character>().playerState = PlayerState.Falling;
 
@@ -369,7 +387,12 @@ public class Character : MonoBehaviour
             }
             else if (playerState == PlayerState.Idle && Material == MaterialType.None)
             {   // no items in hand
-                Anim.Play("PunchRight");
+                if(network){
+                    GetComponent<NetworkAnimationPlayer>().Play("PunchRight");
+                    Anim.Play("PunchRight");
+                }else{
+                    GetComponent<AnimationPlayer>().Play("PunchRight");
+                }
                 isPunch = false;
                 playerState = PlayerState.Punch;
             }
@@ -411,7 +434,12 @@ public class Character : MonoBehaviour
             // no item in hand and ready to grab item
             {
                 playerState = PlayerState.Claim;
-                Anim.Play("Gathering");
+                if(network){
+                    Anim.Play("Gathering");
+                    GetComponent<NetworkAnimationPlayer>().Play("Gathering");
+                }else{
+                    GetComponent<AnimationPlayer>().Play("Gathering");
+                }
                 get_item_source.Play();
             }
         }
@@ -420,13 +448,23 @@ public class Character : MonoBehaviour
     private void Idle2Run()
     {
         playerState = PlayerState.Run;
-        Anim.Play("Run_norm");
+        if(network){
+            Anim.Play("Run_norm");
+            GetComponent<NetworkAnimationPlayer>().Play("Run_norm");
+        }else{
+            GetComponent<AnimationPlayer>().Play("Run_norm");
+        }
     }
 
     private void Run2Idel()
     {
         playerState = PlayerState.Idle;
-        Anim.Play("Idle");
+        if(network){
+            Anim.Play("Idle");
+            GetComponent<NetworkAnimationPlayer>().Play("Idle");
+        }else{
+            GetComponent<AnimationPlayer>().Play("Idle");
+        }
     }
 
     private void Rotate(Direction dir)
