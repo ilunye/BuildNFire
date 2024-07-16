@@ -5,20 +5,23 @@ using System.Collections;
 public class ThrowBomb : MonoBehaviour
 {
     public GameObject bomb;  // 炸弹的预制体
-    public float InitthrowForce = 1f; // 初始投掷的力量
+    private float InitthrowForce = 1f; // 初始投掷的力量
 
     private float throwDuration = 5f; // 投掷的持续时间
     private float elapsedTime = 0f; //计算投掷的时间
 
     public float throwForce; //投掷的力量
 
-    public float MaxThrowForce = 50f; //投掷允許的最大力量
+    private float MaxThrowForce = 5f; //投掷允許的最大力量
     private float IntervelTime = 0f; //炮彈發射的間隔時間
 
     private bool wasd;
 
     public bool hasthrow = false;
     // public GameObject BombImage;     //存放炸弹的显示图像
+
+    private bool readytothrow = false;
+    private GameObject theBombTarget = null;
 
     void Start()
     {
@@ -32,6 +35,13 @@ public class ThrowBomb : MonoBehaviour
             // BombImage.SetActive(true);
             if (GetComponent<VirtualKey>().getKey[4]) //如果长按E则累计投掷的力量
             {
+                if(!readytothrow){      // instantiate a target point
+                    readytothrow = true;
+                    GameObject target = Instantiate(Resources.Load("Prefabs/bomb_target") as GameObject);
+                    target.transform.position = transform.position + transform.forward * 1f * throwForce;
+                    theBombTarget = target;
+                }else
+                    theBombTarget.transform.position = transform.position + transform.forward * (1f * throwForce + 0.6f);
                 if (throwForce < MaxThrowForce)
                 {
                     throwForce += Time.deltaTime * 3f;
@@ -40,6 +50,7 @@ public class ThrowBomb : MonoBehaviour
 
             if (GetComponent<VirtualKey>().getKeyUp[4]) // 检测玩家按下投掷按钮
             {
+                readytothrow = false;
                 Throw();
                 GetComponent<Character>().Material =Character.MaterialType.None;
 
@@ -73,6 +84,8 @@ public class ThrowBomb : MonoBehaviour
         bomb.transform.localPosition = gameObject.transform.localPosition + gameObject.transform.forward * 0.5f;
         Vector3 startPosition = bomb.transform.localPosition;
 
+        bomb.GetComponent<Bomb>().SetTarget(theBombTarget);        // set the bomb target for destroy
+
         // 投掷炸弹，以一定的速度沿着投掷方向移动
         StartCoroutine(ThrowBombPosition(startPosition, transform.forward));
 
@@ -93,7 +106,7 @@ public class ThrowBomb : MonoBehaviour
             // 根据投掷速度和时间计算新的位置
             float x = throwForce * elapsedTime * direction.x;
             float z = throwForce * elapsedTime * direction.z;
-            float y = 0.5f + 5f * elapsedTime - 9.8f * 0.5f * Mathf.Pow(elapsedTime, 2);
+            float y = 0.0001f + 5f * elapsedTime - 10.0f * 0.5f * Mathf.Pow(elapsedTime, 2);
             gravity = new Vector3(x, y, z);
             Vector3 newPosition = startPosition + gravity;
 
@@ -107,5 +120,24 @@ public class ThrowBomb : MonoBehaviour
         throwForce = InitthrowForce; //在最终都运行结束后回复原值！！
         // BombImage.SetActive(false);
         hasthrow = false;
+    }
+
+    public void SetTarget(GameObject target)
+    {
+        if(target == null){
+            Destroy(theBombTarget);
+            readytothrow = false;
+        }
+        theBombTarget = target;
+    }
+
+    public void SetReadyToThrow(bool ready)
+    {
+        readytothrow = ready;
+    }
+
+    public void ResetThrowForce()
+    {
+        throwForce = InitthrowForce;
     }
 }

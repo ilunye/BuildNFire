@@ -24,6 +24,8 @@ public class Bomb : MonoBehaviour
     private GameObject bombvoiceObj;
     private BombVoice bombVoice;
 
+    private GameObject theBombTarget = null;
+
     void Start()
     {
         countdown = delay;
@@ -197,6 +199,18 @@ public class Bomb : MonoBehaviour
         // 销毁炸弹对象
         Destroy(gameObject);
 
+    }
+
+    public void SetTarget(GameObject target){
+        theBombTarget = target;
+    }
+
+    void OnDestroy()
+    {
+        if(theBombTarget != null){
+            Destroy(theBombTarget);
+            theBombTarget = null;
+        }
     }
 
 

@@ -208,6 +208,10 @@ public class Character : MonoBehaviour
                 g.transform.position = transform.position + new Vector3(0, 0.5f, 0);
                 g.GetComponent<CollectableMaterials>().WillDisappear = false;
             }
+            else if(Material == MaterialType.Bomb){
+                GetComponent<ThrowBomb>().SetTarget(null);
+                GetComponent<ThrowBomb>().ResetThrowForce();
+            }
             Material = MaterialType.None;
         }
         stateInfo = Anim.GetCurrentAnimatorStateInfo(0);
