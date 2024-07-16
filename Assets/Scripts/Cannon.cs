@@ -85,7 +85,9 @@ public class Cannon : MonoBehaviour
         for(int i=8; i<10; i++){
             ckpts[i] = middle.position.y + (up.position.y - middle.position.y) * (i-8) / 2;
         }
-        Debug.Assert(player != null, "player is null");
+        if(player == null){
+            Debug.LogWarning("player is null");
+        }
         Debug.Assert(workFlow != null, "workFlow is null");
     }
 
@@ -94,7 +96,7 @@ public class Cannon : MonoBehaviour
         for(int i=0; i<5; i++){
             material[i].SetFloat("_DisappearOffset", disOffset.position.y);
         }
-        if(playerIn && Input.GetKeyDown(player.GetComponent<Character>().keycodes[4])){
+        if(playerIn && player.GetComponent<VirtualKey>().getKeyDown[4]){
             if(isPlaying) return;
             switch(player.GetComponent<Character>().Material){
                 case Character.MaterialType.CannonBall:

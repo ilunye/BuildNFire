@@ -25,9 +25,8 @@ public class Character : MonoBehaviour
     private AnimatorStateInfo stateInfo;
 
     public GameObject cam; // the camera
-    public bool wasd = true;
     public bool runSoundFlag = true;
-    public KeyCode[] keycodes;
+    public VirtualKey virtualKey;
 
     public enum PlayerState
     {
@@ -92,6 +91,8 @@ public class Character : MonoBehaviour
 
     private GameObject item_fall;
     private AudioSource item_fall_voice;
+
+    private GameObject myCannon;
     void OnTriggerStay(Collider other) //get beat
     {
         if (isFalling || (other.tag == "Player" && other.gameObject.GetComponent<Character>().isFalling)) return;
@@ -112,13 +113,16 @@ public class Character : MonoBehaviour
     void Awake()
     {
         Anim = GetComponent<Animator>();
-        if (wasd == true)
-        {
-            keycodes = new KeyCode[] { KeyCode.W, KeyCode.S, KeyCode.A, KeyCode.D, KeyCode.E };
-        }
-        else
-        {
-            keycodes = new KeyCode[] { KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow, KeyCode.Return };
+        virtualKey = GetComponent<VirtualKey>();
+        if(GetComponent<NetworkKey>() != null){
+            for(int i=0; i<4; i++){
+                myCannon = GameObject.Find("cannon" + i.ToString());
+                if(myCannon.GetComponent<Cannon>().claimed == false){
+                    myCannon.GetComponent<Cannon>().claimed = true;
+                    myCannon.GetComponent<Cannon>().player = gameObject;
+                    break;
+                }
+            } 
         }
     }
     // Start is called before the first frame update
@@ -138,6 +142,9 @@ public class Character : MonoBehaviour
         item_fall = Instantiate(Resources.Load("Audio/itemfall") as GameObject);
         item_fall_voice = item_fall.GetComponent<AudioSource>();
 
+        if(cam == null){
+            cam = GameObject.Find("Fake_Camera");
+        }
         Debug.Assert(cam != null, "cam is null");
     }
 
@@ -201,6 +208,10 @@ public class Character : MonoBehaviour
                 g.transform.position = transform.position + new Vector3(0, 0.5f, 0);
                 g.GetComponent<CollectableMaterials>().WillDisappear = false;
             }
+            else if(Material == MaterialType.Bomb){
+                GetComponent<ThrowBomb>().SetTarget(null);
+                GetComponent<ThrowBomb>().ResetThrowForce();
+            }
             Material = MaterialType.None;
         }
         stateInfo = Anim.GetCurrentAnimatorStateInfo(0);
@@ -247,11 +258,11 @@ public class Character : MonoBehaviour
 
     private void Motion_Voice()
     {
-        if ((Input.GetKey(keycodes[0]) || Input.GetKey(keycodes[1]) || Input.GetKey(keycodes[2]) || Input.GetKey(keycodes[3])) && runSoundFlag)
+        if ((virtualKey.getKey[0] || (virtualKey.getKey[1]) || (virtualKey.getKey[2]) || (virtualKey.getKey[3])) && runSoundFlag)
         {
             run_source.Play();
             runSoundFlag = false;
-        }else if (!Input.GetKey(keycodes[0]) && !Input.GetKey(keycodes[1]) && !Input.GetKey(keycodes[2]) && !Input.GetKey(keycodes[3]))
+        }else if (!(virtualKey.getKey[0]) && !(virtualKey.getKey[1]) && !(virtualKey.getKey[2]) && !(virtualKey.getKey[3]))
         {
             run_source.Stop();
             runSoundFlag = true;
@@ -269,7 +280,7 @@ public class Character : MonoBehaviour
         if (playerState != PlayerState.Punch && playerState != PlayerState.Claim && playerState != PlayerState.Falling && playerState != PlayerState.Operating)
         {
 
-            if (Input.GetKey(keycodes[0]))
+            if ((virtualKey.getKey[0]))
             {
                 //Debug.Log("向前走");
                 // 向世界坐标系得z轴方向移动
@@ -286,11 +297,11 @@ public class Character : MonoBehaviour
                 Idle2Run();
                 Rotate(Direction.Forward);
             }
-            if (Input.GetKeyUp(keycodes[0]))
+            if ((virtualKey.getKeyUp[0]))
                 Run2Idel();
 
             // go down
-            if (Input.GetKey(keycodes[1]))
+            if ((virtualKey.getKey[1]))
             {
 
                 Vector3 p = transform.localPosition;
@@ -306,11 +317,11 @@ public class Character : MonoBehaviour
                 Idle2Run();
                 Rotate(Direction.Backward);
             }
-            if (Input.GetKeyUp(keycodes[1]))
+            if ((virtualKey.getKeyUp[1]))
                 Run2Idel();
 
             // go left
-            if (Input.GetKey(keycodes[2]))
+            if ((virtualKey.getKey[2]))
             {
 
                 Vector3 p = transform.localPosition;
@@ -325,11 +336,11 @@ public class Character : MonoBehaviour
                 Idle2Run();
                 Rotate(Direction.Left);
             }
-            if (Input.GetKeyUp(keycodes[2]))
+            if ((virtualKey.getKeyUp[2]))
                 Run2Idel();
 
             // go right
-            if (Input.GetKey(keycodes[3]))
+            if ((virtualKey.getKey[3]))
             {
 
                 Vector3 p = transform.localPosition;
@@ -344,13 +355,13 @@ public class Character : MonoBehaviour
                 Idle2Run();
                 Rotate(Direction.Right);
             }
-            if (Input.GetKeyUp(keycodes[3]))
+            if ((virtualKey.getKeyUp[3]))
                 Run2Idel();
 
 
 
         }
-        if (Input.GetKeyUp(keycodes[4])) //改成getkeyup，长按E后再播放投掷动画
+        if ((virtualKey.getKeyUp[4])) //改成getkeyup，长按E后再播放投掷动画
         {      // E
             if (stateInfo.IsName("CastingLoop") || stateInfo.IsName("CastingLoop 2"))
             {

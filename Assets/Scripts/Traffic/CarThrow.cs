@@ -8,7 +8,7 @@ public class CarThrow : MonoBehaviour
 {
     public float interval;
     public Vector3 spawnPosition;
-    private int p;
+    public int p;
     public float timer;
     private float throwForce;
     private float destroyDelay;       
@@ -23,6 +23,12 @@ public class CarThrow : MonoBehaviour
     private int barrel_num = 0;
     private int lock_num = 0;
     private int box_num = 0;
+ 
+    // Since each scene has different time, we need to set the time for each scene
+    private float overallTime = 0f;
+    public int Scene_id = 0;       // main scene by default
+    // 数组
+    private float[] CarTime = {4.5f, };       // {main_scene, }
 
     void Start()
     {
@@ -38,12 +44,16 @@ public class CarThrow : MonoBehaviour
 
     void Update()
     {
+        overallTime += Time.deltaTime;
+        if(overallTime > CarTime[Scene_id])
+            Destroy(gameObject);
+
         timer += Time.deltaTime;
         if (timer >= interval)
         {
             GameObject c;
             int r = Random.Range(0, 21);//决定抛出物体
-            if (r == 0 || r == 1)
+            if (r == 0)
             {
                 c = Instantiate(Resources.Load("prefabs/Bomb Red") as GameObject);
                 c.name = "bomb_" + "truck_" + bomb_num.ToString();
