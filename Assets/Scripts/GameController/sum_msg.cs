@@ -69,7 +69,9 @@ public class sum_msg : MonoBehaviour
         if (status == 1 && !gameover)
         {
             theText.text = "PLAYER ONE WON!";
+
             button.SetActive(true);
+            //DestroyPlayer();
             Play_Final();
             gameover = true;
         }
@@ -77,17 +79,33 @@ public class sum_msg : MonoBehaviour
         {
             theText.text = "PLAYER TWO WON!";
             button.SetActive(true);
+            //DestroyPlayer();
             Play_Final();
             gameover = true;
         }
 
     }
 
+    private void DestroyPlayer(){
+        if(status==1){
+            GameObject.Find("PlayerUI_1");
+            Destroy(player2);
+            GameObject player=Instantiate(Resources.Load("Prefabs/animal_people_wolf_2") as GameObject);
+            player.transform.position=new Vector3(804.42f, 1.6f, 981f);
+        }
+        else if(status==2){
+            Destroy(player1);
+            GameObject player=Instantiate(Resources.Load("Prefabs/animal_people_wolf_1") as GameObject);
+            player.transform.position=new Vector3(794.84f, 1.6f, 981f);
+        }
+    }
+
+    
+
     private void Collide_Arround(Vector3 endposition)
     {
         float explosionRadius = 20f;
         float explosionForce = 200f;
-        // 获取爆炸范围内的所有碰撞体
         Collider[] colliders = Physics.OverlapSphere(endposition, explosionRadius);
         foreach (Collider nearbyObject in colliders)
         {
