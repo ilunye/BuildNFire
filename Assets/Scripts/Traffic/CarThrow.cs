@@ -43,7 +43,7 @@ public class CarThrow : MonoBehaviour
         {
             GameObject c;
             int r = Random.Range(0, 21);//决定抛出物体
-            if (r == 0 || r == 1)
+            if (r == 0)
             {
                 c = Instantiate(Resources.Load("prefabs/Bomb Red") as GameObject);
                 c.name = "bomb_" + "truck_" + bomb_num.ToString();
