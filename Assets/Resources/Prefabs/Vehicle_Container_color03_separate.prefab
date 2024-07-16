@@ -590,10 +590,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 400012}
-  - component: {fileID: -4362724396125130409}
+  - component: {fileID: 9150860325129695090}
   - component: {fileID: 4832465869539239927}
   - component: {fileID: 6076115449239806506}
   - component: {fileID: 49675474435196242}
+  - component: {fileID: -4362724396125130409}
   - component: {fileID: 710917890776087421}
   - component: {fileID: 953275606467669585}
   m_Layer: 0
@@ -625,24 +626,28 @@ Transform:
   - {fileID: 400000}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
---- !u!114 &-4362724396125130409
-MonoBehaviour:
+--- !u!195 &9150860325129695090
+NavMeshAgent:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100014}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d7fc9ba7a8f8594fb2dad9928cd5fcf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timer: 0
-  waitTime: 0
-  rayCastEnable: 1
-  carCongestion: 0
-  lastHit: {fileID: 0}
-  green: 0
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 2
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!65 &4832465869539239927
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -700,6 +705,24 @@ MonoBehaviour:
   interval: 0
   spawnPosition: {x: 0, y: 0, z: 0}
   timer: 0
+--- !u!114 &-4362724396125130409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d7fc9ba7a8f8594fb2dad9928cd5fcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: 0
+  waitTime: 0
+  rayCastEnable: 1
+  carCongestion: 0
+  lastHit: {fileID: 0}
+  green: 0
 --- !u!54 &710917890776087421
 Rigidbody:
   m_ObjectHideFlags: 0

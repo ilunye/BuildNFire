@@ -8,10 +8,10 @@ public class CarThrow : MonoBehaviour
 {
     public float interval;
     public Vector3 spawnPosition;
-    private int p;
+    public int p;
     public float timer;
     private float throwForce;
-    private float destroyDelay;       
+    private float destroyDelay;
     private int bomb_num = 0;
     private int burger_num = 0;
     private int hourglass_num = 0;
@@ -23,6 +23,12 @@ public class CarThrow : MonoBehaviour
     private int barrel_num = 0;
     private int lock_num = 0;
     private int box_num = 0;
+
+    // Since each scene has different time, we need to set the time for each scene
+    private float overallTime = 0f;
+    public int Scene_id = 0;       // main scene by default
+
+    public float CarTime = 4.5f;
 
     void Start()
     {
@@ -38,6 +44,10 @@ public class CarThrow : MonoBehaviour
 
     void Update()
     {
+        overallTime += Time.deltaTime;
+        if (overallTime > CarTime)
+            Destroy(gameObject);
+
         timer += Time.deltaTime;
         if (timer >= interval)
         {
@@ -70,7 +80,7 @@ public class CarThrow : MonoBehaviour
                 c.name = "concrete_" + "truck_" + concrete_num.ToString();
                 concrete_num++;
             }
-            else if (r == 5|| r == 6)
+            else if (r == 5 || r == 6)
             {
                 c = Instantiate(Resources.Load("prefabs/projectile") as GameObject);
                 c.name = "projectile_" + "truck_" + projectile_num.ToString();
@@ -97,7 +107,7 @@ public class CarThrow : MonoBehaviour
                 c.name = "rock_" + "truck_" + rock_num.ToString();
                 rock_num++;
             }
-            else if (r == 17||r==18)
+            else if (r == 17 || r == 18)
             {
                 c = Instantiate(Resources.Load("prefabs/explosiveBarrel") as GameObject);
                 c.name = "barrel_" + "truck_" + barrel_num.ToString();
