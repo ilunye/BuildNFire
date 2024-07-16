@@ -139,7 +139,7 @@ public class carMove : MonoBehaviour
     {
         lifeTime+=Time.deltaTime;
         transform.position += speed *transform.forward * Time.deltaTime;
-        if(lifeTime>=10f){
+        if(transform.position.z < 972){
             Destroy(gameObject);
         }
         if(carCongestion && lastHit == null){

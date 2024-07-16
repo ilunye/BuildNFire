@@ -73,6 +73,7 @@ public class Character : MonoBehaviour
     public bool isPunch = false;
     public bool isFalling = false;
     public float timer = 0f;
+    public float freezeTimer = 3f;
     internal object property;
 
     public bool enableOut = true;
@@ -233,6 +234,13 @@ public class Character : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
         }
 
+        if(freezeTimer > 0f){
+            freezeTimer -= Time.deltaTime;
+            if(freezeTimer <= 0f){
+                GetComponent<Rigidbody>().freezeRotation = true;
+            }
+        }
+
     }
 
     private void Motion_Voice()
@@ -355,34 +363,32 @@ public class Character : MonoBehaviour
             else if ((playerState == PlayerState.Idle || playerState == PlayerState.ReadyToClaim) && Material != MaterialType.None && Material != MaterialType.Bomb)
             //item in hand ,press E put down
             {
-                GameObject obj;
+                GameObject obj = null;
                 switch (Material)
                 {
                     case MaterialType.Wood:
                         obj = Instantiate(Resources.Load("Prefabs/Wood") as GameObject, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
-                        obj.GetComponent<CollectableMaterials>().WillDisappear = false;
-                        obj.transform.position = new Vector3(obj.transform.position.x, 0.5f, obj.transform.position.z) + transform.forward * 0.3f;
                         break;
                     case MaterialType.IronOre:
                         obj = Instantiate(Resources.Load("Prefabs/Rock_03") as GameObject, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
-                        obj.GetComponent<CollectableMaterials>().WillDisappear = false;
-                        obj.transform.position = new Vector3(obj.transform.position.x, 0.5f, obj.transform.position.z) + transform.forward * 0.3f;
                         break;
                     case MaterialType.Iron:
                         obj = Instantiate(Resources.Load("Prefabs/ConcreteTubes") as GameObject, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
-                        obj.GetComponent<CollectableMaterials>().WillDisappear = false;
-                        obj.transform.position = new Vector3(obj.transform.position.x, 0.5f, obj.transform.position.z) + transform.forward * 0.3f;
                         break;
                     case MaterialType.GunPowder:
                         obj = Instantiate(Resources.Load("Prefabs/explosiveBarrel") as GameObject, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
-                        obj.GetComponent<CollectableMaterials>().WillDisappear = false;
-                        obj.transform.position = new Vector3(obj.transform.position.x, 0.5f, obj.transform.position.z) + transform.forward * 0.3f;
                         break;
                     case MaterialType.CannonBall:
                         obj = Instantiate(Resources.Load("Prefabs/projectile") as GameObject, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
-                        obj.GetComponent<CollectableMaterials>().WillDisappear = false;
-                        obj.transform.position = new Vector3(obj.transform.position.x, 0.5f, obj.transform.position.z) + transform.forward * 0.3f;
                         break;
+                }
+                obj.GetComponent<CollectableMaterials>().WillDisappear = false;
+                RaycastHit hit;
+                if(Physics.Raycast(new Vector3(transform.position.x, 0.5f, transform.position.z), transform.forward, out hit, 1f)){
+                    obj.transform.position = new Vector3(obj.transform.position.x, 0.5f, obj.transform.position.z) - transform.forward * 0.3f;
+                }
+                else{
+                    obj.transform.position = new Vector3(obj.transform.position.x, 0.5f, obj.transform.position.z) + transform.forward * 0.3f;
                 }
                 item_fall_voice.Play();
                 Material = MaterialType.None;
