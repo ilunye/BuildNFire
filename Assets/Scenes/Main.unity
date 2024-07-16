@@ -831,11 +831,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e65a1b09cf1f7cf40989499b171558a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPosition: {x: 778.22, y: 0, z: 966.79}
   timer_green: 0
   timer_red: 0
   car1_load_track: prefabs/Vehicle_Container_color01_separate
   car2_load_track: prefabs/Vehicle_Container_color03_separate
+  minTime: 4
+  maxTime: 6
 --- !u!1001 &214371235
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10766,6 +10767,14 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1867078716}
+    - target: {fileID: 363670378367736777, guid: 45cf65d7fc916eb4cbc92cf654f0059b, type: 3}
+      propertyPath: enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 363670378367736777, guid: 45cf65d7fc916eb4cbc92cf654f0059b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2648901920426711436, guid: 45cf65d7fc916eb4cbc92cf654f0059b, type: 3}
       propertyPath: RawImage
       value: 
@@ -11749,8 +11758,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1867078716}
     - target: {fileID: 670439694211587517, guid: 5ffcf42b1d7ff674397b10249cff9478, type: 3}
+      propertyPath: wasd
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 670439694211587517, guid: 5ffcf42b1d7ff674397b10249cff9478, type: 3}
       propertyPath: enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 670439694211587517, guid: 5ffcf42b1d7ff674397b10249cff9478, type: 3}
       propertyPath: PlayerSpeed

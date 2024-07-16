@@ -11,19 +11,19 @@ public class CarThrow : MonoBehaviour
     public int p;
     public float timer;
     private float throwForce;
-    private float destroyDelay;
-    private int bomb_num = 0;
-    private int burger_num = 0;
-    private int hourglass_num = 0;
-    private int concrete_num = 0;
-    private int projectile_num = 0;
-    private int rock_num = 0;
-    private int wood_num = 0;
-    private int magnet_num = 0;
-    private int barrel_num = 0;
-    private int lock_num = 0;
-    private int box_num = 0;
-
+    private float destroyDelay;       
+    public static int bomb_num = 0;
+    public static int burger_num = 0;
+    public static int hourglass_num = 0;
+    public static int concrete_num = 0;
+    public static int projectile_num = 0;
+    public static int rock_num = 0;
+    public static int wood_num = 0;
+    public static int magnet_num = 0;
+    public static int barrel_num = 0;
+    public static int lock_num = 0;
+    public static int box_num = 0;
+ 
     // Since each scene has different time, we need to set the time for each scene
     private float overallTime = 0f;
     public int Scene_id = 0;       // main scene by default

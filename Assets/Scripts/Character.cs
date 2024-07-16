@@ -25,8 +25,9 @@ public class Character : MonoBehaviour
     private AnimatorStateInfo stateInfo;
 
     public GameObject cam; // the camera
+    public bool wasd = true;
     public bool runSoundFlag = true;
-    public VirtualKey virtualKey;
+    public KeyCode[] keycodes;
 
     public enum PlayerState
     {
@@ -92,10 +93,6 @@ public class Character : MonoBehaviour
     private GameObject item_fall;
     private AudioSource item_fall_voice;
 
-    private GameObject myCannon;
-    private bool network = false;
-    private AnimationPlayer animationPlayer;
-    private NetworkAnimationPlayer networkAnimationPlayer;
     void OnTriggerStay(Collider other) //get beat
     {
         if (isFalling || (other.tag == "Player" && other.gameObject.GetComponent<Character>().isFalling)) return;
@@ -104,13 +101,7 @@ public class Character : MonoBehaviour
             timer += Time.deltaTime;
             if (timer > 0.4f)
             {
-                if(network){
-                    other.GetComponent<Animator>().Play("DAMAGED01");
-
-                    other.GetComponent<NetworkAnimationPlayer>().Play("DAMAGED01");
-                }else{
-                    other.GetComponent<AnimationPlayer>().Play("DAMAGED01");
-                }
+                other.GetComponent<Animator>().Play("DAMAGED01");
                 other.gameObject.GetComponent<Character>().isFalling = true;
                 other.gameObject.GetComponent<Character>().playerState = PlayerState.Falling;
                 beated_voice_source.Play();
@@ -122,20 +113,13 @@ public class Character : MonoBehaviour
     void Awake()
     {
         Anim = GetComponent<Animator>();
-        virtualKey = GetComponent<VirtualKey>();
-        network = GetComponent<NetworkKey>() != null;
-        if(network){
-            for(int i=0; i<4; i++){
-                myCannon = GameObject.Find("cannon" + i.ToString());
-                if(myCannon.GetComponent<Cannon>().claimed == false){
-                    myCannon.GetComponent<Cannon>().claimed = true;
-                    myCannon.GetComponent<Cannon>().player = gameObject;
-                    break;
-                }
-            } 
-            networkAnimationPlayer = GetComponent<NetworkAnimationPlayer>();
-        }else{
-            animationPlayer = GetComponent<AnimationPlayer>();
+        if (wasd == true)
+        {
+            keycodes = new KeyCode[] { KeyCode.W, KeyCode.S, KeyCode.A, KeyCode.D, KeyCode.E };
+        }
+        else
+        {
+            keycodes = new KeyCode[] { KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow, KeyCode.Return };
         }
     }
     // Start is called before the first frame update
@@ -196,30 +180,35 @@ public class Character : MonoBehaviour
                 GameObject g = Instantiate(Resources.Load("Prefabs/Wood") as GameObject);
                 g.transform.position = transform.position + new Vector3(0, 0.5f, 0);
                 g.GetComponent<CollectableMaterials>().WillDisappear = false;
+                g.name = "Wood_" + (CarThrow.wood_num++).ToString();
             }
             else if (Material == MaterialType.IronOre)
             {
                 GameObject g = Instantiate(Resources.Load("Prefabs/Rock_03") as GameObject);
                 g.transform.position = transform.position + new Vector3(0, 0.5f, 0);
                 g.GetComponent<CollectableMaterials>().WillDisappear = false;
+                g.name = "IronOre_" + (CarThrow.rock_num++).ToString();
             }
             else if (Material == MaterialType.Iron)
             {
                 GameObject g = Instantiate(Resources.Load("Prefabs/ConcreteTubes") as GameObject);
                 g.transform.position = transform.position + new Vector3(0, 0.5f, 0);
                 g.GetComponent<CollectableMaterials>().WillDisappear = false;
+                g.name = "Iron_" + (CarThrow.concrete_num++).ToString();
             }
             else if (Material == MaterialType.GunPowder)
             {
                 GameObject g = Instantiate(Resources.Load("Prefabs/explosiveBarrel") as GameObject);
                 g.transform.position = transform.position + new Vector3(0, 0.5f, 0);
                 g.GetComponent<CollectableMaterials>().WillDisappear = false;
+                g.name = "GunPowder_" + (CarThrow.barrel_num++).ToString();
             }
             else if (Material == MaterialType.CannonBall)
             {
                 GameObject g = Instantiate(Resources.Load("Prefabs/projectile") as GameObject);
                 g.transform.position = transform.position + new Vector3(0, 0.5f, 0);
                 g.GetComponent<CollectableMaterials>().WillDisappear = false;
+                g.name = "CannonBall_" + (CarThrow.projectile_num++).ToString();
             }
             else if(Material == MaterialType.Bomb){
                 GetComponent<ThrowBomb>().SetTarget(null);
@@ -245,12 +234,7 @@ public class Character : MonoBehaviour
         {
             //Debug.Log("玩家休眠");
             PlayerSpeed = 0; //玩家休眠
-            if(network){
-                Anim.Play("StunnedLoop");
-                GetComponent<NetworkAnimationPlayer>().Play("StunnedLoop");
-            }else{
-                GetComponent<AnimationPlayer>().Play("StunnedLoop");
-            }
+            gameObject.GetComponent<Animator>().Play("StunnedLoop"); //播放晕倒动画
             gameObject.GetComponent<Character>().isFalling = true;
             gameObject.GetComponent<Character>().playerState = PlayerState.Falling;
 
@@ -276,11 +260,11 @@ public class Character : MonoBehaviour
 
     private void Motion_Voice()
     {
-        if ((virtualKey.getKey[0] || (virtualKey.getKey[1]) || (virtualKey.getKey[2]) || (virtualKey.getKey[3])) && runSoundFlag)
+        if ((Input.GetKey(keycodes[0]) || Input.GetKey(keycodes[1]) || Input.GetKey(keycodes[2]) || Input.GetKey(keycodes[3])) && runSoundFlag)
         {
             run_source.Play();
             runSoundFlag = false;
-        }else if (!(virtualKey.getKey[0]) && !(virtualKey.getKey[1]) && !(virtualKey.getKey[2]) && !(virtualKey.getKey[3]))
+        }else if (!Input.GetKey(keycodes[0]) && !Input.GetKey(keycodes[1]) && !Input.GetKey(keycodes[2]) && !Input.GetKey(keycodes[3]))
         {
             run_source.Stop();
             runSoundFlag = true;
@@ -292,13 +276,14 @@ public class Character : MonoBehaviour
     }
 
 
+public bool last_E_Up = false;
     private void Motion()
     {
         // go up
         if (playerState != PlayerState.Punch && playerState != PlayerState.Claim && playerState != PlayerState.Falling && playerState != PlayerState.Operating)
         {
 
-            if ((virtualKey.getKey[0]))
+            if (Input.GetKey(keycodes[0]))
             {
                 //Debug.Log("向前走");
                 // 向世界坐标系得z轴方向移动
@@ -315,11 +300,11 @@ public class Character : MonoBehaviour
                 Idle2Run();
                 Rotate(Direction.Forward);
             }
-            if ((virtualKey.getKeyUp[0]))
+            if (Input.GetKeyUp(keycodes[0]))
                 Run2Idel();
 
             // go down
-            if ((virtualKey.getKey[1]))
+            if (Input.GetKey(keycodes[1]))
             {
 
                 Vector3 p = transform.localPosition;
@@ -335,11 +320,11 @@ public class Character : MonoBehaviour
                 Idle2Run();
                 Rotate(Direction.Backward);
             }
-            if ((virtualKey.getKeyUp[1]))
+            if (Input.GetKeyUp(keycodes[1]))
                 Run2Idel();
 
             // go left
-            if ((virtualKey.getKey[2]))
+            if (Input.GetKey(keycodes[2]))
             {
 
                 Vector3 p = transform.localPosition;
@@ -354,11 +339,11 @@ public class Character : MonoBehaviour
                 Idle2Run();
                 Rotate(Direction.Left);
             }
-            if ((virtualKey.getKeyUp[2]))
+            if (Input.GetKeyUp(keycodes[2]))
                 Run2Idel();
 
             // go right
-            if ((virtualKey.getKey[3]))
+            if (Input.GetKey(keycodes[3]))
             {
 
                 Vector3 p = transform.localPosition;
@@ -373,13 +358,13 @@ public class Character : MonoBehaviour
                 Idle2Run();
                 Rotate(Direction.Right);
             }
-            if ((virtualKey.getKeyUp[3]))
+            if (Input.GetKeyUp(keycodes[3]))
                 Run2Idel();
 
 
 
         }
-        if ((virtualKey.getKeyUp[4])) //改成getkeyup，长按E后再播放投掷动画
+        if ((Input.GetKeyUp(keycodes[4]))) //改成getkeyup，长按E后再播放投掷动画
         {      // E
             if (stateInfo.IsName("CastingLoop") || stateInfo.IsName("CastingLoop 2"))
             {
@@ -387,12 +372,7 @@ public class Character : MonoBehaviour
             }
             else if (playerState == PlayerState.Idle && Material == MaterialType.None)
             {   // no items in hand
-                if(network){
-                    GetComponent<NetworkAnimationPlayer>().Play("PunchRight");
-                    Anim.Play("PunchRight");
-                }else{
-                    GetComponent<AnimationPlayer>().Play("PunchRight");
-                }
+                Anim.Play("PunchRight");
                 isPunch = false;
                 playerState = PlayerState.Punch;
             }
@@ -404,18 +384,23 @@ public class Character : MonoBehaviour
                 {
                     case MaterialType.Wood:
                         obj = Instantiate(Resources.Load("Prefabs/Wood") as GameObject, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
+                        obj.name = "Wood_" + (CarThrow.wood_num++).ToString();
                         break;
                     case MaterialType.IronOre:
                         obj = Instantiate(Resources.Load("Prefabs/Rock_03") as GameObject, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
+                        obj.name = "IronOre_" + (CarThrow.rock_num++).ToString();
                         break;
                     case MaterialType.Iron:
                         obj = Instantiate(Resources.Load("Prefabs/ConcreteTubes") as GameObject, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
+                        obj.name = "Iron_" + (CarThrow.concrete_num++).ToString();
                         break;
                     case MaterialType.GunPowder:
                         obj = Instantiate(Resources.Load("Prefabs/explosiveBarrel") as GameObject, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
+                        obj.name = "GunPowder_" + (CarThrow.barrel_num++).ToString();
                         break;
                     case MaterialType.CannonBall:
                         obj = Instantiate(Resources.Load("Prefabs/projectile") as GameObject, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
+                        obj.name = "CannonBall_" + (CarThrow.projectile_num++).ToString();
                         break;
                 }
                 obj.GetComponent<CollectableMaterials>().WillDisappear = false;
@@ -424,7 +409,7 @@ public class Character : MonoBehaviour
                     obj.transform.position = new Vector3(obj.transform.position.x, 0.5f, obj.transform.position.z) - transform.forward * 0.3f;
                 }
                 else{
-                    obj.transform.position = new Vector3(obj.transform.position.x, 0.5f, obj.transform.position.z) + transform.forward * 0.3f;
+                    obj.transform.position = new Vector3(obj.transform.position.x, 0.5f, obj.transform.position.z) + transform.forward * 0.5f;
                 }
                 item_fall_voice.Play();
                 Material = MaterialType.None;
@@ -434,12 +419,7 @@ public class Character : MonoBehaviour
             // no item in hand and ready to grab item
             {
                 playerState = PlayerState.Claim;
-                if(network){
-                    Anim.Play("Gathering");
-                    GetComponent<NetworkAnimationPlayer>().Play("Gathering");
-                }else{
-                    GetComponent<AnimationPlayer>().Play("Gathering");
-                }
+                Anim.Play("Gathering");
                 get_item_source.Play();
             }
         }
@@ -448,23 +428,13 @@ public class Character : MonoBehaviour
     private void Idle2Run()
     {
         playerState = PlayerState.Run;
-        if(network){
-            Anim.Play("Run_norm");
-            GetComponent<NetworkAnimationPlayer>().Play("Run_norm");
-        }else{
-            GetComponent<AnimationPlayer>().Play("Run_norm");
-        }
+        Anim.Play("Run_norm");
     }
 
     private void Run2Idel()
     {
         playerState = PlayerState.Idle;
-        if(network){
-            Anim.Play("Idle");
-            GetComponent<NetworkAnimationPlayer>().Play("Idle");
-        }else{
-            GetComponent<AnimationPlayer>().Play("Idle");
-        }
+        Anim.Play("Idle");
     }
 
     private void Rotate(Direction dir)
