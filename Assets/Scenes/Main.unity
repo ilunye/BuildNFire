@@ -10756,6 +10756,14 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1867078716}
+    - target: {fileID: 363670378367736777, guid: 45cf65d7fc916eb4cbc92cf654f0059b, type: 3}
+      propertyPath: enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 363670378367736777, guid: 45cf65d7fc916eb4cbc92cf654f0059b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2648901920426711436, guid: 45cf65d7fc916eb4cbc92cf654f0059b, type: 3}
       propertyPath: RawImage
       value: 
@@ -11740,7 +11748,7 @@ PrefabInstance:
       objectReference: {fileID: 1867078716}
     - target: {fileID: 670439694211587517, guid: 5ffcf42b1d7ff674397b10249cff9478, type: 3}
       propertyPath: enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 670439694211587517, guid: 5ffcf42b1d7ff674397b10249cff9478, type: 3}
       propertyPath: PlayerSpeed

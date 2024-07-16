@@ -183,30 +183,35 @@ public class Character : MonoBehaviour
                 GameObject g = Instantiate(Resources.Load("Prefabs/Wood") as GameObject);
                 g.transform.position = transform.position + new Vector3(0, 0.5f, 0);
                 g.GetComponent<CollectableMaterials>().WillDisappear = false;
+                g.name = "Wood_" + (CarThrow.wood_num++).ToString();
             }
             else if (Material == MaterialType.IronOre)
             {
                 GameObject g = Instantiate(Resources.Load("Prefabs/Rock_03") as GameObject);
                 g.transform.position = transform.position + new Vector3(0, 0.5f, 0);
                 g.GetComponent<CollectableMaterials>().WillDisappear = false;
+                g.name = "IronOre_" + (CarThrow.rock_num++).ToString();
             }
             else if (Material == MaterialType.Iron)
             {
                 GameObject g = Instantiate(Resources.Load("Prefabs/ConcreteTubes") as GameObject);
                 g.transform.position = transform.position + new Vector3(0, 0.5f, 0);
                 g.GetComponent<CollectableMaterials>().WillDisappear = false;
+                g.name = "Iron_" + (CarThrow.concrete_num++).ToString();
             }
             else if (Material == MaterialType.GunPowder)
             {
                 GameObject g = Instantiate(Resources.Load("Prefabs/explosiveBarrel") as GameObject);
                 g.transform.position = transform.position + new Vector3(0, 0.5f, 0);
                 g.GetComponent<CollectableMaterials>().WillDisappear = false;
+                g.name = "GunPowder_" + (CarThrow.barrel_num++).ToString();
             }
             else if (Material == MaterialType.CannonBall)
             {
                 GameObject g = Instantiate(Resources.Load("Prefabs/projectile") as GameObject);
                 g.transform.position = transform.position + new Vector3(0, 0.5f, 0);
                 g.GetComponent<CollectableMaterials>().WillDisappear = false;
+                g.name = "CannonBall_" + (CarThrow.projectile_num++).ToString();
             }
             else if(Material == MaterialType.Bomb){
                 GetComponent<ThrowBomb>().SetTarget(null);
@@ -274,6 +279,7 @@ public class Character : MonoBehaviour
     }
 
 
+public bool last_E_Up = false;
     private void Motion()
     {
         // go up
@@ -381,18 +387,23 @@ public class Character : MonoBehaviour
                 {
                     case MaterialType.Wood:
                         obj = Instantiate(Resources.Load("Prefabs/Wood") as GameObject, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
+                        obj.name = "Wood_" + (CarThrow.wood_num++).ToString();
                         break;
                     case MaterialType.IronOre:
                         obj = Instantiate(Resources.Load("Prefabs/Rock_03") as GameObject, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
+                        obj.name = "IronOre_" + (CarThrow.rock_num++).ToString();
                         break;
                     case MaterialType.Iron:
                         obj = Instantiate(Resources.Load("Prefabs/ConcreteTubes") as GameObject, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
+                        obj.name = "Iron_" + (CarThrow.concrete_num++).ToString();
                         break;
                     case MaterialType.GunPowder:
                         obj = Instantiate(Resources.Load("Prefabs/explosiveBarrel") as GameObject, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
+                        obj.name = "GunPowder_" + (CarThrow.barrel_num++).ToString();
                         break;
                     case MaterialType.CannonBall:
                         obj = Instantiate(Resources.Load("Prefabs/projectile") as GameObject, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
+                        obj.name = "CannonBall_" + (CarThrow.projectile_num++).ToString();
                         break;
                 }
                 obj.GetComponent<CollectableMaterials>().WillDisappear = false;
@@ -401,7 +412,7 @@ public class Character : MonoBehaviour
                     obj.transform.position = new Vector3(obj.transform.position.x, 0.5f, obj.transform.position.z) - transform.forward * 0.3f;
                 }
                 else{
-                    obj.transform.position = new Vector3(obj.transform.position.x, 0.5f, obj.transform.position.z) + transform.forward * 0.3f;
+                    obj.transform.position = new Vector3(obj.transform.position.x, 0.5f, obj.transform.position.z) + transform.forward * 0.5f;
                 }
                 item_fall_voice.Play();
                 Material = MaterialType.None;
