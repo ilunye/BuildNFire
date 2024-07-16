@@ -688,8 +688,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.1794274, y: 0.99999946, z: 2.2831862}
-  m_Center: {x: 0.041256998, y: 0, z: 6.9646473}
+  m_Size: {x: 3.1794274, y: 0.99999946, z: 1.6884964}
+  m_Center: {x: 0.041256998, y: 0, z: 6.6672845}
 --- !u!114 &8622400470803545160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -704,7 +704,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interval: 0
   spawnPosition: {x: 0, y: 0, z: 0}
+  p: 0
   timer: 0
+  Scene_id: 0
+  CarTime: 4.5
+  bigScale: 1
 --- !u!114 &2186691118632765611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -717,12 +721,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d7fc9ba7a8f8594fb2dad9928cd5fcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 0
-  waitTime: 0
   rayCastEnable: 0
   carCongestion: 0
   lastHit: {fileID: 0}
   green: 1
+  car1_position: {x: 799.874, y: 0, z: 991.6682}
+  car2_position: {x: 799.32, y: 0, z: 991.6682}
 --- !u!54 &2806567036515662731
 Rigidbody:
   m_ObjectHideFlags: 0

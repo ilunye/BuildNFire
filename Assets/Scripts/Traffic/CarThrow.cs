@@ -27,8 +27,11 @@ public class CarThrow : MonoBehaviour
     // Since each scene has different time, we need to set the time for each scene
     private float overallTime = 0f;
     public int Scene_id = 0;       // main scene by default
-    // 数组
-    private float[] CarTime = {4.5f, };       // {main_scene, }
+
+    public float CarTime = 4.5f;
+    public float bigScale = 1f;
+
+
 
     void Start()
     {
@@ -45,7 +48,7 @@ public class CarThrow : MonoBehaviour
     void Update()
     {
         overallTime += Time.deltaTime;
-        if(overallTime > CarTime[Scene_id])
+        if (overallTime > CarTime)
             Destroy(gameObject);
 
         timer += Time.deltaTime;
@@ -80,7 +83,7 @@ public class CarThrow : MonoBehaviour
                 c.name = "concrete_" + "truck_" + concrete_num.ToString();
                 concrete_num++;
             }
-            else if (r == 5|| r == 6)
+            else if (r == 5 || r == 6)
             {
                 c = Instantiate(Resources.Load("prefabs/projectile") as GameObject);
                 c.name = "projectile_" + "truck_" + projectile_num.ToString();
@@ -107,7 +110,7 @@ public class CarThrow : MonoBehaviour
                 c.name = "rock_" + "truck_" + rock_num.ToString();
                 rock_num++;
             }
-            else if (r == 17||r==18)
+            else if (r == 17 || r == 18)
             {
                 c = Instantiate(Resources.Load("prefabs/explosiveBarrel") as GameObject);
                 c.name = "barrel_" + "truck_" + barrel_num.ToString();
@@ -128,6 +131,7 @@ public class CarThrow : MonoBehaviour
             }
             spawnPosition = transform.position + transform.up * 0.5f - transform.forward * 0.5f;
             c.transform.position = spawnPosition;
+            c.transform.localScale *= bigScale;
             // Rigidbody cubeRigidbody = c.AddComponent<Rigidbody>();
 
             float x = Random.Range(-2f, 2f);
