@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Property_2_create
   m_EditorClassIdentifier: 
   property:
-    speed: -0.7
+    speed: -1.2
     sleep: 0
     attack: 0
