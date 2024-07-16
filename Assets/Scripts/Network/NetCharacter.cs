@@ -3,9 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using Mirror;
 
 //挂在玩家上
-public class Character : MonoBehaviour
+public class NetCharacter : NetworkBehaviour
 {
     public bool enabled = true;
     public float PlayerSpeed = 1f; //人物移动速度
@@ -51,6 +52,7 @@ public class Character : MonoBehaviour
         Bomb
     }
 
+    [SyncVar]
     public MaterialType Material = MaterialType.None;
 
     private enum Direction
@@ -68,9 +70,11 @@ public class Character : MonoBehaviour
         IdletoRun
     }
 
+    [SyncVar]
     public PlayerState playerState = PlayerState.Idle;
-
+    [SyncVar]
     public bool isPunch = false;
+    [SyncVar]
     public bool isFalling = false;
     public float timer = 0f;
     public float freezeTimer = 3f;
@@ -93,17 +97,25 @@ public class Character : MonoBehaviour
     private GameObject item_fall;
     private AudioSource item_fall_voice;
 
+    [Command]
+    public void Play(string state)
+    {
+        Debug.Log("Play: " + state);
+        Anim.Play(state);
+    }
+
     void OnTriggerStay(Collider other) //get beat
     {
-        if (isFalling || (other.tag == "Player" && other.gameObject.GetComponent<Character>().isFalling)) return;
+        if (isFalling || (other.tag == "Player" && other.gameObject.GetComponent<NetCharacter>().isFalling)) return;
         if (other.tag == "Player" && playerState == PlayerState.Punch && timer < 0.5f)
         {
             timer += Time.deltaTime;
             if (timer > 0.4f)
             {
-                other.GetComponent<Animator>().Play("DAMAGED01");
-                other.gameObject.GetComponent<Character>().isFalling = true;
-                other.gameObject.GetComponent<Character>().playerState = PlayerState.Falling;
+                // other.GetComponent<Animator>().Play("DAMAGED01");
+                other.GetComponent<NetCharacter>().Play("DAMAGED01");
+                other.gameObject.GetComponent<NetCharacter>().isFalling = true;
+                other.gameObject.GetComponent<NetCharacter>().playerState = PlayerState.Falling;
                 beated_voice_source.Play();
                 whatudo_source.Play();
             }
@@ -156,18 +168,9 @@ public class Character : MonoBehaviour
     private float x_bound_right = 804.89f;
     private float z_bound_down = 977.17f;
     private float z_bound_up = 987.02f;
-    void Update(){
-        if(Time.timeScale == 0){
-            run_source.Stop();
-            beated_voice_source.Stop();
-            get_item_source.Stop();
-            whatudo_source.Stop();  
-            item_fall_voice.Stop();
-        }
-    }
-    
-    void FixedUpdate()
+    void Update()
     {
+        if(!isLocalPlayer) return;
         if (!enabled) return;
         if (!enableOut)
         {
@@ -244,9 +247,10 @@ public class Character : MonoBehaviour
         {
             //Debug.Log("玩家休眠");
             PlayerSpeed = 0; //玩家休眠
-            gameObject.GetComponent<Animator>().Play("StunnedLoop"); //播放晕倒动画
-            gameObject.GetComponent<Character>().isFalling = true;
-            gameObject.GetComponent<Character>().playerState = PlayerState.Falling;
+            // gameObject.GetComponent<Animator>().Play("StunnedLoop"); //播放晕倒动画
+            Play("StunnedLoop");
+            gameObject.GetComponent<NetCharacter>().isFalling = true;
+            gameObject.GetComponent<NetCharacter>().playerState = PlayerState.Falling;
 
         }
         // if(Anim.name != "PunchRight"){
@@ -286,6 +290,7 @@ public class Character : MonoBehaviour
     }
 
 
+public bool last_E_Up = false;
     private void Motion()
     {
         // go up
@@ -381,7 +386,8 @@ public class Character : MonoBehaviour
             }
             else if (playerState == PlayerState.Idle && Material == MaterialType.None)
             {   // no items in hand
-                Anim.Play("PunchRight");
+                // Anim.Play("PunchRight");
+                Play("PunchRight");
                 isPunch = false;
                 playerState = PlayerState.Punch;
             }
@@ -428,7 +434,8 @@ public class Character : MonoBehaviour
             // no item in hand and ready to grab item
             {
                 playerState = PlayerState.Claim;
-                Anim.Play("Gathering");
+                // Anim.Play("Gathering");
+                Play("Gathering");
                 get_item_source.Play();
             }
         }
@@ -437,13 +444,15 @@ public class Character : MonoBehaviour
     private void Idle2Run()
     {
         playerState = PlayerState.Run;
-        Anim.Play("Run_norm");
+        // Anim.Play("Run_norm");
+        Play("Run_norm");
     }
 
     private void Run2Idel()
     {
         playerState = PlayerState.Idle;
-        Anim.Play("Idle");
+        // Anim.Play("Idle");
+        Play("Idle");
     }
 
     private void Rotate(Direction dir)

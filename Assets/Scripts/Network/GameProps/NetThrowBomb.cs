@@ -1,8 +1,9 @@
 using UnityEditor;
 using UnityEngine;
 using System.Collections;
+using Mirror;
 
-public class ThrowBomb : MonoBehaviour
+public class NetThrowBomb : NetworkBehaviour
 {
     public GameObject bomb;  // 炸弹的预制体
     private float InitthrowForce = 1f; // 初始投掷的力量
@@ -28,7 +29,7 @@ public class ThrowBomb : MonoBehaviour
     void Start()
     {
         throwForce = InitthrowForce;
-        wasd = GetComponent<Character>().wasd; //分开两个角色的控制键
+        wasd = GetComponent<NetCharacter>().wasd; //分开两个角色的控制键
         if (wasd)
         {
             keyCodeE = KeyCode.E;
@@ -41,7 +42,7 @@ public class ThrowBomb : MonoBehaviour
     }
     void Update()
     {
-        if (GetComponent<Character>().Material == Character.MaterialType.Bomb) //如果玩家捡到炸弹
+        if (GetComponent<NetCharacter>().Material == NetCharacter.MaterialType.Bomb) //如果玩家捡到炸弹
         {
             // BombImage.SetActive(true);
             if (Input.GetKey(keyCodeE)) //如果长按E则累计投掷的力量
@@ -63,7 +64,7 @@ public class ThrowBomb : MonoBehaviour
             {
                 readytothrow = false;
                 Throw();
-                GetComponent<Character>().Material =Character.MaterialType.None;
+                GetComponent<NetCharacter>().Material =NetCharacter.MaterialType.None;
 
             }
         }
