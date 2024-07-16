@@ -22,6 +22,10 @@ TagManager:
   - Cannon
   - Character
   - Magnet
+  - Wood
+  - Stone
+  - Iron
+  - Projeile
   layers:
   - Default
   - TransparentFX
