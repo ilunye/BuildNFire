@@ -100,7 +100,6 @@ public class WorkFlow : MonoBehaviour
         }
 
         if(toPickIron && isIron && iron_number < 3f){
-            Debug.Log("want iron come iron");
             workFlowPos += 2;
             if(workFlowPos > 10)
                 workFlowPos = 10;
@@ -124,7 +123,6 @@ public class WorkFlow : MonoBehaviour
                 DisableAllChildren(frame_wood);
             }
         }else if(toPickWood && wood_number < 2f && isWood){
-            Debug.Log("want wood come wood");
             workFlowPos += 2;
             if(workFlowPos > 10)
                 workFlowPos = 10;

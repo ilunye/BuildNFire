@@ -100,7 +100,6 @@ public class GameStartTextController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Time.timeScale: " + Time.timeScale);
         if(Time.timeScale == 0)
         {
             BGM_voice.Pause();
