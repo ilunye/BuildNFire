@@ -6,16 +6,15 @@ public class Burger : MonoBehaviour
 {
     public BuffData buffData;
 
-    // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine(DestroyAfterDelay(10f));
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator DestroyAfterDelay(float delay)
     {
-        
+        yield return new WaitForSeconds(delay);
+        Destroy(gameObject);
     }
     // void OnTriggerStay(Collider other){
     //     if(other.tag != "Player")
