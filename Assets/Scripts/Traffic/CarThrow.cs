@@ -29,6 +29,9 @@ public class CarThrow : MonoBehaviour
     public int Scene_id = 0;       // main scene by default
 
     public float CarTime = 4.5f;
+    public float bigScale = 1f;
+
+
 
     void Start()
     {
@@ -128,6 +131,7 @@ public class CarThrow : MonoBehaviour
             }
             spawnPosition = transform.position + transform.up * 0.5f - transform.forward * 0.5f;
             c.transform.position = spawnPosition;
+            c.transform.localScale *= bigScale;
             // Rigidbody cubeRigidbody = c.AddComponent<Rigidbody>();
 
             float x = Random.Range(-2f, 2f);

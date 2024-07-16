@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,7 +7,7 @@ public class SceneController : MonoBehaviour
 {
     public TreeController treeController;
     public TrafficControl trafficControl;
-    public float scaleTime = 5f;
+    public float scaleTime = 2f;
 
 
     void Start()
@@ -40,7 +42,7 @@ public class SceneController : MonoBehaviour
 
             }
 
-            Change_Scale();
+
             // 在场景2中执行特定的逻辑
             //Debug.Log("在场景2中");
         }
@@ -52,12 +54,26 @@ public class SceneController : MonoBehaviour
 
 
     }
-    private void Change_Scale()
+    void Update()
     {
+        //StartCoroutine(ChangeScale());
+        Debug.Log("debug");
+    }
+
+
+
+
+
+
+
+    IEnumerator ChangeScale()
+    {
+        Debug.Log("Start of Coroutine");
+
         GameObject[] allGameObjects = GameObject.FindObjectsOfType<GameObject>();
         foreach (GameObject tempObj in allGameObjects)
         {
-            Debug.Log(tempObj.name);
+
             if (tempObj.tag == "material" || tempObj.tag == "Bomb" || tempObj.tag == "Wood"
             || tempObj.tag == "Burger" || tempObj.tag == "Stone" || tempObj.tag == "Lock"
             || tempObj.tag == "Cannon" || tempObj.tag == "Clock" || tempObj.tag == "Box"
@@ -67,6 +83,11 @@ public class SceneController : MonoBehaviour
                 Debug.Log(tempObj.name + tempObj.transform.localScale);
             }
         }
+        yield return null;
 
+        Debug.Log("End of Coroutine");
     }
+
+
+
 }

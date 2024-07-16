@@ -13,6 +13,7 @@ public class carMoveSenceCity : MonoBehaviour
     private float initialVelocityX = 1f;
     private float initialVelocityZ = -1f;
     private float throwForce = 2f;
+    public float speed = 10f;
 
     private Vector3 car1_position = new Vector3(120f, 0f, 157f);
     private Vector3 car2_position = new Vector3(120f, 0f, 163f);
@@ -31,6 +32,7 @@ public class carMoveSenceCity : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Debug.Log("chuangren");
             AudioSource audioSource = GetComponent<AudioSource>();
             audioSource.Play();
             other.gameObject.GetComponent<Character>().playerState = Character.PlayerState.Falling;
@@ -62,9 +64,9 @@ public class carMoveSenceCity : MonoBehaviour
         }
     }
 
-    private float lifeTime = 0f;
 
-    private float speed = 5f;
+
+
     void Start()
     {
         if (truck)
@@ -79,7 +81,7 @@ public class carMoveSenceCity : MonoBehaviour
 
     void Update()
     {
-        lifeTime += Time.deltaTime;
+
         transform.position += speed * transform.forward * Time.deltaTime;
         if (transform.position.x > 240)
         {
