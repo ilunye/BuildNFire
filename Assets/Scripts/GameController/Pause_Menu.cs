@@ -4,37 +4,32 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
 
-public class Menu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+public class Pause_Menu: MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     public TextMeshProUGUI text;
     public Image[] images;   // 存储Image组件的数组
     private int currentIndex; 
     private Color initialColor;
     private bool confirmButtonEnabled = false;  //15秒后才能按confirm
-    private float timer = 15f;
     private TextMeshProUGUI confirmText;
-    public bool isConfirm = false;
+    public bool isInst = false;
+    private GameObject Controller;
+
     void Start()
     {
         confirmText = GetComponent<TextMeshProUGUI>();
+        Controller = GameObject.Find("Canvas/Pause_Controller");
         initialColor = text.color;
         currentIndex = 0;
-        ShowCurrentImage();
+        if(isInst)
+            ShowCurrentImage();
     }
 
     void Update()
     {
-        if(timer > 0){
-            timer -= Time.deltaTime;
-        }
-        if(isConfirm){
-            if(timer <= 0){
-                confirmText.text = "CONFIRM";
-            }else{
-                confirmText.text = "CONFIRM(" + (int)timer + ")";
-            }
-        }
-        if (!confirmButtonEnabled && timer <= 0)
+        if(isInst)
+            confirmText.text = "CONFIRM";
+        if (!confirmButtonEnabled)
         {
             confirmButtonEnabled = true;
         }
@@ -68,9 +63,7 @@ public class Menu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if(!isConfirm || (isConfirm && timer <= 0)){
-            text.color = Color.red;
-        }
+        text.color = Color.blue;
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -80,9 +73,9 @@ public class Menu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (text.text == "START")
+        if (text.text == "resume")
         {
-            SceneManager.LoadScene("Scenes/pre");
+            Controller.GetComponent<PauseController>().OnResume();
         }
         else if (text.text == "CONFIRM"&&confirmButtonEnabled) //15秒后可点击
         {

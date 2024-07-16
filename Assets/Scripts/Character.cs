@@ -172,7 +172,17 @@ public class Character : MonoBehaviour
     private float x_bound_right = 804.89f;
     private float z_bound_down = 977.17f;
     private float z_bound_up = 987.02f;
-    void Update()
+    void Update(){
+        if(Time.timeScale == 0){
+            run_source.Stop();
+            beated_voice_source.Stop();
+            get_item_source.Stop();
+            whatudo_source.Stop();  
+            item_fall_voice.Stop();
+        }
+    }
+    
+    void FixedUpdate()
     {
         if (!enabled) return;
         if (!enableOut)
@@ -297,7 +307,6 @@ public class Character : MonoBehaviour
     }
 
 
-public bool last_E_Up = false;
     private void Motion()
     {
         // go up
