@@ -96,7 +96,7 @@ public class Cannon : MonoBehaviour
         for(int i=0; i<5; i++){
             material[i].SetFloat("_DisappearOffset", disOffset.position.y);
         }
-        if(playerIn && player.GetComponent<VirtualKey>().getKeyDown[4]){
+        if(playerIn && Input.GetKeyDown(player.GetComponent<Character>().keycodes[4])){
             if(isPlaying) return;
             switch(player.GetComponent<Character>().Material){
                 case Character.MaterialType.CannonBall:
