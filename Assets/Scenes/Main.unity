@@ -211,7 +211,6 @@ GameObject:
   m_Component:
   - component: {fileID: 29218094}
   - component: {fileID: 29218093}
-  - component: {fileID: 29218092}
   - component: {fileID: 29218091}
   - component: {fileID: 29218090}
   - component: {fileID: 29218089}
@@ -311,14 +310,6 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
---- !u!81 &29218092
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 29218088}
-  m_Enabled: 1
 --- !u!20 &29218093
 Camera:
   m_ObjectHideFlags: 0
@@ -10765,10 +10756,6 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1867078716}
-    - target: {fileID: 363670378367736777, guid: 45cf65d7fc916eb4cbc92cf654f0059b, type: 3}
-      propertyPath: PlayerSpeed
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 2648901920426711436, guid: 45cf65d7fc916eb4cbc92cf654f0059b, type: 3}
       propertyPath: RawImage
       value: 
@@ -11808,8 +11795,7 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2055422593}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 665428414040292362, guid: 5ffcf42b1d7ff674397b10249cff9478, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ffcf42b1d7ff674397b10249cff9478, type: 3}
