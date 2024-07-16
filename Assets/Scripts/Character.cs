@@ -348,11 +348,11 @@ public class Character : MonoBehaviour
                 Idle2Run();
                 Rotate(Direction.Left);
             }
-            if (Input.GetKeyUp(keycodes[2]))
+            if (Input.GetKeyUp[2])
                 Run2Idel();
 
             // go right
-            if (Input.GetKey(keycodes[3]))
+            if ((virtualKey.getKey[3]))
             {
 
                 Vector3 p = transform.localPosition;
@@ -367,13 +367,13 @@ public class Character : MonoBehaviour
                 Idle2Run();
                 Rotate(Direction.Right);
             }
-            if (Input.GetKeyUp(keycodes[3]))
+            if ((virtualKey.getKeyUp[3]))
                 Run2Idel();
 
 
 
         }
-        if ((Input.GetKeyUp(keycodes[4]))) //改成getkeyup，长按E后再播放投掷动画
+        if ((Input.getKeyUp[4])) //改成getkeyup，长按E后再播放投掷动画
         {      // E
             if (stateInfo.IsName("CastingLoop") || stateInfo.IsName("CastingLoop 2"))
             {
@@ -381,7 +381,12 @@ public class Character : MonoBehaviour
             }
             else if (playerState == PlayerState.Idle && Material == MaterialType.None)
             {   // no items in hand
-                Anim.Play("PunchRight");
+                if(network){
+                    GetComponent<NetworkAnimationPlayer>().Play("PunchRight");
+                    Anim.Play("PunchRight");
+                }else{
+                    GetComponent<AnimationPlayer>().Play("PunchRight");
+                }
                 isPunch = false;
                 playerState = PlayerState.Punch;
             }
@@ -428,7 +433,12 @@ public class Character : MonoBehaviour
             // no item in hand and ready to grab item
             {
                 playerState = PlayerState.Claim;
-                Anim.Play("Gathering");
+                if(network){
+                    Anim.Play("Gathering");
+                    GetComponent<NetworkAnimationPlayer>().Play("Gathering");
+                }else{
+                    GetComponent<AnimationPlayer>().Play("Gathering");
+                }
                 get_item_source.Play();
             }
         }
@@ -437,13 +447,23 @@ public class Character : MonoBehaviour
     private void Idle2Run()
     {
         playerState = PlayerState.Run;
-        Anim.Play("Run_norm");
+        if(network){
+            Anim.Play("Run_norm");
+            GetComponent<NetworkAnimationPlayer>().Play("Run_norm");
+        }else{
+            GetComponent<AnimationPlayer>().Play("Run_norm");
+        }
     }
 
     private void Run2Idel()
     {
         playerState = PlayerState.Idle;
-        Anim.Play("Idle");
+        if(network){
+            Anim.Play("Idle");
+            GetComponent<NetworkAnimationPlayer>().Play("Idle");
+        }else{
+            GetComponent<AnimationPlayer>().Play("Idle");
+        }
     }
 
     private void Rotate(Direction dir)

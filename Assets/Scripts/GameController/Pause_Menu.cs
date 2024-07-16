@@ -10,56 +10,24 @@ public class Pause_Menu: MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public Image[] images;   // 存储Image组件的数组
     private int currentIndex; 
     private Color initialColor;
-    private bool confirmButtonEnabled = false;  //15秒后才能按confirm
     private TextMeshProUGUI confirmText;
-    public bool isInst = false;
     private GameObject Controller;
+    private GameObject Instruction;
 
     void Start()
     {
         confirmText = GetComponent<TextMeshProUGUI>();
         Controller = GameObject.Find("Canvas/Pause_Controller");
+        Instruction = GameObject.Find("Canvas/PauseMenu/Instruction");
         initialColor = text.color;
         currentIndex = 0;
-        if(isInst)
-            ShowCurrentImage();
+        Instruction.SetActive(false);
     }
 
     void Update()
     {
-        if(isInst)
-            confirmText.text = "CONFIRM";
-        if (!confirmButtonEnabled)
-        {
-            confirmButtonEnabled = true;
-        }
-        // if (Input.GetKeyUp(KeyCode.Escape))
-        // {
-        //     Application.Quit();
-        // }
-    }
-    public void NextImage()
-    {
-        currentIndex = (currentIndex + 1) % 3;
-        ShowCurrentImage();
-    }
-    private void ShowCurrentImage()
-    {
-        // 隐藏所有图片
-        foreach (Image image in images)
-        {
-            image.gameObject.SetActive(false);
-        }
-
-        // 显示当前索引的图片
-        images[currentIndex].gameObject.SetActive(true);
     }
 
-    public void LastImage()
-    {
-        currentIndex = (currentIndex - 1 + images.Length) % images.Length;
-        ShowCurrentImage();
-    }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -77,32 +45,13 @@ public class Pause_Menu: MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         {
             Controller.GetComponent<PauseController>().OnResume();
         }
-        else if (text.text == "CONFIRM"&&confirmButtonEnabled) //15秒后可点击
-        {
-            //Debug.Log("confirm");
-            SceneManager.LoadScene("Scenes/Main");
-        }
         else if (text.text == "instruction")
         {
-            Time.timeScale=0;
+            Instruction.SetActive(true);
         }
-        else if (text.text=="continue"){
-            Time.timeScale=1;
+        else if (text.text=="main menu"){
+            SceneManager.LoadScene("Scenes/HomeScreen");
         }
 
-        else if (text.text == "EXIT")
-        {
-            Application.Quit();
-        }
-        else if (text.text == "next")
-        {
-            //Debug.Log("next");
-            NextImage();
-        }
-        else if (text.text == "last")
-        {
-            //Debug.Log("last");
-            LastImage();
-        }
     }
 }
