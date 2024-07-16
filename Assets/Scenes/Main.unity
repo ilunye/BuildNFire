@@ -656,8 +656,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e65a1b09cf1f7cf40989499b171558a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnPosition: {x: 778.22, y: 0, z: 966.79}
   timer_green: 0
   timer_red: 0
+  car1_load_track: prefabs/Vehicle_Container_color01_separate
+  car2_load_track: prefabs/Vehicle_Container_color03_separate
 --- !u!1001 &214371235
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6590,6 +6593,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TreeNumberLeft: 0
   TreeNumberRight: 0
+  regionleft_xmin: 794
+  regionleft_xmax: 798
+  regionright_xmin: 800.5
+  regionright_xmax: 804
+  region_zmin: 983
+  region_zmax: 986
+  loadTrack: Prefabs/Tree_1_1
 --- !u!4 &1598773280
 Transform:
   m_ObjectHideFlags: 0
