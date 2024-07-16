@@ -1638,7 +1638,7 @@ MonoBehaviour:
   disconnectInactiveConnections: 0
   disconnectInactiveTimeout: 60
   authenticator: {fileID: 0}
-  playerPrefab: {fileID: 4769152038049538857, guid: 26355e95a8b4f104ab55f74f51df0be1, type: 3}
+  playerPrefab: {fileID: 4769152038049538857, guid: 00b6273eaa42f4945a14aa1520cf6ee9, type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 1
   spawnPrefabs: []
@@ -4603,6 +4603,7 @@ MonoBehaviour:
   button: {fileID: 944769303}
   status: 0
   theText: {fileID: 0}
+  explode_bomb: {fileID: 0}
 --- !u!114 &1218852184
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ public class UIController : MonoBehaviour
     public Sprite[] sprites = new Sprite[5];
     void Start()
     {
+        Debug.Assert(RawImage != null, "RawImage is null");
     }
 
     // Update is called once per frame

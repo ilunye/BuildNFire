@@ -11,7 +11,7 @@ public class CarThrow : MonoBehaviour
     private int p;
     public float timer;
     private float throwForce;
-    private float destroyDelay = 5f;
+    private float destroyDelay;       
     private int bomb_num = 0;
     private int burger_num = 0;
     private int hourglass_num = 0;
@@ -19,7 +19,7 @@ public class CarThrow : MonoBehaviour
     private int projectile_num = 0;
     private int rock_num = 0;
     private int wood_num = 0;
-    private int glove_num = 0;
+    private int magnet_num = 0;
     private int barrel_num = 0;
     private int lock_num = 0;
     private int box_num = 0;
@@ -27,10 +27,10 @@ public class CarThrow : MonoBehaviour
     void Start()
     {
         float distanceAbove = 2f;
-        destroyDelay = 7f;
+        destroyDelay = 15f;
         spawnPosition = gameObject.transform.position + transform.up * distanceAbove;
         interval = 1f;
-        p = (int)Random.Range(1, 4);
+        p = (int)Random.Range(1, 2);
         interval = interval * p;
         throwForce = 1;
         // destroyDelay = 5f;
@@ -50,54 +50,54 @@ public class CarThrow : MonoBehaviour
                 bomb_num++;
                 //c = Instantiate(Resources.Load("prefabs/explosiveBarrel") as GameObject);
             }
-            else if (r == 2)
+            else if (r == 1)
             {
                 c = Instantiate(Resources.Load("prefabs/burger_1_lod0") as GameObject);
                 c.name = "burger_" + "truck_" + burger_num.ToString();
                 burger_num++;
                 //c = Instantiate(Resources.Load("prefabs/Rock_03") as GameObject);
             }
-            else if (r == 3)
+            else if (r == 2)
             {
                 c = Instantiate(Resources.Load("prefabs/Hourglass Green 1") as GameObject);
                 c.name = "hourglass_" + "truck_" + hourglass_num.ToString();
                 hourglass_num++;
                 //c = Instantiate(Resources.Load("prefabs/projectile") as GameObject);
             }
-            else if (r == 4 || r == 5)
+            else if (r == 4 || r == 3)
             {
                 c = Instantiate(Resources.Load("prefabs/ConcreteTubes") as GameObject);
                 c.name = "concrete_" + "truck_" + concrete_num.ToString();
                 concrete_num++;
             }
-            else if (r == 6)
+            else if (r == 5|| r == 6)
             {
                 c = Instantiate(Resources.Load("prefabs/projectile") as GameObject);
                 c.name = "projectile_" + "truck_" + projectile_num.ToString();
                 projectile_num++;
             }
-            else if (r == 7 || r == 8 || r == 9 || r == 10 || r == 15)
+            else if (r == 7 || r == 8 || r == 9 || r == 10 || r == 11)
             {
                 c = Instantiate(Resources.Load("prefabs/Rock_03") as GameObject);
                 c.name = "rock_" + "truck_" + rock_num.ToString();
                 rock_num++;
             }
-            else if (r == 11 || r == 12 || r == 13 || r == 14)
+            else if (r == 15 || r == 12 || r == 13 || r == 14)
             {
                 c = Instantiate(Resources.Load("prefabs/Wood") as GameObject);
                 c.name = "wood_" + "truck_" + wood_num.ToString();
                 wood_num++;
             }
-            else if (r == 15)
+            else if (r == 16)
             {
-                c = Instantiate(Resources.Load("prefabs/BoxingGlove") as GameObject);
-                c.name = "glove_" + "truck_" + glove_num.ToString();
-                glove_num++;
+                c = Instantiate(Resources.Load("prefabs/Magnet") as GameObject);   //drop off magnet
+                c.name = "magnet_" + "truck_" + magnet_num.ToString();
+                magnet_num++;
                 c = Instantiate(Resources.Load("prefabs/Rock_03") as GameObject);
                 c.name = "rock_" + "truck_" + rock_num.ToString();
                 rock_num++;
             }
-            else if (r == 17)
+            else if (r == 17||r==18)
             {
                 c = Instantiate(Resources.Load("prefabs/explosiveBarrel") as GameObject);
                 c.name = "barrel_" + "truck_" + barrel_num.ToString();

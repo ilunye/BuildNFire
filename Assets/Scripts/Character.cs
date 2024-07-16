@@ -137,6 +137,8 @@ public class Character : MonoBehaviour
         whatudo_source = whatudo.GetComponent<AudioSource>();
         item_fall = Instantiate(Resources.Load("Audio/itemfall") as GameObject);
         item_fall_voice = item_fall.GetComponent<AudioSource>();
+
+        Debug.Assert(cam != null, "cam is null");
     }
 
     // Update is called once per frame

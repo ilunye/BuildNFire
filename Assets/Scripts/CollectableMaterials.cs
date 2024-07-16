@@ -16,7 +16,7 @@ public class CollectableMaterials : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(DestroyAfterDelay(5f));
+        StartCoroutine(DestroyAfterDelay(12f));
     }
 
     IEnumerator DestroyAfterDelay(float delay)
