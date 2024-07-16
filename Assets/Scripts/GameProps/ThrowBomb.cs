@@ -18,21 +18,11 @@ public class ThrowBomb : MonoBehaviour
     private bool wasd;
 
     public bool hasthrow = false;
-    private KeyCode keyCodeE;
     // public GameObject BombImage;     //存放炸弹的显示图像
 
     void Start()
     {
         throwForce = InitthrowForce;
-        wasd = GetComponent<Character>().wasd; //分开两个角色的控制键
-        if (wasd)
-        {
-            keyCodeE = KeyCode.E;
-        }
-        else
-        {
-            keyCodeE = KeyCode.Return;
-        }
        
     }
     void Update()
@@ -40,7 +30,7 @@ public class ThrowBomb : MonoBehaviour
         if (GetComponent<Character>().Material == Character.MaterialType.Bomb) //如果玩家捡到炸弹
         {
             // BombImage.SetActive(true);
-            if (Input.GetKey(keyCodeE)) //如果长按E则累计投掷的力量
+            if (GetComponent<VirtualKey>().getKey[4]) //如果长按E则累计投掷的力量
             {
                 if (throwForce < MaxThrowForce)
                 {
@@ -48,7 +38,7 @@ public class ThrowBomb : MonoBehaviour
                 }
             }
 
-            if (Input.GetKeyUp(keyCodeE)) // 检测玩家按下投掷按钮
+            if (GetComponent<VirtualKey>().getKeyUp[4]) // 检测玩家按下投掷按钮
             {
                 Throw();
                 GetComponent<Character>().Material =Character.MaterialType.None;

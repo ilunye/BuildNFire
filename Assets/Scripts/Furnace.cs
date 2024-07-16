@@ -70,7 +70,7 @@ public class Furnace : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerIn && Input.GetKeyDown(player.GetComponent<Character>().keycodes[4]))
+        if (playerIn && player.GetComponent<VirtualKey>().getKeyDown[4])
         {
             if (player.GetComponent<Character>().Material == Character.MaterialType.Wood)
             {
