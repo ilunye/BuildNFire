@@ -32,7 +32,7 @@ public class BuffHandler : MonoBehaviour
     void Start()
     {
         throwBomb = gameObject.GetComponent<ThrowBomb>();
-        eat_burger_source = GameObject.Find("Audio/eat_burger").GetComponent<AudioSource>();
+        eat_burger_source = GameObject.Find("Audio/eatburger").GetComponent<AudioSource>();
         dejavu_source = GameObject.Find("Audio/dejavu").GetComponent<AudioSource>();
         get_lock_voice = GameObject.Find("Audio/lock").GetComponent<AudioSource>();
         time_reverse_voice = GameObject.Find("Audio/hourglass").GetComponent<AudioSource>();
@@ -167,12 +167,57 @@ public class BuffHandler : MonoBehaviour
                     Invoke("DestoryMagnet", 3f);
 
                     break;
+                case "Box":
+                    Destroy(CollObj);
+                    Deal_With_Box();
+
+                    break;
+
                 default:
                     break;
 
             }
 
         }
+    }
+
+    private void Deal_With_Box()
+    {
+        int randomInt = UnityEngine.Random.Range(1, 8);
+        GameObject randomObj;
+        switch (randomInt)
+        {
+            case 1:
+                randomObj = Instantiate(Resources.Load("Prefabs/burger_1_lod0") as GameObject);
+                break;
+            case 2:
+                randomObj = Instantiate(Resources.Load("Prefabs/Lock Silver") as GameObject);
+                break;
+            case 3:
+                randomObj = Instantiate(Resources.Load("Prefabs/Hourglass Green 1") as GameObject);
+                break;
+            case 4:
+                randomObj = Instantiate(Resources.Load("Prefabs/Magnet") as GameObject);
+                break;
+            case 5:
+                randomObj = Instantiate(Resources.Load("Prefabs/Bomb Red") as GameObject);
+                break;
+            case 6:
+                randomObj = Instantiate(Resources.Load("Prefabs/Rock_03") as GameObject);
+                break;
+            case 7:
+                randomObj = Instantiate(Resources.Load("Prefabs/ConcreteTubes") as GameObject);
+                break;
+            default:
+                randomObj = Instantiate(Resources.Load("Prefabs/Wood") as GameObject);
+                break;
+
+        }
+        if (randomObj != null)
+        {
+            randomObj.transform.position = gameObject.transform.position;
+        }
+
     }
 
     private void DestoryMagnet()

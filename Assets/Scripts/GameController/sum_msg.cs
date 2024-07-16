@@ -42,6 +42,7 @@ public class sum_msg : MonoBehaviour
         theText = GetComponent<TMP_Text>();
         player1 = GameObject.Find("PlayerUI_1");
         player2 = GameObject.Find("PlayerUI_2");
+
         bombTrigger = GetComponent<BombTrigger>();
     }
     void Start()
@@ -69,6 +70,7 @@ public class sum_msg : MonoBehaviour
         if (status == 1 && !gameover)
         {
             theText.text = "PLAYER ONE WON!";
+
             button.SetActive(true);
             Play_Final();
             gameover = true;
@@ -82,12 +84,10 @@ public class sum_msg : MonoBehaviour
         }
 
     }
-
     private void Collide_Arround(Vector3 endposition)
     {
         float explosionRadius = 20f;
         float explosionForce = 200f;
-        // 获取爆炸范围内的所有碰撞体
         Collider[] colliders = Physics.OverlapSphere(endposition, explosionRadius);
         foreach (Collider nearbyObject in colliders)
         {
