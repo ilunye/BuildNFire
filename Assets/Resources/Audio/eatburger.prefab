@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6673873377313040573}
   - component: {fileID: -2548016121855532201}
   m_Layer: 0
-  m_Name: eat_burger
+  m_Name: eatburger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

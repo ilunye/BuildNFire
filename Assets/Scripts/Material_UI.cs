@@ -12,6 +12,9 @@ public class UIController : MonoBehaviour
     public Sprite[] sprites = new Sprite[5];
     void Start()
     {
+        if(RawImage == null){
+            RawImage = GameObject.Find("Canvas/PlayerUI_1/Toggle1/Background/RawImage");
+        }
         Debug.Assert(RawImage != null, "RawImage is null");
     }
 

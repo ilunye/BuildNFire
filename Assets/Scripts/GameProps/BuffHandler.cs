@@ -32,7 +32,7 @@ public class BuffHandler : MonoBehaviour
     void Start()
     {
         throwBomb = gameObject.GetComponent<ThrowBomb>();
-        eat_burger_source = GameObject.Find("Audio/eat_burger").GetComponent<AudioSource>();
+        eat_burger_source = GameObject.Find("Audio/eatburger").GetComponent<AudioSource>();
         dejavu_source = GameObject.Find("Audio/dejavu").GetComponent<AudioSource>();
         get_lock_voice = GameObject.Find("Audio/lock").GetComponent<AudioSource>();
         time_reverse_voice = GameObject.Find("Audio/hourglass").GetComponent<AudioSource>();
