@@ -110,15 +110,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9312126e574e97047b72657b5431e12a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 797.494
+      value: 798.245
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9312126e574e97047b72657b5431e12a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.173
+      value: 0.13
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9312126e574e97047b72657b5431e12a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 982.44
+      value: 982.348
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9312126e574e97047b72657b5431e12a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -211,13 +211,13 @@ PrefabInstance:
       addedObject: {fileID: 5984845265590322378}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9312126e574e97047b72657b5431e12a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -6592727652112524199}
+      addedObject: {fileID: 5893373102768381705}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9312126e574e97047b72657b5431e12a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -2747185433780304752}
+      addedObject: {fileID: 4627440856550663717}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9312126e574e97047b72657b5431e12a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -1112046475162092214}
+      addedObject: {fileID: 5330796498099350275}
   m_SourcePrefab: {fileID: 100100000, guid: 9312126e574e97047b72657b5431e12a, type: 3}
 --- !u!1 &4769152038049538857 stripped
 GameObject:
@@ -260,14 +260,13 @@ MonoBehaviour:
   enabled: 0
   PlayerSpeed: 1
   sleep: 0
-  pack: {fileID: 8554339240710482848}
   Item: {fileID: 0}
   buffData: {fileID: 0}
   buffproperty:
-    speed: 1
+    speed: 2
     sleep: 0
     attack: 0
-  Anim: {fileID: 0}
+  Anim: {fileID: 5512389971405910882}
   cam: {fileID: 0}
   wasd: 1
   runSoundFlag: 1
@@ -277,6 +276,7 @@ MonoBehaviour:
   isPunch: 0
   isFalling: 0
   timer: 0
+  freezeTimer: 3
   enableOut: 0
   InCorner: 0
   beated_voice: {fileID: 0}
@@ -349,7 +349,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &2648901920426711436
 MonoBehaviour:
@@ -403,9 +403,9 @@ MonoBehaviour:
   bomb: {fileID: 0}
   CollObj: {fileID: 0}
   throwBomb: {fileID: 0}
-  eat_burger: {fileID: 0}
+  eat_burger: {fileID: 6830751212635471543, guid: a4fac8d8b68d16647a19d5829128169b, type: 3}
   eat_burger_source: {fileID: 0}
-  dejavu: {fileID: 0}
+  dejavu: {fileID: 1821349933238216836, guid: f612f02b74a331f4d8011a4a16729363, type: 3}
   dejavu_source: {fileID: 0}
 --- !u!65 &8315429979636099945
 BoxCollider:
@@ -471,7 +471,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &-6592727652112524199
+--- !u!114 &5893373102768381705
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -484,11 +484,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneId: 0
-  _assetId: 2043509979
+  _assetId: 149313030
   serverOnly: 0
   visibility: 0
   hasSpawned: 0
---- !u!114 &-2747185433780304752
+--- !u!114 &4627440856550663717
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -522,7 +522,7 @@ MonoBehaviour:
   rotationSensitivity: 0.01
   positionPrecision: 0.01
   scalePrecision: 0.01
---- !u!114 &-1112046475162092214
+--- !u!114 &5330796498099350275
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
