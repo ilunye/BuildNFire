@@ -44,7 +44,7 @@ public class ThrowBomb : MonoBehaviour
             {
                 if (throwForce < MaxThrowForce)
                 {
-                    throwForce += Time.deltaTime * 3;
+                    throwForce += Time.deltaTime * 3f;
                 }
             }
 
