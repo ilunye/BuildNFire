@@ -1,6 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 using System.Collections;
+using UnityEditor.SearchService;
 
 public class ThrowBomb : MonoBehaviour
 {
@@ -25,6 +26,13 @@ public class ThrowBomb : MonoBehaviour
 
     private KeyCode keyCodeE;
 
+    public float changeScale = 1f;
+
+    private float startHigh = 0.0001f;
+    public int sceneID = 1;
+    private float multipleFore = 3f;
+    private Vector3 upVector = new Vector3(0f, 0f, 0f);
+
     void Start()
     {
         throwForce = InitthrowForce;
@@ -37,7 +45,17 @@ public class ThrowBomb : MonoBehaviour
         {
             keyCodeE = KeyCode.Return;
         }
-       
+        switch (sceneID)
+        {
+            case 2:
+                startHigh = 1.2f;
+                MaxThrowForce = 20f;
+                multipleFore = 7f;
+                upVector = new Vector3(0f, 0.3f, 0f); //make sure the bomb target is above the ground
+                break;
+        }
+
+
     }
     void Update()
     {
@@ -46,16 +64,22 @@ public class ThrowBomb : MonoBehaviour
             // BombImage.SetActive(true);
             if (Input.GetKey(keyCodeE)) //如果长按E则累计投掷的力量
             {
-                if(!readytothrow){      // instantiate a target point
+                if (!readytothrow)
+                {      // instantiate a target point
+                    //Debug.Log("creat bomb target" );
                     readytothrow = true;
                     GameObject target = Instantiate(Resources.Load("Prefabs/bomb_target") as GameObject);
-                    target.transform.position = transform.position + transform.forward * 1f * throwForce;
+                    target.transform.position = transform.position + transform.forward * 1f * throwForce + upVector;
+
+                    //Debug.Log(target.transform.position);
                     theBombTarget = target;
-                }else
-                    theBombTarget.transform.position = transform.position + transform.forward * (1f * throwForce + 0.6f);
+                }
+                else
+                    theBombTarget.transform.position = transform.position + transform.forward * (1f * throwForce + 0.6f) + upVector;
+                //Debug.Log(theBombTarget.transform.position);
                 if (throwForce < MaxThrowForce)
                 {
-                    throwForce += Time.deltaTime * 3f;
+                    throwForce += Time.deltaTime * multipleFore;
                 }
             }
 
@@ -63,12 +87,12 @@ public class ThrowBomb : MonoBehaviour
             {
                 readytothrow = false;
                 Throw();
-                GetComponent<Character>().Material =Character.MaterialType.None;
+                GetComponent<Character>().Material = Character.MaterialType.None;
 
             }
         }
         // else
-            // BombImage.SetActive(false);
+        // BombImage.SetActive(false);
 
 
     }
@@ -78,7 +102,7 @@ public class ThrowBomb : MonoBehaviour
     {
         Vector3 p = new Vector3(0f, 2f, 1f);
         GameObject bomb = Instantiate(Resources.Load("Prefabs/Bomb Red") as GameObject); // 创建炸弹实例
-        bomb.transform.localPosition = gameObject.transform.localPosition + p;
+        bomb.transform.position = gameObject.transform.position + p;
         Rigidbody rb = bomb.GetComponent<Rigidbody>();
         rb.AddForce(transform.forward * throwForce, ForceMode.VelocityChange); // 给炸弹一个向前的力,但不会改变炸弹的位置
     }
@@ -92,8 +116,9 @@ public class ThrowBomb : MonoBehaviour
         hasthrow = true;
         bomb = Instantiate(Resources.Load("Prefabs/Bomb Red") as GameObject); // 创建炸弹实例
         // 设置炸弹的初始位置
-        bomb.transform.localPosition = gameObject.transform.localPosition + gameObject.transform.forward * 0.5f;
-        Vector3 startPosition = bomb.transform.localPosition;
+        bomb.transform.position = gameObject.transform.position + gameObject.transform.forward * 0.5f;
+        bomb.transform.localScale *= changeScale;
+        Vector3 startPosition = bomb.transform.position;
 
         bomb.GetComponent<Bomb>().SetTarget(theBombTarget);        // set the bomb target for destroy
 
@@ -104,7 +129,7 @@ public class ThrowBomb : MonoBehaviour
 
     IEnumerator ThrowBombPosition(Vector3 startPosition, Vector3 direction)
     {
-        //Debug.Log("開始位置" + startPosition);
+        //Debug.Log("direction:" + direction);
         elapsedTime = 0f;
 
         Vector3 gravity; //增加重力
@@ -113,17 +138,17 @@ public class ThrowBomb : MonoBehaviour
         //Debug.Log("throwforce1 = " + throwForce);
         while (elapsedTime < throwDuration && bomb)
         {
-            //Debug.Log("循环" + elapsedTime);
+
             // 根据投掷速度和时间计算新的位置
             float x = throwForce * elapsedTime * direction.x;
             float z = throwForce * elapsedTime * direction.z;
-            float y = 0.0001f + 5f * elapsedTime - 10.0f * 0.5f * Mathf.Pow(elapsedTime, 2);
+            float y = startHigh + 5f * elapsedTime - 10f * 0.5f * Mathf.Pow(elapsedTime, 2);
             gravity = new Vector3(x, y, z);
+            //Debug.Log("y" + y);
             Vector3 newPosition = startPosition + gravity;
-
             // 更新炸弹的位置
             bomb.transform.position = newPosition;
-            //Debug.Log("炸弹的当前位置为：" + bomb.transform.localPosition);
+            //Debug.Log("炸弹的当前位置为：" + bomb.transform.position);
 
             elapsedTime += Time.deltaTime;
             yield return null;
@@ -135,7 +160,8 @@ public class ThrowBomb : MonoBehaviour
 
     public void SetTarget(GameObject target)
     {
-        if(target == null){
+        if (target == null)
+        {
             Destroy(theBombTarget);
             readytothrow = false;
         }

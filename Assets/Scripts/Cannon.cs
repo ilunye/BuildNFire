@@ -6,7 +6,7 @@ using Mirror;
 public class Cannon : MonoBehaviour
 {
     public bool claimed = false;
-    public bool isPlaying = false;
+    private bool isPlaying = false;
     private Material[] material = new Material[5];
     private Transform disOffset;
     private Transform down;
@@ -19,51 +19,68 @@ public class Cannon : MonoBehaviour
     public bool playerIn = false;
     public WorkFlow workFlow;
 
-    void OnTriggerEnter(Collider other) {
-        if(other.gameObject == player){
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject == player)
+        {
             playerIn = true;
         }
     }
-    void OnTriggerExit(Collider other) {
-        if(other.gameObject == player){
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject == player)
+        {
             playerIn = false;
         }
     }
 
-    IEnumerator each_next(float offset){
+    IEnumerator each_next(float offset)
+    {
         isPlaying = true;
         float eachOffset = offset / 50;
-        for(int i=0; i<50; i++){
+        for (int i = 0; i < 50; i++)
+        {
             disOffset.position = new Vector3(disOffset.position.x, disOffset.position.y + eachOffset, disOffset.position.z);
             yield return new WaitForSeconds(0.1f);
         }
         isPlaying = false;
     }
 
-    public void next_state(){
-        if(isPlaying || idx == 10){
+    public void next_state()
+    {
+        if (isPlaying || idx == 10)
+        {
             return;
         }
         player.GetComponent<Animator>().Play("CastingLoop");
+        //Debug.Log("player gathering");
         player.GetComponent<Character>().playerState = Character.PlayerState.Operating;
-        if(idx < 8){
-            StartCoroutine(each_next((middle.position.y - down.position.y)/4));
-        }else{
-            StartCoroutine(each_next((up.position.y - middle.position.y)/1));
+        if (idx < 8)
+        {
+            StartCoroutine(each_next((middle.position.y - down.position.y) / 4));
+        }
+        else
+        {
+            StartCoroutine(each_next((up.position.y - middle.position.y) / 1));
         }
         idx += 2;
-        if(idx >= 10)
+        if (idx >= 10)
             idx = 10;
     }
 
-    public void prev_state(){
-        if(idx > 0){
+    public void prev_state()
+    {
+        if (idx > 0)
+        {
             StopAllCoroutines();
             isPlaying = true;
-            if(isProtected){        // by default this branch
-                idx = idx-1 < 0 ? 0 : idx-1;
-            }else{
-                idx = idx-2 < 0 ? 0 : idx-2;
+            if (isProtected)
+            {        // by default this branch
+                idx = idx - 1 < 0 ? 0 : idx - 1;
+            }
+            else
+            {
+                idx = idx - 2 < 0 ? 0 : idx - 2;
             }
             disOffset.position = new Vector3(disOffset.position.x, ckpts[idx], disOffset.position.z);
             isPlaying = false;
@@ -76,17 +93,21 @@ public class Cannon : MonoBehaviour
         down = gameObject.transform.GetChild(1);
         up = gameObject.transform.GetChild(2);
         middle = gameObject.transform.GetChild(3);
-        for(int i=0; i<5; i++){
+        for (int i = 0; i < 5; i++)
+        {
             material[i] = GetComponent<MeshRenderer>().materials[i];
             material[i].SetFloat("_DisappearOffset", disOffset.position.y);
         }
-        for(int i=0; i<8; i++){
+        for (int i = 0; i < 8; i++)
+        {
             ckpts[i] = down.position.y + (middle.position.y - down.position.y) * i / 8;
         }
-        for(int i=8; i<10; i++){
-            ckpts[i] = middle.position.y + (up.position.y - middle.position.y) * (i-8) / 2;
+        for (int i = 8; i < 10; i++)
+        {
+            ckpts[i] = middle.position.y + (up.position.y - middle.position.y) * (i - 8) / 2;
         }
-        if(player == null){
+        if (player == null)
+        {
             Debug.LogWarning("player is null");
         }
         Debug.Assert(workFlow != null, "workFlow is null");
@@ -94,36 +115,46 @@ public class Cannon : MonoBehaviour
 
     void Update()
     {
-        for(int i=0; i<5; i++){
+        for (int i = 0; i < 5; i++)
+        {
             material[i].SetFloat("_DisappearOffset", disOffset.position.y);
         }
-        if(playerIn && Input.GetKeyDown(player.GetComponent<Character>().keycodes[4])){
-            if(isPlaying) return;
-            switch(player.GetComponent<Character>().Material){
+        if (playerIn && Input.GetKeyDown(player.GetComponent<Character>().keycodes[4]))
+        {
+            //Debug.Log("build");
+            if (isPlaying) return;
+            switch (player.GetComponent<Character>().Material)
+            {
                 case Character.MaterialType.CannonBall:
                     workFlow.isPro = true;
-                    if(workFlow.projectile_number < 1){
+                    if (workFlow.projectile_number < 1)
+                    {
                         player.GetComponent<Character>().Material = Character.MaterialType.None;
                         player.GetComponent<Character>().Anim.Play("CastingLoop 2");
+                        //Debug.Log("collect projectile");
                     }
                     break;
                 case Character.MaterialType.GunPowder:
                     workFlow.isPowder = true;
-                    if(workFlow.gunpowder_number < 1){
+                    if (workFlow.gunpowder_number < 1)
+                    {
                         player.GetComponent<Character>().Material = Character.MaterialType.None;
                         player.GetComponent<Character>().Anim.Play("CastingLoop 2");
+                        //Debug.Log("collect gunpowder");
                     }
-                    break; 
+                    break;
                 case Character.MaterialType.Iron:
                     workFlow.isIron = true;
-                    if(workFlow.iron_number < 3 && workFlow.toPickIron){
+                    if (workFlow.iron_number < 3 && workFlow.toPickIron)
+                    {
                         player.GetComponent<Character>().Material = Character.MaterialType.None;
                         next_state();
                     }
                     break;
                 case Character.MaterialType.Wood:
                     workFlow.isWood = true;
-                    if(workFlow.wood_number < 2 && workFlow.toPickWood){
+                    if (workFlow.wood_number < 2 && workFlow.toPickWood)
+                    {
                         player.GetComponent<Character>().Material = Character.MaterialType.None;
                         next_state();
                     }

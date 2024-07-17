@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 5410903872204479733}
   m_Layer: 0
   m_Name: Vehicle_Bus
-  m_TagString: Untagged
+  m_TagString: car
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63,7 +63,7 @@ MonoBehaviour:
   carCongestion: 0
   lastHit: {fileID: 0}
   truck: 0
-  speed: 20
+  speed: 10
 --- !u!23 &6744417705369156421
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -123,7 +123,7 @@ MonoBehaviour:
   p: 0
   timer: 0
   Scene_id: 0
-  CarTime: 10
+  CarTime: 15
   bigScale: 5
   randomVector: {x: 0, y: 0, z: -5}
 --- !u!65 &2361710460043465622

@@ -93,6 +93,8 @@ public class Character : MonoBehaviour
     private GameObject item_fall;
     private AudioSource item_fall_voice;
 
+    public float changeScale = 1f;
+
     void OnTriggerStay(Collider other) //get beat
     {
         if (isFalling || (other.tag == "Player" && other.gameObject.GetComponent<Character>().isFalling)) return;
@@ -139,7 +141,8 @@ public class Character : MonoBehaviour
         item_fall = Instantiate(Resources.Load("Audio/itemfall") as GameObject);
         item_fall_voice = item_fall.GetComponent<AudioSource>();
 
-        if(cam == null){
+        if (cam == null)
+        {
             cam = GameObject.Find("Fake_Camera");
         }
         Debug.Assert(cam != null, "cam is null");
@@ -152,6 +155,9 @@ public class Character : MonoBehaviour
 (804.89, 977.17) right down
 
     */
+
+    
+
     private float x_bound_left = 794.25f;
     private float x_bound_right = 804.89f;
     private float z_bound_down = 977.17f;
@@ -210,7 +216,8 @@ public class Character : MonoBehaviour
                 g.GetComponent<CollectableMaterials>().WillDisappear = false;
                 g.name = "CannonBall_" + (CarThrow.projectile_num++).ToString();
             }
-            else if(Material == MaterialType.Bomb){
+            else if (Material == MaterialType.Bomb)
+            {
                 GetComponent<ThrowBomb>().SetTarget(null);
                 GetComponent<ThrowBomb>().ResetThrowForce();
             }
@@ -244,14 +251,17 @@ public class Character : MonoBehaviour
         //     pack.ShowPack(); //按下K展示背包
         //     RayCaseObj();  //拾捡物品
         // }
-        if(playerState == PlayerState.Falling){
+        if (playerState == PlayerState.Falling)
+        {
             // 更改rotation, y轴旋转不变
             transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
         }
 
-        if(freezeTimer > 0f){
+        if (freezeTimer > 0f)
+        {
             freezeTimer -= Time.deltaTime;
-            if(freezeTimer <= 0f){
+            if (freezeTimer <= 0f)
+            {
                 GetComponent<Rigidbody>().freezeRotation = true;
             }
         }
@@ -264,19 +274,21 @@ public class Character : MonoBehaviour
         {
             run_source.Play();
             runSoundFlag = false;
-        }else if (!Input.GetKey(keycodes[0]) && !Input.GetKey(keycodes[1]) && !Input.GetKey(keycodes[2]) && !Input.GetKey(keycodes[3]))
+        }
+        else if (!Input.GetKey(keycodes[0]) && !Input.GetKey(keycodes[1]) && !Input.GetKey(keycodes[2]) && !Input.GetKey(keycodes[3]))
         {
             run_source.Stop();
             runSoundFlag = true;
         }
-        if(playerState == PlayerState.Falling || playerState == PlayerState.Operating){
+        if (playerState == PlayerState.Falling || playerState == PlayerState.Operating)
+        {
             run_source.Stop();
             runSoundFlag = true;
         }
     }
 
 
-public bool last_E_Up = false;
+    public bool last_E_Up = false;
     private void Motion()
     {
         // go up
@@ -367,6 +379,7 @@ public bool last_E_Up = false;
         if ((Input.GetKeyUp(keycodes[4]))) //改成getkeyup，长按E后再播放投掷动画
         {      // E
             if (stateInfo.IsName("CastingLoop") || stateInfo.IsName("CastingLoop 2"))
+            //build 
             {
                 playerState = PlayerState.Operating;
             }
@@ -404,11 +417,14 @@ public bool last_E_Up = false;
                         break;
                 }
                 obj.GetComponent<CollectableMaterials>().WillDisappear = false;
+                obj.transform.localScale *= changeScale;
                 RaycastHit hit;
-                if(Physics.Raycast(new Vector3(transform.position.x, 0.5f, transform.position.z), transform.forward, out hit, 1f)){
+                if (Physics.Raycast(new Vector3(transform.position.x, 0.5f, transform.position.z), transform.forward, out hit, 1f))
+                {
                     obj.transform.position = new Vector3(obj.transform.position.x, 0.5f, obj.transform.position.z) - transform.forward * 0.3f;
                 }
-                else{
+                else
+                {
                     obj.transform.position = new Vector3(obj.transform.position.x, 0.5f, obj.transform.position.z) + transform.forward * 0.5f;
                 }
                 item_fall_voice.Play();
@@ -462,4 +478,7 @@ public bool last_E_Up = false;
                 break;
         }
     }
+
+
+
 }
