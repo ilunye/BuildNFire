@@ -53,7 +53,7 @@ public class Cannon : MonoBehaviour
             return;
         }
         player.GetComponent<Animator>().Play("CastingLoop");
-        Debug.Log("player gathering");
+        //Debug.Log("player gathering");
         player.GetComponent<Character>().playerState = Character.PlayerState.Operating;
         if (idx < 8)
         {

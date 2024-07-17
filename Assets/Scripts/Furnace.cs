@@ -34,7 +34,7 @@ public class Furnace : MonoBehaviour
     public void Play()
     {
         animator.Play("furnace");
-        Debug.Log("play furnace animation" + animator);
+        //Debug.Log("play furnace animation" + animator);
     }
     private void Fireoff()
     {
@@ -75,17 +75,17 @@ public class Furnace : MonoBehaviour
     {
         if (playerIn && Input.GetKeyDown(player.GetComponent<Character>().keycodes[4]))
         {
-            Debug.Log("enter");
+            //Debug.Log("enter");
             if (player.GetComponent<Character>().Material == Character.MaterialType.Wood)
             {
-                Debug.Log("open door");
+                //Debug.Log("open door");
                 OpenDoor();
                 player.GetComponent<Character>().Material = Character.MaterialType.None;
                 Play();
                 AddFire();
                 clock1();
                 AudioFire();
-                Debug.Log(hasFire);
+                //Debug.Log(hasFire);
 
             }
             else if (player.GetComponent<Character>().Material == Character.MaterialType.IronOre && hasFire)
