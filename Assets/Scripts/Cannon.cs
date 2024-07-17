@@ -44,7 +44,6 @@ public class Cannon : MonoBehaviour
         if(isPlaying || idx == 10){
             return;
         }
-        Debug.Log("next_state");
         player.GetComponent<Animator>().Play("CastingLoop");
         player.GetComponent<Character>().playerState = Character.PlayerState.Operating;
         if(idx < 8){
@@ -53,6 +52,8 @@ public class Cannon : MonoBehaviour
             StartCoroutine(each_next((up.position.y - middle.position.y)/1));
         }
         idx += 2;
+        if(idx >= 10)
+            idx = 10;
     }
 
     public void prev_state(){

@@ -243,14 +243,14 @@ RectTransform:
   m_GameObject: {fileID: 829182386}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.1742, y: 3.1742, z: 3.1742}
+  m_LocalScale: {x: 1.1536261, y: 1.1536261, z: 1.1536261}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1871470237}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 282, y: 134}
+  m_AnchoredPosition: {x: 98, y: 61}
   m_SizeDelta: {x: 138.4434, y: 66.6405}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &829182388
@@ -359,11 +359,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 829182386}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3888279e78c34d0479d82d9cbbf5e12d, type: 3}
+  m_Script: {fileID: 11500000, guid: b0d7ddecd5a467d4fa9c92547efb0ff0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 829182388}
-  images: []
 --- !u!1 &1119431610
 GameObject:
   m_ObjectHideFlags: 0
@@ -482,7 +481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -603,14 +602,14 @@ RectTransform:
   m_GameObject: {fileID: 1930995188}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.1036, y: 3.1036, z: 3.1036}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.0990226, y: 1.0990226, z: 1.0990226}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1871470237}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 345, y: 403}
+  m_AnchoredPosition: {x: 109, y: 155}
   m_SizeDelta: {x: 197.16, y: 62.89679}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1930995190
@@ -719,11 +718,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1930995188}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3888279e78c34d0479d82d9cbbf5e12d, type: 3}
+  m_Script: {fileID: 11500000, guid: b0d7ddecd5a467d4fa9c92547efb0ff0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 1930995190}
-  images: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

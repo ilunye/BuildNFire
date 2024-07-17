@@ -38,10 +38,10 @@ public class Menu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         {
             confirmButtonEnabled = true;
         }
-        if (Input.GetKeyUp(KeyCode.Escape))
-        {
-            Application.Quit();
-        }
+        // if (Input.GetKeyUp(KeyCode.Escape))
+        // {
+        //     Application.Quit();
+        // }
     }
     public void NextImage()
     {

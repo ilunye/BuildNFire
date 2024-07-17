@@ -32,7 +32,6 @@ public class carMoveSenceCity : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("chuangren");
             AudioSource audioSource = GetComponent<AudioSource>();
             audioSource.Play();
             other.gameObject.GetComponent<Character>().playerState = Character.PlayerState.Falling;

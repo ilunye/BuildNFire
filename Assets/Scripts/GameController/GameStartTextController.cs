@@ -100,7 +100,13 @@ public class GameStartTextController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(Time.timeScale == 0)
+        {
+            BGM_voice.Pause();
+        }else
+        {
+            BGM_voice.UnPause();
+        }
     }
 
 

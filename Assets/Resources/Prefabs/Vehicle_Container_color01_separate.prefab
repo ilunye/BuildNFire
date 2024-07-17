@@ -709,6 +709,7 @@ MonoBehaviour:
   Scene_id: 0
   CarTime: 4.5
   bigScale: 1
+  randomVector: {x: 0, y: 0, z: 0}
 --- !u!114 &2186691118632765611
 MonoBehaviour:
   m_ObjectHideFlags: 0
