@@ -1360,13 +1360,7 @@ namespace Mirror
         }
 
         /// <summary>Called on the server when a new client connects.</summary>
-        public virtual void OnServerConnect(NetworkConnectionToClient conn) {
-            if(numPlayers > 3)
-            {
-                Debug.Log("Too many players");
-                conn.Disconnect();
-            }
-        }
+        public virtual void OnServerConnect(NetworkConnectionToClient conn) { }
 
         /// <summary>Called on the server when a client disconnects.</summary>
         // Called by NetworkServer.OnTransportDisconnect!
@@ -1376,7 +1370,7 @@ namespace Mirror
             // can be overwritten for cases like delayed logouts in MMOs to
             // avoid players escaping from PvP situations by logging out.
             NetworkServer.DestroyPlayerForConnection(conn);
-            Debug.Log("OnServerDisconnect: Client disconnected.");
+            //Debug.Log("OnServerDisconnect: Client disconnected.");
         }
 
         /// <summary>Called on the server when a client is ready (= loaded the scene)</summary>

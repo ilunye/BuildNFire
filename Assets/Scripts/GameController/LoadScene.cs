@@ -7,7 +7,7 @@ public class LoadScene : MonoBehaviour
 {
     public string scenePath;
     public void loadScene(){
-        NetworkManagerHUD.disable = true;
+        // NetworkManagerHUD.disable = true;
         Application.LoadLevel(scenePath);
     }
     // Start is called before the first frame update

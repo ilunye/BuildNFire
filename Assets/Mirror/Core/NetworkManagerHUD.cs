@@ -1,9 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using System.Collections;
-using System.Net;
-using System.Net.NetworkInformation;
-using System.Net.Sockets;
 
 namespace Mirror
 {
@@ -18,18 +13,14 @@ namespace Mirror
 
         public int offsetX;
         public int offsetY;
-        public int clientNo = 0;
-        public static bool disable = false;
 
         void Awake()
         {
-            disable = false;
             manager = GetComponent<NetworkManager>();
         }
 
         void OnGUI()
         {
-            if(disable) return;
             // If this width is changed, also change offsetX in GUIConsole::OnGUI
             int width = 300;
 
@@ -60,18 +51,18 @@ namespace Mirror
         {
             if (!NetworkClient.active)
             {
-// #if UNITY_WEBGL
-//                 // cant be a server in webgl build
-//                 if (GUILayout.Button("Single Player"))
-//                 {
-//                     NetworkServer.dontListen = true;
-//                     manager.StartHost();
-//                 }
-// #else
+#if UNITY_WEBGL
+                // cant be a server in webgl build
+                if (GUILayout.Button("Single Player"))
+                {
+                    NetworkServer.dontListen = true;
+                    manager.StartHost();
+                }
+#else
                 // Server + Client
                 if (GUILayout.Button("Host (Server + Client)"))
                     manager.StartHost();
-// #endif
+#endif
 
                 // Client + IP (+ PORT)
                 GUILayout.BeginHorizontal();
@@ -85,23 +76,23 @@ namespace Mirror
                 // works for IPV4:PORT.
                 // for IPV6:PORT it would be misleading since IPV6 contains ":":
                 // 2001:0db8:0000:0000:0000:ff00:0042:8329
-                // if (Transport.active is PortTransport portTransport)
-                // {
-                //     // use TryParse in case someone tries to enter non-numeric characters
-                //     if (ushort.TryParse(GUILayout.TextField(portTransport.Port.ToString()), out ushort port))
-                //         portTransport.Port = port;
-                // }
+                if (Transport.active is PortTransport portTransport)
+                {
+                    // use TryParse in case someone tries to enter non-numeric characters
+                    if (ushort.TryParse(GUILayout.TextField(portTransport.Port.ToString()), out ushort port))
+                        portTransport.Port = port;
+                }
 
                 GUILayout.EndHorizontal();
 
                 // Server Only
-// #if UNITY_WEBGL
-//                 // cant be a server in webgl build
-//                 GUILayout.Box("( WebGL cannot be server )");
-// #else
+#if UNITY_WEBGL
+                // cant be a server in webgl build
+                GUILayout.Box("( WebGL cannot be server )");
+#else
                 if (GUILayout.Button("Server Only"))
                     manager.StartServer();
-// #endif
+#endif
             }
             else
             {
@@ -121,12 +112,12 @@ namespace Mirror
             if (NetworkServer.active && NetworkClient.active)
             {
                 // host mode
-                GUILayout.Label($"<b>Host</b>: running on {clientNo}");
+                GUILayout.Label($"<b>Host</b>: running via {Transport.active}");
             }
             else if (NetworkServer.active)
             {
                 // server only
-                GUILayout.Label($"<b>Server</b>: running on {clientNo}");
+                GUILayout.Label($"<b>Server</b>: running via {Transport.active}");
             }
             else if (NetworkClient.isConnected)
             {
@@ -140,39 +131,31 @@ namespace Mirror
             if (NetworkServer.active && NetworkClient.isConnected)
             {
                 GUILayout.BeginHorizontal();
-// #if UNITY_WEBGL
-//                 if (GUILayout.Button("Stop Single Player")){
-//                     manager.StopHost();
-//                     Application.LoadLevel(Application.loadedLevel);
-//                 }
-// #else
-                // stop host if host mode
-                if (GUILayout.Button("Stop Host")){
+#if UNITY_WEBGL
+                if (GUILayout.Button("Stop Single Player"))
                     manager.StopHost();
-                    // Application.LoadLevel(Application.loadedLevel);
-                }
+#else
+                // stop host if host mode
+                if (GUILayout.Button("Stop Host"))
+                    manager.StopHost();
 
                 // stop client if host mode, leaving server up
-                // if (GUILayout.Button("Stop Client"))
-                //     manager.StopClient();
-// #endif
+                if (GUILayout.Button("Stop Client"))
+                    manager.StopClient();
+#endif
                 GUILayout.EndHorizontal();
             }
             else if (NetworkClient.isConnected)
             {
                 // stop client if client-only
-                if (GUILayout.Button("Stop Client")){
+                if (GUILayout.Button("Stop Client"))
                     manager.StopClient();
-                    // Application.LoadLevel(Application.loadedLevel);
-                }
             }
             else if (NetworkServer.active)
             {
                 // stop server if server-only
-                if (GUILayout.Button("Stop Server")){
+                if (GUILayout.Button("Stop Server"))
                     manager.StopServer();
-                    // Application.LoadLevel(Application.loadedLevel);
-                }
             }
         }
     }

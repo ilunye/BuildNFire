@@ -1916,7 +1916,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   claimed: 0
-  isPlaying: 0
   idx: 0
   isProtected: 0
   player: {fileID: 0}
@@ -3267,6 +3266,8 @@ MonoBehaviour:
   status: 0
   theText: {fileID: 0}
   explode_bomb: {fileID: 0}
+  scenceID: 1
+  changeScale: 1
 --- !u!114 &812693837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3282,6 +3283,9 @@ MonoBehaviour:
   explosionForce: 200
   explosionRadius: 20
   status: 0
+  p_left: {x: 0, y: 0, z: 0}
+  p_right: {x: 0, y: 0, z: 0}
+  sceneID: 1
   player_one: {fileID: 0}
   player_tow: {fileID: 0}
 --- !u!114 &812693838
@@ -3695,7 +3699,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   claimed: 0
-  isPlaying: 0
   idx: 0
   isProtected: 0
   player: {fileID: 0}
@@ -8613,7 +8616,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   claimed: 0
-  isPlaying: 0
   idx: 0
   isProtected: 0
   player: {fileID: 0}
@@ -9193,8 +9195,6 @@ GameObject:
   - component: {fileID: 1976483875}
   - component: {fileID: 1976483874}
   - component: {fileID: 1976483872}
-  - component: {fileID: 1976483878}
-  - component: {fileID: 1976483877}
   - component: {fileID: 1976483876}
   m_Layer: 0
   m_Name: NetworkManager
@@ -9217,7 +9217,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offsetX: 0
   offsetY: 0
-  clientNo: 0
 --- !u!114 &1976483874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9239,7 +9238,7 @@ MonoBehaviour:
   autoConnectClientBuild: 0
   offlineScene: 
   onlineScene: 
-  transport: {fileID: 1976483877}
+  transport: {fileID: 1976483876}
   networkAddress: localhost
   maxConnections: 100
   disconnectInactiveConnections: 0
@@ -9288,67 +9287,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 1976483871}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 856de37bc551c6c479a5a9a950278b30, type: 3}
+  m_Script: {fileID: 11500000, guid: 6b0fecffa3f624585964b0d0eb21b18e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1976483877
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1976483871}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7064b1b1d0671194baf55fa8d5f564d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clientToServerTransport: {fileID: 1976483878}
-  serverIP: game.ilunye.club
-  heartBeatInterval: 3
-  connectOnAwake: 1
-  authenticationKey: Secret Auth Key
-  diconnectedFromRelay:
-    m_PersistentCalls:
-      m_Calls: []
-  serverName: My awesome server!
-  extraServerData: Map 1
-  maxServerPlayers: 10
-  isPublicServer: 1
-  serverListUpdated:
-    m_PersistentCalls:
-      m_Calls: []
-  serverId: -1
---- !u!114 &1976483878
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1976483871}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0110f245bfcfc7d459681f7bd9ebc590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxMessageSize: 16384
-  maxHandshakeSize: 3000
-  serverMaxMsgsPerTick: 10000
-  clientMaxMsgsPerTick: 1000
-  sendTimeout: 5000
-  receiveTimeout: 20000
-  noDelay: 1
-  sslEnabled: 0
-  sslProtocols: 3072
-  sslCertJson: ./cert.json
-  port: 39393
-  batchSend: 1
-  waitBeforeSend: 1
-  clientUseWss: 0
-  clientWebsocketSettings:
-    ClientPortOption: 0
-    CustomClientPort: 0
-  minimumLogLevel: 3
+  port: 7777
+  DualMode: 1
+  NoDelay: 1
+  Interval: 10
+  Timeout: 10000
+  RecvBufferSize: 7361536
+  SendBufferSize: 7361536
+  FastResend: 2
+  ReceiveWindowSize: 4096
+  SendWindowSize: 4096
+  MaxRetransmit: 40
+  MaximizeSocketBuffers: 1
+  ReliableMaxMessageSize: 297433
+  UnreliableMaxMessageSize: 1194
+  debugLog: 0
+  statisticsGUI: 0
+  statisticsLog: 0
 --- !u!1 &1988742700
 GameObject:
   m_ObjectHideFlags: 0
@@ -10352,7 +10310,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   claimed: 0
-  isPlaying: 0
   idx: 0
   isProtected: 0
   player: {fileID: 0}
