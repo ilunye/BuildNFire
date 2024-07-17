@@ -184,7 +184,7 @@ PrefabInstance:
       addedObject: {fileID: 5512389971405910882}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9312126e574e97047b72657b5431e12a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4801095176295691186}
+      addedObject: {fileID: -4585588609794926093}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9312126e574e97047b72657b5431e12a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1689078538627276879}
@@ -211,10 +211,10 @@ PrefabInstance:
       addedObject: {fileID: 4627440856550663717}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9312126e574e97047b72657b5431e12a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5330796498099350275}
+      addedObject: {fileID: -7546808833776781134}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9312126e574e97047b72657b5431e12a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -7546808833776781134}
+      addedObject: {fileID: -2329037061976683183}
   m_SourcePrefab: {fileID: 100100000, guid: 9312126e574e97047b72657b5431e12a, type: 3}
 --- !u!1 &4769152038049538857 stripped
 GameObject:
@@ -242,7 +242,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4801095176295691186
+--- !u!114 &-4585588609794926093
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -272,7 +272,7 @@ MonoBehaviour:
   runSoundFlag: 1
   keycodes: 
   Material: 0
-  playerState: 2
+  playerState: 0
   isPunch: 0
   isFalling: 0
   timer: 0
@@ -287,6 +287,8 @@ MonoBehaviour:
   run_source: {fileID: 0}
   whatudo: {fileID: 0}
   whatudo_source: {fileID: 0}
+  stateChange: 0
+  newStateName: 
   last_E_Up: 0
 --- !u!65 &1689078538627276879
 BoxCollider:
@@ -492,23 +494,6 @@ MonoBehaviour:
   rotationSensitivity: 0.01
   positionPrecision: 0.01
   scalePrecision: 0.01
---- !u!114 &5330796498099350275
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4769152038049538857}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f6f3bf89aa97405989c802ba270f815, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
-  clientAuthority: 0
-  animator: {fileID: 5512389971405910882}
 --- !u!114 &-7546808833776781134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -527,6 +512,23 @@ MonoBehaviour:
   bomb: {fileID: 0}
   throwForce: 0
   hasthrow: 0
+--- !u!114 &-2329037061976683183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4769152038049538857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f6f3bf89aa97405989c802ba270f815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  clientAuthority: 0
+  animator: {fileID: 5512389971405910882}
 --- !u!4 &5288560967913159059 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9312126e574e97047b72657b5431e12a, type: 3}

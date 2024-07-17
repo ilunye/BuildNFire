@@ -96,17 +96,17 @@ public class NetCharacter : NetworkBehaviour
     private GameObject item_fall;
     private AudioSource item_fall_voice;
 
-    [Command]
+    [Command(requiresAuthority=false)]
     public void CmdPlay(string state)
     {
         Anim.Play(state);
     }
-    [Command]
+    [Command(requiresAuthority=false)]
     public void CmdSetFalling(bool falling)
     {
         isFalling = falling;
     }
-    [Command]
+    [Command(requiresAuthority=false)]
     public void CmdPlayerState(PlayerState state)
     {
         playerState = state;
@@ -114,16 +114,12 @@ public class NetCharacter : NetworkBehaviour
 
     void OnTriggerStay(Collider other) //get beat
     {
-        Debug.Log("1");
         if (isFalling || (other.tag == "Player" && other.gameObject.GetComponent<NetCharacter>().isFalling)) return;
-        Debug.Log("2");
         if (other.tag == "Player" && playerState == PlayerState.Punch && timer < 0.5f)
         {
-            Debug.Log("3");
             timer += Time.deltaTime;
             if (timer > 0.4f)
             {
-                Debug.Log("4");
                 other.GetComponent<NetCharacter>().CmdPlay("DAMAGED01");
                 other.gameObject.GetComponent<NetCharacter>().CmdSetFalling(true);
                 other.gameObject.GetComponent<NetCharacter>().CmdPlayerState(PlayerState.Falling);
@@ -242,7 +238,9 @@ public class NetCharacter : NetworkBehaviour
             Material = MaterialType.None;
         }
         stateInfo = Anim.GetCurrentAnimatorStateInfo(0);
-        if (stateInfo.IsName("Idle") && playerState != PlayerState.ReadyToClaim)
+        if(stateInfo.IsName("PunchRight") && playerState != PlayerState.Punch){
+            CmdPlayerState(PlayerState.Punch);
+        }else if (stateInfo.IsName("Idle") && playerState != PlayerState.ReadyToClaim)
         {
             CmdPlayerState(PlayerState.Idle);
         }
