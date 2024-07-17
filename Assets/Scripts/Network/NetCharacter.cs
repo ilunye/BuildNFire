@@ -52,6 +52,7 @@ public class NetCharacter : NetworkBehaviour
         Bomb
     }
 
+    [SyncVar]
     public MaterialType Material = MaterialType.None;
 
     private enum Direction
@@ -69,8 +70,10 @@ public class NetCharacter : NetworkBehaviour
         IdletoRun
     }
 
+    [SyncVar]
     public PlayerState playerState = PlayerState.Idle;
     public bool isPunch = false;
+    [SyncVar]
     public bool isFalling = false;
     public float timer = 0f;
     public float freezeTimer = 3f;
@@ -93,10 +96,20 @@ public class NetCharacter : NetworkBehaviour
     private GameObject item_fall;
     private AudioSource item_fall_voice;
 
-    [Command]
+    [Command(requiresAuthority=false)]
     public void CmdPlay(string state)
     {
         Anim.Play(state);
+    }
+    [Command(requiresAuthority=false)]
+    public void CmdSetFalling(bool falling)
+    {
+        isFalling = falling;
+    }
+    [Command(requiresAuthority=false)]
+    public void CmdPlayerState(PlayerState state)
+    {
+        playerState = state;
     }
 
     void OnTriggerStay(Collider other) //get beat
@@ -107,10 +120,9 @@ public class NetCharacter : NetworkBehaviour
             timer += Time.deltaTime;
             if (timer > 0.4f)
             {
-                // other.GetComponent<Animator>().Play("DAMAGED01");
                 other.GetComponent<NetCharacter>().CmdPlay("DAMAGED01");
-                other.gameObject.GetComponent<NetCharacter>().isFalling = true;
-                other.gameObject.GetComponent<NetCharacter>().playerState = PlayerState.Falling;
+                other.gameObject.GetComponent<NetCharacter>().CmdSetFalling(true);
+                other.gameObject.GetComponent<NetCharacter>().CmdPlayerState(PlayerState.Falling);
                 beated_voice_source.Play();
                 whatudo_source.Play();
             }
@@ -145,6 +157,7 @@ public class NetCharacter : NetworkBehaviour
         whatudo_source = whatudo.GetComponent<AudioSource>();
         item_fall = Instantiate(Resources.Load("Audio/itemfall") as GameObject);
         item_fall_voice = item_fall.GetComponent<AudioSource>();
+        CmdPlayerState(PlayerState.Idle);
 
         if(cam == null){
             cam = GameObject.Find("Fake_Camera");
@@ -225,14 +238,16 @@ public class NetCharacter : NetworkBehaviour
             Material = MaterialType.None;
         }
         stateInfo = Anim.GetCurrentAnimatorStateInfo(0);
-        if (stateInfo.IsName("Idle") && playerState != PlayerState.ReadyToClaim)
+        if(stateInfo.IsName("PunchRight") && playerState != PlayerState.Punch){
+            CmdPlayerState(PlayerState.Punch);
+        }else if (stateInfo.IsName("Idle") && playerState != PlayerState.ReadyToClaim)
         {
-            playerState = PlayerState.Idle;
+            CmdPlayerState(PlayerState.Idle);
         }
         if (playerState == PlayerState.Idle)
         {
             isPunch = false;
-            isFalling = false;
+            CmdSetFalling(false);
             timer = 0f;
         }
         Motion();
@@ -244,8 +259,8 @@ public class NetCharacter : NetworkBehaviour
             PlayerSpeed = 0; //玩家休眠
             // gameObject.GetComponent<Animator>().Play("StunnedLoop"); //播放晕倒动画
             CmdPlay("StunnedLoop");
-            gameObject.GetComponent<NetCharacter>().isFalling = true;
-            gameObject.GetComponent<NetCharacter>().playerState = PlayerState.Falling;
+            CmdSetFalling(true);
+            CmdPlayerState(PlayerState.Falling);
 
         }
         // if(Anim.name != "PunchRight"){
@@ -377,14 +392,14 @@ public bool last_E_Up = false;
         {      // E
             if (stateInfo.IsName("CastingLoop") || stateInfo.IsName("CastingLoop 2"))
             {
-                playerState = PlayerState.Operating;
+                CmdPlayerState(PlayerState.Operating);
             }
             else if (playerState == PlayerState.Idle && Material == MaterialType.None)
             {   // no items in hand
                 // Anim.Play("PunchRight");
                 CmdPlay("PunchRight");
                 isPunch = false;
-                playerState = PlayerState.Punch;
+                CmdPlayerState(PlayerState.Punch);
             }
             else if ((playerState == PlayerState.Idle || playerState == PlayerState.ReadyToClaim) && Material != MaterialType.None && Material != MaterialType.Bomb)
             //item in hand ,press E put down
@@ -428,7 +443,7 @@ public bool last_E_Up = false;
             else if (playerState == PlayerState.ReadyToClaim && Material == MaterialType.None)
             // no item in hand and ready to grab item
             {
-                playerState = PlayerState.Claim;
+                CmdPlayerState(PlayerState.Claim);
                 // Anim.Play("Gathering");
                 CmdPlay("Gathering");
                 get_item_source.Play();
@@ -438,14 +453,14 @@ public bool last_E_Up = false;
 
     private void Idle2Run()
     {
-        playerState = PlayerState.Run;
+        CmdPlayerState(PlayerState.Run);
         // Anim.Play("Run_norm");
         CmdPlay("Run_norm");
     }
 
     private void Run2Idel()
     {
-        playerState = PlayerState.Idle;
+        CmdPlayerState(PlayerState.Idle);
         // Anim.Play("Idle");
         CmdPlay("Idle");
     }
