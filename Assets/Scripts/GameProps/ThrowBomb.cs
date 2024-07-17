@@ -1,7 +1,5 @@
-using UnityEditor;
 using UnityEngine;
 using System.Collections;
-using UnityEditor.SearchService;
 
 public class ThrowBomb : MonoBehaviour
 {
