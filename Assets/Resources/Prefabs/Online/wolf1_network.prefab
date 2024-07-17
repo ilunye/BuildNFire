@@ -287,8 +287,6 @@ MonoBehaviour:
   run_source: {fileID: 0}
   whatudo: {fileID: 0}
   whatudo_source: {fileID: 0}
-  stateChange: 0
-  newStateName: 
   last_E_Up: 0
 --- !u!65 &1689078538627276879
 BoxCollider:

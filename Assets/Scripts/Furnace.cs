@@ -67,7 +67,9 @@ public class Furnace : MonoBehaviour
         material.EnableKeyword("_EMISSION");
         material.SetColor("_EmissionColor", Color.black);
         outPos = transform.GetChild(1);
-        Debug.Assert(player != null, "player is null");
+        if(player == null){
+            Debug.LogWarning("player is null");
+        }
     }
 
     // Update is called once per frame
