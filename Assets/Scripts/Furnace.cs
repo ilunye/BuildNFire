@@ -13,6 +13,7 @@ public class Furnace : MonoBehaviour
     public GameObject fire;
     public GameObject open_door;
     public GameObject clock;
+    public float changeScale = 1f;
 
     public string furnace_name = "f0";
     private int iron_number = 0;
@@ -33,6 +34,7 @@ public class Furnace : MonoBehaviour
     public void Play()
     {
         animator.Play("furnace");
+        Debug.Log("play furnace animation" + animator);
     }
     private void Fireoff()
     {
@@ -49,6 +51,7 @@ public class Furnace : MonoBehaviour
     {
         GameObject g = Instantiate(Resources.Load("Prefabs/ConcreteTubes") as GameObject, outPos.position, Quaternion.identity);
         g.name = "concrete_tube_" + furnace_name + "_" + iron_number.ToString();
+        g.transform.localScale *= changeScale;
         iron_number++;
         g.GetComponent<CollectableMaterials>().WillDisappear = false;
         Play();
@@ -72,14 +75,17 @@ public class Furnace : MonoBehaviour
     {
         if (playerIn && Input.GetKeyDown(player.GetComponent<Character>().keycodes[4]))
         {
+            Debug.Log("enter");
             if (player.GetComponent<Character>().Material == Character.MaterialType.Wood)
             {
+                Debug.Log("open door");
                 OpenDoor();
                 player.GetComponent<Character>().Material = Character.MaterialType.None;
                 Play();
                 AddFire();
                 clock1();
                 AudioFire();
+                Debug.Log(hasFire);
 
             }
             else if (player.GetComponent<Character>().Material == Character.MaterialType.IronOre && hasFire)

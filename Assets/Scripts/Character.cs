@@ -93,6 +93,8 @@ public class Character : MonoBehaviour
     private GameObject item_fall;
     private AudioSource item_fall_voice;
 
+    public float changeScale = 1f;
+
     void OnTriggerStay(Collider other) //get beat
     {
         if (isFalling || (other.tag == "Player" && other.gameObject.GetComponent<Character>().isFalling)) return;
@@ -367,6 +369,7 @@ public bool last_E_Up = false;
         if ((Input.GetKeyUp(keycodes[4]))) //改成getkeyup，长按E后再播放投掷动画
         {      // E
             if (stateInfo.IsName("CastingLoop") || stateInfo.IsName("CastingLoop 2"))
+            //build 
             {
                 playerState = PlayerState.Operating;
             }
@@ -404,6 +407,7 @@ public bool last_E_Up = false;
                         break;
                 }
                 obj.GetComponent<CollectableMaterials>().WillDisappear = false;
+                obj.transform.localScale *= changeScale;
                 RaycastHit hit;
                 if(Physics.Raycast(new Vector3(transform.position.x, 0.5f, transform.position.z), transform.forward, out hit, 1f)){
                     obj.transform.position = new Vector3(obj.transform.position.x, 0.5f, obj.transform.position.z) - transform.forward * 0.3f;

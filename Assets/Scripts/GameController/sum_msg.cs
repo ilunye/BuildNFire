@@ -30,6 +30,9 @@ public class sum_msg : MonoBehaviour
     private BombTrigger bombTrigger;
 
     private ShakeCamera shakeCamera;
+    public int scenceID = 1;
+
+    public float changeScale = 1f;
 
     [Obsolete]
 
@@ -103,7 +106,8 @@ public class sum_msg : MonoBehaviour
     private void Play_Final()
     {
         explode_bomb = Instantiate(Resources.Load("Prefabs/projectile1") as GameObject);
-        
+        explode_bomb.transform.localScale *= changeScale;
+
         StartCoroutine(MoveBomb());
     }
 
@@ -111,17 +115,52 @@ public class sum_msg : MonoBehaviour
     {
         Vector3 startposition;
         Vector3 targetposition;
-        if (status == 2)
-        {
-            startposition = new Vector3(804.42f, 1.6f, 981f);
-            targetposition = new Vector3(794.84f, 1.6f, 981f);
-        }
-        else
+        switch (scenceID)
         {
 
-            startposition = new Vector3(794.84f, 1.6f, 981f);
-            targetposition = new Vector3(804.42f, 1.6f, 981f);
+            case 1: //main scene
+                if (status == 2)
+                {
+                    startposition = new Vector3(804.42f, 1.6f, 981f);
+                    targetposition = new Vector3(794.84f, 1.6f, 981f);
+                }
+                else
+                {
+
+                    startposition = new Vector3(794.84f, 1.6f, 981f);
+                    targetposition = new Vector3(804.42f, 1.6f, 981f);
+                }
+
+                break;
+            case 2: //city scene
+                if (status == 1)
+                {
+                    startposition = new Vector3(161f, 3.3f, 140f);
+                    targetposition = new Vector3(197f, 3.43f, 139f);
+                }
+                else
+                {
+
+                    startposition = new Vector3(197f, 3.43f, 139f);
+                    targetposition = new Vector3(161f, 3.3f, 140f);
+                }
+                break;
+            default: //other scene
+                if (status == 2)
+                {
+                    startposition = new Vector3(804.42f, 1.6f, 981f);
+                    targetposition = new Vector3(794.84f, 1.6f, 981f);
+                }
+                else
+                {
+
+                    startposition = new Vector3(794.84f, 1.6f, 981f);
+                    targetposition = new Vector3(804.42f, 1.6f, 981f);
+                }
+                break;
+
         }
+
 
         float speed = 1.0f;
         float t = 0f;
@@ -130,7 +169,7 @@ public class sum_msg : MonoBehaviour
             t += Time.deltaTime * speed;
             explode_bomb.transform.position = Vector3.Lerp(startposition, targetposition, t);
             yield return null; // stop IEnumerator
-            
+
         }
 
         if (status == 1)

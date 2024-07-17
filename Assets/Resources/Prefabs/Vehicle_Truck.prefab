@@ -64,7 +64,7 @@ MonoBehaviour:
   p: 0
   timer: 0
   Scene_id: 0
-  CarTime: 10
+  CarTime: 15
   bigScale: 5
   randomVector: {x: 0, y: 0, z: -5}
 --- !u!114 &8470062800359831097
