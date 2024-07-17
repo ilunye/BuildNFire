@@ -14,7 +14,7 @@ public class BombTrigger : MonoBehaviour
     private GameObject[] cannons = new GameObject[2];
     private GameObject[] furnaces = new GameObject[2];
     public GameObject player_one;
-    public GameObject player_tow;
+    public GameObject player_two;
 
     // Start is called before the first frame update
     void Start()
@@ -39,7 +39,7 @@ public class BombTrigger : MonoBehaviour
                 break;
         }
         player_one = GameObject.Find("animal_people_wolf_1");
-        player_tow = GameObject.Find("animal_people_wolf_2");
+        player_two = GameObject.Find("animal_people_wolf_2");
 
         status = 0;
         cannons[0] = GameObject.Find("cannon_1");
@@ -115,6 +115,8 @@ public class BombTrigger : MonoBehaviour
         }
         Destroy(player_one);
         GameObject player = Instantiate(Resources.Load("Prefabs/animal_people_wolf_1") as GameObject);
+        player.GetComponent<Character>().wasd = true;
+        player.GetComponent<Character>().enabled = false;
         player.transform.localPosition = new Vector3(794.2f, 1.6f, 981f);
         Rigidbody playerRigidbody = player.GetComponent<Rigidbody>();
         playerRigidbody.AddForce(Vector3.up * 10 + new Vector3(1, 0, 1), ForceMode.Impulse);
@@ -130,8 +132,10 @@ public class BombTrigger : MonoBehaviour
                 rb.AddExplosionForce(force, position, radius);
             }
         }
-        Destroy(player_tow);
+        Destroy(player_two);
         GameObject player = Instantiate(Resources.Load("Prefabs/animal_people_wolf_2") as GameObject);
+        player.GetComponent<Character>().wasd = false;
+        player.GetComponent<Character>().enabled = false;
         player.transform.localPosition = new Vector3(804.8f, 1.6f, 981f);
         Rigidbody playerRigidbody = player.GetComponent<Rigidbody>();
         playerRigidbody.AddForce(Vector3.up * 10 + new Vector3(-1, 0, 1), ForceMode.Impulse);

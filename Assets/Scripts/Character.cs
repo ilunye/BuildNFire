@@ -164,6 +164,19 @@ public class Character : MonoBehaviour
     private float z_bound_up = 987.02f;
     void Update()
     {
+        if(wasd){
+            keycodes[0] = KeyCode.W;
+            keycodes[1] = KeyCode.S;
+            keycodes[2] = KeyCode.A;
+            keycodes[3] = KeyCode.D;
+            keycodes[4] = KeyCode.E;
+        }else{
+            keycodes[0] = KeyCode.UpArrow;
+            keycodes[1] = KeyCode.DownArrow;
+            keycodes[2] = KeyCode.LeftArrow;
+            keycodes[3] = KeyCode.RightArrow;
+            keycodes[4] = KeyCode.Return;
+        }
         if (!enabled) return;
         if (!enableOut)
         {

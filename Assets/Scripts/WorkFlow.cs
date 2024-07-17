@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class WorkFlow : MonoBehaviour
 {
@@ -29,6 +30,8 @@ public class WorkFlow : MonoBehaviour
 */
     public int workFlowPos = 0; // start at 0, max = 12
 
+    public bool last_is_iron = false;
+    public bool last_is_wood = false;
 
     void Start()
     {
@@ -86,6 +89,12 @@ public class WorkFlow : MonoBehaviour
             toPickWood = false;
             toPickIron = false;
         }
+
+        if(last_is_iron)
+            wood_number = (float)(Math.Floor(wood_number));
+        else if(last_is_wood)
+            iron_number = (float)(Math.Floor(iron_number));
+
         HandleInput();
     }
 
@@ -100,6 +109,8 @@ public class WorkFlow : MonoBehaviour
         }
 
         if(toPickIron && isIron && iron_number < 3f){
+            last_is_iron = true;
+            last_is_wood = false;
             workFlowPos += 2;
             if(workFlowPos > 10)
                 workFlowPos = 10;
@@ -123,6 +134,8 @@ public class WorkFlow : MonoBehaviour
                 DisableAllChildren(frame_wood);
             }
         }else if(toPickWood && wood_number < 2f && isWood){
+            last_is_wood = true;
+            last_is_iron = false;
             workFlowPos += 2;
             if(workFlowPos > 10)
                 workFlowPos = 10;
