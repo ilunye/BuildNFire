@@ -3454,7 +3454,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 48342306418360085, guid: aa641abd1d3cc9c4abb2cd901fdf185b, type: 3}
       propertyPath: m_Name
-      value: cannon _1
+      value: cannon_1
       objectReference: {fileID: 0}
     - target: {fileID: 240075265366132273, guid: aa641abd1d3cc9c4abb2cd901fdf185b, type: 3}
       propertyPath: player

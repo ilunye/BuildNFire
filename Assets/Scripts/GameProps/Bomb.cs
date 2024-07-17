@@ -6,7 +6,7 @@ public class Bomb : MonoBehaviour
 {
     private float delay = 10f; // 炸弹的延迟时间
     private float explosionForce = 400f; // 爆炸的力量
-    private float explosionRadius = 1f; // 爆炸的半径
+    private float explosionRadius = 1.5f; // 爆炸的半径
     public GameObject explosionEffect; // 爆炸效果的预制体
 
     public float countdown; //爆炸倒计时
