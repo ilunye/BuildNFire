@@ -616,7 +616,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &109504878
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9514,6 +9514,8 @@ MonoBehaviour:
   toPickWood: 0
   toPickIron: 0
   workFlowPos: 0
+  last_is_iron: 0
+  last_is_wood: 0
 --- !u!1 &1837232604
 GameObject:
   m_ObjectHideFlags: 0
@@ -10598,6 +10600,8 @@ MonoBehaviour:
   status: 0
   theText: {fileID: 0}
   explode_bomb: {fileID: 0}
+  scenceID: 1
+  changeScale: 1
 --- !u!114 &1979723292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10710,6 +10714,9 @@ MonoBehaviour:
   explosionForce: 200
   explosionRadius: 20
   status: 0
+  p_left: {x: 0, y: 0, z: 0}
+  p_right: {x: 0, y: 0, z: 0}
+  sceneID: 1
   player_one: {fileID: 0}
   player_tow: {fileID: 0}
 --- !u!1 &1985014591
@@ -11862,6 +11869,8 @@ MonoBehaviour:
   toPickWood: 0
   toPickIron: 0
   workFlowPos: 0
+  last_is_iron: 0
+  last_is_wood: 0
 --- !u!1 &2105728569
 GameObject:
   m_ObjectHideFlags: 0
@@ -12707,6 +12716,7 @@ MonoBehaviour:
   fire: {fileID: 0}
   open_door: {fileID: 0}
   clock: {fileID: 0}
+  changeScale: 1
   furnace_name: f0
 --- !u!114 &3073679852359529461
 MonoBehaviour:
@@ -12725,6 +12735,7 @@ MonoBehaviour:
   fire: {fileID: 0}
   open_door: {fileID: 0}
   clock: {fileID: 0}
+  changeScale: 1
   furnace_name: f1
 --- !u!1 &4084593598656210761
 GameObject:
