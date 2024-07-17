@@ -43,13 +43,17 @@ public class Pause_Menu: MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     {
         if (text.text == "resume")
         {
+            text.color = initialColor;
             Controller.GetComponent<PauseController>().OnResume();
         }
         else if (text.text == "instruction")
         {
+            text.color = initialColor;
             Instruction.SetActive(true);
         }
         else if (text.text=="main menu"){
+            text.color = initialColor;
+            Time.timeScale = 1;
             SceneManager.LoadScene("Scenes/HomeScreen");
         }
 

@@ -64,6 +64,7 @@ public class Instrucion_Menu: MonoBehaviour, IPointerEnterHandler, IPointerExitH
     {
         if (text.text == "CONFIRM")
         {
+            text.color = initialColor;
             Instruction.SetActive(false);
         }
         else if (text.text == "next")
