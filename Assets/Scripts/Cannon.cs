@@ -9,19 +9,25 @@ public class Cannon : MonoBehaviour
     public bool claimed = false;
     private bool isPlaying = false;
     private Material[] material = new Material[5];
-    private Transform disOffset;
+    public Transform disOffset;
     private Transform down;
     private Transform up;
     private Transform middle;
     private float[] ckpts = new float[10];
     public int idx = 0;     // max: 10
     public bool isProtected = true;
-    public GameObject player;
+    public GameObject player = null;
     public GameObject player2 = null;
     public bool playerIn = false;
     public WorkFlow workFlow;
     public GameStartTextController gameStartTextController;
     public int mode = 0;
+    // these two only used in mode 1
+    public bool enabled = false;
+    private bool building = false;
+    private float timer = 0f;
+    public int robot_idx = 0;
+    private float[] robot_ckpts = new float[150];
 
     void OnTriggerEnter(Collider other)
     {
@@ -103,6 +109,19 @@ public class Cannon : MonoBehaviour
         }
     }
 
+    private void robot_build(){
+        // 分成150个阶段完成，每个持续1s
+        if(timer > 1f){
+            timer = 0f;
+            robot_idx++;
+            disOffset.position = new Vector3(disOffset.position.x, robot_ckpts[robot_idx], disOffset.position.z);
+            for (int i = 0; i < 5; i++)
+            {
+                material[i].SetFloat("_DisappearOffset", disOffset.position.y);
+            }
+        }
+    }
+
     void Start()
     {
         disOffset = gameObject.transform.GetChild(0);
@@ -122,24 +141,20 @@ public class Cannon : MonoBehaviour
         {
             ckpts[i] = middle.position.y + (up.position.y - middle.position.y) * (i - 8) / 2;
         }
-        if (player == null)
-        {
-            Debug.LogWarning("player is null");
-        }
-
-        if(mode != 0 && player2 == null)
-        {
-            Debug.LogWarning("player2 is null");
-        }
-
-        if (workFlow == null)
-        {
-            Debug.LogWarning("workFlow is null");
+        for(int i = 0; i < 150; i++){
+            robot_ckpts[i] = down.position.y + (up.position.y - down.position.y) * i / 150;
         }
     }
 
     void Update()
     {
+        timer += Time.deltaTime;
+        if(player == null && player2 == null && mode == 1){                      // robot
+            if(enabled){
+                robot_build();
+            }
+            return;
+        }
         for (int i = 0; i < 5; i++)
         {
             material[i].SetFloat("_DisappearOffset", disOffset.position.y);

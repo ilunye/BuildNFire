@@ -1656,7 +1656,6 @@ MonoBehaviour:
   fire: {fileID: 0}
   open_door: {fileID: 0}
   clock: {fileID: 0}
-  changeScale: 1
   furnace_name: f1
 --- !u!4 &307448545
 Transform:
@@ -2686,6 +2685,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audio_321: {fileID: 0}
   StartText: {fileID: 0}
+  robot: {fileID: 1055160492}
+  cannon: {fileID: 1603369139}
   BGM: {fileID: 0}
   BGM_voice: {fileID: 0}
 --- !u!114 &388915533
@@ -3543,6 +3544,83 @@ Behaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 484026390}
   m_Enabled: 1
+--- !u!1001 &489711997
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1528915638184230, guid: 8e0f285c21cdcf14e8d5c06c57ba936b, type: 3}
+      propertyPath: m_Name
+      value: robotSphere
+      objectReference: {fileID: 0}
+    - target: {fileID: 4431084402279646, guid: 8e0f285c21cdcf14e8d5c06c57ba936b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4431084402279646, guid: 8e0f285c21cdcf14e8d5c06c57ba936b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4431084402279646, guid: 8e0f285c21cdcf14e8d5c06c57ba936b, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4431084402279646, guid: 8e0f285c21cdcf14e8d5c06c57ba936b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 12.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4431084402279646, guid: 8e0f285c21cdcf14e8d5c06c57ba936b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.09900093
+      objectReference: {fileID: 0}
+    - target: {fileID: 4431084402279646, guid: 8e0f285c21cdcf14e8d5c06c57ba936b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 4431084402279646, guid: 8e0f285c21cdcf14e8d5c06c57ba936b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4431084402279646, guid: 8e0f285c21cdcf14e8d5c06c57ba936b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4431084402279646, guid: 8e0f285c21cdcf14e8d5c06c57ba936b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4431084402279646, guid: 8e0f285c21cdcf14e8d5c06c57ba936b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4431084402279646, guid: 8e0f285c21cdcf14e8d5c06c57ba936b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4431084402279646, guid: 8e0f285c21cdcf14e8d5c06c57ba936b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4431084402279646, guid: 8e0f285c21cdcf14e8d5c06c57ba936b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4431084402279646, guid: 8e0f285c21cdcf14e8d5c06c57ba936b, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114253073084258262, guid: 8e0f285c21cdcf14e8d5c06c57ba936b, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1528915638184230, guid: 8e0f285c21cdcf14e8d5c06c57ba936b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1055160496}
+  m_SourcePrefab: {fileID: 100100000, guid: 8e0f285c21cdcf14e8d5c06c57ba936b, type: 3}
 --- !u!1 &496920077
 GameObject:
   m_ObjectHideFlags: 0
@@ -7291,6 +7369,25 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1053535753}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1055160492 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1528915638184230, guid: 8e0f285c21cdcf14e8d5c06c57ba936b, type: 3}
+  m_PrefabInstance: {fileID: 489711997}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1055160496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1055160492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54304e0ffc420f34d861a29693f56801, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sum_msg: {fileID: 112140950}
+  enabled: 0
 --- !u!1 &1076003999
 GameObject:
   m_ObjectHideFlags: 0
@@ -10195,7 +10292,6 @@ MonoBehaviour:
   fire: {fileID: 0}
   open_door: {fileID: 0}
   clock: {fileID: 0}
-  changeScale: 1
   furnace_name: f0
 --- !u!4 &1555269377
 Transform:
@@ -10590,6 +10686,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1596426917}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1603369139 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 48342306418360085, guid: aa641abd1d3cc9c4abb2cd901fdf185b, type: 3}
+  m_PrefabInstance: {fileID: 1868496767}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1630896257
 GameObject:
   m_ObjectHideFlags: 0
@@ -12203,9 +12304,13 @@ PrefabInstance:
       value: cannon_2
       objectReference: {fileID: 0}
     - target: {fileID: 240075265366132273, guid: aa641abd1d3cc9c4abb2cd901fdf185b, type: 3}
+      propertyPath: mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 240075265366132273, guid: aa641abd1d3cc9c4abb2cd901fdf185b, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 1931322105}
+      objectReference: {fileID: 0}
     - target: {fileID: 240075265366132273, guid: aa641abd1d3cc9c4abb2cd901fdf185b, type: 3}
       propertyPath: workFlow
       value: 
@@ -14639,3 +14744,4 @@ SceneRoots:
   - {fileID: 827143638}
   - {fileID: 639457538}
   - {fileID: 997620277}
+  - {fileID: 489711997}

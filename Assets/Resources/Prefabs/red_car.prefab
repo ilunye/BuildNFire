@@ -331,7 +331,6 @@ MonoBehaviour:
   carCongestion: 0
   lastHit: {fileID: 0}
   green: 0
-  speed: 5.5
 --- !u!114 &1741393177643496991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -350,11 +349,10 @@ MonoBehaviour:
   timer: 0
   Scene_id: 0
   CarTime: 4.5
-  bigScale: 1
   randomVector_Left: {x: -1, y: 0, z: 0}
   randomVector_Right: {x: -1, y: 0, z: 0}
   randomVector: {x: -1, y: 0, z: 0}
-  Main_Scene: 1
+  Main_Scene: 2
 --- !u!1 &4087291628073269653
 GameObject:
   m_ObjectHideFlags: 0
