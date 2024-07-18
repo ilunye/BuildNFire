@@ -15,13 +15,13 @@ public class HomeScreen_Menu: MonoBehaviour, IPointerEnterHandler, IPointerExitH
     {
         confirmText = GetComponent<TextMeshProUGUI>();
         initialColor = text.color;
-        if(text.text == "START")
+        if(text.text == "START" || text.text == "vally")
         {
-            cannonImage = GameObject.Find("Canvas/start/cannon_img1");
+            cannonImage = GameObject.Find("cannon_img1");
         }
         else
         {
-            cannonImage = GameObject.Find("Canvas/exit/cannon_img2");
+            cannonImage = GameObject.Find("cannon_img2");
         }
         cannonImage.SetActive(false);
     }
@@ -46,12 +46,12 @@ public class HomeScreen_Menu: MonoBehaviour, IPointerEnterHandler, IPointerExitH
     {
         // cannonImage.SetActive(false);
         if (text.text == "START")
-        {
-            SceneManager.LoadScene("Scenes/pre");
-        }
+            SceneManager.LoadScene("Scenes/MapSelection");
         else if (text.text == "EXIT")
-        {
             Application.Quit();
-        }
+        else if(text.text == "vally")
+            SceneManager.LoadScene("Scenes/VallyInstruction");
+        else if(text.text == "city")
+            SceneManager.LoadScene("Scenes/CityInstruction");
     }
 }

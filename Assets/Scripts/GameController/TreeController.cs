@@ -20,7 +20,9 @@ public class TreeController : MonoBehaviour
     public String loadTrack = "Prefabs/Tree_1_1";
     void Start()
     {
-        string sceneName = SceneManager.GetActiveScene().name;
+        
+        
+        /*string sceneName = SceneManager.GetActiveScene().name;
         if (sceneName == "Main")
         {
             regionleft_xmin = 794f;
@@ -48,7 +50,8 @@ public class TreeController : MonoBehaviour
             regionright_xmax = 20.22f;
             region_zmin = 3.75f;
             region_zmax = 19.1f;
-        }
+        }*/
+        
         // generate tree randomly in two regions, each have 4 trees
         for (int i = 0; i < 4; i++)
         {
