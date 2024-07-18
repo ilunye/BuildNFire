@@ -140,11 +140,12 @@ public class CarThrow : MonoBehaviour
             // set as kinetic
             Rigidbody cubeRigidbody = c.GetComponent<Rigidbody>();
             cubeRigidbody.AddForce(Vector3.up * throwForce + new Vector3(x, 0, z), ForceMode.Impulse);
+            /*
             if (r == 0 || r == 1)
                 StartCoroutine(BlinkAndDestroy(c, 10f));
             else
                 StartCoroutine(BlinkAndDestroy(c, destroyDelay));
-
+            */
 
             timer = 0f;
             interval = 1.5f * Random.Range(1, 3);
