@@ -97,6 +97,7 @@ public class NetCharacter : NetworkBehaviour
     private GameObject item_fall;
     private AudioSource item_fall_voice;
     private GameObject myCannon;
+    private GameObject myFurnace;
     [SyncVar]
     public Color color = Color.white;
 
@@ -206,10 +207,10 @@ public class NetCharacter : NetworkBehaviour
 
         for(int i=0; i<2; i++){
             myCannon = GameObject.Find("cannon_" + (i+1).ToString());
-            if(myCannon.GetComponent<Cannon>().claimed == false){
-                myCannon.GetComponent<Cannon>().claimed = true;
-                myCannon.GetComponent<Cannon>().player = gameObject;
-                myCannon.GetComponent<Cannon>().workFlow = GameObject.Find("Canvas/PlayerUI_" + (i+1).ToString()).GetComponent<WorkFlow>();
+            if(myCannon.GetComponent<NetCannon>().claimed == false){
+                myCannon.GetComponent<NetCannon>().claimed = true;
+                myCannon.GetComponent<NetCannon>().player = gameObject;
+                myCannon.GetComponent<NetCannon>().workFlow = GameObject.Find("Canvas/PlayerUI_" + (i+1).ToString()).GetComponent<WorkFlow>();
                 gameObject.name = "animal_people_wolf_" + (i+1).ToString();
                 transform.GetChild(0).name = "animal_people_wolf" + (i+1).ToString();
                 break;
@@ -219,6 +220,14 @@ public class NetCharacter : NetworkBehaviour
                 break;
             }
         } 
+        for(int i=0; i<2; i++){
+            myFurnace = GameObject.Find("Furnace_" + (i+1).ToString());
+            if(myFurnace.GetComponent<NetFurnace>().claimed == false){
+                myFurnace.GetComponent<NetFurnace>().claimed = true;
+                myFurnace.GetComponent<NetFurnace>().player = gameObject;
+                break;
+            }
+        }
     }
 
     // Update is called once per frame
