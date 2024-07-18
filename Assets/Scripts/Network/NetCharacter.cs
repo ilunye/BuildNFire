@@ -97,6 +97,7 @@ public class NetCharacter : NetworkBehaviour
     private GameObject item_fall;
     private AudioSource item_fall_voice;
     private GameObject myCannon;
+    private GameObject myFurnace;
     [SyncVar]
     public Color color = Color.white;
 
@@ -219,6 +220,14 @@ public class NetCharacter : NetworkBehaviour
                 break;
             }
         } 
+        for(int i=0; i<2; i++){
+            myFurnace = GameObject.Find("Furnace_" + (i+1).ToString());
+            if(myFurnace.GetComponent<NetFurnace>().claimed == false){
+                myFurnace.GetComponent<NetFurnace>().claimed = true;
+                myFurnace.GetComponent<NetFurnace>().player = gameObject;
+                break;
+            }
+        }
     }
 
     // Update is called once per frame

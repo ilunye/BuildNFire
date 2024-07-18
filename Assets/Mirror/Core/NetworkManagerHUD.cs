@@ -20,6 +20,9 @@ namespace Mirror
         public int offsetY;
         public int clientNo = 0;
         public static bool disable = false;
+        private GUIStyle buttonStyle;
+        private GUIStyle textFieldStyle;
+        private GUIStyle labelStyle;
 
         void Awake()
         {
@@ -31,9 +34,16 @@ namespace Mirror
         {
             if(disable) return;
             // If this width is changed, also change offsetX in GUIConsole::OnGUI
-            int width = 300;
+            int width = Screen.width / 3;
+            buttonStyle = new GUIStyle(GUI.skin.button);
+            textFieldStyle = new GUIStyle(GUI.skin.textField);
+            buttonStyle.fontSize = Screen.height / 40;
+            textFieldStyle.fontSize = Screen.height / 40;
+            labelStyle = new GUIStyle(GUI.skin.label);
+            labelStyle.fontSize = Screen.height / 40;
 
-            GUILayout.BeginArea(new Rect(10 + offsetX, 40 + offsetY, width, 9999));
+            Rect rect = new Rect(10 + offsetX, 40 + offsetY, width, 9999);
+            GUILayout.BeginArea(rect);
 
             if (!NetworkClient.isConnected && !NetworkServer.active)
                 StartButtons();
@@ -42,7 +52,7 @@ namespace Mirror
 
             if (NetworkClient.isConnected && !NetworkClient.ready)
             {
-                if (GUILayout.Button("Client Ready"))
+                if (GUILayout.Button("Client Ready", buttonStyle, GUILayout.Height(Screen.height / 20)))
                 {
                     // client ready
                     NetworkClient.Ready();
@@ -69,17 +79,18 @@ namespace Mirror
 //                 }
 // #else
                 // Server + Client
-                if (GUILayout.Button("Host (Server + Client)"))
+                if (GUILayout.Button("Host (Server + Client)", buttonStyle, GUILayout.Height(Screen.height / 20)))
                     manager.StartHost();
 // #endif
 
                 // Client + IP (+ PORT)
                 GUILayout.BeginHorizontal();
 
-                if (GUILayout.Button("Client"))
+                if (GUILayout.Button("Client", buttonStyle, GUILayout.Height(Screen.height / 20)))
                     manager.StartClient();
 
-                manager.networkAddress = GUILayout.TextField(manager.networkAddress);
+                GUI.skin.textField.alignment = TextAnchor.MiddleCenter;
+                manager.networkAddress = GUILayout.TextField(manager.networkAddress, textFieldStyle, GUILayout.Height(Screen.height / 20));
                 // only show a port field if we have a port transport
                 // we can't have "IP:PORT" in the address field since this only
                 // works for IPV4:PORT.
@@ -99,15 +110,16 @@ namespace Mirror
 //                 // cant be a server in webgl build
 //                 GUILayout.Box("( WebGL cannot be server )");
 // #else
-                if (GUILayout.Button("Server Only"))
+                if (GUILayout.Button("Server Only", buttonStyle, GUILayout.Height(Screen.height / 20)))
                     manager.StartServer();
 // #endif
             }
             else
             {
                 // Connecting
-                GUILayout.Label($"Connecting to {manager.networkAddress}..");
-                if (GUILayout.Button("Cancel Connection Attempt"))
+                GUI.skin.label.alignment = TextAnchor.MiddleLeft;
+                GUILayout.Label($"Connecting to {manager.networkAddress}..", labelStyle);
+                if (GUILayout.Button("Cancel Connection Attempt", buttonStyle, GUILayout.Height(Screen.height / 20)))
                     manager.StopClient();
             }
         }
@@ -121,17 +133,20 @@ namespace Mirror
             if (NetworkServer.active && NetworkClient.active)
             {
                 // host mode
-                GUILayout.Label($"<b>Host</b>: running on {clientNo}");
+                GUI.skin.label.alignment = TextAnchor.MiddleLeft;
+                GUILayout.Label($"<b>Host</b>: running on {clientNo}", labelStyle);
             }
             else if (NetworkServer.active)
             {
                 // server only
-                GUILayout.Label($"<b>Server</b>: running on {clientNo}");
+                GUI.skin.label.alignment = TextAnchor.MiddleLeft;
+                GUILayout.Label($"<b>Server</b>: running on {clientNo}", labelStyle);
             }
             else if (NetworkClient.isConnected)
             {
                 // client only
-                GUILayout.Label($"<b>Client</b>: connected to {manager.networkAddress} via {Transport.active}");
+                GUI.skin.label.alignment = TextAnchor.MiddleLeft;
+                GUILayout.Label($"<b>Client</b>: connected to {manager.networkAddress} via {Transport.active}", labelStyle);
             }
         }
 
@@ -147,7 +162,7 @@ namespace Mirror
 //                 }
 // #else
                 // stop host if host mode
-                if (GUILayout.Button("Stop Host")){
+                if (GUILayout.Button("Stop Host", buttonStyle, GUILayout.Height(Screen.height / 20))){
                     manager.StopHost();
                     // Application.LoadLevel(Application.loadedLevel);
                 }
@@ -161,7 +176,7 @@ namespace Mirror
             else if (NetworkClient.isConnected)
             {
                 // stop client if client-only
-                if (GUILayout.Button("Stop Client")){
+                if (GUILayout.Button("Stop Client", buttonStyle, GUILayout.Height(Screen.height / 20))){
                     manager.StopClient();
                     // Application.LoadLevel(Application.loadedLevel);
                 }
@@ -169,7 +184,7 @@ namespace Mirror
             else if (NetworkServer.active)
             {
                 // stop server if server-only
-                if (GUILayout.Button("Stop Server")){
+                if (GUILayout.Button("Stop Server", buttonStyle, GUILayout.Height(Screen.height / 20))){
                     manager.StopServer();
                     // Application.LoadLevel(Application.loadedLevel);
                 }
