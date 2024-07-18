@@ -315,6 +315,10 @@ PrefabInstance:
       propertyPath: RawImage
       value: 
       objectReference: {fileID: 471531232}
+    - target: {fileID: 3284108603547251357, guid: 45cf65d7fc916eb4cbc92cf654f0059b, type: 3}
+      propertyPath: sceneID
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4769152038049538857, guid: 45cf65d7fc916eb4cbc92cf654f0059b, type: 3}
       propertyPath: m_Name
       value: animal_people_wolf_1
@@ -476,7 +480,7 @@ MonoBehaviour:
   status: 0
   theText: {fileID: 0}
   explode_bomb: {fileID: 0}
-  scenceID: 1
+  scenceID: 3
   changeScale: 1
 --- !u!114 &112140952
 MonoBehaviour:
@@ -496,8 +500,8 @@ MonoBehaviour:
   p_left: {x: 0, y: 0, z: 0}
   p_right: {x: 0, y: 0, z: 0}
   sceneID: 1
-  player_one: {fileID: 0}
-  player_two: {fileID: 0}
+  player_one: {fileID: 1008624444}
+  player_two: {fileID: 1931322105}
   sum_Msg: {fileID: 0}
 --- !u!114 &112140953
 MonoBehaviour:
@@ -2523,6 +2527,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audio_321: {fileID: 0}
   StartText: {fileID: 0}
+  BGM: {fileID: 0}
+  BGM_voice: {fileID: 0}
 --- !u!114 &388915533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3196,7 +3202,7 @@ GameObject:
   - component: {fileID: 484026394}
   - component: {fileID: 484026395}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: MainCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class TreeController : MonoBehaviour
 {
@@ -20,37 +19,6 @@ public class TreeController : MonoBehaviour
     public String loadTrack = "Prefabs/Tree_1_1";
     void Start()
     {
-        
-        
-        /*string sceneName = SceneManager.GetActiveScene().name;
-        if (sceneName == "Main")
-        {
-            regionleft_xmin = 794f;
-            regionleft_xmax = 798f;
-            regionright_xmin = 800.5f;
-            regionright_xmax = 804f;
-            region_zmin = 983f;
-            region_zmax = 986f;
-            // 在场景1中执行特定的逻辑
-            //Debug.Log("在场景1中");
-        }
-        else if(sceneName=="City"){
-            regionleft_xmin = 170f;
-            regionleft_xmax = 177f;
-            regionright_xmin = 183f;
-            regionright_xmax = 190f;
-            region_zmin = 134f;
-            region_zmax = 144f;
-        }
-
-        else{
-            regionleft_xmin = 19.24f;
-            regionleft_xmax = 20.22f;
-            regionright_xmin = 19.24f;
-            regionright_xmax = 20.22f;
-            region_zmin = 3.75f;
-            region_zmax = 19.1f;
-        }*/
         
         // generate tree randomly in two regions, each have 4 trees
         for (int i = 0; i < 4; i++)
