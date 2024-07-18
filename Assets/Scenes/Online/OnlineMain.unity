@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 327618002}
-  m_IndirectSpecularColor: {r: 0.18271565, g: 0.22842383, b: 0.30709058, a: 1}
+  m_IndirectSpecularColor: {r: 0.18271525, g: 0.22842321, b: 0.3070897, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -437,7 +437,6 @@ MonoBehaviour:
   - {fileID: 2046490762146530236, guid: 4728fd274294aa543b0a503be7ca588c, type: 3}
   - {fileID: 100014, guid: 923664e57c21dc547a71a8599e1e9e28, type: 3}
   - {fileID: 100014, guid: 1145975d3e7358048ac4c72d2503668f, type: 3}
-  - {fileID: 4769152038049538857, guid: 00b6273eaa42f4945a14aa1520cf6ee9, type: 3}
   - {fileID: 2420373688274738579, guid: b5c842ecef969334f8b23866f5253725, type: 3}
   exceptionsDisconnect: 1
   snapshotSettings:
@@ -1844,12 +1843,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   claimed: 0
+  disOffset: {fileID: 0}
   idx: 0
   isProtected: 0
   player: {fileID: 0}
+  player2: {fileID: 0}
   playerIn: 0
+  playerIn2: 0
   workFlow: {fileID: 0}
   gameStartTextController: {fileID: 0}
+  mode: 0
+  enabled: 0
+  robot_idx: 0
+  sum_msg: {fileID: 0}
 --- !u!23 &283327679
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6277,12 +6283,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   claimed: 0
+  disOffset: {fileID: 0}
   idx: 0
   isProtected: 0
   player: {fileID: 0}
+  player2: {fileID: 0}
   playerIn: 0
+  playerIn2: 0
   workFlow: {fileID: 0}
   gameStartTextController: {fileID: 0}
+  mode: 0
+  enabled: 0
+  robot_idx: 0
+  sum_msg: {fileID: 0}
 --- !u!23 &1101239767
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6682,6 +6695,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audio_321: {fileID: 1801741539}
   StartText: {fileID: 0}
+  robot: {fileID: 0}
+  cannon: {fileID: 0}
   BGM: {fileID: 0}
   BGM_voice: {fileID: 0}
 --- !u!114 &1129921615
@@ -15600,10 +15615,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: ea69889e0cca277409940a63882cc542, type: 2}
   player: {fileID: 0}
+  player2: {fileID: 0}
+  mode: 0
   fire: {fileID: 0}
   open_door: {fileID: 0}
   clock: {fileID: 0}
-  changeScale: 1
   furnace_name: f0
 --- !u!114 &3073679852359529461
 MonoBehaviour:
@@ -15619,10 +15635,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: 858063796df6aa341a27391cf53f8a00, type: 2}
   player: {fileID: 0}
+  player2: {fileID: 0}
+  mode: 0
   fire: {fileID: 0}
   open_door: {fileID: 0}
   clock: {fileID: 0}
-  changeScale: 1
   furnace_name: f1
 --- !u!1 &4084593598656210761
 GameObject:
