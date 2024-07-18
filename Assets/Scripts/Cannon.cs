@@ -17,23 +17,33 @@ public class Cannon : MonoBehaviour
     public int idx = 0;     // max: 10
     public bool isProtected = true;
     public GameObject player;
+    public GameObject player2 = null;
     public bool playerIn = false;
     public WorkFlow workFlow;
     public GameStartTextController gameStartTextController;
+    public int mode = 0;
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == player)
+        if (other.gameObject == player || other.gameObject == player2)
         {
             playerIn = true;
         }
     }
+
+    void OnTriggerStay(Collider other){
+        if(other.gameObject == player || other.gameObject == player2){
+            playerIn = true;
+        }
+    }
+
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject == player)
+        if (other.gameObject == player || other.gameObject == player2)
         {
             playerIn = false;
         }
+
     }
 
     IEnumerator each_next(float offset)
@@ -48,7 +58,7 @@ public class Cannon : MonoBehaviour
         isPlaying = false;
     }
 
-    public void next_state()
+    public void next_state(GameObject player)
     {
         if (isPlaying || idx == 10)
         {
@@ -116,6 +126,12 @@ public class Cannon : MonoBehaviour
         {
             Debug.LogWarning("player is null");
         }
+
+        if(mode != 0 && player2 == null)
+        {
+            Debug.LogWarning("player2 is null");
+        }
+
         if (workFlow == null)
         {
             Debug.LogWarning("workFlow is null");
@@ -128,6 +144,7 @@ public class Cannon : MonoBehaviour
         {
             material[i].SetFloat("_DisappearOffset", disOffset.position.y);
         }
+        bool playerdoing = false;
         if (playerIn && Input.GetKeyDown(player.GetComponent<Character>().keycodes[4]))
         {
             //Debug.Log("build");
@@ -135,6 +152,7 @@ public class Cannon : MonoBehaviour
             switch (player.GetComponent<Character>().Material)
             {
                 case Character.MaterialType.CannonBall:
+                    playerdoing = true;
                     workFlow.isPro = true;
                     if (workFlow.projectile_number < 1)
                     {
@@ -144,6 +162,7 @@ public class Cannon : MonoBehaviour
                     }
                     break;
                 case Character.MaterialType.GunPowder:
+                    playerdoing = true;
                     workFlow.isPowder = true;
                     if (workFlow.gunpowder_number < 1)
                     {
@@ -153,19 +172,62 @@ public class Cannon : MonoBehaviour
                     }
                     break;
                 case Character.MaterialType.Iron:
+                    playerdoing = true;
                     workFlow.isIron = true;
                     if (workFlow.iron_number < 3 && workFlow.toPickIron)
                     {
                         player.GetComponent<Character>().Material = Character.MaterialType.None;
-                        next_state();
+                        next_state(player);
+                    }
+                    break;
+                case Character.MaterialType.Wood:
+                    playerdoing = true;
+                    workFlow.isWood = true;
+                    if (workFlow.wood_number < 2 && workFlow.toPickWood)
+                    {
+                        player.GetComponent<Character>().Material = Character.MaterialType.None;
+                        next_state(player);
+                    }
+                    break;
+            }
+        }
+        if((!playerdoing) && (mode != 0 && playerIn && Input.GetKeyDown(player2.GetComponent<Character>().keycodes[4]))){
+            //Debug.Log("build");
+            if (isPlaying) return;
+            switch (player2.GetComponent<Character>().Material)
+            {
+                case Character.MaterialType.CannonBall:
+                    workFlow.isPro = true;
+                    if (workFlow.projectile_number < 1)
+                    {
+                        player2.GetComponent<Character>().Material = Character.MaterialType.None;
+                        player2.GetComponent<Character>().Anim.Play("CastingLoop 2");
+                        //Debug.Log("collect projectile");
+                    }
+                    break;
+                case Character.MaterialType.GunPowder:
+                    workFlow.isPowder = true;
+                    if (workFlow.gunpowder_number < 1)
+                    {
+                        player2.GetComponent<Character>().Material = Character.MaterialType.None;
+                        player2.GetComponent<Character>().Anim.Play("CastingLoop 2");
+                        //Debug.Log("collect gunpowder");
+                    }
+                    break;
+                case Character.MaterialType.Iron:
+                    workFlow.isIron = true;
+                    if (workFlow.iron_number < 3 && workFlow.toPickIron)
+                    {
+                        player2.GetComponent<Character>().Material = Character.MaterialType.None;
+                        next_state(player2);
                     }
                     break;
                 case Character.MaterialType.Wood:
                     workFlow.isWood = true;
                     if (workFlow.wood_number < 2 && workFlow.toPickWood)
                     {
-                        player.GetComponent<Character>().Material = Character.MaterialType.None;
-                        next_state();
+                        player2.GetComponent<Character>().Material = Character.MaterialType.None;
+                        next_state(player2);
                     }
                     break;
             }
