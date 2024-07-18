@@ -766,7 +766,10 @@ MonoBehaviour:
   Scene_id: 0
   CarTime: 4.5
   bigScale: 1
+  randomVector_Left: {x: -1, y: 0, z: 0}
+  randomVector_Right: {x: -1, y: 0, z: 0}
   randomVector: {x: -1, y: 0, z: 0}
+  Main_Scene: 1
 --- !u!1 &8995901673617043350
 GameObject:
   m_ObjectHideFlags: 0
