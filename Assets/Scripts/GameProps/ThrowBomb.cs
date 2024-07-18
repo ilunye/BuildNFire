@@ -126,7 +126,10 @@ public class ThrowBomb : MonoBehaviour
     void Throw()
     {
         hasthrow = true;
-        bomb = Instantiate(Resources.Load("Prefabs/Bomb Red") as GameObject); // 创建炸弹实例
+        if(sceneID != 3)
+            bomb = Instantiate(Resources.Load("Prefabs/Bomb Red") as GameObject); // 创建炸弹实例
+        else
+            bomb = Instantiate(Resources.Load("Prefabs/Bomb_Red_Dark") as GameObject); // 创建炸弹实例
         // 设置炸弹的初始位置
         bomb.transform.position = gameObject.transform.position + gameObject.transform.forward * 0.5f;
         bomb.transform.localScale *= bigScale;
