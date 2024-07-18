@@ -2176,7 +2176,7 @@ MonoBehaviour:
   sceneID: 2
   player_one: {fileID: 2046701171}
   player_two: {fileID: 129817998}
-  sum_Msg: {fileID: 0}
+  sum_Msg: {fileID: 228382312}
 --- !u!114 &228382314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16765,5 +16765,3 @@ SceneRoots:
   - {fileID: 1543936854}
   - {fileID: 1952074449}
   - {fileID: 910556195}
-  - {fileID: 383875550}
-  - {fileID: 1850225969}

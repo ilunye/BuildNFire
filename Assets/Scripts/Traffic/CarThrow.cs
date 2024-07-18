@@ -152,7 +152,7 @@ public class CarThrow : MonoBehaviour
             }
 
             spawnPosition = transform.position + transform.up * 0.5f  + randomVector;
-            Debug.Log("spawnPosition: " + spawnPosition + " " + "transform: " + transform.position + " random vector: " + randomVector + " " + "up: " + transform.up);
+            //Debug.Log("spawnPosition: " + spawnPosition + " " + "transform: " + transform.position + " random vector: " + randomVector + " " + "up: " + transform.up);
             c.transform.position = spawnPosition;
             c.transform.localScale *= bigScale;
             // Rigidbody cubeRigidbody = c.AddComponent<Rigidbody>();
