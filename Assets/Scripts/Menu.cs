@@ -15,8 +15,10 @@ public class Menu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     private TextMeshProUGUI confirmText;
     public bool isConfirm = false;
     private static bool isFirstTime = true;
+    private string sceneName;
     void Start()
     {
+        sceneName = SceneManager.GetActiveScene().name;
         confirmText = GetComponent<TextMeshProUGUI>();
         initialColor = text.color;
         currentIndex = 0;
@@ -92,10 +94,20 @@ public class Menu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         {
             SceneManager.LoadScene("Scenes/pre");
         }
-        else if (text.text == "CONFIRM" && confirmButtonEnabled) //15秒后可点击
+        else if (text.text == "CONFIRM" && confirmButtonEnabled&&sceneName.CompareTo("VallyInstruction")==0) 
         {
             //Debug.Log("confirm");
             SceneManager.LoadScene("Scenes/Main");
+        }
+        else if (text.text == "CONFIRM" && confirmButtonEnabled&&sceneName.CompareTo("CityInstruction")==0) 
+        {
+            //Debug.Log("confirm");
+            SceneManager.LoadScene("Scenes/City");
+        }
+        else if (text.text == "CONFIRM" && confirmButtonEnabled&&sceneName.CompareTo("DarkCityInstruction")==0) 
+        {
+            //Debug.Log("confirm");
+            SceneManager.LoadScene("Scenes/DarkCity");
         }
         else if (text.text == "instruction")
         {

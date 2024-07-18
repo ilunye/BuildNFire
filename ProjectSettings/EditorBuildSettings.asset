@@ -26,4 +26,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MapSelection.unity
     guid: 46b3e6edfc6b4ab49b83c4508b36fc0d
+  - enabled: 1
+    path: Assets/Scenes/DarkCity.unity
+    guid: f20669a5a2861c24ea457238c8c34db9
+  - enabled: 1
+    path: Assets/Scenes/DarkCityInstruction.unity
+    guid: e01361c5dcd55cc4f9979d267adb3eb3
   m_configObjects: {}
