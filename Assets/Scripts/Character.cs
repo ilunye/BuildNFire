@@ -77,7 +77,7 @@ public class Character : MonoBehaviour
     internal object property;
 
     public bool enableOut = true;
-    private bool IsOut = false;
+    public bool IsOut = false;
     public bool InCorner = false;
     // voice
     public GameObject beated_voice; //get beated voice
@@ -316,10 +316,11 @@ public class Character : MonoBehaviour
                 Vector3 p = transform.localPosition;
                 if ((!InCorner) && (!IsOut || (IsOut && (transform.position.z < z_bound_down || ((transform.position.x > x_bound_right || transform.position.x < x_bound_left) && transform.position.z < z_bound_up)))))
                 {
-                    if (PlayerSpeed > 0)
-                        p += cam.transform.forward * PlayerSpeed * Time.deltaTime;
-                    else if (transform.position.z > z_bound_down)
-                        p += cam.transform.forward * PlayerSpeed * Time.deltaTime;
+                    // if (PlayerSpeed > 0)
+                    //     p += cam.transform.forward * PlayerSpeed * Time.deltaTime;
+                    // else if (transform.position.z > z_bound_down)
+                    //     p += cam.transform.forward * PlayerSpeed * Time.deltaTime;
+                    p += cam.transform.forward * PlayerSpeed * Time.deltaTime;
                 }
                 transform.localPosition = p;
                 Idle2Run();
@@ -335,10 +336,11 @@ public class Character : MonoBehaviour
                 Vector3 p = transform.localPosition;
                 if (InCorner || !IsOut || (IsOut && (transform.position.z > z_bound_up || ((transform.position.x > x_bound_right || transform.position.x < x_bound_left) && transform.position.z > z_bound_down))))
                 {
-                    if (PlayerSpeed > 0)
-                        p -= cam.transform.forward * PlayerSpeed * Time.deltaTime;
-                    else if (transform.position.z < z_bound_up)
-                        p -= cam.transform.forward * PlayerSpeed * Time.deltaTime;
+                    // if (PlayerSpeed > 0)
+                    //     p -= cam.transform.forward * PlayerSpeed * Time.deltaTime;
+                    // else if (transform.position.z < z_bound_up)
+                    //     p -= cam.transform.forward * PlayerSpeed * Time.deltaTime;
+                    p -= cam.transform.forward * PlayerSpeed * Time.deltaTime;
                 }
 
                 transform.localPosition = p;
@@ -355,10 +357,11 @@ public class Character : MonoBehaviour
                 Vector3 p = transform.localPosition;
                 if (InCorner || !IsOut || (IsOut && (transform.position.x > x_bound_right || ((transform.position.z > z_bound_up || transform.position.z < z_bound_down) && transform.position.x > x_bound_left))))
                 {
-                    if (PlayerSpeed > 0)
-                        p -= cam.transform.right * PlayerSpeed * Time.deltaTime;
-                    else if (transform.position.x < x_bound_right)
-                        p -= cam.transform.right * PlayerSpeed * Time.deltaTime;
+                    // if (PlayerSpeed > 0)
+                    //     p -= cam.transform.right * PlayerSpeed * Time.deltaTime;
+                    // else if (transform.position.x < x_bound_right)
+                    //     p -= cam.transform.right * PlayerSpeed * Time.deltaTime;
+                    p -= cam.transform.right* PlayerSpeed * Time.deltaTime;
                 }
                 transform.localPosition = p;
                 Idle2Run();
@@ -374,10 +377,11 @@ public class Character : MonoBehaviour
                 Vector3 p = transform.localPosition;
                 if ((!InCorner) && (!IsOut || (IsOut && (transform.position.x < x_bound_left || ((transform.position.z > z_bound_up || transform.position.z < z_bound_down) && transform.position.x < x_bound_right)))))
                 {
-                    if (PlayerSpeed > 0)
-                        p += cam.transform.right * PlayerSpeed * Time.deltaTime;
-                    else if (transform.position.x > x_bound_left)
-                        p += cam.transform.right * PlayerSpeed * Time.deltaTime;
+                    // if (PlayerSpeed > 0)
+                    //     p += cam.transform.right * PlayerSpeed * Time.deltaTime;
+                    // else if (transform.position.x > x_bound_left)
+                    //     p += cam.transform.right * PlayerSpeed * Time.deltaTime;
+                    p += cam.transform.right* PlayerSpeed * Time.deltaTime;
                 }
                 transform.localPosition = p;
                 Idle2Run();

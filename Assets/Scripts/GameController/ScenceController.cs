@@ -27,12 +27,12 @@ public class SceneController : MonoBehaviour
         {
             if (treeController != null)
             {
-                treeController.regionleft_xmin = 170f;
-                treeController.regionleft_xmax = 177f;
-                treeController.regionright_xmin = 183f;
-                treeController.regionright_xmax = 190f;
-                treeController.region_zmin = 134f;
-                treeController.region_zmax = 144f;
+                // treeController.regionleft_xmin = 170f;
+                // treeController.regionleft_xmax = 177f;
+                // treeController.regionright_xmin = 183f;
+                // treeController.regionright_xmax = 190f;
+                // treeController.region_zmin = 134f;
+                // treeController.region_zmax = 144f;
                 treeController.loadTrack = "Prefabs/BigTree";
             }
             if (trafficControl != null)
@@ -57,7 +57,6 @@ public class SceneController : MonoBehaviour
     void Update()
     {
         //StartCoroutine(ChangeScale());
-        Debug.Log("debug");
     }
 
 
@@ -85,7 +84,6 @@ public class SceneController : MonoBehaviour
         }
         yield return null;
 
-        Debug.Log("End of Coroutine");
     }
 
 

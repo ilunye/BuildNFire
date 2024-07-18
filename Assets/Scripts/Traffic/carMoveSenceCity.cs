@@ -15,8 +15,8 @@ public class carMoveSenceCity : MonoBehaviour
     private float throwForce = 2f;
     public float speed = 10f;
 
-    private Vector3 car1_position = new Vector3(120f, 0f, 157f);
-    private Vector3 car2_position = new Vector3(120f, 0f, 163f);
+    private Vector3 car1_position = new Vector3(160f, 0f, 146f);
+    private Vector3 car2_position = new Vector3(160f, 0f, 148.22f);
 
     void resetRayCast()
     {
@@ -44,23 +44,23 @@ public class carMoveSenceCity : MonoBehaviour
             r.AddForce(Vector3.up * throwForce + new Vector3(initialVelocityX, 0, initialVelocityZ), ForceMode.Impulse);
 
         }
-        if (other.tag == "car")
-        {
-            lastHit = other.gameObject;
-            carCongestion = true;
-            speed = 0;
-        }
+        // if (other.tag == "car")
+        // {
+        //     lastHit = other.gameObject;
+        //     carCongestion = true;
+        //     speed = 0;
+        // }
     }
     void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Player")
-        {
-            Invoke("resetSpeed", 1f);
-        }
-        if (other.tag == "car")
-        {
-            Invoke("resetSpeed", 1f);
-        }
+        // if (other.tag == "Player")
+        // {
+        //     Invoke("resetSpeed", 1f);
+        // }
+        // if (other.tag == "car")
+        // {
+        //     Invoke("resetSpeed", 1f);
+        // }
     }
 
 

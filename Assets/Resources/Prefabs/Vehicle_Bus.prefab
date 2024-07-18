@@ -34,8 +34,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 187.23076, y: 0, z: 123.56627}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
@@ -123,9 +123,12 @@ MonoBehaviour:
   p: 0
   timer: 0
   Scene_id: 0
-  CarTime: 15
-  bigScale: 5
-  randomVector: {x: 0, y: 0, z: -5}
+  CarTime: 4
+  bigScale: 2
+  randomVector_Left: {x: 0, y: 0, z: 3}
+  randomVector_Right: {x: 0, y: 0, z: -3}
+  randomVector: {x: 0, y: 0, z: 0}
+  Main_Scene: 1
 --- !u!65 &2361710460043465622
 BoxCollider:
   m_ObjectHideFlags: 0

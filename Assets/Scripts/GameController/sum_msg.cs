@@ -135,14 +135,14 @@ public class sum_msg : MonoBehaviour
             case 2: //city scene
                 if (status == 1)
                 {
-                    startposition = new Vector3(161f, 3.3f, 140f);
-                    targetposition = new Vector3(197f, 3.43f, 139f);
+                    startposition = new Vector3(174f,1.28f,140.88f);
+                    targetposition = new Vector3(187.13f,1.28f,140.88f);
                 }
                 else
                 {
 
-                    startposition = new Vector3(197f, 3.43f, 139f);
-                    targetposition = new Vector3(161f, 3.3f, 140f);
+                    startposition = new Vector3(187.13f,1.28f,140.88f);
+                    targetposition = new Vector3(174f,1.28f,140.88f);
                 }
                 break;
             default: //other scene
@@ -183,6 +183,7 @@ public class sum_msg : MonoBehaviour
         ending_source.Play();
         bigBomb_voice.Play();
         shakeCamera.enabled = true;
+        Destroy(explode_bomb);
     }
 
 }
