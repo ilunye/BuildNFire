@@ -31,6 +31,8 @@ public class ThrowBomb : MonoBehaviour
     private float multipleFore = 3f;
     private Vector3 upVector = new Vector3(0f, 0f, 0f);
 
+    public bool target_dist_increasing = true;
+
     void Start()
     {
         throwForce = InitthrowForce;
@@ -75,9 +77,21 @@ public class ThrowBomb : MonoBehaviour
                 else
                     theBombTarget.transform.position = transform.position + transform.forward * (1f * throwForce + 0.6f) + upVector;
                 //Debug.Log(theBombTarget.transform.position);
-                if (throwForce < MaxThrowForce)
+                if (target_dist_increasing && throwForce < MaxThrowForce)
                 {
                     throwForce += Time.deltaTime * multipleFore;
+                    if(throwForce > MaxThrowForce)
+                        throwForce = MaxThrowForce;
+                    if(throwForce == MaxThrowForce)
+                        target_dist_increasing = false;
+                }
+                else if(!target_dist_increasing && throwForce > InitthrowForce)
+                {
+                    throwForce -= Time.deltaTime * multipleFore;
+                    if(throwForce < InitthrowForce)
+                        throwForce = InitthrowForce;
+                    if(throwForce == InitthrowForce)
+                        target_dist_increasing = true;
                 }
             }
 
