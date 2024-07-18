@@ -127,7 +127,8 @@ public class Cannon : MonoBehaviour
             return;
         if(timer > 1f){
             timer = 0f;
-            robot_idx++;
+            if(robot_idx < 150)
+                robot_idx++;
             disOffset.position = new Vector3(disOffset.position.x, robot_ckpts[robot_idx], disOffset.position.z);
             for (int i = 0; i < 5; i++)
             {
