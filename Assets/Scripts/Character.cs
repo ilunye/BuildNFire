@@ -93,7 +93,8 @@ public class Character : MonoBehaviour
     private GameObject item_fall;
     private AudioSource item_fall_voice;
 
-    public float changeScale = 1f;
+    public static float bigScale = 1f;
+    public static float smallScale = 1f;
 
     void OnTriggerStay(Collider other) //get beat
     {
@@ -434,7 +435,7 @@ public class Character : MonoBehaviour
                         break;
                 }
                 obj.GetComponent<CollectableMaterials>().WillDisappear = false;
-                obj.transform.localScale *= changeScale;
+                obj.transform.localScale *= bigScale;
                 RaycastHit hit;
                 if (Physics.Raycast(new Vector3(transform.position.x, 0.5f, transform.position.z), transform.forward, out hit, 1f))
                 {
