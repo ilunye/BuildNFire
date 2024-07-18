@@ -19,6 +19,7 @@ public class Cannon : MonoBehaviour
     public GameObject player = null;
     public GameObject player2 = null;
     public bool playerIn = false;
+    public bool playerIn2 = false;
     public WorkFlow workFlow;
     public GameStartTextController gameStartTextController;
     public int mode = 0;
@@ -31,25 +32,35 @@ public class Cannon : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == player || other.gameObject == player2)
+        if (other.gameObject == player)
         {
             playerIn = true;
+        }
+        if(other.gameObject == player2)
+        {
+            playerIn2 = true;
         }
     }
 
     void OnTriggerStay(Collider other){
-        if(other.gameObject == player || other.gameObject == player2){
+        if(other.gameObject == player){
             playerIn = true;
+        }
+        if(other.gameObject == player2){
+            playerIn2 = true;
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject == player || other.gameObject == player2)
+        if (other.gameObject == player)
         {
             playerIn = false;
         }
-
+        if(other.gameObject == player2)
+        {
+            playerIn2 = false;
+        }
     }
 
     IEnumerator each_next(float offset)
@@ -206,7 +217,7 @@ public class Cannon : MonoBehaviour
                     break;
             }
         }
-        if((!playerdoing) && (mode != 0 && playerIn && Input.GetKeyDown(player2.GetComponent<Character>().keycodes[4]))){
+        if((!playerdoing) && (mode != 0 && playerIn2 && Input.GetKeyDown(player2.GetComponent<Character>().keycodes[4]))){
             //Debug.Log("build");
             if (isPlaying) return;
             switch (player2.GetComponent<Character>().Material)

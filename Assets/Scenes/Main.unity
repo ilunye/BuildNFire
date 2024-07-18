@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 327618002}
-  m_IndirectSpecularColor: {r: 0.18271565, g: 0.22842383, b: 0.30709058, a: 1}
+  m_IndirectSpecularColor: {r: 0.18271525, g: 0.22842321, b: 0.3070897, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4984,6 +4984,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audio_321: {fileID: 0}
   StartText: {fileID: 0}
+  robot: {fileID: 0}
+  cannon: {fileID: 0}
   BGM: {fileID: 0}
   BGM_voice: {fileID: 0}
 --- !u!114 &1129921615
@@ -5106,6 +5108,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1140394336}
+  - component: {fileID: 1140394337}
   - component: {fileID: 1140394335}
   - component: {fileID: 1140394334}
   - component: {fileID: 1140394333}
@@ -5210,6 +5213,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1140394337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140394332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef676c16249b4894f8ae9c9465e59ffe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character1: {fileID: 0}
+  character2: {fileID: 0}
 --- !u!1 &1145343086
 GameObject:
   m_ObjectHideFlags: 0
@@ -10011,6 +10028,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1867078717}
+  - component: {fileID: 1867078718}
   m_Layer: 0
   m_Name: Fake_Camera
   m_TagString: Untagged
@@ -10033,6 +10051,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1867078718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1867078716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1d6bd8856b8d294cbbd3ec27d9111a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  treeController: {fileID: 0}
+  trafficControl: {fileID: 0}
 --- !u!1 &1877124741
 GameObject:
   m_ObjectHideFlags: 0
@@ -12868,6 +12900,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: ea69889e0cca277409940a63882cc542, type: 2}
   player: {fileID: 965759270}
+  player2: {fileID: 0}
+  mode: 0
   fire: {fileID: 0}
   open_door: {fileID: 0}
   clock: {fileID: 0}
@@ -12886,6 +12920,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: 858063796df6aa341a27391cf53f8a00, type: 2}
   player: {fileID: 1296262664}
+  player2: {fileID: 0}
+  mode: 0
   fire: {fileID: 0}
   open_door: {fileID: 0}
   clock: {fileID: 0}
