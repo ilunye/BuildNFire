@@ -10736,6 +10736,7 @@ MonoBehaviour:
   explode_bomb: {fileID: 0}
   scenceID: 1
   changeScale: 1
+  gameStartTextController: {fileID: 1129921614}
 --- !u!114 &1979723292
 MonoBehaviour:
   m_ObjectHideFlags: 0

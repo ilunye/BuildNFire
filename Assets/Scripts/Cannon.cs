@@ -171,25 +171,6 @@ public class Cannon : MonoBehaviour
             }
         }
 
-        //change bgm according to process of game
-        if (5 < idx && idx < 8)
-        {
-            gameStartTextController.BGM_voice.pitch = 1.1f;
-
-        }
-        else if (idx > 7 && idx < 10)
-        {
-            gameStartTextController.BGM_voice.pitch = 1.2f;
-
-        }
-        else if (idx > 9)
-        {
-            gameStartTextController.BGM_voice.pitch = 1.3f;
-        }
-        else
-        {
-            gameStartTextController.BGM_voice.pitch = 1f;
-        }
-
+        
     }
 }
