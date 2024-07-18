@@ -3530,6 +3530,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 385941305431922333, guid: 8e0f285c21cdcf14e8d5c06c57ba936b, type: 3}
+      propertyPath: sum_msg
+      value: 
+      objectReference: {fileID: 112140950}
     - target: {fileID: 922071707007313140, guid: 8e0f285c21cdcf14e8d5c06c57ba936b, type: 3}
       propertyPath: sum_msg
       value: 
@@ -3538,10 +3542,7 @@ PrefabInstance:
     - {fileID: 114253073084258262, guid: 8e0f285c21cdcf14e8d5c06c57ba936b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1528915638184230, guid: 8e0f285c21cdcf14e8d5c06c57ba936b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1055160496}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e0f285c21cdcf14e8d5c06c57ba936b, type: 3}
 --- !u!1 &496920077
 GameObject:
@@ -7213,23 +7214,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1528915638184230, guid: 8e0f285c21cdcf14e8d5c06c57ba936b, type: 3}
   m_PrefabInstance: {fileID: 489711997}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1055160496
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1055160492}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54304e0ffc420f34d861a29693f56801, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sum_msg: {fileID: 112140950}
-  enabled: 0
-  isPlaying: 0
-  lose: 0
-  lose_action_performing: 0
 --- !u!1 &1076003999
 GameObject:
   m_ObjectHideFlags: 0
