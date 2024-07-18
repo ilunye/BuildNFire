@@ -13,7 +13,7 @@ public class carMoveSenceCity : MonoBehaviour
     private float initialVelocityX = 1f;
     private float initialVelocityZ = -1f;
     private float throwForce = 2f;
-    public float speed = 10f;
+    public static float speed = 10f;
 
     private Vector3 car1_position = new Vector3(160f, 0f, 146f);
     private Vector3 car2_position = new Vector3(160f, 0f, 148.22f);

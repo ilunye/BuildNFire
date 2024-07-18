@@ -11,7 +11,7 @@ public class CarThrow : MonoBehaviour
     public int p;
     public float timer;
     private float throwForce;
-    private float destroyDelay;       
+    private float destroyDelay;
     public static int bomb_num = 0;
     public static int burger_num = 0;
     public static int hourglass_num = 0;
@@ -23,18 +23,18 @@ public class CarThrow : MonoBehaviour
     public static int barrel_num = 0;
     public static int lock_num = 0;
     public static int box_num = 0;
- 
+
     // Since each scene has different time, we need to set the time for each scene
     private float overallTime = 0f;
     public int Scene_id = 0;       // main scene by default
 
     public float CarTime = 4.5f;
-    public float bigScale = 1f;
-    public Vector3 randomVector_Left = new Vector3(-1, 0f, 0f);
-    public Vector3 randomVector_Right = new Vector3(-1, 0f, 0f);
+    public static float bigScale = 1f;
+    public Vector3 randomVector_Left;
+    public Vector3 randomVector_Right;
     public Vector3 randomVector;
     public bool Main_Scene = true;
-
+    public static float modeChange = 1f;
 
 
     void Start()
@@ -44,9 +44,9 @@ public class CarThrow : MonoBehaviour
         spawnPosition = gameObject.transform.position + transform.up * distanceAbove;
         interval = 1f;
         p = (int)Random.Range(1, 2);
-        interval = interval * p;
+        interval = interval * p * modeChange;
         throwForce = 1;
-        if(!Main_Scene)
+        if (!Main_Scene)
             CarTime = 3.5f;
         // destroyDelay = 5f;
     }
@@ -150,15 +150,18 @@ public class CarThrow : MonoBehaviour
             }
 
             int random;
-            if(Main_Scene){
+            if (Main_Scene)
+            {
                 random = (int)Random.Range(0, 2);
-                if(random == 0)
+                if (random == 0)
                     randomVector = randomVector_Left;
                 else
                     randomVector = randomVector_Right;
-            }else{
+            }
+            else
+            {
                 random = (int)Random.Range(0, 10);
-                if(random < 3)
+                if (random < 3)
                     randomVector = randomVector_Right;
                 else
                     randomVector = randomVector_Left;
@@ -182,7 +185,7 @@ public class CarThrow : MonoBehaviour
             */
 
             timer = 0f;
-            interval = 1.5f * Random.Range(1, 3);
+            interval = 1.5f * Random.Range(1, 3) * modeChange;
         }
     }
 
