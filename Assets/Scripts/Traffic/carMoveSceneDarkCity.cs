@@ -13,7 +13,7 @@ public class carMoveSenceDarkCity : MonoBehaviour
     private float initialVelocityX = 1f;
     private float initialVelocityZ = -1f;
     private float throwForce = 2f;
-    public static float speed;
+    public static float speed = 3.5f;
 
     private Vector3 redcar_position = new Vector3(18.3f, 0.1f, 26.2f);
     private Vector3 greencar_position = new Vector3(17.5f, 0.1f, 26.1f);
@@ -82,9 +82,8 @@ public class carMoveSenceDarkCity : MonoBehaviour
 
     void Update()
     {
-
         transform.position += speed * transform.forward * Time.deltaTime;
-        if (transform.position.z <-5)
+        if (transform.position.z < 0.785f)
         {
             Destroy(gameObject);
         }

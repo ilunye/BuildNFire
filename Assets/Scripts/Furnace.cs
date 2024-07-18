@@ -7,6 +7,8 @@ public class Furnace : MonoBehaviour
     private Animator animator;
     public Material material;
     public GameObject player;
+    public GameObject player2 = null;
+    public int mode = 0;
     private Transform outPos;
     private bool playerIn = false;
     private bool hasFire = false;
@@ -20,14 +22,21 @@ public class Furnace : MonoBehaviour
     private int iron_number = 0;
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == player)
+        if (other.gameObject == player || other.gameObject == player2)
+        {
+            playerIn = true;
+        }
+    }
+    void OnTiggerStay(Collider other)
+    {
+        if (other.gameObject == player || other.gameObject == player2)
         {
             playerIn = true;
         }
     }
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject == player)
+        if (other.gameObject == player || other.gameObject == player2)
         {
             playerIn = false;
         }
@@ -87,8 +96,10 @@ public class Furnace : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        bool playerdone = false;
         if (playerIn && Input.GetKeyDown(player.GetComponent<Character>().keycodes[4]))
         {
+            playerdone = true;
             //Debug.Log("enter");
             if (player.GetComponent<Character>().Material == Character.MaterialType.Wood)
             {
@@ -116,6 +127,34 @@ public class Furnace : MonoBehaviour
                     Invoke("smelting", 5f);
                 }
             }
+        }
+        else if(playerIn && (!playerdone) && mode != 0 && Input.GetKeyDown(player2.GetComponent<Character>().keycodes[4])){
+            if (player2.GetComponent<Character>().Material == Character.MaterialType.Wood)
+            {
+                OpenDoor();
+                player2.GetComponent<Character>().Material = Character.MaterialType.None;
+                Play();
+                AddFire();
+                clock1();
+                AudioFire();
+                if (hasStone)
+                {
+                    Invoke("smelting", 5f);
+                }
+            }
+            else if (player2.GetComponent<Character>().Material == Character.MaterialType.IronOre)
+            {
+                OpenDoor();
+                player2.GetComponent<Character>().Material = Character.MaterialType.None;
+                Play();
+                ADDStone();
+                clock1();
+                if (hasFire)
+                {
+                    Invoke("smelting", 5f);
+                }
+            }
+
         }
     }
     private void OpenDoor()

@@ -592,12 +592,12 @@ GameObject:
   - component: {fileID: 400012}
   - component: {fileID: 4832465869539239927}
   - component: {fileID: 6076115449239806506}
-  - component: {fileID: -4362724396125130409}
   - component: {fileID: 710917890776087421}
   - component: {fileID: 953275606467669585}
   - component: {fileID: 7905896307314714393}
   - component: {fileID: -570232263199786641}
   - component: {fileID: -2223600640147914465}
+  - component: {fileID: 1031640990070820600}
   m_Layer: 0
   m_Name: Vehicle_Container_color03_separate
   m_TagString: car
@@ -669,23 +669,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.8500547, y: 1.2475185, z: 2.6164978}
   m_Center: {x: 0.1550009, y: 0.12376009, z: 7.1307592}
---- !u!114 &-4362724396125130409
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d7fc9ba7a8f8594fb2dad9928cd5fcf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  carCongestion: 0
-  lastHit: {fileID: 0}
-  green: 0
-  car1_position: {x: 799.874, y: 0, z: 991.6682}
-  car2_position: {x: 799.32, y: 0, z: 991.6682}
 --- !u!54 &710917890776087421
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -883,3 +866,23 @@ MonoBehaviour:
   CarTime: 4.5
   bigScale: 1
   randomVector: {x: 0, y: 0, z: 0}
+--- !u!114 &1031640990070820600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed2e63eddcd5ffd449d61c80423e10ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  carCongestion: 0
+  lastHit: {fileID: 0}
+  green: 0
+  car1_position: {x: 799.874, y: 0, z: 991.6682}
+  car2_position: {x: 799.32, y: 0, z: 991.6682}

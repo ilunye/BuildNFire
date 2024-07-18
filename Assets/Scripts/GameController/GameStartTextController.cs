@@ -14,7 +14,8 @@ public class GameStartTextController : MonoBehaviour
     private GameObject audio_321;
     public TMP_Text StartText = null;
     private GameObject player1, player2;
-
+    public GameObject robot = null;
+    public GameObject cannon = null;
     //voice
     public GameObject BGM;
     public AudioSource BGM_voice;
@@ -119,6 +120,14 @@ public class GameStartTextController : MonoBehaviour
         {
             player1.GetComponent<Character>().enabled = true;
             player2.GetComponent<Character>().enabled = true;
+        }
+        if(robot != null)
+        {
+            robot.GetComponent<robot>().enabled = true;
+        }
+        if(cannon != null)
+        {
+            cannon.GetComponent<Cannon>().enabled = true;
         }
     }
     // Update is called once per frame
