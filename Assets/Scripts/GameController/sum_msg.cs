@@ -37,6 +37,7 @@ public class sum_msg : MonoBehaviour
     private int idx1;
     private int idx2;
     public GameStartTextController gameStartTextController;
+    public int mode = 0;
 
     [Obsolete]
 
@@ -69,50 +70,67 @@ public class sum_msg : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player1.GetComponent<WorkFlow>().iron_number == 3 && player1.GetComponent<WorkFlow>().wood_number == 2 && player1.GetComponent<WorkFlow>().gunpowder_number == 1 && player1.GetComponent<WorkFlow>().projectile_number == 1)
-        {
-            status = 1;
-        }
-        else if (player2.GetComponent<WorkFlow>().iron_number == 3 && player2.GetComponent<WorkFlow>().wood_number == 2 && player2.GetComponent<WorkFlow>().gunpowder_number == 1 && player2.GetComponent<WorkFlow>().projectile_number == 1)
-        {
-            status = 2;
-        }
-        if (status == 1 && !gameover)
-        {
-            theText.text = "PLAYER ONE WON!";
+        if(mode == 0){
+            if (player1.GetComponent<WorkFlow>().iron_number == 3 && player1.GetComponent<WorkFlow>().wood_number == 2 && player1.GetComponent<WorkFlow>().gunpowder_number == 1 && player1.GetComponent<WorkFlow>().projectile_number == 1)
+            {
+                status = 1;
+            }
+            else if (player2.GetComponent<WorkFlow>().iron_number == 3 && player2.GetComponent<WorkFlow>().wood_number == 2 && player2.GetComponent<WorkFlow>().gunpowder_number == 1 && player2.GetComponent<WorkFlow>().projectile_number == 1)
+            {
+                status = 2;
+            }
+            if (status == 1 && !gameover)
+            {
+                theText.text = "PLAYER ONE WON!";
 
-            button.SetActive(true);
-            Play_Final();
+                button.SetActive(true);
+                Play_Final();
 
-            gameover = true;
-        }
-        else if (status == 2 && !gameover)
-        {
-            theText.text = "PLAYER TWO WON!";
-            button.SetActive(true);
-            Play_Final();
+                gameover = true;
+            }
+            else if (status == 2 && !gameover)
+            {
+                theText.text = "PLAYER TWO WON!";
+                button.SetActive(true);
+                Play_Final();
 
-            gameover = true;
-        }
-        idx1 = cannon1.idx;
-        idx2 = cannon2.idx;
-        idxControl = Mathf.Max(idx1, idx2);
+                gameover = true;
+            }
+            idx1 = cannon1.idx;
+            idx2 = cannon2.idx;
+            idxControl = Mathf.Max(idx1, idx2);
 
-        if (idxControl < 5)
-        {
-            gameStartTextController.BGM_voice.pitch = 1f;
-        }
-        else if (idxControl >= 5 && idxControl < 7)
-        {
-            gameStartTextController.BGM_voice.pitch = 1.2f;
-        }
-        else if (idxControl >= 7 && idxControl < 9)
-        {
-            gameStartTextController.BGM_voice.pitch = 1.4f;
-        }
-        else
-        {
-            gameStartTextController.BGM_voice.pitch = 1.6f;
+            if (idxControl < 5)
+            {
+                gameStartTextController.BGM_voice.pitch = 1f;
+            }
+            else if (idxControl >= 5 && idxControl < 7)
+            {
+                gameStartTextController.BGM_voice.pitch = 1.2f;
+            }
+            else if (idxControl >= 7 && idxControl < 9)
+            {
+                gameStartTextController.BGM_voice.pitch = 1.4f;
+            }
+            else
+            {
+                gameStartTextController.BGM_voice.pitch = 1.6f;
+            }
+        }else{
+            if(player1.GetComponent<WorkFlow>().iron_number == 5 && player1.GetComponent<WorkFlow>().wood_number == 3 && player1.GetComponent<WorkFlow>().gunpowder_number == 2 && player1.GetComponent<WorkFlow>().projectile_number == 2)
+                status = 1;
+            if(status == 1 && !gameover){
+                theText.text = "YOU WON!";
+                button.SetActive(true);
+                Play_Final();
+                gameover = true;
+            }else if(status == 2 && !gameover){
+                theText.text = "YOU LOSE!";
+                button.SetActive(true);
+                Play_Final();
+                gameover = true;
+            }
+            // win of robot is detected by cannon.cs
         }
     }
     private void Collide_Arround(Vector3 endposition)
