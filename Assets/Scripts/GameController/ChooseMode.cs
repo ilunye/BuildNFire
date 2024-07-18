@@ -5,7 +5,7 @@ using UnityEngine;
 public class ChooseMode : MonoBehaviour
 {
 
-    public int modeChoose = 0; //0 is normal mode
+    public static int modeChoose = 0; //0 is normal mode
     public Character character1;
     public Character character2;
 

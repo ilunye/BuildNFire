@@ -4,28 +4,30 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
 
-public class HomeScreen_Menu: MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+public class HomeScreen_Menu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     public TextMeshProUGUI text;
-    private int currentIndex; 
     private Color initialColor;
     private TextMeshProUGUI confirmText;
-    private GameObject cannonImage;
+    public GameObject cannonImage;
     void Start()
     {
         confirmText = GetComponent<TextMeshProUGUI>();
         initialColor = text.color;
-        if(text.text == "START" || text.text == "vally")
+        if (text.text == "START" || text.text == "vally" || text.text == "normal")
         {
-            cannonImage = GameObject.Find("cannon_img1");
+            Debug.Log("normal");
+             cannonImage = GameObject.Find("cannon_img1");
         }
         else if(text.text == "darkcity"){
             cannonImage = GameObject.Find("cannon_img3");
         }
         else
         {
-            cannonImage = GameObject.Find("cannon_img2");
+            Debug.Log("big");
+             cannonImage = GameObject.Find("cannon_img3");
         }
+        Debug.Log(cannonImage);
         cannonImage.SetActive(false);
     }
 
@@ -47,14 +49,30 @@ public class HomeScreen_Menu: MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        //change mode
+        if (text.text == "normal")
+        {
+            ChooseMode.modeChoose = 0;
+            SceneManager.LoadScene("Scenes/MapSelection");
+        }
+        else if (text.text == "crazy")
+        {
+            ChooseMode.modeChoose = 1;
+            SceneManager.LoadScene("Scenes/MapSelection");
+        }
+        else if (text.text == "big")
+        {
+            ChooseMode.modeChoose = 2;
+            SceneManager.LoadScene("Scenes/MapSelection");
+        }
         // cannonImage.SetActive(false);
         if (text.text == "START")
-            SceneManager.LoadScene("Scenes/MapSelection");
+            SceneManager.LoadScene("Scenes/ModeSelection");
         else if (text.text == "EXIT")
             Application.Quit();
-        else if(text.text == "vally")
+        else if (text.text == "vally")
             SceneManager.LoadScene("Scenes/VallyInstruction");
-        else if(text.text == "city")
+        else if (text.text == "city")
             SceneManager.LoadScene("Scenes/CityInstruction");
         else if(text.text == "darkcity")
             SceneManager.LoadScene("Scenes/DarkCityInstruction");
