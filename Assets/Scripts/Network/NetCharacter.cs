@@ -213,6 +213,11 @@ public class NetCharacter : NetworkBehaviour
                 myCannon.GetComponent<NetCannon>().workFlow = GameObject.Find("Canvas/PlayerUI_" + (i+1).ToString()).GetComponent<WorkFlow>();
                 gameObject.name = "animal_people_wolf_" + (i+1).ToString();
                 transform.GetChild(0).name = "animal_people_wolf" + (i+1).ToString();
+                if(i==0){
+                    GameObject.Find("Canvas/Summary_msg").GetComponent<NetBombTrigger>().player_one = gameObject;
+                }else if(i==1){
+                    GameObject.Find("Canvas/Summary_msg").GetComponent<NetBombTrigger>().player_two = gameObject;
+                }
                 break;
             }
             if(i==1){
@@ -283,8 +288,8 @@ public class NetCharacter : NetworkBehaviour
                 CmdInstantiate("Prefabs/Online/projectile", transform.position + new Vector3(0, 0.5f, 0), "CannonBall_" + (CarThrow.projectile_num++).ToString(), true);
             }
             else if(Material == MaterialType.Bomb){
-                GetComponent<ThrowBomb>().SetTarget(null);
-                GetComponent<ThrowBomb>().ResetThrowForce();
+                GetComponent<NetThrowBomb>().SetTarget(null);
+                GetComponent<NetThrowBomb>().ResetThrowForce();
             }
             CmdSetMaterial(MaterialType.None);
         }

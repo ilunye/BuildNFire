@@ -160,7 +160,7 @@ public class NetBomb : NetworkBehaviour
                         if (t < 0)
                             t = 0;
                         g.GetComponent<WorkFlow>().workFlowPos = t;
-                        nearbyObject.GetComponent<Cannon>().prev_state();
+                        nearbyObject.GetComponent<NetCannon>().prev_state();
                     }
                     else if (nearbyObject.name.EndsWith("2"))
                     {
@@ -170,7 +170,7 @@ public class NetBomb : NetworkBehaviour
                         if (t < 0)
                             t = 0;
                         g.GetComponent<WorkFlow>().workFlowPos = t;
-                        nearbyObject.GetComponent<Cannon>().prev_state();
+                        nearbyObject.GetComponent<NetCannon>().prev_state();
                     }
                 }
             }
