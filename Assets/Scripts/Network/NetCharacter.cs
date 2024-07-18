@@ -100,6 +100,7 @@ public class NetCharacter : NetworkBehaviour
     private GameObject myFurnace;
     [SyncVar]
     public Color color = Color.white;
+    public Material[] mats;
 
     [Command(requiresAuthority=false)]
     public void CmdSetPlayerSpeed(float speed)
@@ -217,6 +218,10 @@ public class NetCharacter : NetworkBehaviour
                     GameObject.Find("Canvas/Summary_msg").GetComponent<NetBombTrigger>().player_one = gameObject;
                 }else if(i==1){
                     GameObject.Find("Canvas/Summary_msg").GetComponent<NetBombTrigger>().player_two = gameObject;
+                    Material[] materials = new Material[2];
+                    materials[0] = mats[2];
+                    materials[1] = mats[0];
+                    transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().materials = materials;
                 }
                 break;
             }
