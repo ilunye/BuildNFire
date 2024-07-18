@@ -148,7 +148,6 @@ public class Furnace : MonoBehaviour
                 player2.GetComponent<Character>().Material = Character.MaterialType.None;
                 Play();
                 AddFire();
-                clock1();
                 AudioFire();
                 if (hasStone)
                 {
@@ -161,7 +160,6 @@ public class Furnace : MonoBehaviour
                 player2.GetComponent<Character>().Material = Character.MaterialType.None;
                 Play();
                 ADDStone();
-                clock1();
                 if (hasFire)
                 {
                     Invoke("smelting", 5f);
