@@ -61,7 +61,7 @@ public class CarThrow : MonoBehaviour
         if (timer >= interval)
         {
             GameObject c;
-            int r = Random.Range(0, 21);//决定抛出物体
+            int r = Random.Range(0, 22);//决定抛出物体
             if (r <= 1)
             {
                 c = Instantiate(Resources.Load("prefabs/Bomb Red") as GameObject);
@@ -124,9 +124,15 @@ public class CarThrow : MonoBehaviour
             }
             else if (r == 21)
             {
-                c = Instantiate(Resources.Load("Prefabs/Box") as GameObject);
-                c.name = "box_" + "truck_" + box_num.ToString();
-                box_num++;
+                if(!Main_Scene){
+                    c = Instantiate(Resources.Load("Prefabs/Box") as GameObject);
+                    c.name = "box_" + "truck_" + box_num.ToString();
+                    box_num++;
+                }else{
+                    c = Instantiate(Resources.Load("prefabs/Lock Silver") as GameObject);
+                    c.name = "lock_" + "truck_" + lock_num.ToString();
+                    lock_num++;
+                }
             }
             else
             {
