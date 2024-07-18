@@ -2608,7 +2608,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4431084402279646}
   - component: {fileID: 95320324289322388}
-  - component: {fileID: 922071707007313140}
+  - component: {fileID: 385941305431922333}
   m_Layer: 0
   m_Name: robotSphere
   m_TagString: Untagged
@@ -2653,7 +2653,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &922071707007313140
+--- !u!114 &385941305431922333
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2667,7 +2667,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sum_msg: {fileID: 0}
   enabled: 0
-  isPlaying: 0
 --- !u!1 &1533244445735912
 GameObject:
   m_ObjectHideFlags: 0
