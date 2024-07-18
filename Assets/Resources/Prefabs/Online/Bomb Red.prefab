@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 474260}
   - component: {fileID: 3374260}
   - component: {fileID: 2374260}
-  - component: {fileID: -4361017848822954901}
   - component: {fileID: 1780158158815488021}
+  - component: {fileID: -8198519373207562138}
   - component: {fileID: 3828831990660675377}
   - component: {fileID: 2655583815492351961}
   - component: {fileID: -4923231116691758486}
@@ -89,23 +89,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &-4361017848822954901
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 174260}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88e24788362cef14abbe6f281a43be17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  explosionEffect: {fileID: 0}
-  countdown: 0
-  hasExploded: 0
-  buffData: {fileID: 11400000, guid: cac43bde15c964147a06c0820aa6a47a, type: 2}
-  claimed: 0
 --- !u!54 &1780158158815488021
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -133,6 +116,26 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-8198519373207562138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c79ef43fdaf2a4240ad8522f9902d100, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  explosionEffect: {fileID: 0}
+  countdown: 0
+  hasExploded: 0
+  buffData: {fileID: 11400000, guid: cac43bde15c964147a06c0820aa6a47a, type: 2}
+  claimed: 0
 --- !u!114 &3828831990660675377
 MonoBehaviour:
   m_ObjectHideFlags: 0

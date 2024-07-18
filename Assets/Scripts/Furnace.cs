@@ -7,8 +7,11 @@ public class Furnace : MonoBehaviour
     private Animator animator;
     public Material material;
     public GameObject player;
+    public GameObject player2 = null;
+    public int mode = 0;
     private Transform outPos;
     private bool playerIn = false;
+    private bool playerIn2 = false;
     private bool hasFire = false;
     private bool hasStone = false;
     public GameObject fire;
@@ -24,12 +27,31 @@ public class Furnace : MonoBehaviour
         {
             playerIn = true;
         }
+        if(other.gameObject == player2)
+        {
+            playerIn2 = true;
+        }
+    }
+    void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject == player)
+        {
+            playerIn = true;
+        }
+        if(other.gameObject == player2)
+        {
+            playerIn2 = true;
+        }
     }
     void OnTriggerExit(Collider other)
     {
         if (other.gameObject == player)
         {
             playerIn = false;
+        }
+        if(other.gameObject == player2)
+        {
+            playerIn2 = false;
         }
     }
     public void Play()
@@ -87,8 +109,10 @@ public class Furnace : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        bool playerdone = false;
         if (playerIn && Input.GetKeyDown(player.GetComponent<Character>().keycodes[4]))
         {
+            playerdone = true;
             //Debug.Log("enter");
             if (player.GetComponent<Character>().Material == Character.MaterialType.Wood)
             {
@@ -97,7 +121,6 @@ public class Furnace : MonoBehaviour
                 player.GetComponent<Character>().Material = Character.MaterialType.None;
                 Play();
                 AddFire();
-                clock1();
                 AudioFire();
                 if (hasStone)
                 {
@@ -112,12 +135,37 @@ public class Furnace : MonoBehaviour
                 player.GetComponent<Character>().Material = Character.MaterialType.None;
                 Play();
                 ADDStone();
-                clock1();
                 if (hasFire)
                 {
                     Invoke("smelting", 5f);
                 }
             }
+        }
+        else if(playerIn2 && (!playerdone) && mode != 0 && Input.GetKeyDown(player2.GetComponent<Character>().keycodes[4])){
+            if (player2.GetComponent<Character>().Material == Character.MaterialType.Wood)
+            {
+                OpenDoor();
+                player2.GetComponent<Character>().Material = Character.MaterialType.None;
+                Play();
+                AddFire();
+                AudioFire();
+                if (hasStone)
+                {
+                    Invoke("smelting", 5f);
+                }
+            }
+            else if (player2.GetComponent<Character>().Material == Character.MaterialType.IronOre)
+            {
+                OpenDoor();
+                player2.GetComponent<Character>().Material = Character.MaterialType.None;
+                Play();
+                ADDStone();
+                if (hasFire)
+                {
+                    Invoke("smelting", 5f);
+                }
+            }
+
         }
     }
     private void OpenDoor()
@@ -131,15 +179,7 @@ public class Furnace : MonoBehaviour
 
 
     }
-    private void clock1()
-    {
-        AudioSource c = open_door.GetComponent<AudioSource>();
-        float startTime = 0f;
-        float duration = 15f;
-        c.time = startTime;
-        c.PlayScheduled(AudioSettings.dspTime);
-        c.SetScheduledEndTime(AudioSettings.dspTime + duration);
-    }
+    
     private void AudioFire()
     {
         AudioSource c = fire.GetComponent<AudioSource>();

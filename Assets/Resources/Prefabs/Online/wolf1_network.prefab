@@ -352,6 +352,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
 --- !u!65 &8315429979636099945
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -33,7 +33,7 @@ public class CarThrow : MonoBehaviour
     public Vector3 randomVector_Left;
     public Vector3 randomVector_Right;
     public Vector3 randomVector;
-    public bool Main_Scene = true;
+    public int Scene_number = 0;
     public static float intervalChange = 1f;
 
 
@@ -46,8 +46,10 @@ public class CarThrow : MonoBehaviour
         p = (int)Random.Range(1, 2);
         interval = interval * p * intervalChange;
         throwForce = 1;
-        if (!Main_Scene)
-            CarTime = 3.5f;
+        // if (Scene_number == 1)
+        //     CarTime = 3.5f;
+        // else
+        //     CarTime = 9999f;            // 对于darkcity，销毁不归此函数管理
         // destroyDelay = 5f;
         Debug.Log("big"+bigScale);
     }
@@ -55,8 +57,8 @@ public class CarThrow : MonoBehaviour
     void Update()
     {
         overallTime += Time.deltaTime;
-        if (overallTime > CarTime)
-            Destroy(gameObject);
+        // if (overallTime > CarTime)
+        //     Destroy(gameObject);
 
         timer += Time.deltaTime;
         if (timer >= interval)
@@ -132,7 +134,7 @@ public class CarThrow : MonoBehaviour
             }
             else if (r == 21)
             {
-                if(!Main_Scene){
+                if(0 != Scene_number){
                     c = Instantiate(Resources.Load("Prefabs/Box") as GameObject);
                     c.name = "box_" + "truck_" + box_num.ToString();
                     box_num++;
@@ -151,7 +153,7 @@ public class CarThrow : MonoBehaviour
             }
 
             int random;
-            if (Main_Scene)
+            if (Scene_number != 0)
             {
                 random = (int)Random.Range(0, 2);
                 if (random == 0)
