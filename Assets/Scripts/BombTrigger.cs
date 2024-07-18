@@ -144,6 +144,7 @@ public class BombTrigger : MonoBehaviour
                 rb.AddExplosionForce(force, position, radius);
             }
         }
+        Debug.Log("winwin");
         if(mode == 0){
             Destroy(player_two);
             player_one.GetComponent<Character>().Anim.Play("WIN00");

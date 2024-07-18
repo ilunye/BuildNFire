@@ -833,7 +833,7 @@ MonoBehaviour:
   player_one: {fileID: 1008624444}
   player_two: {fileID: 1931322105}
   sum_Msg: {fileID: 112140951}
-  mode: 0
+  mode: 1
 --- !u!114 &112140953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1727,7 +1727,7 @@ MonoBehaviour:
   workFlowPos: 0
   last_is_iron: 0
   last_is_wood: 0
-  mode: 0
+  mode: 1
 --- !u!1001 &267195446
 PrefabInstance:
   m_ObjectHideFlags: 0
