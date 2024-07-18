@@ -69,7 +69,14 @@ public class CarThrow : MonoBehaviour
                 bomb_num++;
                 //c = Instantiate(Resources.Load("prefabs/explosiveBarrel") as GameObject);
             }
-            else if (r <= 3)
+            else if (r == 2)
+            {
+                c = Instantiate(Resources.Load("prefabs/Magnet") as GameObject);
+                c.name = "magnet_" + "truck_" + magnet_num.ToString();
+                magnet_num++;
+                //c = Instantiate(Resources.Load("prefabs/explosiveBarrel") as GameObject);
+            }
+            else if (r == 3)
             {
                 c = Instantiate(Resources.Load("prefabs/burger_1_lod0") as GameObject);
                 c.name = "burger_" + "truck_" + burger_num.ToString();
