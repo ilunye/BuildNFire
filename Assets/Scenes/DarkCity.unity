@@ -1654,7 +1654,6 @@ MonoBehaviour:
   fire: {fileID: 0}
   open_door: {fileID: 0}
   clock: {fileID: 0}
-  changeScale: 1
   furnace_name: f1
 --- !u!4 &307448545
 Transform:
@@ -10201,7 +10200,6 @@ MonoBehaviour:
   fire: {fileID: 0}
   open_door: {fileID: 0}
   clock: {fileID: 0}
-  changeScale: 1
   furnace_name: f0
 --- !u!4 &1555269377
 Transform:
@@ -13898,6 +13896,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2110225436}
+  - component: {fileID: 2110225440}
   - component: {fileID: 2110225439}
   - component: {fileID: 2110225438}
   - component: {fileID: 2110225437}
@@ -13999,6 +13998,20 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &2110225440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2110225435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef676c16249b4894f8ae9c9465e59ffe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character1: {fileID: 0}
+  character2: {fileID: 0}
 --- !u!1 &2112433151
 GameObject:
   m_ObjectHideFlags: 0

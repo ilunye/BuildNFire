@@ -29,7 +29,7 @@ public class CarThrow : MonoBehaviour
     public int Scene_id = 0;       // main scene by default
 
     public float CarTime = 4.5f;
-    public static float bigScale = 1f;
+    public static float bigScale ;
     public Vector3 randomVector_Left;
     public Vector3 randomVector_Right;
     public Vector3 randomVector;

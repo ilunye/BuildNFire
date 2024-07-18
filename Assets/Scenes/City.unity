@@ -15516,6 +15516,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1981678560}
+  - component: {fileID: 1981678561}
   - component: {fileID: 1981678559}
   - component: {fileID: 1981678558}
   - component: {fileID: 1981678557}
@@ -15617,6 +15618,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1981678561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981678556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef676c16249b4894f8ae9c9465e59ffe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character1: {fileID: 0}
+  character2: {fileID: 0}
 --- !u!4 &1985551155 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 31bbda51eeab02f44a8e92a7da2f5ff8, type: 3}
@@ -16919,5 +16934,5 @@ SceneRoots:
   - {fileID: 1543936854}
   - {fileID: 1952074449}
   - {fileID: 910556195}
-  - {fileID: 383875550}
-  - {fileID: 0}
+  - {fileID: 1785145237}
+  - {fileID: 399477979}

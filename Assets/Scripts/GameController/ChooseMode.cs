@@ -27,6 +27,8 @@ public class ChooseMode : MonoBehaviour
             CarThrow.bigScale = 1f;
             Furnace.bigScale = 1;
             Trees.bigScale = 1;
+            ThrowBomb.bigScale = 1;
+            Bomb.explosionRadius = 1.5f;
         }
 
         else if (modeChoose == 2) //2: big scale mode (improve scale of material and raise player speed)
@@ -41,6 +43,8 @@ public class ChooseMode : MonoBehaviour
             CarThrow.bigScale = 5;
             Furnace.bigScale = 5;
             Trees.bigScale = 5;
+            ThrowBomb.bigScale = 5;
+            Bomb.explosionRadius = 4;
         }
         else if (modeChoose == 0) // normal mode
         {
@@ -54,6 +58,8 @@ public class ChooseMode : MonoBehaviour
             CarThrow.bigScale = 1f;
             Furnace.bigScale = 1;
             Trees.bigScale = 1;
+            ThrowBomb.bigScale = 1;
+            Bomb.explosionRadius = 1.5f;
         }
     }
 

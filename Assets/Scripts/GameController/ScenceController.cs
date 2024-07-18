@@ -28,12 +28,6 @@ public class SceneController : MonoBehaviour
         {
             if (treeController != null)
             {
-                // treeController.regionleft_xmin = 170f;
-                // treeController.regionleft_xmax = 177f;
-                // treeController.regionright_xmin = 183f;
-                // treeController.regionright_xmax = 190f;
-                // treeController.region_zmin = 134f;
-                // treeController.region_zmax = 144f;
                 treeController.loadTrack = "Prefabs/BigTree";
             }
             if (trafficControl != null)
@@ -42,10 +36,12 @@ public class SceneController : MonoBehaviour
                 trafficControl.car2_load_track = "Prefabs/Vehicle_Truck";
 
             }
-
-
+            CarThrow.bigScale = 3;
+            Furnace.bigScale = 3;
+            Trees.bigScale = 3;
+            ThrowBomb.bigScale = 3;
             // 在场景2中执行特定的逻辑
-            //Debug.Log("在场景2中");
+            Debug.Log("在场景2中");
         }
         else
         {
