@@ -19,6 +19,9 @@ public class HomeScreen_Menu: MonoBehaviour, IPointerEnterHandler, IPointerExitH
         {
             cannonImage = GameObject.Find("cannon_img1");
         }
+        else if(text.text == "darkcity"){
+            cannonImage = GameObject.Find("cannon_img3");
+        }
         else
         {
             cannonImage = GameObject.Find("cannon_img2");
@@ -53,5 +56,7 @@ public class HomeScreen_Menu: MonoBehaviour, IPointerEnterHandler, IPointerExitH
             SceneManager.LoadScene("Scenes/VallyInstruction");
         else if(text.text == "city")
             SceneManager.LoadScene("Scenes/CityInstruction");
+        else if(text.text == "darkcity")
+            SceneManager.LoadScene("Scenes/DarkCityInstruction");
     }
 }
