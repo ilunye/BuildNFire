@@ -9,10 +9,6 @@ public class ChooseMode : MonoBehaviour
     public Character character1;
     public Character character2;
 
-
-
-
-
     private void ChangeMode()
     {
         if (modeChoose == 1) //1: crazy mode (raise car and player speed and throw more material)
@@ -24,11 +20,21 @@ public class ChooseMode : MonoBehaviour
             carMoveSenceCity.speed = 15f;
             carMoveSenceDarkCity.speed = 10f;
             CarThrow.intervalChange = 0.3f;
-            CarThrow.bigScale = 1f;
-            Furnace.bigScale = 1;
-            Trees.bigScale = 1;
-            ThrowBomb.bigScale = 1;
             Bomb.explosionRadius = 1.5f;
+            if (SceneController.sceneID == 1)//city
+            {
+                CarThrow.bigScale = 2;
+                Furnace.bigScale = 2;
+                Trees.bigScale = 2;
+                ThrowBomb.bigScale = 2;
+            }
+            else
+            {
+                CarThrow.bigScale = 1f;
+                Furnace.bigScale = 1;
+                Trees.bigScale = 1;
+                ThrowBomb.bigScale = 1;
+            }
         }
 
         else if (modeChoose == 2) //2: big scale mode (improve scale of material and raise player speed)
@@ -55,11 +61,21 @@ public class ChooseMode : MonoBehaviour
             carMoveSenceCity.speed = 10;
             carMoveSenceDarkCity.speed = 5.5f;
             CarThrow.intervalChange = 1f;
-            CarThrow.bigScale = 1f;
-            Furnace.bigScale = 1;
-            Trees.bigScale = 1;
-            ThrowBomb.bigScale = 1;
             Bomb.explosionRadius = 1.5f;
+            if (SceneController.sceneID == 1)//city
+            {
+                CarThrow.bigScale = 2;
+                Furnace.bigScale = 2;
+                Trees.bigScale = 2;
+                ThrowBomb.bigScale = 2;
+            }
+            else
+            {
+                CarThrow.bigScale = 1f;
+                Furnace.bigScale = 1;
+                Trees.bigScale = 1;
+                ThrowBomb.bigScale = 1;
+            }
         }
     }
 
@@ -70,11 +86,12 @@ public class ChooseMode : MonoBehaviour
 
         character1 = GameObject.Find("animal_people_wolf_1").GetComponent<Character>();
         character2 = GameObject.Find("animal_people_wolf_2").GetComponent<Character>();
+        ChangeMode();
     }
 
     // Update is called once per frame
     void Update()
     {
-        ChangeMode();
+
     }
 }

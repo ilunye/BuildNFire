@@ -37,57 +37,55 @@ public class SceneController : MonoBehaviour
                 trafficControl.car2_load_track = "Prefabs/Vehicle_Truck";
 
             }
-            CarThrow.bigScale = 3;
-            Furnace.bigScale = 3;
-            Trees.bigScale = 3;
-            ThrowBomb.bigScale = 3;
+
             // 在场景2中执行特定的逻辑
-            Debug.Log("在场景2中" + CarThrow.bigScale);
+            //Debug.Log("在场景2中" + CarThrow.bigScale);
         }
         else //dark city
         {
-        
+
             if (trafficControl != null)
             {
-                
+
                 trafficControl.car1_load_track = "Prefabs/red_car";
                 trafficControl.car2_load_track = "Prefabs/green_car";
 
             }
+
         }
-    }
-    void Update()
-    {
-        //StartCoroutine(ChangeScale());
-    }
-
-
-
-
-
-
-
-    IEnumerator ChangeScale()
-    {
-        Debug.Log("Start of Coroutine");
-
-        GameObject[] allGameObjects = GameObject.FindObjectsOfType<GameObject>();
-        foreach (GameObject tempObj in allGameObjects)
+        void Update()
         {
-
-            if (tempObj.tag == "material" || tempObj.tag == "Bomb" || tempObj.tag == "Wood"
-            || tempObj.tag == "Burger" || tempObj.tag == "Stone" || tempObj.tag == "Lock"
-            || tempObj.tag == "Cannon" || tempObj.tag == "Clock" || tempObj.tag == "Box"
-            || tempObj.tag == "Iron" || tempObj.tag == "Magnet")
-            {
-                tempObj.transform.localScale *= scaleTime;
-                Debug.Log(tempObj.name + tempObj.transform.localScale);
-            }
+            //StartCoroutine(ChangeScale());
         }
-        yield return null;
+
+
+
+
+
+
+
+        IEnumerator ChangeScale()
+        {
+            Debug.Log("Start of Coroutine");
+
+            GameObject[] allGameObjects = GameObject.FindObjectsOfType<GameObject>();
+            foreach (GameObject tempObj in allGameObjects)
+            {
+
+                if (tempObj.tag == "material" || tempObj.tag == "Bomb" || tempObj.tag == "Wood"
+                || tempObj.tag == "Burger" || tempObj.tag == "Stone" || tempObj.tag == "Lock"
+                || tempObj.tag == "Cannon" || tempObj.tag == "Clock" || tempObj.tag == "Box"
+                || tempObj.tag == "Iron" || tempObj.tag == "Magnet")
+                {
+                    tempObj.transform.localScale *= scaleTime;
+                    Debug.Log(tempObj.name + tempObj.transform.localScale);
+                }
+            }
+            yield return null;
+
+        }
+
+
 
     }
-
-
-
 }
