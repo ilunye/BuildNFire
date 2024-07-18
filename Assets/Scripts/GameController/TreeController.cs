@@ -31,8 +31,6 @@ public class TreeController : MonoBehaviour
                 Collider[] hitColliders = Physics.OverlapSphere(new Vector3(x, 0, z), 1.0f);
                 if (hitColliders.Length <= 2)
                 {
-                    foreach (Collider hitCollider in hitColliders)
-                        Debug.Log("Left, " + hitCollider.gameObject.name);
                     GameObject tree = Instantiate(Resources.Load(loadTrack) as GameObject);
                     tree.transform.position = new Vector3(x, 0, z);
                     TreeNumberLeft++;
@@ -50,8 +48,6 @@ public class TreeController : MonoBehaviour
                 Collider[] hitColliders = Physics.OverlapSphere(new Vector3(x, 0, z), 1.0f);
                 if (hitColliders.Length <= 2)
                 {
-                    foreach (Collider hitCollider in hitColliders)
-                        Debug.Log("Right, " + hitCollider.gameObject.name);
                     GameObject tree = Instantiate(Resources.Load(loadTrack) as GameObject);
                     tree.transform.position = new Vector3(x, 0, z);
                     TreeNumberRight++;
