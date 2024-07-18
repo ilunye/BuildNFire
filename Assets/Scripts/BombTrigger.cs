@@ -15,6 +15,7 @@ public class BombTrigger : MonoBehaviour
     private GameObject[] furnaces = new GameObject[2];
     public GameObject player_one;
     public GameObject player_two;
+    public sum_msg sum_Msg;
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +47,7 @@ public class BombTrigger : MonoBehaviour
         cannons[1] = GameObject.Find("cannon_2");
         furnaces[0] = GameObject.Find("Furnace_1");
         furnaces[1] = GameObject.Find("Furnace_2");
+        
     }
 
     public void rightBomb()
@@ -71,6 +73,7 @@ public class BombTrigger : MonoBehaviour
             plank.transform.position = p_left + randomPosition;
         }
         ExplosionRight(explosionForce, p_left, explosionRadius);
+        Destroy(sum_Msg.explode_bomb);
     }
 
     public void leftBomb()
@@ -96,6 +99,7 @@ public class BombTrigger : MonoBehaviour
         GameObject fire = Instantiate(Resources.Load("prefabs/fire") as GameObject);
         fire.transform.position = p_right;
         ExplosionLeft(explosionForce, p_right, explosionRadius);
+        Destroy(sum_Msg.explode_bomb);
     }
 
     // Update is called once per frame
