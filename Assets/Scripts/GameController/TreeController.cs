@@ -15,6 +15,7 @@ public class TreeController : MonoBehaviour
     public float regionright_xmax = 804f;
     public float region_zmin = 983f;
     public float region_zmax = 986f;
+
     public String loadTrack = "Prefabs/Tree_1_1";
     void Start()
     {
