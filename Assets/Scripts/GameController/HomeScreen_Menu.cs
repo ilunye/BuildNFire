@@ -16,16 +16,20 @@ public class HomeScreen_Menu : MonoBehaviour, IPointerEnterHandler, IPointerExit
         initialColor = text.color;
         if (text.text == "START" || text.text == "vally" || text.text == "normal")
         {
-             cannonImage = GameObject.Find("cannon_img1");
+
+            cannonImage = GameObject.Find("cannon_img1");
         }
-        else if(text.text == "darkcity"){
-            cannonImage = GameObject.Find("cannon_img3");
+        else if (text.text == "EXIT" || text.text == "city" || text.text == "crazy")
+        {
+
+            cannonImage = GameObject.Find("cannon_img2");
         }
         else
         {
-             cannonImage = GameObject.Find("cannon_img2");
+
+            cannonImage = GameObject.Find("cannon_img3");
         }
-        //Debug.Log(cannonImage);
+
         cannonImage.SetActive(false);
     }
 
@@ -69,10 +73,22 @@ public class HomeScreen_Menu : MonoBehaviour, IPointerEnterHandler, IPointerExit
         else if (text.text == "EXIT")
             Application.Quit();
         else if (text.text == "vally")
+        {
+            SceneController.sceneID = 0;
             SceneManager.LoadScene("Scenes/VallyInstruction");
+        }
+
         else if (text.text == "city")
-            SceneManager.LoadScene("Scenes/CityInstruction");
-        else if(text.text == "darkcity")
-            SceneManager.LoadScene("Scenes/DarkCityInstruction");
+        {
+            SceneController.sceneID = 1;
+            SceneManager.LoadScene("Scenes/City");
+        }
+        else if (text.text == "darkcity")
+        {
+            SceneController.sceneID = 2;
+            SceneManager.LoadScene("Scenes/darkcityInstruction");
+        }
+
+
     }
 }

@@ -4940,6 +4940,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1129921613}
+  - component: {fileID: 1129921617}
   - component: {fileID: 1129921616}
   - component: {fileID: 1129921615}
   - component: {fileID: 1129921614}
@@ -5082,6 +5083,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1129921612}
   m_CullTransparentMesh: 1
+--- !u!114 &1129921617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129921612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef676c16249b4894f8ae9c9465e59ffe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character1: {fileID: 0}
+  character2: {fileID: 0}
 --- !u!1 &1140394332
 GameObject:
   m_ObjectHideFlags: 0
@@ -12856,7 +12871,6 @@ MonoBehaviour:
   fire: {fileID: 0}
   open_door: {fileID: 0}
   clock: {fileID: 0}
-  changeScale: 1
   furnace_name: f0
 --- !u!114 &3073679852359529461
 MonoBehaviour:
@@ -12875,7 +12889,6 @@ MonoBehaviour:
   fire: {fileID: 0}
   open_door: {fileID: 0}
   clock: {fileID: 0}
-  changeScale: 1
   furnace_name: f1
 --- !u!1 &4084593598656210761
 GameObject:

@@ -7,7 +7,8 @@ public class SceneController : MonoBehaviour
 {
     public TreeController treeController;
     public TrafficControl trafficControl;
-    public float scaleTime = 2f;
+    private float scaleTime = 2f;
+    public static int sceneID = 0;
 
 
     void Start()
@@ -18,22 +19,16 @@ public class SceneController : MonoBehaviour
         string sceneName = SceneManager.GetActiveScene().name;
 
         // 根据场景名称执行不同的逻辑
-        if (sceneName == "Main")
+        if (sceneID == 0) //vally
         {
 
             // 在场景1中执行特定的逻辑
             //Debug.Log("在场景1中");
         }
-        else if (sceneName == "City")
+        else if (sceneID == 1) //city
         {
             if (treeController != null)
             {
-                // treeController.regionleft_xmin = 170f;
-                // treeController.regionleft_xmax = 177f;
-                // treeController.regionright_xmin = 183f;
-                // treeController.regionright_xmax = 190f;
-                // treeController.region_zmin = 134f;
-                // treeController.region_zmax = 144f;
                 treeController.loadTrack = "Prefabs/BigTree";
             }
             if (trafficControl != null)
@@ -42,12 +37,14 @@ public class SceneController : MonoBehaviour
                 trafficControl.car2_load_track = "Prefabs/Vehicle_Truck";
 
             }
-
-
+            CarThrow.bigScale = 3;
+            Furnace.bigScale = 3;
+            Trees.bigScale = 3;
+            ThrowBomb.bigScale = 3;
             // 在场景2中执行特定的逻辑
-            //Debug.Log("在场景2中");
+            Debug.Log("在场景2中" + CarThrow.bigScale);
         }
-        else
+        else //dark city
         {
         
             if (trafficControl != null)
