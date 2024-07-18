@@ -11,6 +11,10 @@ public class NetCollectableMaterials : NetworkBehaviour
     public bool WillDisappear = true;
 
     private bool claimed = false;
+    [Command(requiresAuthority = false)]
+    public void CmdCollectableDestroy(GameObject obj){
+        NetworkServer.Destroy(obj);
+    }
     void Awake()
     {
     }
@@ -44,11 +48,9 @@ public class NetCollectableMaterials : NetworkBehaviour
             if(other.GetComponent<NetCharacter>().Item != null){
                 if(other.GetComponent<NetCharacter>().Item.name == gameObject.name){
                     claimed = true;
-                    other.GetComponent<NetCharacter>().Material = materialType;
+                    other.GetComponent<NetCharacter>().CmdSetMaterial(materialType);
                     other.GetComponent<NetCharacter>().Item = gameObject;              // set the player's item as itself
-                    if(isServer){
-                        NetworkServer.Destroy(gameObject);
-                    }
+                    CmdCollectableDestroy(gameObject);
                 }
             }
         }

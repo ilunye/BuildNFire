@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 327618002}
-  m_IndirectSpecularColor: {r: 0.18271565, g: 0.22842383, b: 0.30709058, a: 1}
+  m_IndirectSpecularColor: {r: 0.18271525, g: 0.22842321, b: 0.3070897, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -10719,6 +10719,7 @@ MonoBehaviour:
   sceneID: 1
   player_one: {fileID: 0}
   player_two: {fileID: 0}
+  sum_Msg: {fileID: 1979723291}
 --- !u!1 &1985014591
 GameObject:
   m_ObjectHideFlags: 0
