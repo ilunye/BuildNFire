@@ -616,7 +616,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &109504878
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10718,7 +10718,7 @@ MonoBehaviour:
   p_right: {x: 0, y: 0, z: 0}
   sceneID: 1
   player_one: {fileID: 0}
-  player_tow: {fileID: 0}
+  player_two: {fileID: 0}
 --- !u!1 &1985014591
 GameObject:
   m_ObjectHideFlags: 0
