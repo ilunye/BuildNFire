@@ -11,7 +11,7 @@ public class Menu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     private int currentIndex; 
     private Color initialColor;
     private bool confirmButtonEnabled = false;  //15秒后才能按confirm
-    private float timer = 15f;
+    private float timer = 5f;
     private TextMeshProUGUI confirmText;
     public bool isConfirm = false;
     void Start()

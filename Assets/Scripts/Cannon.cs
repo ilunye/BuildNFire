@@ -110,7 +110,10 @@ public class Cannon : MonoBehaviour
         {
             Debug.LogWarning("player is null");
         }
-        Debug.Assert(workFlow != null, "workFlow is null");
+        if(workFlow == null)
+        {
+            Debug.LogWarning("workFlow is null");
+        }
     }
 
     void Update()
