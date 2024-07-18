@@ -12,37 +12,52 @@ public class NetFurnace : NetworkBehaviour
     public int mode = 0;
     private Transform outPos;
     private bool playerIn = false;
+    private bool playerIn2 = false;
     private bool hasFire = false;
     private bool hasStone = false;
     public GameObject fire;
     public GameObject open_door;
     public GameObject clock;
     public static float bigScale = 1f;
+    public bool claimed = false;
 
     public string furnace_name = "f0";
     private int iron_number = 0;
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == player || other.gameObject == player2)
+        if (other.gameObject == player)
         {
             playerIn = true;
+        }
+        if(other.gameObject == player2)
+        {
+            playerIn2 = true;
         }
     }
     void OnTriggerStay(Collider other)
     {
-        if (other.gameObject == player || other.gameObject == player2)
+        if (other.gameObject == player)
         {
             playerIn = true;
+        }
+        if(other.gameObject == player2)
+        {
+            playerIn2 = true;
         }
     }
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject == player || other.gameObject == player2)
+        if (other.gameObject == player)
         {
             playerIn = false;
         }
+        if(other.gameObject == player2)
+        {
+            playerIn2 = false;
+        }
     }
-    public void Play()
+    [Command(requiresAuthority = false)]
+    public void CmdPlay()
     {
         animator.Play("furnace");
         //Debug.Log("play furnace animation" + animator);
@@ -68,14 +83,19 @@ public class NetFurnace : NetworkBehaviour
     {
         hasStone = false;
     }
+    [Command(requiresAuthority = false)]
+    public void CmdInstantiate(string path, Vector3 position, string name, float bigScale){
+        GameObject g = Instantiate(Resources.Load(path) as GameObject, position, Quaternion.identity);
+        g.name = name;
+        g.transform.localScale *= bigScale;
+        g.GetComponent<NetCollectableMaterials>().WillDisappear = false;
+        NetworkServer.Spawn(g);
+    }
     private void smelting()
     {
-        GameObject g = Instantiate(Resources.Load("Prefabs/ConcreteTubes") as GameObject, outPos.position, Quaternion.identity);
-        g.name = "concrete_tube_" + furnace_name + "_" + iron_number.ToString();
-        g.transform.localScale *= bigScale;
+        CmdInstantiate("Prefabs/Online/ConcreteTubes", outPos.position, "concrete_tube_" + furnace_name + "_" + iron_number.ToString(), bigScale);
         iron_number++;
-        g.GetComponent<CollectableMaterials>().WillDisappear = false;
-        Play();
+        CmdPlay();
     }
     // Start is called before the first frame update
     void Start()
@@ -98,18 +118,17 @@ public class NetFurnace : NetworkBehaviour
     void Update()
     {
         bool playerdone = false;
-        if (playerIn && Input.GetKeyDown(player.GetComponent<Character>().keycodes[4]))
+        if (playerIn && Input.GetKeyDown(player.GetComponent<NetCharacter>().keycodes[4]))
         {
             playerdone = true;
             //Debug.Log("enter");
-            if (player.GetComponent<Character>().Material == Character.MaterialType.Wood)
+            if (player.GetComponent<NetCharacter>().Material == NetCharacter.MaterialType.Wood)
             {
                 //Debug.Log("open door");
                 OpenDoor();
-                player.GetComponent<Character>().Material = Character.MaterialType.None;
-                Play();
+                player.GetComponent<NetCharacter>().CmdSetMaterial(NetCharacter.MaterialType.None);
+                CmdPlay();
                 AddFire();
-                clock1();
                 AudioFire();
                 if (hasStone)
                 {
@@ -118,40 +137,37 @@ public class NetFurnace : NetworkBehaviour
                 //Debug.Log(hasFire);
 
             }
-            else if (player.GetComponent<Character>().Material == Character.MaterialType.IronOre)
+            else if (player.GetComponent<NetCharacter>().Material == NetCharacter.MaterialType.IronOre)
             {
                 OpenDoor();
-                player.GetComponent<Character>().Material = Character.MaterialType.None;
-                Play();
+                player.GetComponent<NetCharacter>().CmdSetMaterial(NetCharacter.MaterialType.None);
+                CmdPlay();
                 ADDStone();
-                clock1();
                 if (hasFire)
                 {
                     Invoke("smelting", 5f);
                 }
             }
         }
-        else if(playerIn && (!playerdone) && mode != 0 && Input.GetKeyDown(player2.GetComponent<Character>().keycodes[4])){
-            if (player2.GetComponent<Character>().Material == Character.MaterialType.Wood)
+        else if(playerIn2 && (!playerdone) && mode != 0 && Input.GetKeyDown(player2.GetComponent<NetCharacter>().keycodes[4])){
+            if (player2.GetComponent<NetCharacter>().Material == NetCharacter.MaterialType.Wood)
             {
                 OpenDoor();
-                player2.GetComponent<Character>().Material = Character.MaterialType.None;
-                Play();
+                player2.GetComponent<NetCharacter>().CmdSetMaterial(NetCharacter.MaterialType.None);
+                CmdPlay();
                 AddFire();
-                clock1();
                 AudioFire();
                 if (hasStone)
                 {
                     Invoke("smelting", 5f);
                 }
             }
-            else if (player2.GetComponent<Character>().Material == Character.MaterialType.IronOre)
+            else if (player2.GetComponent<NetCharacter>().Material == NetCharacter.MaterialType.IronOre)
             {
                 OpenDoor();
-                player2.GetComponent<Character>().Material = Character.MaterialType.None;
-                Play();
+                player2.GetComponent<NetCharacter>().CmdSetMaterial(NetCharacter.MaterialType.None);
+                CmdPlay();
                 ADDStone();
-                clock1();
                 if (hasFire)
                 {
                     Invoke("smelting", 5f);
@@ -171,15 +187,7 @@ public class NetFurnace : NetworkBehaviour
 
 
     }
-    private void clock1()
-    {
-        AudioSource c = open_door.GetComponent<AudioSource>();
-        float startTime = 0f;
-        float duration = 15f;
-        c.time = startTime;
-        c.PlayScheduled(AudioSettings.dspTime);
-        c.SetScheduledEndTime(AudioSettings.dspTime + duration);
-    }
+    
     private void AudioFire()
     {
         AudioSource c = fire.GetComponent<AudioSource>();

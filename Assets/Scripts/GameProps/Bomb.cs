@@ -25,6 +25,7 @@ public class Bomb : MonoBehaviour
     private BombVoice bombVoice;
 
     private GameObject theBombTarget = null;
+    public int mode = 0;
 
     void Start()
     {
@@ -173,25 +174,47 @@ public class Bomb : MonoBehaviour
             {
                 if (nearbyObject.tag == "Cannon")
                 {
-                    if (nearbyObject.name.EndsWith("1"))
-                    {
-                        GameObject g = GameObject.Find("PlayerUI_1");
-                        int t = g.GetComponent<WorkFlow>().workFlowPos;
-                        t--;
-                        if (t < 0)
-                            t = 0;
-                        g.GetComponent<WorkFlow>().workFlowPos = t;
-                        nearbyObject.GetComponent<Cannon>().prev_state();
-                    }
-                    else if (nearbyObject.name.EndsWith("2"))
-                    {
-                        GameObject g = GameObject.Find("PlayerUI_2");
-                        int t = g.GetComponent<WorkFlow>().workFlowPos;
-                        t--;
-                        if (t < 0)
-                            t = 0;
-                        g.GetComponent<WorkFlow>().workFlowPos = t;
-                        nearbyObject.GetComponent<Cannon>().prev_state();
+                    if(mode == 0){
+                        if (nearbyObject.name.EndsWith("1"))
+                        {
+                            GameObject g = GameObject.Find("PlayerUI_1");
+                            int t = g.GetComponent<WorkFlow>().workFlowPos;
+                            t--;
+                            if (t < 0)
+                                t = 0;
+                            g.GetComponent<WorkFlow>().workFlowPos = t;
+                            nearbyObject.GetComponent<Cannon>().prev_state();
+                        }
+                        else if (nearbyObject.name.EndsWith("2"))
+                        {
+                            GameObject g = GameObject.Find("PlayerUI_2");
+                            int t = g.GetComponent<WorkFlow>().workFlowPos;
+                            t--;
+                            if (t < 0)
+                                t = 0;
+                            g.GetComponent<WorkFlow>().workFlowPos = t;
+                            nearbyObject.GetComponent<Cannon>().prev_state();
+                        }
+                    }else{
+                        if (nearbyObject.name.EndsWith("1"))
+                        {
+                            GameObject g = GameObject.Find("PlayerUI_1");
+                            int t = g.GetComponent<WorkFlow>().workFlowPos;
+                            t--;
+                            if (t < 0)
+                                t = 0;
+                            g.GetComponent<WorkFlow>().workFlowPos = t;
+                            nearbyObject.GetComponent<Cannon>().prev_state();
+                        }
+                        else if (nearbyObject.name.EndsWith("2"))
+                        {
+                            int t = nearbyObject.GetComponent<Cannon>().robot_idx;   
+                            t -= 10;
+                            if (t < 0)
+                                t = 0;
+                            nearbyObject.GetComponent<Cannon>().robot_idx = t;
+                        }
+
                     }
                 }
             }

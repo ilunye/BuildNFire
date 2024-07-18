@@ -35,6 +35,7 @@ public class CarThrow : MonoBehaviour
     public Vector3 randomVector;
     public int Scene_number = 0;
     public static float intervalChange = 1f;
+    public int mode = 0;
 
 
     void Start()
@@ -67,9 +68,16 @@ public class CarThrow : MonoBehaviour
             int r = Random.Range(0, 22);//决定抛出物体
             if (r <= 1)
             {
-                c = Instantiate(Resources.Load("prefabs/Bomb Red") as GameObject);
-                c.name = "bomb_" + "truck_" + bomb_num.ToString();
-                bomb_num++;
+                if(mode == 0){
+                    c = Instantiate(Resources.Load("prefabs/Bomb Red") as GameObject);
+                    c.name = "bomb_" + "truck_" + bomb_num.ToString();
+                    bomb_num++;
+                }else{
+                    c = Instantiate(Resources.Load("prefabs/Bomb_Red_Dark") as GameObject);
+                    c.GetComponent<Bomb>().mode = 1;
+                    c.name = "bomb_" + "truck_" + box_num.ToString();
+                    bomb_num++;
+                }
                 //c = Instantiate(Resources.Load("prefabs/explosiveBarrel") as GameObject);
             }
             else if (r == 2)
