@@ -49,6 +49,15 @@ public class SceneController : MonoBehaviour
         }
         else
         {
+            if (treeController != null)
+            {
+                // treeController.regionleft_xmin = 170f;
+                // treeController.regionleft_xmax = 177f;
+                // treeController.regionright_xmin = 183f;
+                // treeController.regionright_xmax = 190f;
+                // treeController.region_zmin = 134f;
+                // treeController.region_zmax = 144f;
+            
             // 在其他场景中执行默认逻辑
             if (trafficControl != null)
             {
@@ -58,8 +67,7 @@ public class SceneController : MonoBehaviour
 
             }
         }
-
-
+        }
     }
     void Update()
     {
