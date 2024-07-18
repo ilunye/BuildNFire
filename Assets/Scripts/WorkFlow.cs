@@ -32,6 +32,7 @@ public class WorkFlow : MonoBehaviour
 
     public bool last_is_iron = false;
     public bool last_is_wood = false;
+    public int mode = 0;
 
     void Start()
     {

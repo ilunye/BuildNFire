@@ -29,7 +29,7 @@ public class CarThrow : MonoBehaviour
     public int Scene_id = 0;       // main scene by default
 
     public float CarTime = 4.5f;
-    public static float bigScale = 1f ;
+    public static float bigScale ;
     public Vector3 randomVector_Left;
     public Vector3 randomVector_Right;
     public Vector3 randomVector;
@@ -51,6 +51,7 @@ public class CarThrow : MonoBehaviour
         // else
         //     CarTime = 9999f;            // 对于darkcity，销毁不归此函数管理
         // destroyDelay = 5f;
+        
     }
 
     void Update()
@@ -171,7 +172,7 @@ public class CarThrow : MonoBehaviour
 
             spawnPosition = transform.position + transform.up * 0.5f  + randomVector;
             c.transform.position = spawnPosition;
-            Debug.Log("carthrow" + bigScale);
+            
             c.transform.localScale *= bigScale;
             // Rigidbody cubeRigidbody = c.AddComponent<Rigidbody>();
 

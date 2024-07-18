@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 327618002}
-  m_IndirectSpecularColor: {r: 0.18271565, g: 0.22842383, b: 0.30709058, a: 1}
+  m_IndirectSpecularColor: {r: 0.18271525, g: 0.22842321, b: 0.3070897, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1856,6 +1856,7 @@ MonoBehaviour:
   mode: 0
   enabled: 0
   robot_idx: 0
+  sum_msg: {fileID: 0}
 --- !u!23 &283327679
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6295,6 +6296,7 @@ MonoBehaviour:
   mode: 0
   enabled: 0
   robot_idx: 0
+  sum_msg: {fileID: 0}
 --- !u!23 &1101239767
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15535,6 +15537,15 @@ MonoBehaviour:
   visibility: 0
   hasSpawned: 0
 --- !u!114 &3423211590446243548
+  material: {fileID: 2100000, guid: ea69889e0cca277409940a63882cc542, type: 2}
+  player: {fileID: 0}
+  player2: {fileID: 0}
+  mode: 0
+  fire: {fileID: 0}
+  open_door: {fileID: 0}
+  clock: {fileID: 0}
+  furnace_name: f0
+--- !u!114 &3073679852359529461
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

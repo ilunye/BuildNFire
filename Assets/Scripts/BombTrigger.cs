@@ -16,6 +16,7 @@ public class BombTrigger : MonoBehaviour
     public GameObject player_one;
     public GameObject player_two;
     public sum_msg sum_Msg;
+    public int mode = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -118,8 +119,13 @@ public class BombTrigger : MonoBehaviour
                 rb.AddExplosionForce(force, position, radius);
             }
         }
-        Destroy(player_one);
-        player_two.GetComponent<Character>().Anim.Play("WIN00");
+        if(mode == 0){
+            Destroy(player_one);
+            player_two.GetComponent<Character>().Anim.Play("WIN00");
+        }else{
+            Destroy(player_one);
+            Destroy(player_two);
+        }
         // GameObject player = Instantiate(Resources.Load("Prefabs/animal_people_wolf_1") as GameObject);
         // player.GetComponent<Character>().wasd = true;
         // player.GetComponent<Character>().enabled = false;
@@ -138,8 +144,13 @@ public class BombTrigger : MonoBehaviour
                 rb.AddExplosionForce(force, position, radius);
             }
         }
-        Destroy(player_two);
-        player_one.GetComponent<Character>().Anim.Play("WIN00");
+        if(mode == 0){
+            Destroy(player_two);
+            player_one.GetComponent<Character>().Anim.Play("WIN00");
+        }else{
+            player_one.GetComponent<Character>().Anim.Play("WIN00");
+            player_two.GetComponent<Character>().Anim.Play("WIN00");
+        }
         // GameObject player = Instantiate(Resources.Load("Prefabs/animal_people_wolf_2") as GameObject);
         // player.GetComponent<Character>().wasd = false;
         // player.GetComponent<Character>().enabled = false;

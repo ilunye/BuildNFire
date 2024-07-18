@@ -29,6 +29,7 @@ public class Cannon : MonoBehaviour
     private float timer = 0f;
     public int robot_idx = 0;
     private float[] robot_ckpts = new float[150];
+    public GameObject sum_msg;
 
     void OnTriggerEnter(Collider other)
     {
@@ -122,13 +123,19 @@ public class Cannon : MonoBehaviour
 
     private void robot_build(){
         // 分成150个阶段完成，每个持续1s
+        if(sum_msg.GetComponent<sum_msg>().status == 1)
+            return;
         if(timer > 1f){
             timer = 0f;
-            robot_idx++;
+            if(robot_idx < 150)
+                robot_idx++;
             disOffset.position = new Vector3(disOffset.position.x, robot_ckpts[robot_idx], disOffset.position.z);
             for (int i = 0; i < 5; i++)
             {
                 material[i].SetFloat("_DisappearOffset", disOffset.position.y);
+            }
+            if(robot_idx == 149){
+                sum_msg.GetComponent<sum_msg>().status = 2;
             }
         }
     }
