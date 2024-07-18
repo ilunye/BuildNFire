@@ -11990,6 +11990,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 240075265366132273, guid: aa641abd1d3cc9c4abb2cd901fdf185b, type: 3}
+      propertyPath: sum_msg
+      value: 
+      objectReference: {fileID: 112140950}
+    - target: {fileID: 240075265366132273, guid: aa641abd1d3cc9c4abb2cd901fdf185b, type: 3}
       propertyPath: workFlow
       value: 
       objectReference: {fileID: 391565440}
