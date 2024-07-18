@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Mirror;
 
-public class NetUIController : NetworkBehaviour
+public class NetUIController : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject RawImage;    
@@ -17,6 +17,13 @@ public class NetUIController : NetworkBehaviour
             RawImage = GameObject.Find("Canvas/PlayerUI_1/Toggle1/Background/RawImage");
         }
         Debug.Assert(RawImage != null, "RawImage is null");
+        if(sprites[0] == null){
+            sprites[0] = Resources.Load<Sprite>("Textures/wood");
+            sprites[1] = Resources.Load<Sprite>("Textures/ironOre");
+            sprites[2] = Resources.Load<Sprite>("Textures/iron");
+            sprites[3] = Resources.Load<Sprite>("Textures/gunPowder");
+            sprites[4] = Resources.Load<Sprite>("Textures/cannonBall");
+        }
     }
 
     // Update is called once per frame
