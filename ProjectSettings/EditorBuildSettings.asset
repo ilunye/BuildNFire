@@ -12,9 +12,18 @@ EditorBuildSettings:
     path: Assets/Scenes/HomeScreen.unity
     guid: 4b6ad31d3a51ba84da63c7d3f1d22746
   - enabled: 1
-    path: Assets/Scenes/pre.unity
+    path: Assets/Scenes/VallyInstruction.unity
     guid: 3abb2a903ca202c4c98474584979895e
   - enabled: 1
     path: Assets/Scenes/Main.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/City.unity
+    guid: e34af0c1fa88450429adc2dcc1b39fa8
+  - enabled: 1
+    path: Assets/Scenes/CityInstruction.unity
+    guid: 4676b57d44d368b4997620eaff21232b
+  - enabled: 1
+    path: Assets/Scenes/MapSelection.unity
+    guid: 46b3e6edfc6b4ab49b83c4508b36fc0d
   m_configObjects: {}
