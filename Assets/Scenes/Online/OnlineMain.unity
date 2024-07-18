@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 327618002}
-  m_IndirectSpecularColor: {r: 0.18271525, g: 0.22842321, b: 0.3070897, a: 1}
+  m_IndirectSpecularColor: {r: 0.18271565, g: 0.22842383, b: 0.30709058, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1748,10 +1748,10 @@ GameObject:
   - component: {fileID: 283327681}
   - component: {fileID: 283327680}
   - component: {fileID: 283327679}
-  - component: {fileID: 283327678}
   - component: {fileID: 283327677}
   - component: {fileID: 283327676}
   - component: {fileID: 283327675}
+  - component: {fileID: 283327682}
   m_Layer: 7
   m_Name: cannon_2
   m_TagString: Cannon
@@ -1831,32 +1831,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 9, y: 19.697157, z: 12.066578}
   m_Center: {x: 0.00000078701584, y: -7.408662, z: -4.1319942}
---- !u!114 &283327678
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 283327674}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e24b8fa25e09854ca94cbceeaf6140b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  claimed: 0
-  disOffset: {fileID: 0}
-  idx: 0
-  isProtected: 0
-  player: {fileID: 0}
-  player2: {fileID: 0}
-  playerIn: 0
-  playerIn2: 0
-  workFlow: {fileID: 0}
-  gameStartTextController: {fileID: 0}
-  mode: 0
-  enabled: 0
-  robot_idx: 0
-  sum_msg: {fileID: 0}
 --- !u!23 &283327679
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1931,6 +1905,32 @@ Transform:
   - {fileID: 396676342}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -90, y: 180, z: 90}
+--- !u!114 &283327682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 283327674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7f82145e2357cd458067a8e10fb0bf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  claimed: 0
+  disOffset: {fileID: 0}
+  idx: 0
+  isProtected: 1
+  player: {fileID: 0}
+  player2: {fileID: 0}
+  playerIn: 0
+  playerIn2: 0
+  workFlow: {fileID: 0}
+  gameStartTextController: {fileID: 0}
+  mode: 0
+  enabled: 0
+  robot_idx: 0
+  sum_msg: {fileID: 0}
 --- !u!1 &298741618
 GameObject:
   m_ObjectHideFlags: 0
@@ -6188,10 +6188,10 @@ GameObject:
   - component: {fileID: 1101239769}
   - component: {fileID: 1101239768}
   - component: {fileID: 1101239767}
-  - component: {fileID: 1101239766}
   - component: {fileID: 1101239765}
   - component: {fileID: 1101239764}
   - component: {fileID: 1101239763}
+  - component: {fileID: 1101239770}
   m_Layer: 7
   m_Name: cannon_1
   m_TagString: Cannon
@@ -6271,32 +6271,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 9, y: 19.697157, z: 12.066578}
   m_Center: {x: 0.00000078701584, y: -7.408662, z: -4.1319942}
---- !u!114 &1101239766
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1101239762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e24b8fa25e09854ca94cbceeaf6140b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  claimed: 0
-  disOffset: {fileID: 0}
-  idx: 0
-  isProtected: 0
-  player: {fileID: 0}
-  player2: {fileID: 0}
-  playerIn: 0
-  playerIn2: 0
-  workFlow: {fileID: 0}
-  gameStartTextController: {fileID: 0}
-  mode: 0
-  enabled: 0
-  robot_idx: 0
-  sum_msg: {fileID: 0}
 --- !u!23 &1101239767
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6371,6 +6345,32 @@ Transform:
   - {fileID: 1958870934}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -90, y: 180, z: -90}
+--- !u!114 &1101239770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1101239762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7f82145e2357cd458067a8e10fb0bf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  claimed: 0
+  disOffset: {fileID: 0}
+  idx: 0
+  isProtected: 1
+  player: {fileID: 0}
+  player2: {fileID: 0}
+  playerIn: 0
+  playerIn2: 0
+  workFlow: {fileID: 0}
+  gameStartTextController: {fileID: 0}
+  mode: 0
+  enabled: 0
+  robot_idx: 0
+  sum_msg: {fileID: 0}
 --- !u!1 &1113154093
 GameObject:
   m_ObjectHideFlags: 0
@@ -12165,6 +12165,7 @@ MonoBehaviour:
   workFlowPos: 0
   last_is_iron: 0
   last_is_wood: 0
+  mode: 0
 --- !u!1 &1837232604
 GameObject:
   m_ObjectHideFlags: 0
@@ -13550,6 +13551,7 @@ MonoBehaviour:
   scenceID: 1
   changeScale: 1
   gameStartTextController: {fileID: 0}
+  mode: 0
 --- !u!114 &1979723292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13668,6 +13670,7 @@ MonoBehaviour:
   player_one: {fileID: 0}
   player_two: {fileID: 0}
   sum_Msg: {fileID: 0}
+  mode: 0
 --- !u!1 &1985014591
 GameObject:
   m_ObjectHideFlags: 0
@@ -14851,6 +14854,7 @@ MonoBehaviour:
   workFlowPos: 0
   last_is_iron: 0
   last_is_wood: 0
+  mode: 0
 --- !u!1 &2105728569
 GameObject:
   m_ObjectHideFlags: 0
@@ -15479,6 +15483,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3163414237437525922}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3073679852359529461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3473485546517683803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 3696696200
+  _assetId: 0
+  serverOnly: 0
+  visibility: 0
+  hasSpawned: 0
 --- !u!4 &3163414237437525922
 Transform:
   m_ObjectHideFlags: 0
@@ -15537,15 +15558,6 @@ MonoBehaviour:
   visibility: 0
   hasSpawned: 0
 --- !u!114 &3423211590446243548
-  material: {fileID: 2100000, guid: ea69889e0cca277409940a63882cc542, type: 2}
-  player: {fileID: 0}
-  player2: {fileID: 0}
-  mode: 0
-  fire: {fileID: 0}
-  open_door: {fileID: 0}
-  clock: {fileID: 0}
-  furnace_name: f0
---- !u!114 &3073679852359529461
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -15554,14 +15566,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3473485546517683803}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Script: {fileID: 0}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneId: 3696696200
-  _assetId: 0
-  serverOnly: 0
-  visibility: 0
-  hasSpawned: 0
 --- !u!23 &3423397417320860635
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15661,6 +15668,7 @@ GameObject:
   - component: {fileID: 3423211590446243548}
   - component: {fileID: 188476435648904828}
   - component: {fileID: 7970248104009955881}
+  - component: {fileID: 3073679852359529461}
   m_Layer: 0
   m_Name: Furnace_2
   m_TagString: Untagged
