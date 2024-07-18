@@ -13,13 +13,13 @@ public class ChooseMode : MonoBehaviour
     {
         if (modeChoose == 1) //1: crazy mode (raise car and player speed and throw more material)
         {
-            character1.PlayerSpeed = 6;
-            character2.PlayerSpeed = 6;
+            character1.PlayerSpeed = 4;
+            character2.PlayerSpeed = 4;
             Character.bigScale = 1;
             carMove.speed = 8f;
             carMoveSenceCity.speed = 15f;
             carMoveSenceDarkCity.speed = 10f;
-            CarThrow.intervalChange = 0.3f;
+            CarThrow.intervalChange = 0.2f;
             Bomb.explosionRadius = 1.5f;
             if (SceneController.sceneID == 1)//city
             {

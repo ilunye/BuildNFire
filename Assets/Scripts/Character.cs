@@ -147,6 +147,8 @@ public class Character : MonoBehaviour
             cam = GameObject.Find("Fake_Camera");
         }
         Debug.Assert(cam != null, "cam is null");
+
+        
     }
 
     // Update is called once per frame
