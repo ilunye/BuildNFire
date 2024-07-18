@@ -9,7 +9,9 @@ using Mirror;
 public class NetCharacter : NetworkBehaviour
 {
     public bool enabled = true;
+    [SyncVar]
     public float PlayerSpeed = 1f; //人物移动速度
+    [SyncVar]
     public float sleep = 0f; //冻结时间
     GameObject Player = null; //人物
 
@@ -95,7 +97,24 @@ public class NetCharacter : NetworkBehaviour
     private GameObject item_fall;
     private AudioSource item_fall_voice;
     private GameObject myCannon;
+    [SyncVar]
+    public Color color = Color.white;
 
+    [Command(requiresAuthority=false)]
+    public void CmdSetPlayerSpeed(float speed)
+    {
+        PlayerSpeed = speed;
+    }
+    [Command(requiresAuthority=false)]
+    public void CmdSetSleep(float time)
+    {
+        sleep = time;
+    }
+    [Command(requiresAuthority=false)]
+    public void CmdSetColor(Color c)
+    {
+        color = c;
+    }
     [Command(requiresAuthority=false)]
     public void CmdSetMaterial(MaterialType material)
     {
@@ -161,20 +180,6 @@ public class NetCharacter : NetworkBehaviour
         {
             keycodes = new KeyCode[] { KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow, KeyCode.Return };
         }
-
-        for(int i=0; i<2; i++){
-            myCannon = GameObject.Find("cannon" + i.ToString());
-            if(myCannon.GetComponent<Cannon>().claimed == false){
-                myCannon.GetComponent<Cannon>().claimed = true;
-                break;
-            }
-            if(i==1){
-                Destroy(gameObject);
-                break;
-            }
-            myCannon.GetComponent<Cannon>().player = gameObject;
-            myCannon.GetComponent<Cannon>().workFlow = GameObject.Find("Canvas/PlayerUI_" + (i+1).ToString()).GetComponent<WorkFlow>();
-        } 
     }
     // Start is called before the first frame update
     void Start()
@@ -198,6 +203,22 @@ public class NetCharacter : NetworkBehaviour
             cam = GameObject.Find("Fake_Camera");
         }
         Debug.Assert(cam != null, "cam is null");
+
+        for(int i=0; i<2; i++){
+            myCannon = GameObject.Find("cannon" + i.ToString());
+            if(myCannon.GetComponent<Cannon>().claimed == false){
+                myCannon.GetComponent<Cannon>().claimed = true;
+                myCannon.GetComponent<Cannon>().player = gameObject;
+                myCannon.GetComponent<Cannon>().workFlow = GameObject.Find("Canvas/PlayerUI_" + (i+1).ToString()).GetComponent<WorkFlow>();
+                gameObject.name = "animal_people_wolf_" + (i+1).ToString();
+                transform.GetChild(0).name = "animal_people_wolf" + (i+1).ToString();
+                break;
+            }
+            if(i==1){
+                Destroy(gameObject);
+                break;
+            }
+        } 
     }
 
     // Update is called once per frame
@@ -213,6 +234,7 @@ public class NetCharacter : NetworkBehaviour
     private float z_bound_up = 987.02f;
     void Update()
     {
+        syncColor();
         if(!isLocalPlayer) return;
         if (!enabled) return;
         if (!enableOut)
@@ -491,6 +513,15 @@ public bool last_E_Up = false;
                 // transform.rotation = Quaternion.Euler(0, cam.transform.rotation.eulerAngles.y + 90, 0);
                 transform.forward = Vector3.LerpUnclamped(transform.forward, cam.transform.right, 0.5f);
                 break;
+        }
+    }
+
+    public void syncColor(){
+        Debug.Log("sync color");
+        Material[] mats = transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().materials;
+        foreach (Material mat in mats)
+        {
+            mat.color = color;
         }
     }
 }

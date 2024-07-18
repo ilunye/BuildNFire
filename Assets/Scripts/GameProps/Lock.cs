@@ -5,9 +5,12 @@ using UnityEngine;
 public class Lock : MonoBehaviour
 {
     public BuffData buffData;
+    public bool delayDestroy = true;
     void Start()
     {
-        StartCoroutine(DestroyAfterDelay(10f));
+        if(delayDestroy){
+            StartCoroutine(DestroyAfterDelay(10f));
+        }
     }
 
     IEnumerator DestroyAfterDelay(float delay)

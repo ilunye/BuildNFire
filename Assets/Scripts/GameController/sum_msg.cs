@@ -176,14 +176,14 @@ public class sum_msg : MonoBehaviour
             default: //other scene
                 if (status == 2)
                 {
-                    startposition = new Vector3(804.42f, 1.6f, 981f);
-                    targetposition = new Vector3(794.84f, 1.6f, 981f);
+                    startposition = new Vector3(13.6f, 1.52731f, 5.2575f);
+                    targetposition = new Vector3(13.9f, 1.515f, 17f);
                 }
                 else
                 {
 
-                    startposition = new Vector3(794.84f, 1.6f, 981f);
-                    targetposition = new Vector3(804.42f, 1.6f, 981f);
+                    startposition = new Vector3(13.9f, 1.515f, 17f);
+                    targetposition = new Vector3(13.6f, 1.52731f, 5.2575f);
                 }
                 break;
 

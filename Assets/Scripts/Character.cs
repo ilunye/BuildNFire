@@ -480,25 +480,26 @@ public class Character : MonoBehaviour
             case Direction.Forward:
                 if(transform.forward == new Vector3(0, 0, -1))
                     transform.forward = new Vector3(0.01f, 0, -1f);
-                transform.forward = Vector3.LerpUnclamped(transform.forward, cam.transform.forward, 0.3f);
+                transform.forward = Vector3.LerpUnclamped(transform.forward, cam.transform.forward, 0.5f);
                 break;
             case Direction.Backward:
                 // transform.rotation = Quaternion.Euler(0, cam.transform.rotation.eulerAngles.y + 180, 0);
                 if (transform.forward == new Vector3(0, 0, 1))
                     transform.forward = new Vector3(0.01f, 0, 1f);
-                transform.forward = Vector3.LerpUnclamped(transform.forward, -cam.transform.forward, 0.3f);
+                transform.forward = Vector3.LerpUnclamped(transform.forward, -cam.transform.forward, 0.5f);
                 break;
             case Direction.Left:
                 // transform.rotation = Quaternion.Euler(0, cam.transform.rotation.eulerAngles.y - 90, 0);
                 if(transform.forward == new Vector3(1, 0, 0))
                     transform.forward = new Vector3(1f, 0, 0.01f);
-                transform.forward = Vector3.LerpUnclamped(transform.forward, -cam.transform.right, 0.3f);
+                transform.forward = Vector3.LerpUnclamped(transform.forward, -cam.transform.right, 0.5f);
                 break;
             case Direction.Right:
                 // transform.rotation = Quaternion.Euler(0, cam.transform.rotation.eulerAngles.y + 90, 0);
                 if(transform.forward == new Vector3(-1, 0, 0))
                     transform.forward = new Vector3(-1f, 0, 0.01f);
-                transform.forward = Vector3.LerpUnclamped(transform.forward, cam.transform.right, 0.3f);
+                
+                transform.forward = Vector3.LerpUnclamped(transform.forward + new Vector3(0, 0, 0.1f) + new Vector3(0.1f, 0, 0), cam.transform.right, 0.5f);
                 break;
         }
     }

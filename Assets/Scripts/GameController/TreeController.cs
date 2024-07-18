@@ -29,7 +29,7 @@ public class TreeController : MonoBehaviour
                 float x = UnityEngine.Random.Range(regionleft_xmin, regionleft_xmax);
                 float z = UnityEngine.Random.Range(region_zmin, region_zmax);
                 Collider[] hitColliders = Physics.OverlapSphere(new Vector3(x, 0, z), 1.0f);
-                if (hitColliders.Length <= 1)
+                if (hitColliders.Length <= 2)
                 {
                     GameObject tree = Instantiate(Resources.Load(loadTrack) as GameObject);
                     tree.transform.position = new Vector3(x, 0, z);
@@ -46,7 +46,7 @@ public class TreeController : MonoBehaviour
                 float x = UnityEngine.Random.Range(regionright_xmin, regionright_xmax);
                 float z = UnityEngine.Random.Range(region_zmin, region_zmax);
                 Collider[] hitColliders = Physics.OverlapSphere(new Vector3(x, 0, z), 1.0f);
-                if (hitColliders.Length <= 1)
+                if (hitColliders.Length <= 2)
                 {
                     GameObject tree = Instantiate(Resources.Load(loadTrack) as GameObject);
                     tree.transform.position = new Vector3(x, 0, z);
@@ -97,7 +97,7 @@ public class TreeController : MonoBehaviour
             }
 
             Collider[] hitColliders = Physics.OverlapSphere(new Vector3(x, 0, z), 1.0f);
-            if (hitColliders.Length <= 1)
+            if (hitColliders.Length <= 2)
             {
                 GameObject tree = Instantiate(Resources.Load(loadTrack) as GameObject);
                 tree.transform.position = new Vector3(x, 0, z);
