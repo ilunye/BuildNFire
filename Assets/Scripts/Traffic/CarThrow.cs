@@ -30,7 +30,10 @@ public class CarThrow : MonoBehaviour
 
     public float CarTime = 4.5f;
     public float bigScale = 1f;
-    public Vector3 randomVector=new Vector3(-1, 0f, 0f);
+    public Vector3 randomVector_Left = new Vector3(-1, 0f, 0f);
+    public Vector3 randomVector_Right = new Vector3(-1, 0f, 0f);
+    public Vector3 randomVector;
+    public bool Main_Scene = true;
 
 
 
@@ -43,6 +46,8 @@ public class CarThrow : MonoBehaviour
         p = (int)Random.Range(1, 2);
         interval = interval * p;
         throwForce = 1;
+        if(!Main_Scene)
+            CarTime = 3.5f;
         // destroyDelay = 5f;
     }
 
@@ -56,7 +61,7 @@ public class CarThrow : MonoBehaviour
         if (timer >= interval)
         {
             GameObject c;
-            int r = Random.Range(0, 21);//决定抛出物体
+            int r = Random.Range(0, 22);//决定抛出物体
             if (r <= 1)
             {
                 c = Instantiate(Resources.Load("prefabs/Bomb Red") as GameObject);
@@ -119,9 +124,15 @@ public class CarThrow : MonoBehaviour
             }
             else if (r == 21)
             {
-                c = Instantiate(Resources.Load("Prefabs/Box") as GameObject);
-                c.name = "box_" + "truck_" + box_num.ToString();
-                box_num++;
+                if(!Main_Scene){
+                    c = Instantiate(Resources.Load("Prefabs/Box") as GameObject);
+                    c.name = "box_" + "truck_" + box_num.ToString();
+                    box_num++;
+                }else{
+                    c = Instantiate(Resources.Load("prefabs/Lock Silver") as GameObject);
+                    c.name = "lock_" + "truck_" + lock_num.ToString();
+                    lock_num++;
+                }
             }
             else
             {
@@ -130,7 +141,23 @@ public class CarThrow : MonoBehaviour
                 lock_num++;
                 //c = Instantiate(Resources.Load("prefabs/Rock_03") as GameObject);
             }
-            spawnPosition = transform.position + transform.up * 0.5f - transform.forward * 0.5f + randomVector;
+
+            int random;
+            if(Main_Scene){
+                random = (int)Random.Range(0, 2);
+                if(random == 0)
+                    randomVector = randomVector_Left;
+                else
+                    randomVector = randomVector_Right;
+            }else{
+                random = (int)Random.Range(0, 10);
+                if(random < 3)
+                    randomVector = randomVector_Right;
+                else
+                    randomVector = randomVector_Left;
+            }
+
+            spawnPosition = transform.position + transform.up * 0.5f  + randomVector;
             c.transform.position = spawnPosition;
             c.transform.localScale *= bigScale;
             // Rigidbody cubeRigidbody = c.AddComponent<Rigidbody>();

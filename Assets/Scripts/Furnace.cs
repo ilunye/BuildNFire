@@ -10,6 +10,7 @@ public class Furnace : MonoBehaviour
     private Transform outPos;
     private bool playerIn = false;
     private bool hasFire = false;
+    private bool hasStone = false;
     public GameObject fire;
     public GameObject open_door;
     public GameObject clock;
@@ -47,6 +48,16 @@ public class Furnace : MonoBehaviour
         hasFire = true;
         Invoke("Fireoff", 15f);
     }
+
+    public void ADDStone()
+    {
+        hasStone = true;
+        Invoke("Stoneoff", 15f);
+    }
+    private void Stoneoff()
+    {
+        hasStone = false;
+    }
     private void smelting()
     {
         GameObject g = Instantiate(Resources.Load("Prefabs/ConcreteTubes") as GameObject, outPos.position, Quaternion.identity);
@@ -67,7 +78,8 @@ public class Furnace : MonoBehaviour
         material.EnableKeyword("_EMISSION");
         material.SetColor("_EmissionColor", Color.black);
         outPos = transform.GetChild(1);
-        if(player == null){
+        if (player == null)
+        {
             Debug.LogWarning("player is null");
         }
     }
@@ -87,15 +99,24 @@ public class Furnace : MonoBehaviour
                 AddFire();
                 clock1();
                 AudioFire();
+                if (hasStone)
+                {
+                    Invoke("smelting", 5f);
+                }
                 //Debug.Log(hasFire);
 
             }
-            else if (player.GetComponent<Character>().Material == Character.MaterialType.IronOre && hasFire)
+            else if (player.GetComponent<Character>().Material == Character.MaterialType.IronOre)
             {
                 OpenDoor();
                 player.GetComponent<Character>().Material = Character.MaterialType.None;
                 Play();
-                Invoke("smelting", 5f);
+                ADDStone();
+                clock1();
+                if (hasFire)
+                {
+                    Invoke("smelting", 5f);
+                }
             }
         }
     }

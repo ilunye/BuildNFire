@@ -28,13 +28,12 @@ public class SceneController : MonoBehaviour
         {
             if (treeController != null)
             {
-                Debug.Log(trafficControl);
-                treeController.regionleft_xmin = 170f;
-                treeController.regionleft_xmax = 177f;
-                treeController.regionright_xmin = 183f;
-                treeController.regionright_xmax = 190f;
-                treeController.region_zmin = 134f;
-                treeController.region_zmax = 144f;
+                // treeController.regionleft_xmin = 170f;
+                // treeController.regionleft_xmax = 177f;
+                // treeController.regionright_xmin = 183f;
+                // treeController.regionright_xmax = 190f;
+                // treeController.region_zmin = 134f;
+                // treeController.region_zmax = 144f;
                 treeController.loadTrack = "Prefabs/BigTree";
             }
             if (trafficControl != null)
@@ -50,34 +49,19 @@ public class SceneController : MonoBehaviour
         }
         else
         {
-            // 在其他场景中执行默认逻辑
-            /*if (tree_spaw != null)
-            {
-                Debug.Log(tree_spaw);
-                tree_spaw.regionleft_xmin = 19.24f;
-                tree_spaw.regionleft_xmax = 20.22f;
-                tree_spaw.regionright_xmin = 19.24f;
-                tree_spaw.regionright_xmax = 20.22f;
-                tree_spaw.region_zmin = 3.75f;
-                tree_spaw.region_zmax = 19.1f;
-                tree_spaw.loadTrack="Prefabs/tree_1_2";
-            }*/
-            
+        
             if (trafficControl != null)
             {
-                Debug.Log("debug");
+                
                 trafficControl.car1_load_track = "Prefabs/red_car";
                 trafficControl.car2_load_track = "Prefabs/green_car";
 
             }
         }
-
-
     }
     void Update()
     {
         //StartCoroutine(ChangeScale());
-        //Debug.Log("debug");
     }
 
 
@@ -105,7 +89,6 @@ public class SceneController : MonoBehaviour
         }
         yield return null;
 
-        Debug.Log("End of Coroutine");
     }
 
 

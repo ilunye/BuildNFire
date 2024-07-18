@@ -709,7 +709,10 @@ MonoBehaviour:
   Scene_id: 0
   CarTime: 4.5
   bigScale: 1
+  randomVector_Left: {x: 1, y: 0, z: 0}
+  randomVector_Right: {x: -1, y: 0, z: 0}
   randomVector: {x: 0, y: 0, z: 0}
+  Main_Scene: 1
 --- !u!114 &2186691118632765611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -722,7 +725,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d7fc9ba7a8f8594fb2dad9928cd5fcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rayCastEnable: 0
   carCongestion: 0
   lastHit: {fileID: 0}
   green: 1
