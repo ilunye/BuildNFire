@@ -11,6 +11,7 @@ public class carMove : MonoBehaviour
     private float initialVelocityX = 1f;
     private float initialVelocityZ = -1f;
     private float throwForce = 2f;
+    public static float speed = 3.5f; // car speed
 
     public Vector3 car1_position = new Vector3(799.874f, 0.0f, 991.6682f);
     public Vector3 car2_position = new Vector3(799.32f, 0.0f, 991.6682f);
@@ -58,7 +59,7 @@ public class carMove : MonoBehaviour
 
     private float lifeTime = 0f;
 
-    private float speed = 3.5f;
+
     void Start()
     {
         if (green)

@@ -16,7 +16,7 @@ public class Furnace : MonoBehaviour
     public GameObject fire;
     public GameObject open_door;
     public GameObject clock;
-    public float changeScale = 1f;
+    public static float bigScale = 1f;
 
     public string furnace_name = "f0";
     private int iron_number = 0;
@@ -71,7 +71,7 @@ public class Furnace : MonoBehaviour
     {
         GameObject g = Instantiate(Resources.Load("Prefabs/ConcreteTubes") as GameObject, outPos.position, Quaternion.identity);
         g.name = "concrete_tube_" + furnace_name + "_" + iron_number.ToString();
-        g.transform.localScale *= changeScale;
+        g.transform.localScale *= bigScale;
         iron_number++;
         g.GetComponent<CollectableMaterials>().WillDisappear = false;
         Play();

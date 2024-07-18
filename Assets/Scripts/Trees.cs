@@ -13,7 +13,7 @@ public class Trees : MonoBehaviour
     private float shake_magnitude = 1.0f;
     public GameObject voice;
     private AudioSource tree_voice;
-    public float changeScale = 1f;
+    public static float bigScale = 1f;
 
     // private Animator Anim;
 
@@ -70,7 +70,7 @@ public class Trees : MonoBehaviour
         if(status == 0){
             GameObject g = Instantiate(Resources.Load("Prefabs/Wood") as GameObject);
             g.transform.position = transform.position;
-            g.transform.localScale *= changeScale;
+            g.transform.localScale *= bigScale;
             if(transform.position.x < 800)
                 GameObject.Find("GameController").GetComponent<TreeController>().TreeNumberLeft--;
             else
