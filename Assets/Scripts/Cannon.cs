@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using System;
 
 public class Cannon : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class Cannon : MonoBehaviour
     public GameObject player;
     public bool playerIn = false;
     public WorkFlow workFlow;
+    public GameStartTextController gameStartTextController;
 
     void OnTriggerEnter(Collider other)
     {
@@ -61,11 +63,15 @@ public class Cannon : MonoBehaviour
         }
         else
         {
+
             StartCoroutine(each_next((up.position.y - middle.position.y) / 1));
+
+
         }
         idx += 2;
         if (idx >= 10)
             idx = 10;
+
     }
 
     public void prev_state()
@@ -110,7 +116,7 @@ public class Cannon : MonoBehaviour
         {
             Debug.LogWarning("player is null");
         }
-        if(workFlow == null)
+        if (workFlow == null)
         {
             Debug.LogWarning("workFlow is null");
         }
@@ -164,5 +170,26 @@ public class Cannon : MonoBehaviour
                     break;
             }
         }
+
+        //change bgm according to process of game
+        if (5 < idx && idx < 8)
+        {
+            gameStartTextController.BGM_voice.pitch = 1.1f;
+
+        }
+        else if (idx > 7 && idx < 10)
+        {
+            gameStartTextController.BGM_voice.pitch = 1.2f;
+
+        }
+        else if (idx > 9)
+        {
+            gameStartTextController.BGM_voice.pitch = 1.3f;
+        }
+        else
+        {
+            gameStartTextController.BGM_voice.pitch = 1f;
+        }
+
     }
 }
