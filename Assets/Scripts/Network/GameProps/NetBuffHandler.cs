@@ -12,7 +12,7 @@ public class NetBuffHandler : NetworkBehaviour
     private LinkedList<BuffInfo> debuffList = new LinkedList<BuffInfo>(); //debuff link
     public BuffInfo CurrBuffInfo; //现在生效的buff
 
-    public Bomb bomb;
+    public NetBomb bomb;
     public GameObject CollObj;
     public ThrowBomb throwBomb;
 
@@ -50,7 +50,6 @@ public class NetBuffHandler : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-
         BuffRemove(); //检测buff状态并更新
 
     }
@@ -131,8 +130,8 @@ public class NetBuffHandler : NetworkBehaviour
 
                     break;
                 case "Bomb":
-                    bomb = CollObj.GetComponent<Bomb>();
-                    buffInfo.buffData = CollObj.GetComponent<Bomb>().buffData;
+                    bomb = CollObj.GetComponent<NetBomb>();
+                    buffInfo.buffData = CollObj.GetComponent<NetBomb>().buffData;
                     //Debug.Log("是否已经爆炸" + bomb.hasExploded );
                     //if (bomb.hasExploded == true) //爆炸了再施加debuff效果
                     //不能这样判断，因为爆炸后trigger就消失了

@@ -10,7 +10,7 @@ public class NetUIController : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject RawImage;    
-    public Sprite[] sprites = new Sprite[5];
+    public Sprite[] sprites = new Sprite[6];
     void Start()
     {
         if(RawImage == null){
@@ -23,6 +23,7 @@ public class NetUIController : MonoBehaviour
             sprites[2] = Resources.Load<Sprite>("Textures/iron");
             sprites[3] = Resources.Load<Sprite>("Textures/gunPowder");
             sprites[4] = Resources.Load<Sprite>("Textures/cannonBall");
+            sprites[5] = Resources.Load<Sprite>("Textures/bomb");
         }
     }
 

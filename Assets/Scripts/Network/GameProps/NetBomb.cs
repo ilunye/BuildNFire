@@ -1,12 +1,13 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
+using Mirror;
 
-public class Bomb : MonoBehaviour
+public class NetBomb : NetworkBehaviour
 {
     private float delay = 10f; // 炸弹的延迟时间
     private float explosionForce = 400f; // 爆炸的力量
-    public static float explosionRadius = 1.5f; // 爆炸的半径
+    private float explosionRadius = 1.5f; // 爆炸的半径
     public GameObject explosionEffect; // 爆炸效果的预制体
 
     public float countdown; //爆炸倒计时
@@ -19,12 +20,24 @@ public class Bomb : MonoBehaviour
     private float initialVelocityZ = 0.2f;//被炸的力
     private float throwForce = 1f;//被炸的力
 
-    private BuffHandler buffHandler;
+    private NetBuffHandler buffHandler;
 
     private GameObject bombvoiceObj;
     private BombVoice bombVoice;
 
     private GameObject theBombTarget = null;
+
+    [Command(requiresAuthority = false)]
+    public void CmdLittleBombInstantiate(){
+        explosionEffect = Instantiate(Resources.Load("Prefabs/Online/littlebomb") as GameObject);
+        explosionEffect.transform.localPosition = gameObject.transform.localPosition;
+        explosionEffect.transform.localRotation = gameObject.transform.localRotation;
+        NetworkServer.Spawn(explosionEffect);
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdDestroy(GameObject obj){
+        NetworkServer.Destroy(obj);
+    }
 
     void Start()
     {
@@ -42,7 +55,7 @@ public class Bomb : MonoBehaviour
             Explode();
 
         }
-        else if (gameObject.transform.localPosition.y < 0 && !hasExploded) //掉出世界爆炸
+        else if (gameObject.transform.position.y < 0 && !hasExploded) //掉出世界爆炸
         {
             Explode();
 
@@ -55,7 +68,7 @@ public class Bomb : MonoBehaviour
         if (collision.gameObject.tag == "Player" && !hasExploded && claimed)
         //如果打到对方玩家 && 炸弹还没爆炸 && 已经被捡起来了
         {
-            buffHandler = collision.GetComponent<BuffHandler>();
+            buffHandler = collision.GetComponent<NetBuffHandler>();
             if (buffHandler.bombbuffinfo != null)
             {
                 buffHandler.AddBuff(buffHandler.bombbuffinfo);
@@ -71,24 +84,24 @@ public class Bomb : MonoBehaviour
     {
         if (other.tag != "Player" || claimed)
             return;
-        if (other.GetComponent<Character>().playerState == Character.PlayerState.Idle)
+        if (other.GetComponent<NetCharacter>().playerState == NetCharacter.PlayerState.Idle)
         {
-            other.GetComponent<Character>().playerState = Character.PlayerState.ReadyToClaim;
-            if (other.GetComponent<Character>().Item == null)
+            other.GetComponent<NetCharacter>().playerState = NetCharacter.PlayerState.ReadyToClaim;
+            if (other.GetComponent<NetCharacter>().Item == null)
             {
-                other.GetComponent<Character>().Item = gameObject;
+                other.GetComponent<NetCharacter>().Item = gameObject;
             }
         }
-        if (other.GetComponent<Character>().playerState == Character.PlayerState.Claim)
+        if (other.GetComponent<NetCharacter>().playerState == NetCharacter.PlayerState.Claim)
         {
-            if (other.GetComponent<Character>().Item != null)
+            if (other.GetComponent<NetCharacter>().Item != null)
             {
-                if (other.GetComponent<Character>().Item.name == gameObject.name)
+                if (other.GetComponent<NetCharacter>().Item.name == gameObject.name)
                 {
                     claimed = true;
-                    other.GetComponent<Character>().Material = Character.MaterialType.Bomb;
-                    other.GetComponent<Character>().Item = gameObject;              // set the player's item as itself
-                    Destroy(gameObject);
+                    other.GetComponent<NetCharacter>().Material = NetCharacter.MaterialType.Bomb;
+                    other.GetComponent<NetCharacter>().Item = gameObject;              // set the player's item as itself
+                    CmdDestroy(gameObject);
                 }
             }
         }
@@ -98,47 +111,16 @@ public class Bomb : MonoBehaviour
     {
         if (other.tag != "Player" || claimed)
             return;
-        if (other.GetComponent<Character>().playerState == Character.PlayerState.ReadyToClaim)
+        if (other.GetComponent<NetCharacter>().playerState == NetCharacter.PlayerState.ReadyToClaim)
         {
-            other.GetComponent<Character>().playerState = Character.PlayerState.Idle;
+            other.GetComponent<NetCharacter>().playerState = NetCharacter.PlayerState.Idle;
         }
-        if (other.GetComponent<Character>().Item != null && other.GetComponent<Character>().Item.name == gameObject.name)
+        if (other.GetComponent<NetCharacter>().Item != null && other.GetComponent<NetCharacter>().Item.name == gameObject.name)
         {
-            other.GetComponent<Character>().Item = null;
+            other.GetComponent<NetCharacter>().Item = null;
         }
     }
 
-    public void Explode(Collider other)    //被炸飞or不被炸飞
-    {
-
-        if (other.CompareTag("Player"))
-        {
-            Rigidbody r = other.gameObject.GetComponent<Rigidbody>();
-            r.AddForce(Vector3.up * throwForce + new Vector3(initialVelocityX, 0, initialVelocityZ), ForceMode.Impulse);
-        }
-
-        hasExploded = true;
-        // Debug.Log("voiceobj" + bombvoiceObj);
-        // Debug.Log("voice" + bombVoice);
-        // bombVoice.PlayMusic();
-        // 显示爆炸效果
-        //Instantiate(explosionEffect, transform.position, transform.rotation);
-        explosionEffect = Instantiate(Resources.Load("Prefabs/Particle System") as GameObject);
-        explosionEffect.transform.localPosition = gameObject.transform.localPosition;
-        explosionEffect.transform.localRotation = gameObject.transform.localRotation;
-        // 获取爆炸范围内的所有碰撞体
-        Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
-        foreach (Collider nearbyObject in colliders)
-        {
-            Rigidbody rb = nearbyObject.GetComponent<Rigidbody>();
-            if (rb != null)
-            {
-                rb.AddExplosionForce(explosionForce, transform.position, explosionRadius);
-            }
-        }
-        // 销毁炸弹对象
-        Destroy(gameObject);
-    }
     public void Explode()
     {
         hasExploded = true;
@@ -147,10 +129,7 @@ public class Bomb : MonoBehaviour
         bombVoice.PlayMusic();
         // 显示爆炸效果
         //Instantiate(explosionEffect, transform.position, transform.rotation);
-        explosionEffect = Instantiate(Resources.Load("Prefabs/littlebomb") as GameObject);
-        ParticleSystem particleSystem = explosionEffect.GetComponent<ParticleSystem>();
-        explosionEffect.transform.localPosition = gameObject.transform.localPosition;
-        explosionEffect.transform.localRotation = gameObject.transform.localRotation;
+        CmdLittleBombInstantiate();
         // 获取爆炸范围内的所有碰撞体
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
         foreach (Collider nearbyObject in colliders)
@@ -163,9 +142,9 @@ public class Bomb : MonoBehaviour
                     BuffInfo buffInfo = new BuffInfo();
                     buffInfo.buffData = buffData;
                     buffInfo.target = nearbyObject.gameObject;
-                    nearbyObject.GetComponent<BuffHandler>().AddBuff(buffInfo);
+                    nearbyObject.GetComponent<NetBuffHandler>().AddBuff(buffInfo);
                     nearbyObject.GetComponent<Rigidbody>().freezeRotation = false;
-                    nearbyObject.GetComponent<Character>().freezeTimer = 3f;
+                    nearbyObject.GetComponent<NetCharacter>().freezeTimer = 3f;
                 }
                 rb.AddExplosionForce(explosionForce, transform.position, explosionRadius);
             }
@@ -197,7 +176,12 @@ public class Bomb : MonoBehaviour
             }
         }
         // 销毁炸弹对象
-        Destroy(gameObject);
+        if(theBombTarget != null){
+            CmdDestroy(theBombTarget);
+            theBombTarget = null;
+        }
+        CmdDestroy(gameObject);
+        CmdDestroy(explosionEffect);
 
     }
 
@@ -208,7 +192,7 @@ public class Bomb : MonoBehaviour
     void OnDestroy()
     {
         if(theBombTarget != null){
-            Destroy(theBombTarget);
+            CmdDestroy(theBombTarget);
             theBombTarget = null;
         }
     }

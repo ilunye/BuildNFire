@@ -205,7 +205,7 @@ public class NetCharacter : NetworkBehaviour
         Debug.Assert(cam != null, "cam is null");
 
         for(int i=0; i<2; i++){
-            myCannon = GameObject.Find("cannon" + i.ToString());
+            myCannon = GameObject.Find("cannon_" + (i+1).ToString());
             if(myCannon.GetComponent<Cannon>().claimed == false){
                 myCannon.GetComponent<Cannon>().claimed = true;
                 myCannon.GetComponent<Cannon>().player = gameObject;
@@ -297,12 +297,12 @@ public class NetCharacter : NetworkBehaviour
         if (sleep != 0)
         {
             //Debug.Log("玩家休眠");
-            PlayerSpeed = 0; //玩家休眠
+            CmdSetPlayerSpeed(0);
             // gameObject.GetComponent<Animator>().Play("StunnedLoop"); //播放晕倒动画
             CmdPlay("StunnedLoop");
             CmdSetFalling(true);
             CmdPlayerState(PlayerState.Falling);
-
+            Invoke("ResetSpeed", 3f);
         }
         // if(Anim.name != "PunchRight"){
         //     Motion();
@@ -517,11 +517,13 @@ public bool last_E_Up = false;
     }
 
     public void syncColor(){
-        Debug.Log("sync color");
         Material[] mats = transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().materials;
         foreach (Material mat in mats)
         {
             mat.color = color;
         }
+    }
+    void ResetSpeed(){
+        CmdSetPlayerSpeed(2f);
     }
 }

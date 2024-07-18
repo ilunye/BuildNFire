@@ -24,7 +24,7 @@ public class ThrowBomb : MonoBehaviour
 
     private KeyCode keyCodeE;
 
-    public float changeScale = 1f;
+    public static float bigScale = 1f;
 
     private float startHigh = 0.0001f;
     public int sceneID = 1;
@@ -129,7 +129,7 @@ public class ThrowBomb : MonoBehaviour
         bomb = Instantiate(Resources.Load("Prefabs/Bomb Red") as GameObject); // 创建炸弹实例
         // 设置炸弹的初始位置
         bomb.transform.position = gameObject.transform.position + gameObject.transform.forward * 0.5f;
-        bomb.transform.localScale *= changeScale;
+        bomb.transform.localScale *= bigScale;
         Vector3 startPosition = bomb.transform.position;
 
         bomb.GetComponent<Bomb>().SetTarget(theBombTarget);        // set the bomb target for destroy
