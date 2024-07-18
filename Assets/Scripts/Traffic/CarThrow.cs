@@ -61,7 +61,7 @@ public class CarThrow : MonoBehaviour
         if (timer >= interval)
         {
             GameObject c;
-            int r = Random.Range(0, 21);//决定抛出物体
+            int r = Random.Range(0, 22);//决定抛出物体
             if (r <= 1)
             {
                 c = Instantiate(Resources.Load("prefabs/Bomb Red") as GameObject);
@@ -124,9 +124,15 @@ public class CarThrow : MonoBehaviour
             }
             else if (r == 21)
             {
-                c = Instantiate(Resources.Load("Prefabs/Box") as GameObject);
-                c.name = "box_" + "truck_" + box_num.ToString();
-                box_num++;
+                if(!Main_Scene){
+                    c = Instantiate(Resources.Load("Prefabs/Box") as GameObject);
+                    c.name = "box_" + "truck_" + box_num.ToString();
+                    box_num++;
+                }else{
+                    c = Instantiate(Resources.Load("prefabs/Lock Silver") as GameObject);
+                    c.name = "lock_" + "truck_" + lock_num.ToString();
+                    lock_num++;
+                }
             }
             else
             {
@@ -152,7 +158,6 @@ public class CarThrow : MonoBehaviour
             }
 
             spawnPosition = transform.position + transform.up * 0.5f  + randomVector;
-            Debug.Log("spawnPosition: " + spawnPosition + " " + "transform: " + transform.position + " random vector: " + randomVector + " " + "up: " + transform.up);
             c.transform.position = spawnPosition;
             c.transform.localScale *= bigScale;
             // Rigidbody cubeRigidbody = c.AddComponent<Rigidbody>();
