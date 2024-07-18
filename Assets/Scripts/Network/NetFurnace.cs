@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class Furnace : MonoBehaviour
+public class NetFurnace : NetworkBehaviour
 {
     private Animator animator;
     public Material material;
@@ -108,6 +109,7 @@ public class Furnace : MonoBehaviour
                 player.GetComponent<Character>().Material = Character.MaterialType.None;
                 Play();
                 AddFire();
+                clock1();
                 AudioFire();
                 if (hasStone)
                 {
@@ -122,6 +124,7 @@ public class Furnace : MonoBehaviour
                 player.GetComponent<Character>().Material = Character.MaterialType.None;
                 Play();
                 ADDStone();
+                clock1();
                 if (hasFire)
                 {
                     Invoke("smelting", 5f);
@@ -168,7 +171,15 @@ public class Furnace : MonoBehaviour
 
 
     }
-    
+    private void clock1()
+    {
+        AudioSource c = open_door.GetComponent<AudioSource>();
+        float startTime = 0f;
+        float duration = 15f;
+        c.time = startTime;
+        c.PlayScheduled(AudioSettings.dspTime);
+        c.SetScheduledEndTime(AudioSettings.dspTime + duration);
+    }
     private void AudioFire()
     {
         AudioSource c = fire.GetComponent<AudioSource>();
