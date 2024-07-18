@@ -3048,8 +3048,8 @@ MonoBehaviour:
   interval_red: 0
   timer_green: 0
   timer_red: 0
-  car1_load_track: prefabs/Vehicle_Container_color01_separate
-  car2_load_track: prefabs/Vehicle_Container_color01_separate
+  car1_load_track: prefabs/Vehicle_Truck
+  car2_load_track: prefabs/Vehicle_Bus
   minTime: 3
   maxTime: 6
 --- !u!4 &333406302 stripped
@@ -14088,7 +14088,7 @@ MonoBehaviour:
   sharedProfile: {fileID: 11400000, guid: 96dc83d637197454790dd0b463e7c082, type: 2}
   isGlobal: 1
   blendDistance: 0
-  weight: 1
+  weight: 0.531
   priority: 0
 --- !u!1001 &1704196083
 PrefabInstance:
