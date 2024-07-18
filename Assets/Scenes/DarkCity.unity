@@ -498,6 +498,7 @@ MonoBehaviour:
   sceneID: 1
   player_one: {fileID: 0}
   player_two: {fileID: 0}
+  sum_Msg: {fileID: 0}
 --- !u!114 &112140953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1396,7 +1397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: 858063796df6aa341a27391cf53f8a00, type: 2}
-  player: {fileID: 1584086951560596051, guid: 5ffcf42b1d7ff674397b10249cff9478, type: 3}
+  player: {fileID: 1931322105}
   fire: {fileID: 0}
   open_door: {fileID: 0}
   clock: {fileID: 0}
@@ -2906,6 +2907,7 @@ GameObject:
   m_Component:
   - component: {fileID: 438973643}
   - component: {fileID: 438973644}
+  - component: {fileID: 438973645}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -2949,6 +2951,21 @@ MonoBehaviour:
   region_zmin: 983
   region_zmax: 986
   loadTrack: Prefabs/Tree_1_1
+--- !u!114 &438973645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438973642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1d6bd8856b8d294cbbd3ec27d9111a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  treeController: {fileID: 0}
+  trafficControl: {fileID: 0}
+  scaleTime: 2
 --- !u!1001 &467085644
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8890,7 +8907,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: ea69889e0cca277409940a63882cc542, type: 2}
-  player: {fileID: 4769152038049538857, guid: 45cf65d7fc916eb4cbc92cf654f0059b, type: 3}
+  player: {fileID: 1008624444}
   fire: {fileID: 0}
   open_door: {fileID: 0}
   clock: {fileID: 0}

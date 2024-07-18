@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public class carMove : MonoBehaviour
 {
-    public bool rayCastEnable = false;
     public bool carCongestion = false;
     public GameObject lastHit;
     public bool green = true;
@@ -16,10 +15,6 @@ public class carMove : MonoBehaviour
     public Vector3 car1_position = new Vector3(799.874f, 0.0f, 991.6682f);
     public Vector3 car2_position = new Vector3(799.32f, 0.0f, 991.6682f);
 
-    void resetRayCast()
-    {
-        rayCastEnable = true;
-    }
     void resetSpeed()
     {
         speed = 3.5f;
@@ -81,7 +76,7 @@ public class carMove : MonoBehaviour
     {
         lifeTime += Time.deltaTime;
         transform.position += speed * transform.forward * Time.deltaTime;
-        if (transform.position.z < 972)
+        if (lifeTime > 5f)
         {
             Destroy(gameObject);
         }
