@@ -27,5 +27,15 @@ public class ChangeProperty : BaseBuffModule
             character.PlayerSpeed = character.buffproperty.speed;
             character.sleep = character.buffproperty.sleep;
         }
+
+        var netCharacter = buffInfo.target.GetComponent<NetCharacter>();
+        if (netCharacter)
+        {
+            netCharacter.buffproperty.attack += property.attack;
+            netCharacter.buffproperty.speed += property.speed;
+            netCharacter.buffproperty.sleep += property.sleep;
+            netCharacter.CmdSetPlayerSpeed(netCharacter.buffproperty.speed);
+            netCharacter.CmdSetSleep(netCharacter.buffproperty.sleep);
+        }
     }
 }

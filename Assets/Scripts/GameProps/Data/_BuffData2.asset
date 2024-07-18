@@ -16,7 +16,7 @@ MonoBehaviour:
   BuffName: reverse_direction_clock
   icon: {fileID: 0}
   MaxStack: 1
-  Priority: 1
+  Priority: 0
   tags: []
   IsForever: 0
   DurationTime: 5
