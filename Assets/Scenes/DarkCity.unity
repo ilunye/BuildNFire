@@ -724,7 +724,7 @@ MonoBehaviour:
   explode_bomb: {fileID: 5657438230349779167, guid: 695efc19658b81a4f921de910661bc7d, type: 3}
   scenceID: 3
   changeScale: 1
-  gameStartTextController: {fileID: 0}
+  gameStartTextController: {fileID: 388915532}
 --- !u!114 &112140952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5382,7 +5382,6 @@ PrefabInstance:
     - target: {fileID: 7882117089374449162, guid: 5ffcf42b1d7ff674397b10249cff9478, type: 3}
       propertyPath: RawImage
       value: 
-      objectReference: {fileID: 2126126551}
       objectReference: {fileID: 2126126551}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
