@@ -439,6 +439,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 829182388}
+  cannonImage: {fileID: 0}
 --- !u!1 &1024378347
 GameObject:
   m_ObjectHideFlags: 0
@@ -707,7 +708,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1d10588533f0eb642a5818a899c4a062, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 97b5ef2d9e8169d4ab97196120248df8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -874,6 +875,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 1930995190}
+  cannonImage: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
