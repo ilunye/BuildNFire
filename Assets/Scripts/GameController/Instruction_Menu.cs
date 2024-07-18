@@ -4,22 +4,25 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
 
-public class Instrucion_Menu: MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+//no use
+public class Instrucion_Menu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     public TextMeshProUGUI text;
     public Image[] images;   // 存储Image组件的数组
-    private int currentIndex; 
+    private int currentIndex;
     private Color initialColor;
     private TextMeshProUGUI confirmText;
     private GameObject Instruction;
 
     void Start()
     {
+        Debug.Log(gameObject);
         Instruction = GameObject.Find("Canvas/PauseMenu/Instruction");
         confirmText = GetComponent<TextMeshProUGUI>();
         initialColor = text.color;
         currentIndex = 0;
-        if(text.text != "CONFIRM"){
+        if (text.text != "CONFIRM")
+        {
             ShowCurrentImage();
         }
     }
@@ -71,7 +74,8 @@ public class Instrucion_Menu: MonoBehaviour, IPointerEnterHandler, IPointerExitH
         {
             NextImage();
         }
-        else if (text.text=="last"){
+        else if (text.text == "last")
+        {
             LastImage();
         }
     }
