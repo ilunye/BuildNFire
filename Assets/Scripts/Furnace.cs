@@ -11,6 +11,7 @@ public class Furnace : MonoBehaviour
     public int mode = 0;
     private Transform outPos;
     private bool playerIn = false;
+    private bool playerIn2 = false;
     private bool hasFire = false;
     private bool hasStone = false;
     public GameObject fire;
@@ -22,23 +23,35 @@ public class Furnace : MonoBehaviour
     private int iron_number = 0;
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == player || other.gameObject == player2)
+        if (other.gameObject == player)
         {
             playerIn = true;
         }
+        if(other.gameObject == player2)
+        {
+            playerIn2 = true;
+        }
     }
-    void OnTiggerStay(Collider other)
+    void OnTriggerStay(Collider other)
     {
-        if (other.gameObject == player || other.gameObject == player2)
+        if (other.gameObject == player)
         {
             playerIn = true;
+        }
+        if(other.gameObject == player2)
+        {
+            playerIn2 = true;
         }
     }
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject == player || other.gameObject == player2)
+        if (other.gameObject == player)
         {
             playerIn = false;
+        }
+        if(other.gameObject == player2)
+        {
+            playerIn2 = false;
         }
     }
     public void Play()
@@ -130,7 +143,7 @@ public class Furnace : MonoBehaviour
                 }
             }
         }
-        else if(playerIn && (!playerdone) && mode != 0 && Input.GetKeyDown(player2.GetComponent<Character>().keycodes[4])){
+        else if(playerIn2 && (!playerdone) && mode != 0 && Input.GetKeyDown(player2.GetComponent<Character>().keycodes[4])){
             if (player2.GetComponent<Character>().Material == Character.MaterialType.Wood)
             {
                 OpenDoor();
