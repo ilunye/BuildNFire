@@ -14,7 +14,7 @@ public class HomeScreen_Menu : MonoBehaviour, IPointerEnterHandler, IPointerExit
     {
         confirmText = GetComponent<TextMeshProUGUI>();
         initialColor = text.color;
-        if (text.text == "START" || text.text == "vally" || text.text == "normal")
+        if (text.text == "START" || text.text == "valley" || text.text == "normal")
         {
 
             cannonImage = GameObject.Find("cannon_img1");
