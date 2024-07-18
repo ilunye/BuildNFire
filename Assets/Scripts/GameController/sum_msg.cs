@@ -33,9 +33,9 @@ public class sum_msg : MonoBehaviour
     public int scenceID = 1;
 
     public float changeScale = 1f;
-    public int idxControl;
-    public int idx1;
-    public int idx2;
+    private int idxControl;
+    private int idx1;
+    private int idx2;
     public GameStartTextController gameStartTextController;
 
     [Obsolete]
