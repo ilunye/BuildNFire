@@ -171,7 +171,6 @@ public class CarThrow : MonoBehaviour
 
             spawnPosition = transform.position + transform.up * 0.5f  + randomVector;
             c.transform.position = spawnPosition;
-            Debug.Log("carthrow" + bigScale);
             c.transform.localScale *= bigScale;
             // Rigidbody cubeRigidbody = c.AddComponent<Rigidbody>();
 

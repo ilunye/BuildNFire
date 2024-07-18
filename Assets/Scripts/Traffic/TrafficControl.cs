@@ -5,8 +5,8 @@ using System;
 
 public class TrafficControl : MonoBehaviour
 {
-    private float interval_green;
-    private float interval_red;
+    public float interval_green;
+    public float interval_red;
     public float timer_green;
     public float timer_red;
     public String car1_load_track = "Prefabs/Vehicle_Container_color01_separate";
@@ -28,7 +28,8 @@ public class TrafficControl : MonoBehaviour
         timer_green += Time.deltaTime;
         if (timer_green >= interval_green)
         {
-            Instantiate(Resources.Load(car1_load_track));
+            GameObject car = Instantiate(Resources.Load(car1_load_track) as GameObject);
+            // car.transform.position = new Vector
             interval_green = UnityEngine.Random.Range(minTime, maxTime);
             timer_green = 0f;
         }
