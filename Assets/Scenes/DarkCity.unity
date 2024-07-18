@@ -721,7 +721,7 @@ MonoBehaviour:
   button: {fileID: 401545625}
   status: 0
   theText: {fileID: 0}
-  explode_bomb: {fileID: 0}
+  explode_bomb: {fileID: 5657438230349779167, guid: 695efc19658b81a4f921de910661bc7d, type: 3}
   scenceID: 3
   changeScale: 1
   gameStartTextController: {fileID: 0}
@@ -740,8 +740,8 @@ MonoBehaviour:
   explosionForce: 200
   explosionRadius: 20
   status: 0
-  p_left: {x: 13.9, y: 1.5158, z: 17}
-  p_right: {x: 13.6, y: 1.52731, z: 5.2575}
+  p_left: {x: 13.6, y: 1.5258, z: 5.2575}
+  p_right: {x: 13.9, y: 1.51731, z: 17}
   sceneID: 3
   player_one: {fileID: 1008624444}
   player_two: {fileID: 1931322105}
