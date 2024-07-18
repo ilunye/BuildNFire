@@ -8,12 +8,13 @@ public class Menu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 {
     public TextMeshProUGUI text;
     public Image[] images;   // 存储Image组件的数组
-    private int currentIndex; 
+    private int currentIndex;
     private Color initialColor;
-    private bool confirmButtonEnabled = false;  //15秒后才能按confirm
-    private float timer = 15f;
+    private bool confirmButtonEnabled = false;  //5秒后才能按confirm
+    private float timer = 5f;
     private TextMeshProUGUI confirmText;
     public bool isConfirm = false;
+    private static bool isFirstTime = true;
     void Start()
     {
         confirmText = GetComponent<TextMeshProUGUI>();
@@ -24,19 +25,25 @@ public class Menu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
     void Update()
     {
-        if(timer > 0){
+        if (timer > 0)
+        {
             timer -= Time.deltaTime;
         }
-        if(isConfirm){
-            if(timer <= 0){
+        if (isConfirm)
+        {
+            if (timer <= 0 || isFirstTime == false)
+            {
                 confirmText.text = "CONFIRM";
-            }else{
+            }
+            else
+            {
                 confirmText.text = "CONFIRM(" + (int)timer + ")";
             }
         }
-        if (!confirmButtonEnabled && timer <= 0)
+        if ((!confirmButtonEnabled && timer <= 0) || isFirstTime == false)
         {
             confirmButtonEnabled = true;
+            isFirstTime = false;
         }
         // if (Input.GetKeyUp(KeyCode.Escape))
         // {
@@ -68,7 +75,8 @@ public class Menu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if(!isConfirm || (isConfirm && timer <= 0)){
+        if (!isConfirm || (isConfirm && timer <= 0) || isFirstTime == false)
+        {
             text.color = Color.red;
         }
     }
@@ -84,17 +92,18 @@ public class Menu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         {
             SceneManager.LoadScene("Scenes/pre");
         }
-        else if (text.text == "CONFIRM"&&confirmButtonEnabled) //15秒后可点击
+        else if (text.text == "CONFIRM" && confirmButtonEnabled) //15秒后可点击
         {
             //Debug.Log("confirm");
             SceneManager.LoadScene("Scenes/Main");
         }
         else if (text.text == "instruction")
         {
-            Time.timeScale=0;
+            Time.timeScale = 0;
         }
-        else if (text.text=="continue"){
-            Time.timeScale=1;
+        else if (text.text == "continue")
+        {
+            Time.timeScale = 1;
         }
 
         else if (text.text == "EXIT")

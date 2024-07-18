@@ -76,6 +76,7 @@ public class sum_msg : MonoBehaviour
 
             button.SetActive(true);
             Play_Final();
+            
             gameover = true;
         }
         else if (status == 2 && !gameover)
@@ -83,6 +84,7 @@ public class sum_msg : MonoBehaviour
             theText.text = "PLAYER TWO WON!";
             button.SetActive(true);
             Play_Final();
+            
             gameover = true;
         }
 
