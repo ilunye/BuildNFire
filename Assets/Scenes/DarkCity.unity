@@ -2907,7 +2907,6 @@ GameObject:
   m_Component:
   - component: {fileID: 438973643}
   - component: {fileID: 438973644}
-  - component: {fileID: 438973645}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -2951,21 +2950,6 @@ MonoBehaviour:
   region_zmin: 983
   region_zmax: 986
   loadTrack: Prefabs/Tree_1_1
---- !u!114 &438973645
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 438973642}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1d6bd8856b8d294cbbd3ec27d9111a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  treeController: {fileID: 0}
-  trafficControl: {fileID: 0}
-  scaleTime: 2
 --- !u!1001 &467085644
 PrefabInstance:
   m_ObjectHideFlags: 0
