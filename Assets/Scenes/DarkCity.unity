@@ -498,6 +498,7 @@ MonoBehaviour:
   sceneID: 1
   player_one: {fileID: 0}
   player_two: {fileID: 0}
+  sum_Msg: {fileID: 0}
 --- !u!114 &112140953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2962,8 +2963,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1d6bd8856b8d294cbbd3ec27d9111a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  treeController: {fileID: 438973644}
-  trafficControl: {fileID: 639457539}
+  treeController: {fileID: 0}
+  trafficControl: {fileID: 0}
   scaleTime: 2
 --- !u!1001 &467085644
 PrefabInstance:

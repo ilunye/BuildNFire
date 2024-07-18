@@ -32,7 +32,16 @@ public class TreeController : MonoBehaviour
             // 在场景1中执行特定的逻辑
             //Debug.Log("在场景1中");
         }
-        else if(sceneName=="DarkCity"){
+        else if(sceneName=="City"){
+            regionleft_xmin = 170f;
+            regionleft_xmax = 177f;
+            regionright_xmin = 183f;
+            regionright_xmax = 190f;
+            region_zmin = 134f;
+            region_zmax = 144f;
+        }
+
+        else{
             regionleft_xmin = 19.24f;
             regionleft_xmax = 20.22f;
             regionright_xmin = 19.24f;

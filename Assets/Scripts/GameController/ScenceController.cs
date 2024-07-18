@@ -50,17 +50,7 @@ public class SceneController : MonoBehaviour
         }
         else
         {
-            /*// 在其他场景中执行默认逻辑
-            if (trafficControl != null)
-            {
-                treeController.regionleft_xmin = 19.24f;
-                treeController.regionleft_xmax = 20.22f;
-                treeController.regionright_xmin = 19.24f;
-                treeController.regionright_xmax = 20.22f;
-                treeController.region_zmin = 3.75f;
-                treeController.region_zmax = 19.1f;
-            }*/
-            
+            // 在其他场景中执行默认逻辑
             if (trafficControl != null)
             {
                 
