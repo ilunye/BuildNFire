@@ -725,7 +725,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d7fc9ba7a8f8594fb2dad9928cd5fcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rayCastEnable: 0
   carCongestion: 0
   lastHit: {fileID: 0}
   green: 1
