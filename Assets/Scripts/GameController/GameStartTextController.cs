@@ -25,8 +25,10 @@ public class GameStartTextController : MonoBehaviour
     {
         player1 = GameObject.Find("animal_people_wolf_1");
         player2 = GameObject.Find("animal_people_wolf_2");
-        player1.GetComponent<Character>().enabled = false;
-        player2.GetComponent<Character>().enabled = false;
+        if(player1 != null && player2 != null){
+            player1.GetComponent<Character>().enabled = false;
+            player2.GetComponent<Character>().enabled = false;
+        }
         StartCoroutine(StartCountdown());
         BGM = Instantiate(Resources.Load("Audio/BGM") as GameObject);
         BGM_voice = BGM.GetComponent<AudioSource>();
@@ -94,8 +96,10 @@ public class GameStartTextController : MonoBehaviour
         StartText.color = new Color(1, 1, 1, 0);
         textRectTransform.anchoredPosition = startPosition;
 
-        player1.GetComponent<Character>().enabled = true;
-        player2.GetComponent<Character>().enabled = true;
+        if(player1 != null && player2 != null){
+            player1.GetComponent<Character>().enabled = true;
+            player2.GetComponent<Character>().enabled = true;
+        }
     }
     // Update is called once per frame
     void Update()

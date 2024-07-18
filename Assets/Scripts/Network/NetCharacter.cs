@@ -72,7 +72,6 @@ public class NetCharacter : NetworkBehaviour
 
     [SyncVar]
     public PlayerState playerState = PlayerState.Idle;
-    public bool isPunch = false;
     [SyncVar]
     public bool isFalling = false;
     public float timer = 0f;
@@ -95,6 +94,7 @@ public class NetCharacter : NetworkBehaviour
 
     private GameObject item_fall;
     private AudioSource item_fall_voice;
+    private GameObject myCannon;
 
     [Command(requiresAuthority=false)]
     public void CmdPlay(string state)
@@ -140,6 +140,20 @@ public class NetCharacter : NetworkBehaviour
         {
             keycodes = new KeyCode[] { KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow, KeyCode.Return };
         }
+
+        for(int i=0; i<2; i++){
+            myCannon = GameObject.Find("cannon" + i.ToString());
+            if(myCannon.GetComponent<Cannon>().claimed == false){
+                myCannon.GetComponent<Cannon>().claimed = true;
+                break;
+            }
+            if(i==1){
+                Destroy(gameObject);
+                break;
+            }
+            myCannon.GetComponent<Cannon>().player = gameObject;
+            myCannon.GetComponent<Cannon>().workFlow = GameObject.Find("Canvas/PlayerUI_" + (i+1).ToString()).GetComponent<WorkFlow>();
+        } 
     }
     // Start is called before the first frame update
     void Start()
@@ -198,37 +212,37 @@ public class NetCharacter : NetworkBehaviour
         {        // holding something
             if (Material == MaterialType.Wood)
             {
-                GameObject g = Instantiate(Resources.Load("Prefabs/Wood") as GameObject);
+                GameObject g = Instantiate(Resources.Load("Prefabs/Online/Wood") as GameObject);
                 g.transform.position = transform.position + new Vector3(0, 0.5f, 0);
-                g.GetComponent<CollectableMaterials>().WillDisappear = false;
+                g.GetComponent<NetCollectableMaterials>().WillDisappear = false;
                 g.name = "Wood_" + (CarThrow.wood_num++).ToString();
             }
             else if (Material == MaterialType.IronOre)
             {
-                GameObject g = Instantiate(Resources.Load("Prefabs/Rock_03") as GameObject);
+                GameObject g = Instantiate(Resources.Load("Prefabs/Online/Rock_03") as GameObject);
                 g.transform.position = transform.position + new Vector3(0, 0.5f, 0);
-                g.GetComponent<CollectableMaterials>().WillDisappear = false;
+                g.GetComponent<NetCollectableMaterials>().WillDisappear = false;
                 g.name = "IronOre_" + (CarThrow.rock_num++).ToString();
             }
             else if (Material == MaterialType.Iron)
             {
-                GameObject g = Instantiate(Resources.Load("Prefabs/ConcreteTubes") as GameObject);
+                GameObject g = Instantiate(Resources.Load("Prefabs/Online/ConcreteTubes") as GameObject);
                 g.transform.position = transform.position + new Vector3(0, 0.5f, 0);
-                g.GetComponent<CollectableMaterials>().WillDisappear = false;
+                g.GetComponent<NetCollectableMaterials>().WillDisappear = false;
                 g.name = "Iron_" + (CarThrow.concrete_num++).ToString();
             }
             else if (Material == MaterialType.GunPowder)
             {
-                GameObject g = Instantiate(Resources.Load("Prefabs/explosiveBarrel") as GameObject);
+                GameObject g = Instantiate(Resources.Load("Prefabs/Online/explosiveBarrel") as GameObject);
                 g.transform.position = transform.position + new Vector3(0, 0.5f, 0);
-                g.GetComponent<CollectableMaterials>().WillDisappear = false;
+                g.GetComponent<NetCollectableMaterials>().WillDisappear = false;
                 g.name = "GunPowder_" + (CarThrow.barrel_num++).ToString();
             }
             else if (Material == MaterialType.CannonBall)
             {
-                GameObject g = Instantiate(Resources.Load("Prefabs/projectile") as GameObject);
+                GameObject g = Instantiate(Resources.Load("Prefabs/Online/projectile") as GameObject);
                 g.transform.position = transform.position + new Vector3(0, 0.5f, 0);
-                g.GetComponent<CollectableMaterials>().WillDisappear = false;
+                g.GetComponent<NetCollectableMaterials>().WillDisappear = false;
                 g.name = "CannonBall_" + (CarThrow.projectile_num++).ToString();
             }
             else if(Material == MaterialType.Bomb){
@@ -246,7 +260,6 @@ public class NetCharacter : NetworkBehaviour
         }
         if (playerState == PlayerState.Idle)
         {
-            isPunch = false;
             CmdSetFalling(false);
             timer = 0f;
         }
@@ -398,7 +411,6 @@ public bool last_E_Up = false;
             {   // no items in hand
                 // Anim.Play("PunchRight");
                 CmdPlay("PunchRight");
-                isPunch = false;
                 CmdPlayerState(PlayerState.Punch);
             }
             else if ((playerState == PlayerState.Idle || playerState == PlayerState.ReadyToClaim) && Material != MaterialType.None && Material != MaterialType.Bomb)
@@ -408,27 +420,27 @@ public bool last_E_Up = false;
                 switch (Material)
                 {
                     case MaterialType.Wood:
-                        obj = Instantiate(Resources.Load("Prefabs/Wood") as GameObject, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
+                        obj = Instantiate(Resources.Load("Prefabs/Online/Wood") as GameObject, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
                         obj.name = "Wood_" + (CarThrow.wood_num++).ToString();
                         break;
                     case MaterialType.IronOre:
-                        obj = Instantiate(Resources.Load("Prefabs/Rock_03") as GameObject, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
+                        obj = Instantiate(Resources.Load("Prefabs/Online/Rock_03") as GameObject, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
                         obj.name = "IronOre_" + (CarThrow.rock_num++).ToString();
                         break;
                     case MaterialType.Iron:
-                        obj = Instantiate(Resources.Load("Prefabs/ConcreteTubes") as GameObject, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
+                        obj = Instantiate(Resources.Load("Prefabs/Online/ConcreteTubes") as GameObject, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
                         obj.name = "Iron_" + (CarThrow.concrete_num++).ToString();
                         break;
                     case MaterialType.GunPowder:
-                        obj = Instantiate(Resources.Load("Prefabs/explosiveBarrel") as GameObject, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
+                        obj = Instantiate(Resources.Load("Prefabs/Online/explosiveBarrel") as GameObject, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
                         obj.name = "GunPowder_" + (CarThrow.barrel_num++).ToString();
                         break;
                     case MaterialType.CannonBall:
-                        obj = Instantiate(Resources.Load("Prefabs/projectile") as GameObject, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
+                        obj = Instantiate(Resources.Load("Prefabs/Online/projectile") as GameObject, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
                         obj.name = "CannonBall_" + (CarThrow.projectile_num++).ToString();
                         break;
                 }
-                obj.GetComponent<CollectableMaterials>().WillDisappear = false;
+                obj.GetComponent<NetCollectableMaterials>().WillDisappear = false;
                 RaycastHit hit;
                 if(Physics.Raycast(new Vector3(transform.position.x, 0.5f, transform.position.z), transform.forward, out hit, 1f)){
                     obj.transform.position = new Vector3(obj.transform.position.x, 0.5f, obj.transform.position.z) - transform.forward * 0.3f;
