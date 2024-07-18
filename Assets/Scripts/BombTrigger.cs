@@ -31,8 +31,9 @@ public class BombTrigger : MonoBehaviour
                 break;
 
             case 2:
-                p_right = new Vector3(161f, 3.3f, 140f);
-                p_left = new Vector3(197f, 3.43f, 139f);
+                p_left = new Vector3(187.13f,1.28f,140.88f);
+                p_right = new Vector3(174f,1.28f,140.88f);
+
 
                 break;
             default:
@@ -118,12 +119,13 @@ public class BombTrigger : MonoBehaviour
             }
         }
         Destroy(player_one);
-        GameObject player = Instantiate(Resources.Load("Prefabs/animal_people_wolf_1") as GameObject);
-        player.GetComponent<Character>().wasd = true;
-        player.GetComponent<Character>().enabled = false;
-        player.transform.localPosition = new Vector3(794.2f, 1.6f, 981f);
-        Rigidbody playerRigidbody = player.GetComponent<Rigidbody>();
-        playerRigidbody.AddForce(Vector3.up * 10 + new Vector3(1, 0, 1), ForceMode.Impulse);
+        player_two.GetComponent<Character>().Anim.Play("WIN00");
+        // GameObject player = Instantiate(Resources.Load("Prefabs/animal_people_wolf_1") as GameObject);
+        // player.GetComponent<Character>().wasd = true;
+        // player.GetComponent<Character>().enabled = false;
+        // player.transform.localPosition = new Vector3(794.2f, 1.6f, 981f);
+        // Rigidbody playerRigidbody = player.GetComponent<Rigidbody>();
+        // playerRigidbody.AddForce(Vector3.up * 10 + new Vector3(1, 0, 1), ForceMode.Impulse);
     }
     private void ExplosionRight(float force, Vector3 position, float radius)
     {
@@ -137,12 +139,13 @@ public class BombTrigger : MonoBehaviour
             }
         }
         Destroy(player_two);
-        GameObject player = Instantiate(Resources.Load("Prefabs/animal_people_wolf_2") as GameObject);
-        player.GetComponent<Character>().wasd = false;
-        player.GetComponent<Character>().enabled = false;
-        player.transform.localPosition = new Vector3(804.8f, 1.6f, 981f);
-        Rigidbody playerRigidbody = player.GetComponent<Rigidbody>();
-        playerRigidbody.AddForce(Vector3.up * 10 + new Vector3(-1, 0, 1), ForceMode.Impulse);
+        player_one.GetComponent<Character>().Anim.Play("WIN00");
+        // GameObject player = Instantiate(Resources.Load("Prefabs/animal_people_wolf_2") as GameObject);
+        // player.GetComponent<Character>().wasd = false;
+        // player.GetComponent<Character>().enabled = false;
+        // player.transform.localPosition = new Vector3(804.8f, 1.6f, 981f);
+        // Rigidbody playerRigidbody = player.GetComponent<Rigidbody>();
+        // playerRigidbody.AddForce(Vector3.up * 10 + new Vector3(-1, 0, 1), ForceMode.Impulse);
     }
     private void ropeAddColliderNRigidBody(GameObject ropesRoot)
     {
