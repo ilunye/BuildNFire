@@ -73,11 +73,21 @@ public class HomeScreen_Menu : MonoBehaviour, IPointerEnterHandler, IPointerExit
         else if (text.text == "EXIT")
             Application.Quit();
         else if (text.text == "vally")
+        {
+            SceneController.sceneID = 0;
             SceneManager.LoadScene("Scenes/VallyInstruction");
+        }
+
         else if (text.text == "city")
+        {
+            SceneController.sceneID = 1;
             SceneManager.LoadScene("Scenes/City");
+        }
         else if (text.text == "darkcity")
+        {
+            SceneController.sceneID = 2;
             SceneManager.LoadScene("Scenes/darkcityInstruction");
+        }
 
 
     }

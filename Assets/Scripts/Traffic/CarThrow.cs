@@ -29,12 +29,12 @@ public class CarThrow : MonoBehaviour
     public int Scene_id = 0;       // main scene by default
 
     public float CarTime = 4.5f;
-    public static float bigScale ;
+    public static float bigScale = 1f ;
     public Vector3 randomVector_Left;
     public Vector3 randomVector_Right;
     public Vector3 randomVector;
     public bool Main_Scene = true;
-    public static float modeChange = 1f;
+    public static float intervalChange = 1f;
 
 
     void Start()
@@ -44,7 +44,7 @@ public class CarThrow : MonoBehaviour
         spawnPosition = gameObject.transform.position + transform.up * distanceAbove;
         interval = 1f;
         p = (int)Random.Range(1, 2);
-        interval = interval * p * modeChange;
+        interval = interval * p * intervalChange;
         throwForce = 1;
         if (!Main_Scene)
             CarTime = 3.5f;
@@ -169,6 +169,7 @@ public class CarThrow : MonoBehaviour
 
             spawnPosition = transform.position + transform.up * 0.5f  + randomVector;
             c.transform.position = spawnPosition;
+            Debug.Log("carthrow" + bigScale);
             c.transform.localScale *= bigScale;
             // Rigidbody cubeRigidbody = c.AddComponent<Rigidbody>();
 
@@ -177,15 +178,10 @@ public class CarThrow : MonoBehaviour
             // set as kinetic
             Rigidbody cubeRigidbody = c.GetComponent<Rigidbody>();
             cubeRigidbody.AddForce(Vector3.up * throwForce + new Vector3(x, 0, z), ForceMode.Impulse);
-            /*
-            if (r == 0 || r == 1)
-                StartCoroutine(BlinkAndDestroy(c, 10f));
-            else
-                StartCoroutine(BlinkAndDestroy(c, destroyDelay));
-            */
+           
 
             timer = 0f;
-            interval = 1.5f * Random.Range(1, 3) * modeChange;
+            interval = 1.5f * Random.Range(1, 3) * intervalChange;
         }
     }
 

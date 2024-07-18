@@ -23,7 +23,7 @@ public class ChooseMode : MonoBehaviour
             carMove.speed = 8f;
             carMoveSenceCity.speed = 15f;
             carMoveSenceDarkCity.speed = 10f;
-            CarThrow.modeChange = 0.3f;
+            CarThrow.intervalChange = 0.3f;
             CarThrow.bigScale = 1f;
             Furnace.bigScale = 1;
             Trees.bigScale = 1;
@@ -39,7 +39,7 @@ public class ChooseMode : MonoBehaviour
             carMove.speed = 3.5f;
             carMoveSenceCity.speed = 10;
             carMoveSenceDarkCity.speed = 5.5f;
-            CarThrow.modeChange = 1f;
+            CarThrow.intervalChange = 1f;
             CarThrow.bigScale = 5;
             Furnace.bigScale = 5;
             Trees.bigScale = 5;
@@ -54,7 +54,7 @@ public class ChooseMode : MonoBehaviour
             carMove.speed = 3.5f;
             carMoveSenceCity.speed = 10;
             carMoveSenceDarkCity.speed = 5.5f;
-            CarThrow.modeChange = 1f;
+            CarThrow.intervalChange = 1f;
             CarThrow.bigScale = 1f;
             Furnace.bigScale = 1;
             Trees.bigScale = 1;
