@@ -22,17 +22,21 @@ public class sum_msg : MonoBehaviour
     private GameObject ending;
     private AudioSource ending_source;
 
-    private GameObject endAnimation;
-    private GameObject fire;
-
     private GameObject bigBomb;
     private AudioSource bigBomb_voice;
     private BombTrigger bombTrigger;
 
     private ShakeCamera shakeCamera;
+
+    private Cannon cannon1;
+    private Cannon cannon2;
     public int scenceID = 1;
 
     public float changeScale = 1f;
+    private int idxControl;
+    private int idx1;
+    private int idx2;
+    public GameStartTextController gameStartTextController;
 
     [Obsolete]
 
@@ -56,6 +60,9 @@ public class sum_msg : MonoBehaviour
         bigBomb = Instantiate(Resources.Load("Audio/bigbomb") as GameObject);
         bigBomb_voice = bigBomb.GetComponent<AudioSource>();
         shakeCamera = GameObject.Find("MainCamera").GetComponent<ShakeCamera>();
+        cannon1 = GameObject.Find("cannon_1").GetComponent<Cannon>();
+        cannon2 = GameObject.Find("cannon_2").GetComponent<Cannon>();
+
 
     }
 
@@ -76,7 +83,7 @@ public class sum_msg : MonoBehaviour
 
             button.SetActive(true);
             Play_Final();
-            
+
             gameover = true;
         }
         else if (status == 2 && !gameover)
@@ -84,10 +91,29 @@ public class sum_msg : MonoBehaviour
             theText.text = "PLAYER TWO WON!";
             button.SetActive(true);
             Play_Final();
-            
+
             gameover = true;
         }
+        idx1 = cannon1.idx;
+        idx2 = cannon2.idx;
+        idxControl = Mathf.Max(idx1, idx2);
 
+        if (idxControl < 5)
+        {
+            gameStartTextController.BGM_voice.pitch = 1f;
+        }
+        else if (idxControl >= 5 && idxControl < 7)
+        {
+            gameStartTextController.BGM_voice.pitch = 1.2f;
+        }
+        else if (idxControl >= 7 && idxControl < 9)
+        {
+            gameStartTextController.BGM_voice.pitch = 1.4f;
+        }
+        else
+        {
+            gameStartTextController.BGM_voice.pitch = 1.6f;
+        }
     }
     private void Collide_Arround(Vector3 endposition)
     {
@@ -137,14 +163,14 @@ public class sum_msg : MonoBehaviour
             case 2: //city scene
                 if (status == 1)
                 {
-                    startposition = new Vector3(174f,1.28f,140.88f);
-                    targetposition = new Vector3(187.13f,1.28f,140.88f);
+                    startposition = new Vector3(174f, 1.28f, 140.88f);
+                    targetposition = new Vector3(187.13f, 1.28f, 140.88f);
                 }
                 else
                 {
 
-                    startposition = new Vector3(187.13f,1.28f,140.88f);
-                    targetposition = new Vector3(174f,1.28f,140.88f);
+                    startposition = new Vector3(187.13f, 1.28f, 140.88f);
+                    targetposition = new Vector3(174f, 1.28f, 140.88f);
                 }
                 break;
             default: //other scene
