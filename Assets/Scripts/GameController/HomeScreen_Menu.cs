@@ -68,7 +68,7 @@ public class HomeScreen_Menu : MonoBehaviour, IPointerEnterHandler, IPointerExit
             SceneManager.LoadScene("Scenes/MapSelection");
         }
         // cannonImage.SetActive(false);
-        if (text.text == "START")
+        else if (text.text == "START")
             SceneManager.LoadScene("Scenes/ModeSelection");
         else if (text.text == "EXIT")
             Application.Quit();
@@ -81,7 +81,7 @@ public class HomeScreen_Menu : MonoBehaviour, IPointerEnterHandler, IPointerExit
         else if (text.text == "city")
         {
             SceneController.sceneID = 1;
-            SceneManager.LoadScene("Scenes/City");
+            SceneManager.LoadScene("Scenes/CityInstruction");
         }
         else if (text.text == "darkcity")
         {
