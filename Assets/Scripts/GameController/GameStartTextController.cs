@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using System;
 
 public class GameStartTextController : MonoBehaviour
 {
@@ -15,8 +16,8 @@ public class GameStartTextController : MonoBehaviour
     private GameObject player1, player2;
 
     //voice
-    private GameObject BGM;
-    private AudioSource BGM_voice;
+    public GameObject BGM;
+    public AudioSource BGM_voice;
     void Awake()
     {
         StartText = GetComponent<TMP_Text>();
@@ -25,12 +26,30 @@ public class GameStartTextController : MonoBehaviour
     {
         player1 = GameObject.Find("animal_people_wolf_1");
         player2 = GameObject.Find("animal_people_wolf_2");
-        if(player1 != null && player2 != null){
+        if (player1 != null && player2 != null)
+        {
             player1.GetComponent<Character>().enabled = false;
             player2.GetComponent<Character>().enabled = false;
         }
         StartCoroutine(StartCountdown());
-        BGM = Instantiate(Resources.Load("Audio/BGM") as GameObject);
+        int bgm_Num = UnityEngine.Random.Range(1, 5);
+        switch (bgm_Num)
+        {
+
+            case 1:
+                BGM = Instantiate(Resources.Load("Audio/bgm1") as GameObject);
+                break;
+            case 2:
+                BGM = Instantiate(Resources.Load("Audio/bgm2") as GameObject);
+                break;
+            case 3:
+                BGM = Instantiate(Resources.Load("Audio/bgm3") as GameObject);
+                break;
+            case 4:
+                BGM = Instantiate(Resources.Load("Audio/bgm4") as GameObject);
+                break;
+        }
+
         BGM_voice = BGM.GetComponent<AudioSource>();
 
     }
@@ -96,7 +115,8 @@ public class GameStartTextController : MonoBehaviour
         StartText.color = new Color(1, 1, 1, 0);
         textRectTransform.anchoredPosition = startPosition;
 
-        if(player1 != null && player2 != null){
+        if (player1 != null && player2 != null)
+        {
             player1.GetComponent<Character>().enabled = true;
             player2.GetComponent<Character>().enabled = true;
         }
@@ -104,10 +124,11 @@ public class GameStartTextController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Time.timeScale == 0)
+        if (Time.timeScale == 0)
         {
             BGM_voice.Pause();
-        }else
+        }
+        else
         {
             BGM_voice.UnPause();
         }
