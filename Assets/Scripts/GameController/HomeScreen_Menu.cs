@@ -16,7 +16,6 @@ public class HomeScreen_Menu : MonoBehaviour, IPointerEnterHandler, IPointerExit
         initialColor = text.color;
         if (text.text == "START" || text.text == "vally" || text.text == "normal")
         {
-            Debug.Log("normal");
              cannonImage = GameObject.Find("cannon_img1");
         }
         else if(text.text == "darkcity"){
@@ -24,10 +23,9 @@ public class HomeScreen_Menu : MonoBehaviour, IPointerEnterHandler, IPointerExit
         }
         else
         {
-            Debug.Log("big");
-             cannonImage = GameObject.Find("cannon_img3");
+             cannonImage = GameObject.Find("cannon_img2");
         }
-        Debug.Log(cannonImage);
+        //Debug.Log(cannonImage);
         cannonImage.SetActive(false);
     }
 
@@ -66,7 +64,7 @@ public class HomeScreen_Menu : MonoBehaviour, IPointerEnterHandler, IPointerExit
             SceneManager.LoadScene("Scenes/MapSelection");
         }
         // cannonImage.SetActive(false);
-        if (text.text == "START")
+        else if (text.text == "START")
             SceneManager.LoadScene("Scenes/ModeSelection");
         else if (text.text == "EXIT")
             Application.Quit();
