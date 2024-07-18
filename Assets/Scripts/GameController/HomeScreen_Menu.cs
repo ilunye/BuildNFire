@@ -81,7 +81,7 @@ public class HomeScreen_Menu : MonoBehaviour, IPointerEnterHandler, IPointerExit
         else if (text.text == "city")
         {
             SceneController.sceneID = 1;
-            SceneManager.LoadScene("Scenes/City");
+            SceneManager.LoadScene("Scenes/CityInstruction");
         }
         else if (text.text == "darkcity")
         {
