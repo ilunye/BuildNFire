@@ -20,7 +20,7 @@ public class NetCannon : NetworkBehaviour
     public GameObject player2 = null;
     public bool playerIn = false;
     public bool playerIn2 = false;
-    public WorkFlow workFlow;
+    public NetWorkFlow workFlow;
     public GameStartTextController gameStartTextController;
     public int mode = 0;
     // these two only used in mode 1

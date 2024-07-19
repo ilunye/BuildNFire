@@ -211,13 +211,15 @@ public class NetCharacter : NetworkBehaviour
             if(myCannon.GetComponent<NetCannon>().claimed == false){
                 myCannon.GetComponent<NetCannon>().claimed = true;
                 myCannon.GetComponent<NetCannon>().player = gameObject;
-                myCannon.GetComponent<NetCannon>().workFlow = GameObject.Find("Canvas/PlayerUI_" + (i+1).ToString()).GetComponent<WorkFlow>();
+                myCannon.GetComponent<NetCannon>().workFlow = GameObject.Find("Canvas/PlayerUI_" + (i+1).ToString()).GetComponent<NetWorkFlow>();
                 gameObject.name = "animal_people_wolf_" + (i+1).ToString();
                 transform.GetChild(0).name = "animal_people_wolf" + (i+1).ToString();
                 if(i==0){
                     GameObject.Find("Canvas/Summary_msg").GetComponent<NetBombTrigger>().player_one = gameObject;
+                    GetComponent<NetUIController>().RawImage = GameObject.Find("Canvas/PlayerUI_1/Toggle1/Background/RawImage");
                 }else if(i==1){
                     GameObject.Find("Canvas/Summary_msg").GetComponent<NetBombTrigger>().player_two = gameObject;
+                    GetComponent<NetUIController>().RawImage = GameObject.Find("Canvas/PlayerUI_2/Toggle2/Background/RawImage");
                     Material[] materials = new Material[2];
                     materials[0] = mats[2];
                     materials[1] = mats[0];

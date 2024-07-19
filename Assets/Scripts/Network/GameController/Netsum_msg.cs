@@ -44,10 +44,10 @@ public class Netsum_msg : NetworkBehaviour
         status = s;
     }
 
-    [Obsolete]
 
     public void ToMenu()
     {
+        NetworkManagerHUD.disable = true;
         Application.LoadLevel("Scenes/HomeScreen");
     }
     void Awake()
@@ -76,11 +76,11 @@ public class Netsum_msg : NetworkBehaviour
     void Update()
     {
         if(mode == 0){
-            if (player1.GetComponent<WorkFlow>().iron_number == 3 && player1.GetComponent<WorkFlow>().wood_number == 2 && player1.GetComponent<WorkFlow>().gunpowder_number == 1 && player1.GetComponent<WorkFlow>().projectile_number == 1)
+            if (player1.GetComponent<NetWorkFlow>().iron_number == 3 && player1.GetComponent<NetWorkFlow>().wood_number == 2 && player1.GetComponent<NetWorkFlow>().gunpowder_number == 1 && player1.GetComponent<NetWorkFlow>().projectile_number == 1)
             {
                 CmdSetStatus(1);
             }
-            else if (player2.GetComponent<WorkFlow>().iron_number == 3 && player2.GetComponent<WorkFlow>().wood_number == 2 && player2.GetComponent<WorkFlow>().gunpowder_number == 1 && player2.GetComponent<WorkFlow>().projectile_number == 1)
+            else if (player2.GetComponent<NetWorkFlow>().iron_number == 3 && player2.GetComponent<NetWorkFlow>().wood_number == 2 && player2.GetComponent<NetWorkFlow>().gunpowder_number == 1 && player2.GetComponent<NetWorkFlow>().projectile_number == 1)
             {
                 CmdSetStatus(2);
             }
@@ -122,7 +122,7 @@ public class Netsum_msg : NetworkBehaviour
                 gameStartTextController.BGM_voice.pitch = 1.6f;
             }
         }else{
-            if(player1.GetComponent<WorkFlow>().iron_number == 5 && player1.GetComponent<WorkFlow>().wood_number == 3 && player1.GetComponent<WorkFlow>().gunpowder_number == 2 && player1.GetComponent<WorkFlow>().projectile_number == 2)
+            if(player1.GetComponent<NetWorkFlow>().iron_number == 5 && player1.GetComponent<NetWorkFlow>().wood_number == 3 && player1.GetComponent<NetWorkFlow>().gunpowder_number == 2 && player1.GetComponent<NetWorkFlow>().projectile_number == 2)
                 CmdSetStatus(1);
             if(status == 1 && !gameover){
                 theText.text = "YOU WON!";
