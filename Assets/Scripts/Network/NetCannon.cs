@@ -183,7 +183,7 @@ public class NetCannon : NetworkBehaviour
             material[i].SetFloat("_DisappearOffset", disOffset.position.y);
         }
         bool playerdoing = false;
-        if (playerIn && Input.GetKeyDown(player.GetComponent<NetCharacter>().keycodes[4]))
+        if (playerIn && player && Input.GetKeyDown(player.GetComponent<NetCharacter>().keycodes[4]))
         {
             //Debug.Log("build");
             if (isPlaying) return;
