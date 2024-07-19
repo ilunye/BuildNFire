@@ -21,6 +21,9 @@ public class ChooseMode : MonoBehaviour
             carMoveSenceDarkCity.speed = 10f;
             CarThrow.intervalChange = 0.2f;
             Bomb.explosionRadius = 1.5f;
+            CarThrow.bombRandom = 1;
+            TrafficControl.minTime =2;
+            TrafficControl.maxTime = 4;
             if (SceneController.sceneID == 1)//city
             {
                 CarThrow.bigScale = 2;
@@ -41,16 +44,20 @@ public class ChooseMode : MonoBehaviour
         {
             character1.PlayerSpeed = 6;
             character2.PlayerSpeed = 6;
-            Character.bigScale = 5;
             carMove.speed = 3.5f;
             carMoveSenceCity.speed = 10;
             carMoveSenceDarkCity.speed = 5.5f;
             CarThrow.intervalChange = 1f;
-            CarThrow.bigScale = 5;
-            Furnace.bigScale = 5;
-            Trees.bigScale = 5;
-            ThrowBomb.bigScale = 5;
+            CarThrow.bombRandom = 0;
+            CarThrow.bigScale = 4;
+            Character.bigScale = 4;
+            Furnace.bigScale = 4;
+            Trees.bigScale = 4;
+            ThrowBomb.bigScale = 4;
             Bomb.explosionRadius = 4;
+            TrafficControl.minTime =4;
+            TrafficControl.maxTime = 6;
+
         }
         else if (modeChoose == 0) // normal mode
         {
@@ -61,7 +68,10 @@ public class ChooseMode : MonoBehaviour
             carMoveSenceCity.speed = 10;
             carMoveSenceDarkCity.speed = 5.5f;
             CarThrow.intervalChange = 1f;
+            CarThrow.bombRandom = 1;
             Bomb.explosionRadius = 1.5f;
+            TrafficControl.minTime =4;
+            TrafficControl.maxTime = 6;
             if (SceneController.sceneID == 1)//city
             {
                 CarThrow.bigScale = 2;

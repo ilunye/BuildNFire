@@ -54,7 +54,7 @@ public class Menu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     }
     public void NextImage()
     {
-        currentIndex = (currentIndex + 1) % 4;
+        currentIndex = (currentIndex + 1) % 5;
         ShowCurrentImage();
     }
     private void ShowCurrentImage()
