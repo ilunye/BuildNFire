@@ -118,7 +118,7 @@ public class NetFurnace : NetworkBehaviour
     void Update()
     {
         bool playerdone = false;
-        if (playerIn && Input.GetKeyDown(player.GetComponent<NetCharacter>().keycodes[4]))
+        if (playerIn && player && Input.GetKeyDown(player.GetComponent<NetCharacter>().keycodes[4]))
         {
             playerdone = true;
             //Debug.Log("enter");

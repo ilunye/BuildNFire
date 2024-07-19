@@ -145,6 +145,14 @@ public class NetCannon : NetworkBehaviour
         }
     }
 
+    public void resetCannon(){
+        claimed = false;
+        isPlaying = false;
+        while(idx > 0){
+            prev_state();
+        }
+    }
+
     void Start()
     {
         disOffset = gameObject.transform.GetChild(0);
