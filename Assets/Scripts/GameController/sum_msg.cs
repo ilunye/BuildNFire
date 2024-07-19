@@ -36,7 +36,6 @@ public class sum_msg : MonoBehaviour
     public GameStartTextController gameStartTextController;
     public int mode = 0;
 
-    [Obsolete]
 
     public void ToMenu()
     {
