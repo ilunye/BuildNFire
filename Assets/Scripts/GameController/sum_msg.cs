@@ -114,7 +114,7 @@ public class sum_msg : MonoBehaviour
                 gameStartTextController.BGM_voice.pitch = 1.6f;
             }
         }else{
-            if(player1.GetComponent<WorkFlow>().iron_number == 5 && player1.GetComponent<WorkFlow>().wood_number == 3 && player1.GetComponent<WorkFlow>().gunpowder_number == 2 && player1.GetComponent<WorkFlow>().projectile_number == 2)
+            if(player1.GetComponent<WorkFlow>().iron_number == 3 && player1.GetComponent<WorkFlow>().wood_number == 2 && player1.GetComponent<WorkFlow>().gunpowder_number == 1 && player1.GetComponent<WorkFlow>().projectile_number == 1)
                 status = 1;
             if(status == 1 && !gameover){
                 theText.text = "YOU WON!";
