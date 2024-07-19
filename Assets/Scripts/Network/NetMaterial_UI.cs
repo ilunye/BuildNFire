@@ -13,10 +13,6 @@ public class NetUIController : MonoBehaviour
     public Sprite[] sprites = new Sprite[6];
     void Start()
     {
-        if(RawImage == null){
-            RawImage = GameObject.Find("Canvas/PlayerUI_1/Toggle1/Background/RawImage");
-        }
-        Debug.Assert(RawImage != null, "RawImage is null");
         if(sprites[0] == null){
             sprites[0] = Resources.Load<Sprite>("Textures/wood");
             sprites[1] = Resources.Load<Sprite>("Textures/ironOre");
@@ -30,6 +26,7 @@ public class NetUIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(RawImage == null) return;
         switch(GetComponent<NetCharacter>().Material){
             case NetCharacter.MaterialType.Wood:
                 RawImage.SetActive(true);

@@ -16,7 +16,6 @@ public class Instrucion_Menu : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     void Start()
     {
-        Debug.Log(gameObject);
         Instruction = GameObject.Find("Canvas/PauseMenu/Instruction");
         confirmText = GetComponent<TextMeshProUGUI>();
         initialColor = text.color;

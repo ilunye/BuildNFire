@@ -3,6 +3,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
+using Mirror;
 
 public class HomeScreen_Menu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
@@ -14,7 +15,7 @@ public class HomeScreen_Menu : MonoBehaviour, IPointerEnterHandler, IPointerExit
     {
         confirmText = GetComponent<TextMeshProUGUI>();
         initialColor = text.color;
-        if (text.text == "START" || text.text == "vally" || text.text == "normal")
+        if (text.text == "START" || text.text == "valley" || text.text == "normal")
         {
 
             cannonImage = GameObject.Find("cannon_img1");
@@ -23,6 +24,9 @@ public class HomeScreen_Menu : MonoBehaviour, IPointerEnterHandler, IPointerExit
         {
 
             cannonImage = GameObject.Find("cannon_img2");
+        }
+        else if (text.text == "online"){
+            cannonImage = GameObject.Find("cannon_img4");
         }
         else
         {
@@ -72,7 +76,7 @@ public class HomeScreen_Menu : MonoBehaviour, IPointerEnterHandler, IPointerExit
             SceneManager.LoadScene("Scenes/ModeSelection");
         else if (text.text == "EXIT")
             Application.Quit();
-        else if (text.text == "vally")
+        else if (text.text == "valley")
         {
             SceneController.sceneID = 0;
             SceneManager.LoadScene("Scenes/VallyInstruction");
@@ -87,6 +91,10 @@ public class HomeScreen_Menu : MonoBehaviour, IPointerEnterHandler, IPointerExit
         {
             SceneController.sceneID = 2;
             SceneManager.LoadScene("Scenes/darkcityInstruction");
+        }else if (text.text == "online")
+        {
+            NetworkManagerHUD.disable = false;
+            SceneManager.LoadScene("Scenes/Online/OnlineMain");
         }
 
 

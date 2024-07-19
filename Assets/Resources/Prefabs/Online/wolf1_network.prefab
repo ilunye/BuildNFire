@@ -284,6 +284,10 @@ MonoBehaviour:
   whatudo: {fileID: 0}
   whatudo_source: {fileID: 0}
   color: {r: 1, g: 1, b: 1, a: 1}
+  mats:
+  - {fileID: 2100000, guid: 45a62d12d3494dc46afcbde0ece86b75, type: 2}
+  - {fileID: 2100000, guid: a1d865d169db17749bdf3c948dd5bc08, type: 2}
+  - {fileID: 2100000, guid: fcdc8c2b1fd1f564fa16540c76d7fb21, type: 2}
   last_E_Up: 0
 --- !u!65 &1689078538627276879
 BoxCollider:
@@ -443,6 +447,10 @@ MonoBehaviour:
   bomb: {fileID: 0}
   throwForce: 0
   hasthrow: 0
+  theBombTarget: {fileID: 0}
+  changeScale: 1
+  sceneID: 1
+  target_dist_increasing: 1
 --- !u!114 &-2329037061976683183
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -155,22 +155,22 @@ public class NetBomb : NetworkBehaviour
                     if (nearbyObject.name.EndsWith("1"))
                     {
                         GameObject g = GameObject.Find("PlayerUI_1");
-                        int t = g.GetComponent<WorkFlow>().workFlowPos;
+                        int t = g.GetComponent<NetWorkFlow>().workFlowPos;
                         t--;
                         if (t < 0)
                             t = 0;
-                        g.GetComponent<WorkFlow>().workFlowPos = t;
-                        nearbyObject.GetComponent<Cannon>().prev_state();
+                        g.GetComponent<NetWorkFlow>().workFlowPos = t;
+                        nearbyObject.GetComponent<NetCannon>().prev_state();
                     }
                     else if (nearbyObject.name.EndsWith("2"))
                     {
                         GameObject g = GameObject.Find("PlayerUI_2");
-                        int t = g.GetComponent<WorkFlow>().workFlowPos;
+                        int t = g.GetComponent<NetWorkFlow>().workFlowPos;
                         t--;
                         if (t < 0)
                             t = 0;
-                        g.GetComponent<WorkFlow>().workFlowPos = t;
-                        nearbyObject.GetComponent<Cannon>().prev_state();
+                        g.GetComponent<NetWorkFlow>().workFlowPos = t;
+                        nearbyObject.GetComponent<NetCannon>().prev_state();
                     }
                 }
             }
