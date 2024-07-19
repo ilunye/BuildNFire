@@ -145,18 +145,11 @@ public class CarThrow : MonoBehaviour
             }
             else if (r == 21)
             {
-                if (0 != Scene_number)
-                {
-                    c = Instantiate(Resources.Load("Prefabs/Box") as GameObject);
-                    c.name = "box_" + "truck_" + box_num.ToString();
-                    box_num++;
-                }
-                else
-                {
-                    c = Instantiate(Resources.Load("prefabs/Lock Silver") as GameObject);
-                    c.name = "lock_" + "truck_" + lock_num.ToString();
-                    lock_num++;
-                }
+
+                c = Instantiate(Resources.Load("Prefabs/Box") as GameObject);
+                c.name = "box_" + "truck_" + box_num.ToString();
+                box_num++;
+
             }
             else
             {
