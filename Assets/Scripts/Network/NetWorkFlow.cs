@@ -50,14 +50,14 @@ public class NetWorkFlow : NetworkBehaviour
     [SyncVar]
     public bool toPickWood;
     [Command(requiresAuthority = false)]
-    public void CmdSetWood(bool b)
+    public void CmdSetToPickWood(bool b)
     {
         toPickWood = b;
     }
     [SyncVar]
     public bool toPickIron;
     [Command(requiresAuthority = false)]
-    public void CmdSetIron(bool b)
+    public void CmdSetToPickIron(bool b)
     {
         toPickIron = b;
     }
@@ -65,7 +65,13 @@ public class NetWorkFlow : NetworkBehaviour
 /*
 |--Wood--|--Iron--|--Wood--|--Iron--|--Iron--|--Iron--|
 */
+    [SyncVar]
     public int workFlowPos = 0; // start at 0, max = 12
+    [Command(requiresAuthority = false)]
+    public void CmdSetWorkFlowPos(int i)
+    {
+        workFlowPos = i;
+    }
 
     public bool last_is_iron = false;
     public bool last_is_wood = false;
@@ -115,17 +121,17 @@ public class NetWorkFlow : NetworkBehaviour
                 CmdSetIron(2.0f + temp + 0.5f);
         }
         if(workFlowPos % 4 < 2 && workFlowPos < 8){
-            CmdSetWood(false);
-            CmdSetIron(true);
+            CmdSetToPickWood(false);
+            CmdSetToPickIron(true);
         }else if(workFlowPos % 4 >= 2 && workFlowPos < 8){
-            CmdSetWood(true);
-            CmdSetIron(false);
+            CmdSetToPickWood(true);
+            CmdSetToPickIron(false);
         }else if(workFlowPos < 10){
-            CmdSetWood(false);
-            CmdSetIron(true);
+            CmdSetToPickWood(false);
+            CmdSetToPickIron(true);
         }else{
-            CmdSetWood(false);
-            CmdSetIron(false);
+            CmdSetToPickWood(false);
+            CmdSetToPickIron(false);
         }
 
         if(last_is_iron)
@@ -149,43 +155,43 @@ public class NetWorkFlow : NetworkBehaviour
         if(toPickIron && isIron && iron_number < 3f){
             last_is_iron = true;
             last_is_wood = false;
-            workFlowPos += 2;
+            CmdSetWorkFlowPos(workFlowPos+2);
             if(workFlowPos > 10)
-                workFlowPos = 10;
+                CmdSetWorkFlowPos(10);
             iron_number += 1f;
             CmdSetIron((float)(iron_number + 1));
             if(iron_number > 3f)
                 // iron_number = 3f;
                 CmdSetIron(3f);
             if(iron_number <= 2f){
-                CmdSetIron(false);
-                CmdSetWood(true);
+                CmdSetToPickIron(false);
+                CmdSetToPickWood(true);
                 DisableAllChildren(frame_iron);
                 AbleAllChildren(frame_wood);
             }else if(iron_number < 3f){
-                CmdSetIron(true);
-                CmdSetWood(false);
+                CmdSetToPickIron(true);
+                CmdSetToPickWood(false);
                 DisableAllChildren(frame_iron);
                 DisableAllChildren(frame_wood);
             }else{
-                CmdSetIron(false);
-                CmdSetWood(false);
+                CmdSetToPickIron(false);
+                CmdSetToPickWood(false);
                 DisableAllChildren(frame_iron);
                 DisableAllChildren(frame_wood);
             }
         }else if(toPickWood && wood_number < 2f && isWood){
             last_is_wood = true;
             last_is_iron = false;
-            workFlowPos += 2;
+            CmdSetWorkFlowPos(workFlowPos+2);
             if(workFlowPos > 10)
-                workFlowPos = 10;
+                CmdSetWorkFlowPos(10);
             // wood_number += 1f;
             CmdSetWood(wood_number + 1f);
             if(wood_number > 2f)
                 // wood_number = 2f;
                 CmdSetWood(2f);
-            CmdSetIron(true);
-            CmdSetWood(false);
+            CmdSetToPickIron(true);
+            CmdSetToPickWood(false);
             AbleAllChildren(frame_iron);
             DisableAllChildren(frame_wood);
         }else if(isPro && projectile_number < 1f){

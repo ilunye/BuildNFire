@@ -19,20 +19,23 @@ public class GameStartTextController : MonoBehaviour
     //voice
     public GameObject BGM;
     public AudioSource BGM_voice;
+    public bool threeTwoOne = true;
     void Awake()
     {
         StartText = GetComponent<TMP_Text>();
     }
     void Start()
     {
-        player1 = GameObject.Find("animal_people_wolf_1");
-        player2 = GameObject.Find("animal_people_wolf_2");
-        if (player1 != null && player2 != null)
-        {
-            player1.GetComponent<Character>().enabled = false;
-            player2.GetComponent<Character>().enabled = false;
+        if(threeTwoOne){
+            player1 = GameObject.Find("animal_people_wolf_1");
+            player2 = GameObject.Find("animal_people_wolf_2");
+            if (player1 != null && player2 != null)
+            {
+                player1.GetComponent<Character>().enabled = false;
+                player2.GetComponent<Character>().enabled = false;
+            }
+            StartCoroutine(StartCountdown());
         }
-        StartCoroutine(StartCountdown());
         int bgm_Num = UnityEngine.Random.Range(1, 5);
         switch (bgm_Num)
         {
@@ -52,7 +55,9 @@ public class GameStartTextController : MonoBehaviour
         }
 
         BGM_voice = BGM.GetComponent<AudioSource>();
-
+        if(!threeTwoOne){
+            Play_BGM();
+        }
     }
 
     IEnumerator StartCountdown()

@@ -23,11 +23,18 @@ namespace Mirror
         private GUIStyle buttonStyle;
         private GUIStyle textFieldStyle;
         private GUIStyle labelStyle;
+        private string localIP;
 
         void Awake()
         {
             disable = false;
             manager = GetComponent<NetworkManager>();
+            using (Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, 0))
+            {
+                socket.Connect("8.8.8.8", 65530);
+                IPEndPoint endPoint = socket.LocalEndPoint as IPEndPoint;
+                localIP = endPoint.Address.ToString();
+            }
         }
 
         void OnGUI()
@@ -134,19 +141,19 @@ namespace Mirror
             {
                 // host mode
                 GUI.skin.label.alignment = TextAnchor.MiddleLeft;
-                GUILayout.Label($"<b>Host</b>: running on {clientNo}", labelStyle);
+                GUILayout.Label($"<b>Host</b>: running on {localIP}", labelStyle);
             }
             else if (NetworkServer.active)
             {
                 // server only
                 GUI.skin.label.alignment = TextAnchor.MiddleLeft;
-                GUILayout.Label($"<b>Server</b>: running on {clientNo}", labelStyle);
+                GUILayout.Label($"<b>Server</b>: running on {localIP}", labelStyle);
             }
             else if (NetworkClient.isConnected)
             {
                 // client only
                 GUI.skin.label.alignment = TextAnchor.MiddleLeft;
-                GUILayout.Label($"<b>Client</b>: connected to {manager.networkAddress} via {Transport.active}", labelStyle);
+                GUILayout.Label($"<b>Client</b>: connected to {manager.networkAddress}", labelStyle);
             }
         }
 
