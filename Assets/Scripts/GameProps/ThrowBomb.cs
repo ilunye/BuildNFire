@@ -85,7 +85,7 @@ public class ThrowBomb : MonoBehaviour
                     if(throwForce == MaxThrowForce)
                         target_dist_increasing = false;
                 }
-                else if(!target_dist_increasing && throwForce > InitthrowForce)
+                else if(!target_dist_increasing && throwForce >= InitthrowForce)
                 {
                     throwForce -= Time.deltaTime * multipleFore;
                     if(throwForce < InitthrowForce)
