@@ -29,12 +29,13 @@ public class CarThrow : MonoBehaviour
     public int Scene_id = 0;       // main scene by default
 
     public float CarTime = 4.5f;
-    public static float bigScale ;
+    public static float bigScale;
     public Vector3 randomVector_Left;
     public Vector3 randomVector_Right;
     public Vector3 randomVector;
     public int Scene_number = 0;
     public static float intervalChange = 1f;
+    public static int bombRandom = 1;
 
 
     void Start()
@@ -51,7 +52,7 @@ public class CarThrow : MonoBehaviour
         // else
         //     CarTime = 9999f;            // 对于darkcity，销毁不归此函数管理
         // destroyDelay = 5f;
-        
+
     }
 
     void Update()
@@ -65,12 +66,11 @@ public class CarThrow : MonoBehaviour
         {
             GameObject c;
             int r = Random.Range(0, 22);//决定抛出物体
-            if (r <= 1)
+            if (r <= bombRandom)
             {
                 c = Instantiate(Resources.Load("prefabs/Bomb Red") as GameObject);
                 c.name = "bomb_" + "truck_" + bomb_num.ToString();
                 bomb_num++;
-                //c = Instantiate(Resources.Load("prefabs/explosiveBarrel") as GameObject);
             }
             else if (r == 2)
             {
@@ -91,7 +91,6 @@ public class CarThrow : MonoBehaviour
                 c = Instantiate(Resources.Load("prefabs/Hourglass Green 1") as GameObject);
                 c.name = "hourglass_" + "truck_" + hourglass_num.ToString();
                 hourglass_num++;
-                //c = Instantiate(Resources.Load("prefabs/projectile") as GameObject);
             }
             else if (r <= 7)
             {
@@ -134,11 +133,14 @@ public class CarThrow : MonoBehaviour
             }
             else if (r == 21)
             {
-                if(0 != Scene_number){
+                if (0 != Scene_number)
+                {
                     c = Instantiate(Resources.Load("Prefabs/Box") as GameObject);
                     c.name = "box_" + "truck_" + box_num.ToString();
                     box_num++;
-                }else{
+                }
+                else
+                {
                     c = Instantiate(Resources.Load("prefabs/Lock Silver") as GameObject);
                     c.name = "lock_" + "truck_" + lock_num.ToString();
                     lock_num++;
@@ -170,9 +172,9 @@ public class CarThrow : MonoBehaviour
                     randomVector = randomVector_Left;
             }
 
-            spawnPosition = transform.position + transform.up * 0.5f  + randomVector;
+            spawnPosition = transform.position + transform.up * 0.5f + randomVector;
             c.transform.position = spawnPosition;
-            
+
             c.transform.localScale *= bigScale;
             // Rigidbody cubeRigidbody = c.AddComponent<Rigidbody>();
 
@@ -181,7 +183,7 @@ public class CarThrow : MonoBehaviour
             // set as kinetic
             Rigidbody cubeRigidbody = c.GetComponent<Rigidbody>();
             cubeRigidbody.AddForce(Vector3.up * throwForce + new Vector3(x, 0, z), ForceMode.Impulse);
-           
+
 
             timer = 0f;
             interval = 1.5f * Random.Range(1, 3) * intervalChange;
