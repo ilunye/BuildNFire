@@ -12,8 +12,8 @@ public class TrafficControl : MonoBehaviour
     public String car1_load_track = "Prefabs/Vehicle_Container_color01_separate";
     public String car2_load_track = "Prefabs/Vehicle_Container_color03_separate";
 
-    public float minTime = 4f;
-    public float maxTime = 6f;
+    public static float minTime = 4f;
+    public static float maxTime = 6f;
 
     void Start()
     {

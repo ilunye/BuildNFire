@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using Mirror;
 
-public class sum_msg : MonoBehaviour
+public class Netsum_msg : NetworkBehaviour
 {
     // Start is called before the first frame update
     public GameObject button;
+    [SyncVar]
     public int status = 0;  // 0: not end, 1: player 1 won, 2: player 2 won
     public TMP_Text theText = null;
     GameObject player1, player2;
@@ -21,12 +23,12 @@ public class sum_msg : MonoBehaviour
 
     private GameObject bigBomb;
     private AudioSource bigBomb_voice;
-    private BombTrigger bombTrigger;
+    private NetBombTrigger bombTrigger;
 
     private ShakeCamera shakeCamera;
 
-    private Cannon cannon1;
-    private Cannon cannon2;
+    private NetCannon cannon1;
+    private NetCannon cannon2;
     public int scenceID = 1;
 
     public float changeScale = 1f;
@@ -36,9 +38,16 @@ public class sum_msg : MonoBehaviour
     public GameStartTextController gameStartTextController;
     public int mode = 0;
 
+    [Command(requiresAuthority = false)]
+    public void CmdSetStatus(int s)
+    {
+        status = s;
+    }
+
 
     public void ToMenu()
     {
+        NetworkManagerHUD.disable = true;
         Application.LoadLevel("Scenes/HomeScreen");
     }
     void Awake()
@@ -47,7 +56,7 @@ public class sum_msg : MonoBehaviour
         player1 = GameObject.Find("PlayerUI_1");
         player2 = GameObject.Find("PlayerUI_2");
 
-        bombTrigger = GetComponent<BombTrigger>();
+        bombTrigger = GetComponent<NetBombTrigger>();
     }
     void Start()
     {
@@ -57,8 +66,8 @@ public class sum_msg : MonoBehaviour
         bigBomb = Instantiate(Resources.Load("Audio/bigbomb") as GameObject);
         bigBomb_voice = bigBomb.GetComponent<AudioSource>();
         shakeCamera = GameObject.Find("MainCamera").GetComponent<ShakeCamera>();
-        cannon1 = GameObject.Find("cannon_1").GetComponent<Cannon>();
-        cannon2 = GameObject.Find("cannon_2").GetComponent<Cannon>();
+        cannon1 = GameObject.Find("cannon_1").GetComponent<NetCannon>();
+        cannon2 = GameObject.Find("cannon_2").GetComponent<NetCannon>();
 
 
     }
@@ -67,13 +76,13 @@ public class sum_msg : MonoBehaviour
     void Update()
     {
         if(mode == 0){
-            if (player1.GetComponent<WorkFlow>().iron_number == 3 && player1.GetComponent<WorkFlow>().wood_number == 2 && player1.GetComponent<WorkFlow>().gunpowder_number == 1 && player1.GetComponent<WorkFlow>().projectile_number == 1)
+            if (player1.GetComponent<NetWorkFlow>().iron_number == 3 && player1.GetComponent<NetWorkFlow>().wood_number == 2 && player1.GetComponent<NetWorkFlow>().gunpowder_number == 1 && player1.GetComponent<NetWorkFlow>().projectile_number == 1)
             {
-                status = 1;
+                CmdSetStatus(1);
             }
-            else if (player2.GetComponent<WorkFlow>().iron_number == 3 && player2.GetComponent<WorkFlow>().wood_number == 2 && player2.GetComponent<WorkFlow>().gunpowder_number == 1 && player2.GetComponent<WorkFlow>().projectile_number == 1)
+            else if (player2.GetComponent<NetWorkFlow>().iron_number == 3 && player2.GetComponent<NetWorkFlow>().wood_number == 2 && player2.GetComponent<NetWorkFlow>().gunpowder_number == 1 && player2.GetComponent<NetWorkFlow>().projectile_number == 1)
             {
-                status = 2;
+                CmdSetStatus(2);
             }
             if (status == 1 && !gameover)
             {
@@ -113,8 +122,8 @@ public class sum_msg : MonoBehaviour
                 gameStartTextController.BGM_voice.pitch = 1.6f;
             }
         }else{
-            if(player1.GetComponent<WorkFlow>().iron_number == 3 && player1.GetComponent<WorkFlow>().wood_number == 2 && player1.GetComponent<WorkFlow>().gunpowder_number == 1 && player1.GetComponent<WorkFlow>().projectile_number == 1)
-                status = 1;
+            if(player1.GetComponent<NetWorkFlow>().iron_number == 5 && player1.GetComponent<NetWorkFlow>().wood_number == 3 && player1.GetComponent<NetWorkFlow>().gunpowder_number == 2 && player1.GetComponent<NetWorkFlow>().projectile_number == 2)
+                CmdSetStatus(1);
             if(status == 1 && !gameover){
                 theText.text = "YOU WON!";
                 button.SetActive(true);

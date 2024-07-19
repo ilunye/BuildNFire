@@ -148,7 +148,7 @@ public class Character : MonoBehaviour
         }
         Debug.Assert(cam != null, "cam is null");
 
-        
+
     }
 
     // Update is called once per frame
@@ -159,7 +159,7 @@ public class Character : MonoBehaviour
 
     */
 
-    
+
 
     private float x_bound_left = 794.25f;
     private float x_bound_right = 804.89f;
@@ -167,13 +167,16 @@ public class Character : MonoBehaviour
     private float z_bound_up = 987.02f;
     void Update()
     {
-        if(wasd){
+        if (wasd)
+        {
             keycodes[0] = KeyCode.W;
             keycodes[1] = KeyCode.S;
             keycodes[2] = KeyCode.A;
             keycodes[3] = KeyCode.D;
             keycodes[4] = KeyCode.E;
-        }else{
+        }
+        else
+        {
             keycodes[0] = KeyCode.UpArrow;
             keycodes[1] = KeyCode.DownArrow;
             keycodes[2] = KeyCode.LeftArrow;
@@ -197,37 +200,38 @@ public class Character : MonoBehaviour
 
         if (playerState == PlayerState.Falling && Material != MaterialType.None)
         {        // holding something
+            GameObject g = null;
             if (Material == MaterialType.Wood)
             {
-                GameObject g = Instantiate(Resources.Load("Prefabs/Wood") as GameObject);
+                g = Instantiate(Resources.Load("Prefabs/Wood") as GameObject);
                 g.transform.position = transform.position + new Vector3(0, 0.5f, 0);
                 g.GetComponent<CollectableMaterials>().WillDisappear = false;
                 g.name = "Wood_" + (CarThrow.wood_num++).ToString();
             }
             else if (Material == MaterialType.IronOre)
             {
-                GameObject g = Instantiate(Resources.Load("Prefabs/Rock_03") as GameObject);
+                g = Instantiate(Resources.Load("Prefabs/Rock_03") as GameObject);
                 g.transform.position = transform.position + new Vector3(0, 0.5f, 0);
                 g.GetComponent<CollectableMaterials>().WillDisappear = false;
                 g.name = "IronOre_" + (CarThrow.rock_num++).ToString();
             }
             else if (Material == MaterialType.Iron)
             {
-                GameObject g = Instantiate(Resources.Load("Prefabs/ConcreteTubes") as GameObject);
+                g = Instantiate(Resources.Load("Prefabs/ConcreteTubes") as GameObject);
                 g.transform.position = transform.position + new Vector3(0, 0.5f, 0);
                 g.GetComponent<CollectableMaterials>().WillDisappear = false;
                 g.name = "Iron_" + (CarThrow.concrete_num++).ToString();
             }
             else if (Material == MaterialType.GunPowder)
             {
-                GameObject g = Instantiate(Resources.Load("Prefabs/explosiveBarrel") as GameObject);
+                g = Instantiate(Resources.Load("Prefabs/explosiveBarrel") as GameObject);
                 g.transform.position = transform.position + new Vector3(0, 0.5f, 0);
                 g.GetComponent<CollectableMaterials>().WillDisappear = false;
                 g.name = "GunPowder_" + (CarThrow.barrel_num++).ToString();
             }
             else if (Material == MaterialType.CannonBall)
             {
-                GameObject g = Instantiate(Resources.Load("Prefabs/projectile") as GameObject);
+                g = Instantiate(Resources.Load("Prefabs/projectile") as GameObject);
                 g.transform.position = transform.position + new Vector3(0, 0.5f, 0);
                 g.GetComponent<CollectableMaterials>().WillDisappear = false;
                 g.name = "CannonBall_" + (CarThrow.projectile_num++).ToString();
@@ -238,7 +242,12 @@ public class Character : MonoBehaviour
                 GetComponent<ThrowBomb>().ResetThrowForce();
             }
             Material = MaterialType.None;
+            if (g != null)
+            {
+                g.transform.localScale *= bigScale;
+            }
         }
+
         stateInfo = Anim.GetCurrentAnimatorStateInfo(0);
         if (stateInfo.IsName("Idle") && playerState != PlayerState.ReadyToClaim)
         {
@@ -364,7 +373,7 @@ public class Character : MonoBehaviour
                     //     p -= cam.transform.right * PlayerSpeed * Time.deltaTime;
                     // else if (transform.position.x < x_bound_right)
                     //     p -= cam.transform.right * PlayerSpeed * Time.deltaTime;
-                    p -= cam.transform.right* PlayerSpeed * Time.deltaTime;
+                    p -= cam.transform.right * PlayerSpeed * Time.deltaTime;
                 }
                 transform.localPosition = p;
                 Idle2Run();
@@ -384,7 +393,7 @@ public class Character : MonoBehaviour
                     //     p += cam.transform.right * PlayerSpeed * Time.deltaTime;
                     // else if (transform.position.x > x_bound_left)
                     //     p += cam.transform.right * PlayerSpeed * Time.deltaTime;
-                    p += cam.transform.right* PlayerSpeed * Time.deltaTime;
+                    p += cam.transform.right * PlayerSpeed * Time.deltaTime;
                 }
                 transform.localPosition = p;
                 Idle2Run();
@@ -480,7 +489,7 @@ public class Character : MonoBehaviour
         switch (dir)
         {
             case Direction.Forward:
-                if(transform.forward == new Vector3(0, 0, -1))
+                if (transform.forward == new Vector3(0, 0, -1))
                     transform.forward = new Vector3(0.01f, 0, -1f);
                 transform.forward = Vector3.LerpUnclamped(transform.forward, cam.transform.forward, 0.5f);
                 break;
@@ -492,15 +501,15 @@ public class Character : MonoBehaviour
                 break;
             case Direction.Left:
                 // transform.rotation = Quaternion.Euler(0, cam.transform.rotation.eulerAngles.y - 90, 0);
-                if(transform.forward == new Vector3(1, 0, 0))
+                if (transform.forward == new Vector3(1, 0, 0))
                     transform.forward = new Vector3(1f, 0, 0.01f);
                 transform.forward = Vector3.LerpUnclamped(transform.forward, -cam.transform.right, 0.5f);
                 break;
             case Direction.Right:
                 // transform.rotation = Quaternion.Euler(0, cam.transform.rotation.eulerAngles.y + 90, 0);
-                if(transform.forward == new Vector3(-1, 0, 0))
+                if (transform.forward == new Vector3(-1, 0, 0))
                     transform.forward = new Vector3(-1f, 0, 0.01f);
-                
+
                 transform.forward = Vector3.LerpUnclamped(transform.forward + new Vector3(0, 0, 0.1f) + new Vector3(0.1f, 0, 0), cam.transform.right, 0.5f);
                 break;
         }

@@ -10,6 +10,7 @@ public class NetThrowBomb : NetworkBehaviour
     private float throwDuration = 5f; // 投掷的持续时间
     private float elapsedTime = 0f; //计算投掷的时间
 
+    [SyncVar]
     public float throwForce; //投掷的力量
 
     private float MaxThrowForce = 5f; //投掷允許的最大力量
@@ -35,6 +36,11 @@ public class NetThrowBomb : NetworkBehaviour
     public bool target_dist_increasing = true;
 
     [Command(requiresAuthority = false)]
+    public void CmdSetForce(float force)
+    {
+        throwForce = force;
+    }
+    [Command(requiresAuthority = false)]
     public void CmdServerSpawn(string path, Vector3 position, bool isTarget, bool isBomb)
     {
         if(isTarget){
@@ -46,11 +52,6 @@ public class NetThrowBomb : NetworkBehaviour
             NetworkServer.Spawn(bomb);
             StartCoroutine(ThrowBombPosition(position, transform.forward));
         }
-    }
-    [ClientRpc]
-    public void RpcSetTarget(GameObject target)
-    {
-        theBombTarget = target;
     }
     [Command(requiresAuthority = false)]
     public void CmdDestroy(GameObject obj)
@@ -96,24 +97,24 @@ public class NetThrowBomb : NetworkBehaviour
                     readytothrow = true;
 
                     //Debug.Log(target.transform.position);
-                    CmdServerSpawn("Prefabs/Online/bomb_target", transform.position + transform.forward * 1f * throwForce + upVector, true, false);
+                    // CmdServerSpawn("Prefabs/Online/bomb_target", transform.position + transform.forward * 1f * throwForce + upVector, true, false);
                 }
                 else if(theBombTarget){
-                    theBombTarget.transform.position = transform.position + transform.forward * (1f * throwForce + 0.6f) + upVector;
+                    // theBombTarget.transform.position = transform.position + transform.forward * (1f * throwForce + 0.6f) + upVector;
                 }
                 if (target_dist_increasing && throwForce < MaxThrowForce)
                 {
-                    throwForce += Time.deltaTime * multipleFore;
+                    CmdSetForce(throwForce + Time.deltaTime * multipleFore);
                     if(throwForce > MaxThrowForce)
-                        throwForce = MaxThrowForce;
+                        CmdSetForce(MaxThrowForce);
                     if(throwForce == MaxThrowForce)
                         target_dist_increasing = false;
                 }
                 else if(!target_dist_increasing && throwForce > InitthrowForce)
                 {
-                    throwForce -= Time.deltaTime * multipleFore;
+                    CmdSetForce(throwForce - Time.deltaTime * multipleFore);
                     if(throwForce < InitthrowForce)
-                        throwForce = InitthrowForce;
+                        CmdSetForce(InitthrowForce);
                     if(throwForce == InitthrowForce)
                         target_dist_increasing = true;
                 }
@@ -182,7 +183,7 @@ public class NetThrowBomb : NetworkBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        throwForce = InitthrowForce; //在最终都运行结束后回复原值！！
+        CmdSetForce(InitthrowForce);
         // BombImage.SetActive(false);
         hasthrow = false;
     }
@@ -204,6 +205,6 @@ public class NetThrowBomb : NetworkBehaviour
 
     public void ResetThrowForce()
     {
-        throwForce = InitthrowForce;
+        CmdSetForce(InitthrowForce);
     }
 }

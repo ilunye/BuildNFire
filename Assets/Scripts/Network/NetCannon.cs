@@ -20,7 +20,7 @@ public class NetCannon : NetworkBehaviour
     public GameObject player2 = null;
     public bool playerIn = false;
     public bool playerIn2 = false;
-    public WorkFlow workFlow;
+    public NetWorkFlow workFlow;
     public GameStartTextController gameStartTextController;
     public int mode = 0;
     // these two only used in mode 1
@@ -183,7 +183,7 @@ public class NetCannon : NetworkBehaviour
             material[i].SetFloat("_DisappearOffset", disOffset.position.y);
         }
         bool playerdoing = false;
-        if (playerIn && Input.GetKeyDown(player.GetComponent<NetCharacter>().keycodes[4]))
+        if (playerIn && player && Input.GetKeyDown(player.GetComponent<NetCharacter>().keycodes[4]))
         {
             //Debug.Log("build");
             if (isPlaying) return;

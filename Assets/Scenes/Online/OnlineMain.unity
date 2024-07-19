@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 2867434}
   - component: {fileID: 2867436}
   - component: {fileID: 2867435}
+  - component: {fileID: 2867437}
   m_Layer: 0
   m_Name: ropeStanchion
   m_TagString: Untagged
@@ -208,6 +209,40 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2867433}
   m_Mesh: {fileID: 5436391072046714745, guid: 0ef3b23e219d33542924bb41be52d914, type: 3}
+--- !u!114 &2867437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2867433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 2867434}
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  onlySyncOnChange: 1
+  compressRotation: 1
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  coordinateSpace: 0
+  sendIntervalMultiplier: 1
+  timelineOffset: 0
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChangeCorrectionMultiplier: 2
+  rotationSensitivity: 0.01
+  positionPrecision: 0.01
+  scalePrecision: 0.01
 --- !u!1001 &6337926
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -421,7 +456,7 @@ MonoBehaviour:
   authenticator: {fileID: 0}
   playerPrefab: {fileID: 4769152038049538857, guid: 00b6273eaa42f4945a14aa1520cf6ee9, type: 3}
   autoCreatePlayer: 1
-  playerSpawnMethod: 0
+  playerSpawnMethod: 1
   spawnPrefabs:
   - {fileID: 174260, guid: 072d9b442ad5ec54f8bfed646af0fcbc, type: 3}
   - {fileID: 5689611657756177295, guid: b8cea1f834b056d438bec32c9d503f78, type: 3}
@@ -1917,6 +1952,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7f82145e2357cd458067a8e10fb0bf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   claimed: 0
   disOffset: {fileID: 0}
   idx: 0
@@ -1942,6 +1980,7 @@ GameObject:
   - component: {fileID: 298741619}
   - component: {fileID: 298741621}
   - component: {fileID: 298741620}
+  - component: {fileID: 298741622}
   m_Layer: 0
   m_Name: ropeStanchion (5)
   m_TagString: Untagged
@@ -2016,6 +2055,40 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 298741618}
   m_Mesh: {fileID: 5436391072046714745, guid: 0ef3b23e219d33542924bb41be52d914, type: 3}
+--- !u!114 &298741622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298741618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 298741619}
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  onlySyncOnChange: 1
+  compressRotation: 1
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  coordinateSpace: 0
+  sendIntervalMultiplier: 1
+  timelineOffset: 0
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChangeCorrectionMultiplier: 2
+  rotationSensitivity: 0.01
+  positionPrecision: 0.01
+  scalePrecision: 0.01
 --- !u!1 &327618001
 GameObject:
   m_ObjectHideFlags: 0
@@ -2121,6 +2194,7 @@ GameObject:
   - component: {fileID: 328932756}
   - component: {fileID: 328932758}
   - component: {fileID: 328932757}
+  - component: {fileID: 328932759}
   m_Layer: 0
   m_Name: ropeStanchion (2)
   m_TagString: Untagged
@@ -2195,6 +2269,40 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 328932755}
   m_Mesh: {fileID: 5436391072046714745, guid: 0ef3b23e219d33542924bb41be52d914, type: 3}
+--- !u!114 &328932759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328932755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 328932756}
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  onlySyncOnChange: 1
+  compressRotation: 1
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  coordinateSpace: 0
+  sendIntervalMultiplier: 1
+  timelineOffset: 0
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChangeCorrectionMultiplier: 2
+  rotationSensitivity: 0.01
+  positionPrecision: 0.01
+  scalePrecision: 0.01
 --- !u!1 &338132951
 GameObject:
   m_ObjectHideFlags: 0
@@ -2584,6 +2692,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 396676342}
+  - component: {fileID: 396676343}
   m_Layer: 0
   m_Name: ropes
   m_TagString: Untagged
@@ -2618,6 +2727,40 @@ Transform:
   - {fileID: 298741619}
   m_Father: {fileID: 283327681}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &396676343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 396676341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 396676342}
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  onlySyncOnChange: 1
+  compressRotation: 1
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  coordinateSpace: 0
+  sendIntervalMultiplier: 1
+  timelineOffset: 0
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChangeCorrectionMultiplier: 2
+  rotationSensitivity: 0.01
+  positionPrecision: 0.01
+  scalePrecision: 0.01
 --- !u!1 &407149012
 GameObject:
   m_ObjectHideFlags: 0
@@ -2773,6 +2916,7 @@ GameObject:
   - component: {fileID: 453316973}
   - component: {fileID: 453316975}
   - component: {fileID: 453316974}
+  - component: {fileID: 453316976}
   m_Layer: 0
   m_Name: ropeStanchion
   m_TagString: Untagged
@@ -2847,6 +2991,40 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 453316972}
   m_Mesh: {fileID: 5436391072046714745, guid: 0ef3b23e219d33542924bb41be52d914, type: 3}
+--- !u!114 &453316976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453316972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 453316973}
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  onlySyncOnChange: 1
+  compressRotation: 1
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  coordinateSpace: 0
+  sendIntervalMultiplier: 1
+  timelineOffset: 0
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChangeCorrectionMultiplier: 2
+  rotationSensitivity: 0.01
+  positionPrecision: 0.01
+  scalePrecision: 0.01
 --- !u!1 &459637217
 GameObject:
   m_ObjectHideFlags: 0
@@ -3487,6 +3665,7 @@ GameObject:
   - component: {fileID: 576302672}
   - component: {fileID: 576302674}
   - component: {fileID: 576302673}
+  - component: {fileID: 576302675}
   m_Layer: 0
   m_Name: ropeStanchion (6)
   m_TagString: Untagged
@@ -3561,6 +3740,40 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 576302671}
   m_Mesh: {fileID: 5436391072046714745, guid: 0ef3b23e219d33542924bb41be52d914, type: 3}
+--- !u!114 &576302675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 576302671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 576302672}
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  onlySyncOnChange: 1
+  compressRotation: 1
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  coordinateSpace: 0
+  sendIntervalMultiplier: 1
+  timelineOffset: 0
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChangeCorrectionMultiplier: 2
+  rotationSensitivity: 0.01
+  positionPrecision: 0.01
+  scalePrecision: 0.01
 --- !u!1 &581579875
 GameObject:
   m_ObjectHideFlags: 0
@@ -3798,6 +4011,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 283327681}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &719055347
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 719055349}
+  - component: {fileID: 719055348}
+  m_Layer: 0
+  m_Name: SpawnPoint1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &719055348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 719055347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41f84591ce72545258ea98cb7518d8b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &719055349
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 719055347}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 798.05, y: 0.36, z: 981.98}
+  m_LocalScale: {x: 2.5203, y: 2.5203, z: 2.5203}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &741384782
 GameObject:
   m_ObjectHideFlags: 0
@@ -3809,6 +4066,7 @@ GameObject:
   - component: {fileID: 741384783}
   - component: {fileID: 741384785}
   - component: {fileID: 741384784}
+  - component: {fileID: 741384786}
   m_Layer: 0
   m_Name: ropeStanchion (5)
   m_TagString: Untagged
@@ -3883,6 +4141,40 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 741384782}
   m_Mesh: {fileID: 5436391072046714745, guid: 0ef3b23e219d33542924bb41be52d914, type: 3}
+--- !u!114 &741384786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741384782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 741384783}
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  onlySyncOnChange: 1
+  compressRotation: 1
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  coordinateSpace: 0
+  sendIntervalMultiplier: 1
+  timelineOffset: 0
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChangeCorrectionMultiplier: 2
+  rotationSensitivity: 0.01
+  positionPrecision: 0.01
+  scalePrecision: 0.01
 --- !u!1 &753974288
 GameObject:
   m_ObjectHideFlags: 0
@@ -3894,6 +4186,7 @@ GameObject:
   - component: {fileID: 753974289}
   - component: {fileID: 753974291}
   - component: {fileID: 753974290}
+  - component: {fileID: 753974292}
   m_Layer: 0
   m_Name: ropeStanchion (10)
   m_TagString: Untagged
@@ -3968,6 +4261,40 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 753974288}
   m_Mesh: {fileID: 5436391072046714745, guid: 0ef3b23e219d33542924bb41be52d914, type: 3}
+--- !u!114 &753974292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 753974288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 753974289}
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  onlySyncOnChange: 1
+  compressRotation: 1
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  coordinateSpace: 0
+  sendIntervalMultiplier: 1
+  timelineOffset: 0
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChangeCorrectionMultiplier: 2
+  rotationSensitivity: 0.01
+  positionPrecision: 0.01
+  scalePrecision: 0.01
 --- !u!1 &774244799
 GameObject:
   m_ObjectHideFlags: 0
@@ -5180,6 +5507,7 @@ GameObject:
   - component: {fileID: 905004214}
   - component: {fileID: 905004216}
   - component: {fileID: 905004215}
+  - component: {fileID: 905004217}
   m_Layer: 0
   m_Name: ropeStanchion (7)
   m_TagString: Untagged
@@ -5254,6 +5582,40 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 905004213}
   m_Mesh: {fileID: 5436391072046714745, guid: 0ef3b23e219d33542924bb41be52d914, type: 3}
+--- !u!114 &905004217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905004213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 905004214}
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  onlySyncOnChange: 1
+  compressRotation: 1
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  coordinateSpace: 0
+  sendIntervalMultiplier: 1
+  timelineOffset: 0
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChangeCorrectionMultiplier: 2
+  rotationSensitivity: 0.01
+  positionPrecision: 0.01
+  scalePrecision: 0.01
 --- !u!1 &921546984
 GameObject:
   m_ObjectHideFlags: 0
@@ -5337,8 +5699,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1979723291}
-        m_TargetAssemblyTypeName: sum_msg, Assembly-CSharp
+      - m_Target: {fileID: 1979723296}
+        m_TargetAssemblyTypeName: Netsum_msg, Assembly-CSharp
         m_MethodName: ToMenu
         m_Mode: 1
         m_Arguments:
@@ -5742,6 +6104,7 @@ GameObject:
   - component: {fileID: 999382100}
   - component: {fileID: 999382102}
   - component: {fileID: 999382101}
+  - component: {fileID: 999382103}
   m_Layer: 0
   m_Name: ropeStanchion (11)
   m_TagString: Untagged
@@ -5816,6 +6179,40 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 999382099}
   m_Mesh: {fileID: 5436391072046714745, guid: 0ef3b23e219d33542924bb41be52d914, type: 3}
+--- !u!114 &999382103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999382099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 999382100}
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  onlySyncOnChange: 1
+  compressRotation: 1
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  coordinateSpace: 0
+  sendIntervalMultiplier: 1
+  timelineOffset: 0
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChangeCorrectionMultiplier: 2
+  rotationSensitivity: 0.01
+  positionPrecision: 0.01
+  scalePrecision: 0.01
 --- !u!1 &1003130455
 GameObject:
   m_ObjectHideFlags: 0
@@ -5827,6 +6224,7 @@ GameObject:
   - component: {fileID: 1003130456}
   - component: {fileID: 1003130458}
   - component: {fileID: 1003130457}
+  - component: {fileID: 1003130459}
   m_Layer: 0
   m_Name: ropeStanchion (3)
   m_TagString: Untagged
@@ -5901,6 +6299,40 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1003130455}
   m_Mesh: {fileID: 5436391072046714745, guid: 0ef3b23e219d33542924bb41be52d914, type: 3}
+--- !u!114 &1003130459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1003130455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 1003130456}
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  onlySyncOnChange: 1
+  compressRotation: 1
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  coordinateSpace: 0
+  sendIntervalMultiplier: 1
+  timelineOffset: 0
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChangeCorrectionMultiplier: 2
+  rotationSensitivity: 0.01
+  positionPrecision: 0.01
+  scalePrecision: 0.01
 --- !u!1 &1021395802
 GameObject:
   m_ObjectHideFlags: 0
@@ -5987,6 +6419,7 @@ GameObject:
   - component: {fileID: 1038230911}
   - component: {fileID: 1038230913}
   - component: {fileID: 1038230912}
+  - component: {fileID: 1038230914}
   m_Layer: 0
   m_Name: ropeStanchion (11)
   m_TagString: Untagged
@@ -6061,6 +6494,40 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1038230910}
   m_Mesh: {fileID: 5436391072046714745, guid: 0ef3b23e219d33542924bb41be52d914, type: 3}
+--- !u!114 &1038230914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1038230910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 1038230911}
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  onlySyncOnChange: 1
+  compressRotation: 1
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  coordinateSpace: 0
+  sendIntervalMultiplier: 1
+  timelineOffset: 0
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChangeCorrectionMultiplier: 2
+  rotationSensitivity: 0.01
+  positionPrecision: 0.01
+  scalePrecision: 0.01
 --- !u!1 &1073546011
 GameObject:
   m_ObjectHideFlags: 0
@@ -6357,6 +6824,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7f82145e2357cd458067a8e10fb0bf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   claimed: 0
   disOffset: {fileID: 0}
   idx: 0
@@ -7010,6 +7480,7 @@ GameObject:
   - component: {fileID: 1146487884}
   - component: {fileID: 1146487886}
   - component: {fileID: 1146487885}
+  - component: {fileID: 1146487887}
   m_Layer: 0
   m_Name: ropeStanchion (4)
   m_TagString: Untagged
@@ -7084,6 +7555,40 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1146487883}
   m_Mesh: {fileID: 5436391072046714745, guid: 0ef3b23e219d33542924bb41be52d914, type: 3}
+--- !u!114 &1146487887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146487883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 1146487884}
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  onlySyncOnChange: 1
+  compressRotation: 1
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  coordinateSpace: 0
+  sendIntervalMultiplier: 1
+  timelineOffset: 0
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChangeCorrectionMultiplier: 2
+  rotationSensitivity: 0.01
+  positionPrecision: 0.01
+  scalePrecision: 0.01
 --- !u!1 &1161718100
 GameObject:
   m_ObjectHideFlags: 0
@@ -7476,6 +7981,7 @@ GameObject:
   - component: {fileID: 1268211127}
   - component: {fileID: 1268211129}
   - component: {fileID: 1268211128}
+  - component: {fileID: 1268211130}
   m_Layer: 0
   m_Name: ropeStanchion (9)
   m_TagString: Untagged
@@ -7550,6 +8056,40 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1268211126}
   m_Mesh: {fileID: 5436391072046714745, guid: 0ef3b23e219d33542924bb41be52d914, type: 3}
+--- !u!114 &1268211130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1268211126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 1268211127}
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  onlySyncOnChange: 1
+  compressRotation: 1
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  coordinateSpace: 0
+  sendIntervalMultiplier: 1
+  timelineOffset: 0
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChangeCorrectionMultiplier: 2
+  rotationSensitivity: 0.01
+  positionPrecision: 0.01
+  scalePrecision: 0.01
 --- !u!33 &1269297049
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -8120,6 +8660,7 @@ GameObject:
   - component: {fileID: 1326542247}
   - component: {fileID: 1326542249}
   - component: {fileID: 1326542248}
+  - component: {fileID: 1326542250}
   m_Layer: 0
   m_Name: ropeStanchion (7)
   m_TagString: Untagged
@@ -8194,6 +8735,40 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1326542246}
   m_Mesh: {fileID: 5436391072046714745, guid: 0ef3b23e219d33542924bb41be52d914, type: 3}
+--- !u!114 &1326542250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1326542246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 1326542247}
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  onlySyncOnChange: 1
+  compressRotation: 1
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  coordinateSpace: 0
+  sendIntervalMultiplier: 1
+  timelineOffset: 0
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChangeCorrectionMultiplier: 2
+  rotationSensitivity: 0.01
+  positionPrecision: 0.01
+  scalePrecision: 0.01
 --- !u!1 &1333623122
 GameObject:
   m_ObjectHideFlags: 0
@@ -8453,6 +9028,7 @@ GameObject:
   - component: {fileID: 1371223050}
   - component: {fileID: 1371223052}
   - component: {fileID: 1371223051}
+  - component: {fileID: 1371223053}
   m_Layer: 0
   m_Name: ropeStanchion (4)
   m_TagString: Untagged
@@ -8527,6 +9103,40 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1371223049}
   m_Mesh: {fileID: 5436391072046714745, guid: 0ef3b23e219d33542924bb41be52d914, type: 3}
+--- !u!114 &1371223053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1371223049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 1371223050}
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  onlySyncOnChange: 1
+  compressRotation: 1
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  coordinateSpace: 0
+  sendIntervalMultiplier: 1
+  timelineOffset: 0
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChangeCorrectionMultiplier: 2
+  rotationSensitivity: 0.01
+  positionPrecision: 0.01
+  scalePrecision: 0.01
 --- !u!1 &1397128493
 GameObject:
   m_ObjectHideFlags: 0
@@ -9016,6 +9626,7 @@ GameObject:
   - component: {fileID: 1413928257}
   - component: {fileID: 1413928259}
   - component: {fileID: 1413928258}
+  - component: {fileID: 1413928260}
   m_Layer: 0
   m_Name: ropeStanchion (10)
   m_TagString: Untagged
@@ -9090,6 +9701,40 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1413928256}
   m_Mesh: {fileID: 5436391072046714745, guid: 0ef3b23e219d33542924bb41be52d914, type: 3}
+--- !u!114 &1413928260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413928256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 1413928257}
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  onlySyncOnChange: 1
+  compressRotation: 1
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  coordinateSpace: 0
+  sendIntervalMultiplier: 1
+  timelineOffset: 0
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChangeCorrectionMultiplier: 2
+  rotationSensitivity: 0.01
+  positionPrecision: 0.01
+  scalePrecision: 0.01
 --- !u!1 &1427164381
 GameObject:
   m_ObjectHideFlags: 0
@@ -9250,6 +9895,7 @@ GameObject:
   - component: {fileID: 1462109405}
   - component: {fileID: 1462109407}
   - component: {fileID: 1462109406}
+  - component: {fileID: 1462109408}
   m_Layer: 0
   m_Name: ropeStanchion (8)
   m_TagString: Untagged
@@ -9324,6 +9970,40 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1462109404}
   m_Mesh: {fileID: 5436391072046714745, guid: 0ef3b23e219d33542924bb41be52d914, type: 3}
+--- !u!114 &1462109408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462109404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 1462109405}
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  onlySyncOnChange: 1
+  compressRotation: 1
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  coordinateSpace: 0
+  sendIntervalMultiplier: 1
+  timelineOffset: 0
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChangeCorrectionMultiplier: 2
+  rotationSensitivity: 0.01
+  positionPrecision: 0.01
+  scalePrecision: 0.01
 --- !u!1 &1478061737
 GameObject:
   m_ObjectHideFlags: 0
@@ -9335,6 +10015,7 @@ GameObject:
   - component: {fileID: 1478061738}
   - component: {fileID: 1478061740}
   - component: {fileID: 1478061739}
+  - component: {fileID: 1478061741}
   m_Layer: 0
   m_Name: ropeStanchion (2)
   m_TagString: Untagged
@@ -9409,6 +10090,40 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1478061737}
   m_Mesh: {fileID: 5436391072046714745, guid: 0ef3b23e219d33542924bb41be52d914, type: 3}
+--- !u!114 &1478061741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478061737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 1478061738}
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  onlySyncOnChange: 1
+  compressRotation: 1
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  coordinateSpace: 0
+  sendIntervalMultiplier: 1
+  timelineOffset: 0
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChangeCorrectionMultiplier: 2
+  rotationSensitivity: 0.01
+  positionPrecision: 0.01
+  scalePrecision: 0.01
 --- !u!1 &1480171749
 GameObject:
   m_ObjectHideFlags: 0
@@ -10149,6 +10864,7 @@ GameObject:
   - component: {fileID: 1579803984}
   - component: {fileID: 1579803986}
   - component: {fileID: 1579803985}
+  - component: {fileID: 1579803987}
   m_Layer: 0
   m_Name: ropeStanchion (3)
   m_TagString: Untagged
@@ -10223,6 +10939,40 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1579803983}
   m_Mesh: {fileID: 5436391072046714745, guid: 0ef3b23e219d33542924bb41be52d914, type: 3}
+--- !u!114 &1579803987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1579803983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 1579803984}
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  onlySyncOnChange: 1
+  compressRotation: 1
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  coordinateSpace: 0
+  sendIntervalMultiplier: 1
+  timelineOffset: 0
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChangeCorrectionMultiplier: 2
+  rotationSensitivity: 0.01
+  positionPrecision: 0.01
+  scalePrecision: 0.01
 --- !u!1 &1598773278
 GameObject:
   m_ObjectHideFlags: 0
@@ -10601,6 +11351,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blinkDuration: 5
+--- !u!1 &1662490665
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1662490667}
+  - component: {fileID: 1662490666}
+  m_Layer: 0
+  m_Name: SpawnPoint2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1662490666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662490665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41f84591ce72545258ea98cb7518d8b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1662490667
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662490665}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 801.28, y: 0.36, z: 981.98}
+  m_LocalScale: {x: 2.5203, y: 2.5203, z: 2.5203}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1669381422
 GameObject:
   m_ObjectHideFlags: 0
@@ -11141,6 +11935,7 @@ GameObject:
   - component: {fileID: 1713013242}
   - component: {fileID: 1713013244}
   - component: {fileID: 1713013243}
+  - component: {fileID: 1713013245}
   m_Layer: 0
   m_Name: ropeStanchion (8)
   m_TagString: Untagged
@@ -11215,6 +12010,40 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1713013241}
   m_Mesh: {fileID: 5436391072046714745, guid: 0ef3b23e219d33542924bb41be52d914, type: 3}
+--- !u!114 &1713013245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1713013241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 1713013242}
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  onlySyncOnChange: 1
+  compressRotation: 1
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  coordinateSpace: 0
+  sendIntervalMultiplier: 1
+  timelineOffset: 0
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChangeCorrectionMultiplier: 2
+  rotationSensitivity: 0.01
+  positionPrecision: 0.01
+  scalePrecision: 0.01
 --- !u!1 &1716872551
 GameObject:
   m_ObjectHideFlags: 0
@@ -11301,6 +12130,7 @@ GameObject:
   - component: {fileID: 1717666681}
   - component: {fileID: 1717666683}
   - component: {fileID: 1717666682}
+  - component: {fileID: 1717666684}
   m_Layer: 0
   m_Name: ropeStanchion (9)
   m_TagString: Untagged
@@ -11375,6 +12205,40 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1717666680}
   m_Mesh: {fileID: 5436391072046714745, guid: 0ef3b23e219d33542924bb41be52d914, type: 3}
+--- !u!114 &1717666684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1717666680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 1717666681}
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  onlySyncOnChange: 1
+  compressRotation: 1
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  coordinateSpace: 0
+  sendIntervalMultiplier: 1
+  timelineOffset: 0
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChangeCorrectionMultiplier: 2
+  rotationSensitivity: 0.01
+  positionPrecision: 0.01
+  scalePrecision: 0.01
 --- !u!1 &1720189938
 GameObject:
   m_ObjectHideFlags: 0
@@ -12106,6 +12970,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1813762232}
+  - component: {fileID: 1813762234}
   - component: {fileID: 1813762233}
   m_Layer: 5
   m_Name: PlayerUI_1
@@ -12149,9 +13014,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1813762231}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e967c8085cfdec341a0ed9f97a53faab, type: 3}
+  m_Script: {fileID: 11500000, guid: 8805c84bbc593ed4ba1b450fccc6ca67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   wood_number: 0
   iron_number: 0
   gunpowder_number: 0
@@ -12166,6 +13034,23 @@ MonoBehaviour:
   last_is_iron: 0
   last_is_wood: 0
   mode: 0
+--- !u!114 &1813762234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813762231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 434608176
+  _assetId: 0
+  serverOnly: 0
+  visibility: 0
+  hasSpawned: 0
 --- !u!1 &1837232604
 GameObject:
   m_ObjectHideFlags: 0
@@ -12813,6 +13698,7 @@ GameObject:
   - component: {fileID: 1897215606}
   - component: {fileID: 1897215608}
   - component: {fileID: 1897215607}
+  - component: {fileID: 1897215609}
   m_Layer: 0
   m_Name: ropeStanchion (1)
   m_TagString: Untagged
@@ -12887,6 +13773,40 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1897215605}
   m_Mesh: {fileID: 5436391072046714745, guid: 0ef3b23e219d33542924bb41be52d914, type: 3}
+--- !u!114 &1897215609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1897215605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 1897215606}
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  onlySyncOnChange: 1
+  compressRotation: 1
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  coordinateSpace: 0
+  sendIntervalMultiplier: 1
+  timelineOffset: 0
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChangeCorrectionMultiplier: 2
+  rotationSensitivity: 0.01
+  positionPrecision: 0.01
+  scalePrecision: 0.01
 --- !u!1 &1906334086
 GameObject:
   m_ObjectHideFlags: 0
@@ -12898,6 +13818,7 @@ GameObject:
   - component: {fileID: 1906334087}
   - component: {fileID: 1906334089}
   - component: {fileID: 1906334088}
+  - component: {fileID: 1906334090}
   m_Layer: 0
   m_Name: ropeStanchion (1)
   m_TagString: Untagged
@@ -12972,6 +13893,40 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1906334086}
   m_Mesh: {fileID: 5436391072046714745, guid: 0ef3b23e219d33542924bb41be52d914, type: 3}
+--- !u!114 &1906334090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906334086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 1906334087}
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  onlySyncOnChange: 1
+  compressRotation: 1
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  coordinateSpace: 0
+  sendIntervalMultiplier: 1
+  timelineOffset: 0
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChangeCorrectionMultiplier: 2
+  rotationSensitivity: 0.01
+  positionPrecision: 0.01
+  scalePrecision: 0.01
 --- !u!1 &1907012939
 GameObject:
   m_ObjectHideFlags: 0
@@ -13269,6 +14224,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1958870934}
+  - component: {fileID: 1958870935}
   m_Layer: 0
   m_Name: ropes
   m_TagString: Untagged
@@ -13303,6 +14259,40 @@ Transform:
   - {fileID: 741384783}
   m_Father: {fileID: 1101239769}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1958870935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1958870933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 1958870934}
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  onlySyncOnChange: 1
+  compressRotation: 1
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  coordinateSpace: 0
+  sendIntervalMultiplier: 1
+  timelineOffset: 0
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChangeCorrectionMultiplier: 2
+  rotationSensitivity: 0.01
+  positionPrecision: 0.01
+  scalePrecision: 0.01
 --- !u!1 &1962699933
 GameObject:
   m_ObjectHideFlags: 0
@@ -13314,6 +14304,7 @@ GameObject:
   - component: {fileID: 1962699934}
   - component: {fileID: 1962699936}
   - component: {fileID: 1962699935}
+  - component: {fileID: 1962699937}
   m_Layer: 0
   m_Name: ropeStanchion (6)
   m_TagString: Untagged
@@ -13388,6 +14379,40 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1962699933}
   m_Mesh: {fileID: 5436391072046714745, guid: 0ef3b23e219d33542924bb41be52d914, type: 3}
+--- !u!114 &1962699937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1962699933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 1962699934}
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  onlySyncOnChange: 1
+  compressRotation: 1
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  coordinateSpace: 0
+  sendIntervalMultiplier: 1
+  timelineOffset: 0
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChangeCorrectionMultiplier: 2
+  rotationSensitivity: 0.01
+  positionPrecision: 0.01
+  scalePrecision: 0.01
 --- !u!1 &1964527403
 GameObject:
   m_ObjectHideFlags: 0
@@ -13504,15 +14529,16 @@ GameObject:
   - component: {fileID: 1979723290}
   - component: {fileID: 1979723293}
   - component: {fileID: 1979723292}
-  - component: {fileID: 1979723291}
-  - component: {fileID: 1979723294}
+  - component: {fileID: 1979723296}
+  - component: {fileID: 1979723295}
+  - component: {fileID: 1979723297}
   m_Layer: 5
   m_Name: Summary_msg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1979723290
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13532,26 +14558,6 @@ RectTransform:
   m_AnchoredPosition: {x: -8, y: 118}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1979723291
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1979723289}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3288e5377b8b3fd49bd18d696652b572, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  button: {fileID: 921546984}
-  status: 0
-  theText: {fileID: 0}
-  explode_bomb: {fileID: 0}
-  scenceID: 1
-  changeScale: 1
-  gameStartTextController: {fileID: 0}
-  mode: 0
 --- !u!114 &1979723292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13649,7 +14655,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1979723289}
   m_CullTransparentMesh: 1
---- !u!114 &1979723294
+--- !u!114 &1979723295
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13658,18 +14664,60 @@ MonoBehaviour:
   m_GameObject: {fileID: 1979723289}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb46d46b1ca91a74ab2da2123a3f1fba, type: 3}
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionForce: 200
-  explosionRadius: 20
+  sceneId: 3908708191
+  _assetId: 0
+  serverOnly: 0
+  visibility: 0
+  hasSpawned: 0
+--- !u!114 &1979723296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1979723289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9320a32c41c2a224fb2d2a581f354afa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  button: {fileID: 921546984}
+  status: 0
+  theText: {fileID: 0}
+  explode_bomb: {fileID: 0}
+  scenceID: 1
+  changeScale: 1
+  gameStartTextController: {fileID: 1129921614}
+  mode: 0
+--- !u!114 &1979723297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1979723289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1c07ef79de55e84f9193ebe64765904, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  explosionForce: 250
+  explosionRadius: 25
   status: 0
   p_left: {x: 0, y: 0, z: 0}
   p_right: {x: 0, y: 0, z: 0}
   sceneID: 1
   player_one: {fileID: 0}
   player_two: {fileID: 0}
-  sum_Msg: {fileID: 0}
   mode: 0
 --- !u!1 &1985014591
 GameObject:
@@ -14795,6 +15843,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2104380340}
+  - component: {fileID: 2104380342}
   - component: {fileID: 2104380341}
   m_Layer: 5
   m_Name: PlayerUI_2
@@ -14838,9 +15887,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2104380339}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e967c8085cfdec341a0ed9f97a53faab, type: 3}
+  m_Script: {fileID: 11500000, guid: 8805c84bbc593ed4ba1b450fccc6ca67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   wood_number: 0
   iron_number: 0
   gunpowder_number: 0
@@ -14855,6 +15907,23 @@ MonoBehaviour:
   last_is_iron: 0
   last_is_wood: 0
   mode: 0
+--- !u!114 &2104380342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2104380339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 3993790569
+  _assetId: 0
+  serverOnly: 0
+  visibility: 0
+  hasSpawned: 0
 --- !u!1 &2105728569
 GameObject:
   m_ObjectHideFlags: 0
@@ -15557,18 +16626,6 @@ MonoBehaviour:
   serverOnly: 0
   visibility: 0
   hasSpawned: 0
---- !u!114 &3423211590446243548
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3473485546517683803}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!23 &3423397417320860635
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15665,7 +16722,6 @@ GameObject:
   - component: {fileID: 5127209147420056042}
   - component: {fileID: 5272862788219613948}
   - component: {fileID: 6246617660915357610}
-  - component: {fileID: 3423211590446243548}
   - component: {fileID: 188476435648904828}
   - component: {fileID: 7970248104009955881}
   - component: {fileID: 3073679852359529461}
@@ -16473,3 +17529,5 @@ SceneRoots:
   - {fileID: 283327681}
   - {fileID: 3163414237437525922}
   - {fileID: 3163414239260769009}
+  - {fileID: 719055349}
+  - {fileID: 1662490667}
