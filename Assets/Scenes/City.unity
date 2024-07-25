@@ -2456,6 +2456,7 @@ MonoBehaviour:
   cannon: {fileID: 0}
   BGM: {fileID: 0}
   BGM_voice: {fileID: 0}
+  threeTwoOne: 1
 --- !u!114 &252213943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14285,6 +14286,7 @@ MonoBehaviour:
   regionright_xmax: 187
   region_zmin: 137.81
   region_zmax: 139.29
+  lrBorder: 180
   loadTrack: Prefabs/BigTree
 --- !u!114 &1636820796
 MonoBehaviour:

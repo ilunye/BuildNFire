@@ -14,6 +14,7 @@ public class Trees : MonoBehaviour
     public GameObject voice;
     private AudioSource tree_voice;
     public static float bigScale = 1f;
+    public int lrBorder = 800;
 
     // private Animator Anim;
 
@@ -71,7 +72,7 @@ public class Trees : MonoBehaviour
             GameObject g = Instantiate(Resources.Load("Prefabs/Wood") as GameObject);
             g.transform.position = transform.position;
             g.transform.localScale *= bigScale;
-            if(transform.position.x < 800)
+            if(transform.position.x < lrBorder)
                 GameObject.Find("GameController").GetComponent<TreeController>().TreeNumberLeft--;
             else
                 GameObject.Find("GameController").GetComponent<TreeController>().TreeNumberRight--;

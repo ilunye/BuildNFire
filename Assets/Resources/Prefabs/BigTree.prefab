@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 8232714206220089571}
   - component: {fileID: 5843816500384755520}
   - component: {fileID: 1797182302011591804}
-  - component: {fileID: -1773454914129369410}
   - component: {fileID: 5575585538842974934}
+  - component: {fileID: 6022461175109796903}
   m_Layer: 0
   m_Name: BigTree
   m_TagString: Tree
@@ -105,9 +105,22 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4.952671, y: 6.1181154, z: 5.1493344}
-  m_Center: {x: -0.13094223, y: 3.0589356, z: -0.028357744}
---- !u!65 &-1773454914129369410
+  m_Size: {x: 1.5541077, y: 6.118116, z: 1.5635681}
+  m_Center: {x: -0.017623901, y: 3.0589356, z: -0.10711685}
+--- !u!114 &5575585538842974934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 536398317193854413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bc2c4f81d895a44dab985b581426fc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  voice: {fileID: 0}
+--- !u!65 &6022461175109796903
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,17 +141,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4.952671, y: 6.1181154, z: 5.1493344}
   m_Center: {x: -0.13094223, y: 3.0589356, z: -0.028357744}
---- !u!114 &5575585538842974934
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 536398317193854413}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bc2c4f81d895a44dab985b581426fc6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  voice: {fileID: 0}
-  changeScale: 2
